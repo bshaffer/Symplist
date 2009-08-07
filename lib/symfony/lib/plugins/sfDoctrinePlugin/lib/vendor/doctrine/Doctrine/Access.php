@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Access.php 5876 2009-06-10 18:43:12Z piccoloprincipe $
+ *  $Id: Access.php 5801 2009-06-02 17:30:27Z piccoloprincipe $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,7 +27,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 5876 $
+ * @version     $Revision: 5801 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 abstract class Doctrine_Access extends Doctrine_Locator_Injectable implements ArrayAccess
@@ -159,8 +159,8 @@ abstract class Doctrine_Access extends Doctrine_Locator_Injectable implements Ar
     /**
      * Return the element with the specified offset
      *
-     * @param mixed $offset     The offset to return
-     * @return mixed
+     * @param mixed $offset The offset to return
+     * @return mixed The value of the return object 
      */
     public function get($offset)
     {

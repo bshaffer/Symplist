@@ -17,7 +17,7 @@ class sf_test_project
   {
     $this->t = $t;
 
-    $this->tmp_dir = sys_get_temp_dir().DS.'sf_test_project';
+    $this->tmp_dir = sfToolkit::getTmpDir().DS.'sf_test_project';
 
     if (is_dir($this->tmp_dir))
     {
@@ -65,7 +65,7 @@ class sf_test_project
   }
 }
 
-$t = new lime_test(38);
+$t = new lime_test(40, new lime_output_color());
 
 if (!extension_loaded('SQLite'))
 {
@@ -78,17 +78,15 @@ $c = new sf_test_project();
 $c->initialize($t);
 
 // generate:*
-$content = $c->execute_command('generate:project myproject --orm=Propel');
+$content = $c->execute_command('generate:project myproject');
 $t->ok(file_exists($c->tmp_dir.DS.'symfony'), '"generate:project" installs the symfony CLI in root project directory');
 
-$content = $c->execute_command('generate:app frontend');
+$content = $c->execute_command('generate:app frontend --escaping-strategy=on');
 $t->ok(is_dir($c->tmp_dir.DS.'apps'.DS.'frontend'), '"generate:app" creates a "frontend" directory under "apps" directory');
-$t->like(file_get_contents($c->tmp_dir.'/apps/frontend/config/settings.yml'), '/escaping_strategy: +true/', '"generate:app" switches escaping_strategy "on" by default');
-$t->like(file_get_contents($c->tmp_dir.'/apps/frontend/config/settings.yml'), '/csrf_secret: +\w+/', '"generate:app" generates a csrf_token by default');
+$t->like(file_get_contents($c->tmp_dir.'/apps/frontend/config/settings.yml'), '/escaping_strategy: +true/', '"generate:app" switches escaping_strategy "on"');
 
-$content = $c->execute_command('generate:app backend --escaping-strategy=off --csrf-secret=false');
+$content = $c->execute_command('generate:app backend');
 $t->like(file_get_contents($c->tmp_dir.'/apps/backend/config/settings.yml'), '/escaping_strategy: +false/', '"generate:app" switches escaping_strategy "off"');
-$t->like(file_get_contents($c->tmp_dir.'/apps/backend/config/settings.yml'), '/csrf_secret: +false/', '"generate:app" switches csrf_token to "off"');
 
 // failing
 $content = $c->execute_command('generate:module wrongapp foo', 1);
@@ -141,6 +139,12 @@ $t->is($content, $c->get_fixture_content('test/unit/result-harness.txt'), '"test
 $content = $c->execute_command('test:all', 1);
 $t->is($content, $c->get_fixture_content('test/result-harness.txt'), '"test:all" launches all unit and functional tests');
 
+$content = $c->execute_command(sprintf('project:freeze %s', realpath(dirname(__FILE__).'/../../data')));
+$t->like(file_get_contents($c->tmp_dir.DS.'config'.DS.'ProjectConfiguration.class.php'), '/dirname\(__FILE__\)/', '"project:freeze" freezes symfony lib and data dir into the project directory');
+
+$content = $c->execute_command('project:unfreeze');
+$t->unlike(file_get_contents($c->tmp_dir.DS.'config'.DS.'ProjectConfiguration.class.php'), '/dirname\(__FILE__\)/', '"project:unfreeze" unfreezes symfony lib and data dir');
+
 $content = $c->execute_command('cache:clear');
 
 // Test task autoloading
@@ -149,14 +153,6 @@ copy(dirname(__FILE__).'/fixtures/task/aTask.class.php', $c->tmp_dir.DS.'lib'.DS
 copy(dirname(__FILE__).'/fixtures/task/zTask.class.php', $c->tmp_dir.DS.'lib'.DS.'task'.DS.'zTask.class.php');
 mkdir($pluginDir = $c->tmp_dir.DS.'plugins'.DS.'myFooPlugin'.DS.'lib'.DS.'task', 0777, true);
 copy(dirname(__FILE__).'/fixtures/task/myPluginTask.class.php', $pluginDir.DS.'myPluginTask.class.php');
-file_put_contents(
-  $projectConfigurationFile = $c->tmp_dir.DS.'config'.DS.'ProjectConfiguration.class.php', 
-  str_replace(
-    '$this->enablePlugins(\'sfPropelPlugin\')', 
-    '$this->enablePlugins(array(\'myFooPlugin\', \'sfPropelPlugin\'))', 
-    file_get_contents($projectConfigurationFile)
-  )
-);
 
 $c->execute_command('a:run');
 $c->execute_command('z:run');

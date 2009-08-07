@@ -165,6 +165,13 @@ class sfDoctrinePager extends sfPager implements Serializable
    */
   public function getResults($hydrationMode = Doctrine::HYDRATE_RECORD)
   {
-    return $this->getQuery()->execute(array(), $hydrationMode);
+    $p = $this->getQuery();
+
+    if ($hydrationMode == 'array')
+    {
+      $hydrationMode = Doctrine::HYDRATE_ARRAY;
+    }
+
+    return $p->execute(array(), $hydrationMode);
   }
 }

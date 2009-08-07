@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Pgsql.php 5922 2009-06-22 20:56:38Z jwage $
+ *  $Id: Pgsql.php 5801 2009-06-02 17:30:27Z piccoloprincipe $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -26,7 +26,7 @@
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  * @author      Paul Cooper <pgc@ucecom.com>
  * @author      Lukas Smith <smith@pooteeweet.org> (PEAR MDB2 library)
- * @version     $Revision: 5922 $
+ * @version     $Revision: 5801 $
  * @link        www.phpdoctrine.org
  * @since       1.0
  */
@@ -405,8 +405,8 @@ class Doctrine_DataDict_Pgsql extends Doctrine_DataDict
                     }
                 }
                 return 'INT';
-			case 'inet':
-				return 'INET';
+	    case 'inet':
+		return 'INET';
             case 'bit':
             case 'varbit':
                 return 'VARBIT';		
@@ -415,9 +415,9 @@ class Doctrine_DataDict_Pgsql extends Doctrine_DataDict
             case 'date':
                 return 'DATE';
             case 'time':
-                return 'TIME';
+                return 'TIME without time zone';
             case 'timestamp':
-                return 'TIMESTAMP';
+                return 'TIMESTAMP without time zone';
             case 'float':
             case 'double':
                 return 'FLOAT';
@@ -438,6 +438,7 @@ class Doctrine_DataDict_Pgsql extends Doctrine_DataDict
      */
     public function getPortableDeclaration(array $field)
     {
+
         $length = (isset($field['length'])) ? $field['length'] : null;
         if ($length == '-1' && isset($field['atttypmod'])) {
             $length = $field['atttypmod'] - 4;
@@ -573,8 +574,7 @@ class Doctrine_DataDict_Pgsql extends Doctrine_DataDict
                 $length = null;
                 break;
             default:
-                $type[] = 'string';
-                $length = null;
+                throw new Doctrine_DataDict_Exception('unknown database attribute type: '.$dbType);
         }
 
         return array('type'     => $type,

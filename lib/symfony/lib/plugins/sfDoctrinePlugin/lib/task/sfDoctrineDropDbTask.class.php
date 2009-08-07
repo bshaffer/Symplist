@@ -18,7 +18,7 @@ require_once(dirname(__FILE__).'/sfDoctrineBaseTask.class.php');
  * @subpackage doctrine
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Jonathan H. Wage <jonwage@gmail.com>
- * @version    SVN: $Id: sfDoctrineDropDbTask.class.php 19998 2009-07-07 22:54:47Z Jonathan.Wage $
+ * @version    SVN: $Id: sfDoctrineDropDbTask.class.php 14213 2008-12-19 21:03:13Z Jonathan.Wage $
  */
 class sfDoctrineDropDbTask extends sfDoctrineBaseTask
 {
@@ -52,18 +52,10 @@ EOF;
    */
   protected function execute($arguments = array(), $options = array())
   {
-    $databaseManager = new sfDatabaseManager($this->configuration);
-
-    $manager = Doctrine_Manager::getInstance();
-    $connectionNames = array();
-    foreach ($manager as $conn)
-    {
-      $connectionNames[] = $conn->getName();
-    }
     if (
       !$options['no-confirmation']
       &&
-      !$this->askConfirmation(array('This command will remove all data in your database connections named: '.implode(', ', $connectionNames), 'Are you sure you want to proceed? (y/N)'), 'QUESTION_LARGE', false)
+      !$this->askConfirmation(array('This command will remove all data in your database.', 'Are you sure you want to proceed? (y/N)'), null, false)
     )
     {
       $this->logSection('doctrine', 'task aborted');
@@ -73,6 +65,7 @@ EOF;
 
     $this->logSection('doctrine', 'dropping databases');
 
+    $databaseManager = new sfDatabaseManager($this->configuration);
     $this->callDoctrineCli('drop-db', array('force' => true));
   }
 }

@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: LocalKey.php 5798 2009-06-02 15:10:46Z piccoloprincipe $
+ *  $Id: LocalKey.php 5801 2009-06-02 17:30:27Z piccoloprincipe $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -29,7 +29,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 5798 $
+ * @version     $Revision: 5801 $
  */
 class Doctrine_Relation_LocalKey extends Doctrine_Relation
 {
@@ -48,12 +48,6 @@ class Doctrine_Relation_LocalKey extends Doctrine_Relation
 
         if (is_null($id) || ! $this->definition['table']->getAttribute(Doctrine::ATTR_LOAD_REFERENCES)) {
             $related = $this->getTable()->create();
-
-            // Ticket #1131 Patch.            
-            if ( ! is_null($id)) {
-                $related->assignIdentifier($id);
-                $related->state(Doctrine_Record::STATE_PROXY);
-            }
         } else {
             $dql  = 'FROM ' . $this->getTable()->getComponentName()
                  . ' WHERE ' . $this->getCondition();
@@ -68,7 +62,7 @@ class Doctrine_Relation_LocalKey extends Doctrine_Relation
             }
         }
 
-        $record->set($localFieldName, $id, false);
+        $record->set($localFieldName, $related, false);
 
         return $related;
     }

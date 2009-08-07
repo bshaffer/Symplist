@@ -10,7 +10,7 @@
 
 require_once(dirname(__FILE__).'/../../../bootstrap/unit.php');
 
-$t = new lime_test(3);
+$t = new lime_test(3, new lime_output_color());
 
 class ProjectConfiguration extends sfProjectConfiguration
 {
@@ -24,7 +24,7 @@ class TestConfiguration extends sfApplicationConfiguration
   }
 }
 
-$configuration = new TestConfiguration('test', true, sfConfig::get('sf_test_cache_dir', sys_get_temp_dir()));
+$configuration = new TestConfiguration('test', true, sfConfig::get('sf_test_cache_dir', sfToolkit::getTmpDir()));
 $cache = new sfNoCache();
 $i18n = new sfI18N($configuration, $cache);
 

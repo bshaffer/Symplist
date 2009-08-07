@@ -5,12 +5,12 @@ require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/BaseFormFilterDoctrin
 /**
  * <?php echo $this->table->getOption('name') ?> filter form base class.
  *
- * @package    ##PROJECT_NAME##
- * @subpackage filter
- * @author     ##AUTHOR_NAME##
- * @version    SVN: $Id$
+ * @package    filters
+ * @subpackage <?php echo $this->table->getOption('name') ?>
+ *
+ * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 11675 2008-09-19 15:21:38Z fabien $
  */
-class Base<?php echo $this->table->getOption('name') ?>FormFilter extends <?php echo $this->getFormClassToExtend() . "\n" ?>
+class Base<?php echo $this->table->getOption('name') ?>FormFilter extends BaseFormFilterDoctrine
 {
   public function setup()
   {
@@ -37,8 +37,6 @@ class Base<?php echo $this->table->getOption('name') ?>FormFilter extends <?php 
     $this->widgetSchema->setNameFormat('<?php echo $this->underscore($this->modelName) ?>_filters[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
-
-    $this->setupInheritance();
 
     parent::setup();
   }

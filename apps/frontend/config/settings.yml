@@ -28,4 +28,4 @@ all:
     csrf_secret:                      false
     escaping_strategy:                false
     escaping_method:                  ESC_SPECIALCHARS
-    enabled_modules:                  [ default, csNavigation ]
+    enabled_modules:                  [ default, csNavigation, csComments, csSEO ]

@@ -1,6 +1,6 @@
 <?php
 /*
- *    $Id: NestedSet.php 5876 2009-06-10 18:43:12Z piccoloprincipe $
+ *    $Id: NestedSet.php 5844 2009-06-09 07:07:36Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,7 +27,7 @@
  * @license    http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link       www.phpdoctrine.org
  * @since      1.0
- * @version    $Revision: 5876 $
+ * @version    $Revision: 5844 $
  * @author     Joe Simms <joe.simms@websites4.com>
  * @author     Roman Borschel <roman@code-factory.org>     
  */
@@ -76,7 +76,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
     /**
      * gets record of prev sibling or empty record
      *
-     * @return Doctrine_Record            
+     * @return object     Doctrine_Record            
      */
     public function getPrevSibling()
     {
@@ -102,7 +102,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
     /**
      * gets record of next sibling or empty record
      *
-     * @return Doctrine_Record            
+     * @return object     Doctrine_Record            
      */
     public function getNextSibling()
     {
@@ -148,7 +148,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
     /**
      * gets record of first child or empty record
      *
-     * @return Doctrine_Record            
+     * @return object     Doctrine_Record            
      */
     public function getFirstChild()
     {
@@ -174,7 +174,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
     /**
      * gets record of last child or empty record
      *
-     * @return Doctrine_Record            
+     * @return object     Doctrine_Record            
      */
     public function getLastChild()
     {
@@ -200,7 +200,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
     /**
      * gets children for node (direct descendants only)
      *
-     * @return mixed  The children of the node or FALSE if the node has no children.               
+     * @return mixed The children of the node or FALSE if the node has no children.               
      */
     public function getChildren()
     { 
@@ -210,7 +210,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
     /**
      * gets descendants for node (direct descendants only)
      *
-     * @return mixed  The descendants of the node or FALSE if the node has no descendants.
+     * @return mixed  The descendants of the node or FALSE if the node has no descendants.  
      */
     public function getDescendants($depth = null, $includeNode = false)
     {
@@ -241,7 +241,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
     /**
      * gets record of parent or empty record
      *
-     * @return Doctrine_Record            
+     * @return object     Doctrine_Record            
      */
     public function getParent()
     {
@@ -1059,8 +1059,9 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
         $qLeft = $qLeft->update($componentName)
                 ->set($componentName . '.lft', $componentName.'.lft + ?', $delta)
                 ->where($componentName . '.lft >= ?', $first);
+        
         $qLeft = $this->_tree->returnQueryWithRootId($qLeft, $rootId);
-
+        
         $resultLeft = $qLeft->execute();
         
         // shift right columns

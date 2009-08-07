@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage task
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfCommandApplicationTask.class.php 20859 2009-08-06 16:23:38Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfCommandApplicationTask.class.php 19112 2009-06-10 06:32:12Z fabien $
  */
 abstract class sfCommandApplicationTask extends sfTask
 {
@@ -51,47 +51,5 @@ abstract class sfCommandApplicationTask extends sfTask
     {
       parent::logSection($section, $message, $size, $style);
     }
-  }
-
-  /**
-   * Creates a new task object.
-   *
-   * @param  string $name The name of the task
-   *
-   * @return sfTask
-   *
-   * @throws LogicException If the current task has no command application
-   */
-  protected function createTask($name)
-  {
-    if (is_null($this->commandApplication))
-    {
-      throw new LogicException('No command application associated with this task yet.');
-    }
-
-    $task = $this->commandApplication->getTaskToExecute($name);
-
-    if ($task instanceof sfCommandApplicationTask)
-    {
-      $task->setCommandApplication($this->commandApplication);
-    }
-
-    return $task;
-  }
-
-  /**
-   * Executes another task in the context of the current one.
-   *
-   * @param  string  $name      The name of the task to execute
-   * @param  array   $arguments An array of arguments to pass to the task
-   * @param  array   $options   An array of options to pass to the task
-   *
-   * @return Boolean The returned value of the task run() method
-   *
-   * @see createTask()
-   */
-  protected function runTask($name, $arguments = array(), $options = array())
-  {
-    return $this->createTask($name)->run($arguments, $options);
   }
 }

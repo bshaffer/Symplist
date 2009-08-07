@@ -17,7 +17,7 @@
  * @package    symfony
  * @subpackage autoload
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfSimpleAutoload.class.php 17749 2009-04-29 11:54:22Z fabien $
+ * @version    SVN: $Id: sfSimpleAutoload.class.php 17858 2009-05-01 21:22:50Z FabianLange $
  */
 class sfSimpleAutoload
 {
@@ -46,9 +46,9 @@ class sfSimpleAutoload
   /**
    * Retrieves the singleton instance of this class.
    *
-   * @param  string $cacheFile  The file path to save the cache
+   * @param string $cacheFile The file path to save the cache
    *
-   * @return sfSimpleAutoload   A sfSimpleAutoload implementation instance.
+   * @return sfSimpleAutoload A sfSimpleAutoload implementation instance.
    */
   static public function getInstance($cacheFile = null)
   {
@@ -63,7 +63,7 @@ class sfSimpleAutoload
   /**
    * Register sfSimpleAutoload in spl autoloader.
    *
-   * @return void
+   * @return void 
    */
   static public function register()
   {
@@ -100,14 +100,12 @@ class sfSimpleAutoload
   /**
    * Handles autoloading of classes.
    *
-   * @param  string $class A class name.
+   * @param string $class A class name.
    *
    * @return boolean Returns true if the class has been loaded
    */
   public function autoload($class)
   {
-    $class = strtolower($class);
-
     // class already exists
     if (class_exists($class, false) || interface_exists($class, false))
     {
@@ -117,18 +115,7 @@ class sfSimpleAutoload
     // we have a class path, let's include it
     if (isset($this->classes[$class]))
     {
-      try
-      {
-        require $this->classes[$class];
-      }
-      catch (sfException $e)
-      {
-        $e->printStackTrace();
-      }
-      catch (Exception $e)
-      {
-        sfException::createFromException($e)->printStackTrace();
-      }
+      require($this->classes[$class]);
 
       return true;
     }
@@ -173,7 +160,7 @@ class sfSimpleAutoload
    */
   public function reload()
   {
-    $this->classes = array();
+    $this->classes     = array();
     $this->cacheLoaded = false;
 
     foreach ($this->dirs as $dir)
@@ -186,7 +173,7 @@ class sfSimpleAutoload
       $this->addFile($file);
     }
 
-    $this->cacheLoaded = true;
+    $this->cacheLoaded  = true;
     $this->cacheChanged = true;
   }
 
@@ -208,7 +195,7 @@ class sfSimpleAutoload
   {
     $finder = sfFinder::type('file')->follow_link()->name('*'.$ext);
 
-    if($dirs = glob($dir))
+    if ($dirs = glob($dir))
     {
       foreach ($dirs as $dir)
       {
@@ -283,14 +270,12 @@ class sfSimpleAutoload
     preg_match_all('~^\s*(?:abstract\s+|final\s+)?(?:class|interface)\s+(\w+)~mi', file_get_contents($file), $classes);
     foreach ($classes[1] as $class)
     {
-      $this->classes[strtolower($class)] = $file;
+      $this->classes[$class] = $file;
     }
   }
 
   public function setClassPath($class, $path)
   {
-    $class = strtolower($class);
-
     $this->overriden[$class] = $path;
 
     $this->classes[$class] = $path;

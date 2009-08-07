@@ -66,7 +66,7 @@ class Doctrine_Data_Import extends Doctrine_Data
      */
     public function doParsing()
     {
-        $recursiveMerge = Doctrine_Manager::getInstance()->getAttribute(Doctrine::ATTR_RECURSIVE_MERGE_FIXTURES);
+        $recursiveMerge = Doctrine_Manager::getInstance()->getAttribute('recursive_merge_fixtures');
         $mergeFunction = $recursiveMerge === true ? 'array_merge_recursive':'array_merge';
         $directory = $this->getDirectory();
 
@@ -80,16 +80,11 @@ class Doctrine_Data_Import extends Doctrine_Data
                 if (end($e) == 'yml') {
                     $array = $mergeFunction($array, Doctrine_Parser::load($dir, $this->getFormat()));
                 // If they specified a directory
-                } else if (is_dir($dir)) {
+                } else if(is_dir($dir)) {
                     $it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir),
                                                             RecursiveIteratorIterator::LEAVES_ONLY);
-                    $filesOrdered = array();                                        
+
                     foreach ($it as $file) {
-                        $filesOrdered[] = $file;
-                    }
-                    // force correct order
-                    natcasesort($filesOrdered);
-                    foreach ($filesOrdered as $file) {
                         $e = explode('.', $file->getFileName());
                         if (in_array(end($e), $this->getFormats())) {
                             $array = $mergeFunction($array, Doctrine_Parser::load($file->getPathName(), $this->getFormat()));
@@ -364,7 +359,7 @@ class Doctrine_Data_Import extends Doctrine_Data
             // remove this nested set from _importedObjects so it's not processed in the save routine for normal objects
             unset($this->_importedObjects[$rowKey]);
 
-            if ( ! $parent) {
+            if( ! $parent) {
                 $record->save(); // save, so that createRoot can do: root id = id
                 Doctrine::getTable($model)->getTree()->createRoot($record);
             } else {

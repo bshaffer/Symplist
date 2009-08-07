@@ -66,8 +66,7 @@ class Doctrine_Query_Registry
         }
         
         if ( ! ($query instanceof Doctrine_Query)) {
-            $query = Doctrine_Query::create()
-                ->parseDqlQuery($query);
+            $query = Doctrine_Query::create()->parseQuery($query);
         }
         
         return clone $query;

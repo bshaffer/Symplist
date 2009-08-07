@@ -102,14 +102,12 @@ class sfPluginManager
    *
    * @param string $plugin  The plugin name
    * @param array  $options An array of options
-   *
-   * @return Boolean|string true if the plugin is already installed, the name of the installed plugin otherwise
    */
   public function installPlugin($plugin, $options = array())
   {
     $this->installing = array();
 
-    return $this->doInstallPlugin($plugin, $options);
+    $this->doInstallPlugin($plugin, $options);
   }
 
   /**
@@ -249,11 +247,11 @@ class sfPluginManager
     {
       $this->dispatcher->notify(new sfEvent($this, 'application.log', array(sprintf('Installation successful for plugin "%s"', $plugin))));
 
-      $this->dispatcher->notify(new sfEvent($this, 'plugin.post_install', array('channel' => $channel, 'plugin' => $pluginPackage->getPackage())));
+      $this->dispatcher->notify(new sfEvent($this, 'plugin.post_install', array('channel' => $channel, 'plugin' => $plugin)));
 
       unset($this->installing[$channel.'/'.$plugin]);
 
-      return $pluginPackage->getPackage();
+      return true;
     }
     else
     {
@@ -325,6 +323,12 @@ class sfPluginManager
    */
   public function checkPluginDependencies($plugin, $version, $options = false)
   {
+    // for BC
+    if (!is_array($options))
+    {
+      $options = array('install_deps' => $options);
+    }
+
     $dependencies = $this->environment->getRest()->getPluginDependencies($plugin, $version);
 
     if (!isset($dependencies['required']) || !isset($dependencies['required']['package']))

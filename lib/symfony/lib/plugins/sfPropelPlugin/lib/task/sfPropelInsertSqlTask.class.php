@@ -16,7 +16,7 @@ require_once(dirname(__FILE__).'/sfPropelBaseTask.class.php');
  * @package    symfony
  * @subpackage propel
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfPropelInsertSqlTask.class.php 17814 2009-04-30 09:52:51Z fabien $
+ * @version    SVN: $Id: sfPropelInsertSqlTask.class.php 14299 2008-12-24 04:57:47Z dwhittle $
  */
 class sfPropelInsertSqlTask extends sfPropelBaseTask
 {
@@ -68,6 +68,17 @@ EOF;
    */
   protected function execute($arguments = array(), $options = array())
   {
+    if (
+      !$options['no-confirmation']
+      &&
+      !$this->askConfirmation(array('This command will remove all data in your database.', 'Are you sure you want to proceed? (y/N)'), null, false)
+    )
+    {
+      $this->logSection('propel', 'Task aborted.');
+
+      return 1;
+    }
+
     $this->schemaToXML(self::DO_NOT_CHECK_SCHEMA, 'generated-');
     $this->copyXmlSchemaFromPlugins('generated-');
 
@@ -92,23 +103,7 @@ EOF;
       $sqls[$connection][] = $file;
     }
 
-    if (
-      !$options['no-confirmation']
-      &&
-      !$this->askConfirmation(array(
-          'WARNING: The data in the database'.(count($sqls) > 1 ? 's' : '').' related to the connection name'.(count($sqls) > 1 ? 's' : ''),
-          sprintf('         %s will be removed.', implode(', ', array_keys($sqls))),
-          '',
-          'Are you sure you want to proceed? (y/N)',
-        ), 'QUESTION_LARGE', false)
-    )
-    {
-      $this->logSection('propel', 'Task aborted.');
-
-      return 1;
-    }
-
-    $this->tmpDir = sys_get_temp_dir().'/propel_insert_sql_'.rand(11111, 99999);
+    $this->tmpDir = sfToolkit::getTmpDir().'/propel_insert_sql_'.rand(11111, 99999);
     mkdir($this->tmpDir, 0777, true);
     foreach ($sqls as $connection => $files)
     {

@@ -38,7 +38,6 @@ class Doctrine_Record_Filter_Compound extends Doctrine_Record_Filter
     {
         $this->_aliases = $aliases;
     }
-
     public function init()
     {
     	// check that all aliases exist

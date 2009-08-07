@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Export.php 6128 2009-07-20 18:45:13Z jwage $
+ *  $Id: Export.php 5801 2009-06-02 17:30:27Z piccoloprincipe $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -29,7 +29,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 6128 $
+ * @version     $Revision: 5801 $
  */
 class Doctrine_Export extends Doctrine_Connection_Module
 {
@@ -1006,7 +1006,7 @@ class Doctrine_Export extends Doctrine_Connection_Module
     {
         $sql = '';
         if (isset($definition['name'])) {
-            $sql .= 'CONSTRAINT ' . $this->conn->quoteIdentifier($definition['name']) . ' ';
+            $sql .= ' CONSTRAINT ' . $this->conn->quoteIdentifier($definition['name']) . ' ';
         }
         $sql .= 'FOREIGN KEY (';
 
@@ -1232,37 +1232,37 @@ class Doctrine_Export extends Doctrine_Connection_Module
         $sql = array();
         
         foreach ($models as $name) {
-            $record = new $name();
-            $table  = $record->getTable();
+            try {
+                $record = new $name();
+                $table  = $record->getTable();
 
-            $parents = $table->getOption('joinedParents');
+                $parents = $table->getOption('joinedParents');
 
-            foreach ($parents as $parent) {
-                $data  = $table->getConnection()->getTable($parent)->getExportableFormat();
+                foreach ($parents as $parent) {
+                    $data  = $table->getConnection()->getTable($parent)->getExportableFormat();
+
+                    $query = $this->conn->export->createTableSql($data['tableName'], $data['columns'], $data['options']);
+
+                    $sql = array_merge($sql, (array) $query);
+                }
+
+                $data = $table->getExportableFormat();
 
                 $query = $this->conn->export->createTableSql($data['tableName'], $data['columns'], $data['options']);
 
-                $sql = array_merge($sql, (array) $query);
+                if (is_array($query)) {
+                    $sql = array_merge($sql, $query);
+                } else {
+                    $sql[] = $query;
+                }
+
+                if ($table->getAttribute(Doctrine::ATTR_EXPORT) & Doctrine::EXPORT_PLUGINS) {
+                    $sql = array_merge($sql, $this->exportGeneratorsSql($table));
+                }
+            } catch (Exception $e) {
+                throw new Doctrine_Export_Exception("While exporting model class '$name' to SQL: " . $e->getMessage());
             }
 
-            // Don't export the tables with attribute EXPORT_NONE'
-            if ($table->getAttribute(Doctrine::ATTR_EXPORT) === Doctrine::EXPORT_NONE) {
-                continue;
-            }
-
-            $data = $table->getExportableFormat();
-
-            $query = $this->conn->export->createTableSql($data['tableName'], $data['columns'], $data['options']);
-
-            if (is_array($query)) {
-                $sql = array_merge($sql, $query);
-            } else {
-                $sql[] = $query;
-            }
-
-            if ($table->getAttribute(Doctrine::ATTR_EXPORT) & Doctrine::EXPORT_PLUGINS) {
-                $sql = array_merge($sql, $this->exportGeneratorsSql($table));
-            }
         }
         
         $sql = array_unique($sql);

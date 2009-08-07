@@ -55,9 +55,7 @@ class Doctrine_Cache_Xcache extends Doctrine_Cache_Driver
      */
     public function fetch($id, $testCacheValidity = true) 
     {
-        $key = $this->_getKey($id);
-
-        return $this->contains($key) ? xcache_get($key) : false;
+        return $this->contains($id) ? xcache_get($id) : false;
     }
 
     /**
@@ -68,7 +66,7 @@ class Doctrine_Cache_Xcache extends Doctrine_Cache_Driver
      */
     public function contains($id) 
     {
-        return xcache_isset($this->_getKey($id));
+        return xcache_isset($id);
     }
 
     /**
@@ -83,7 +81,7 @@ class Doctrine_Cache_Xcache extends Doctrine_Cache_Driver
      */
     public function save($id, $data, $lifeTime = false)
     {
-        return xcache_set($this->_getKey($id), $data, $lifeTime);
+        return xcache_set($id, $data, $lifeTime);
     }
 
     /**
@@ -94,6 +92,6 @@ class Doctrine_Cache_Xcache extends Doctrine_Cache_Driver
      */
     public function delete($id) 
     {
-        return xcache_unset($this->_getKey($id));       
+        return xcache_unset($id);       
     }
 }

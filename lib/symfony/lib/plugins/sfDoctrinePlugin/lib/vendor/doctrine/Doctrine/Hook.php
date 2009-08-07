@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Hook.php 5901 2009-06-22 15:44:45Z jwage $
+ *  $Id: Hook.php 5801 2009-06-02 17:30:27Z piccoloprincipe $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,7 +27,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 5901 $
+ * @version     $Revision: 5801 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 class Doctrine_Hook
@@ -80,14 +80,14 @@ class Doctrine_Hook
     {
         if (is_string($query)) {
             $this->query = new Doctrine_Query();
-            $this->query->parseDqlQuery($query);
+            $this->query->parseQuery($query);
         } elseif ($query instanceof Doctrine_Query) {
             $this->query = $query;
         } else {
             throw new Doctrine_Exception('Constructor argument should be either Doctrine_Query object or valid DQL query');          
         }
         
-        $this->query->getSqlQuery();
+        $this->query->getQuery();
     }
 
     /**
@@ -144,7 +144,7 @@ class Doctrine_Hook
             if (count($e) == 2) {
                 list($alias, $column) = $e;
 
-                $map   = $this->query->getQueryComponent($alias);
+                $map   = $this->query->getAliasDeclaration($alias);
                 $table = $map['table'];
 
                 if ( ! $table) {
@@ -196,7 +196,7 @@ class Doctrine_Hook
             if (count($e) == 2) {
                 list($alias, $column) = $e;
 
-                $map   = $this->query->getQueryComponent($alias);
+                $map   = $this->query->getAliasDeclaration($alias);
                 $table = $map['table'];
 
                 if ($def = $table->getDefinitionOf($column)) {   

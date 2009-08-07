@@ -14,7 +14,7 @@ require_once 'propel/engine/builder/om/php5/PHP5ObjectBuilder.php';
  * @package    symfony
  * @subpackage propel
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: SfObjectBuilder.php 14789 2009-01-15 22:23:39Z Kris.Wallsmith $
+ * @version    SVN: $Id: SfObjectBuilder.php 14378 2008-12-29 20:04:39Z Kris.Wallsmith $
  */
 class SfObjectBuilder extends PHP5ObjectBuilder
 {
@@ -47,7 +47,7 @@ class SfObjectBuilder extends PHP5ObjectBuilder
     // include the i18n classes if needed
     if ($this->getTable()->getAttribute('isI18N'))
     {
-      $relatedTable = $this->getDatabase()->getTable($this->getTable()->getAttribute('i18nTable'));
+      $relatedTable   = $this->getDatabase()->getTable($this->getTable()->getAttribute('i18nTable'));
 
       $script .= '
 require_once \''.ClassTools::getFilePath($this->getStubObjectBuilder()->getPackage().'.', $relatedTable->getPhpName().'Peer').'\';
@@ -73,34 +73,16 @@ require_once \''.ClassTools::getFilePath($this->getStubObjectBuilder()->getPacka
       $this->addI18nMethods($script);
     }
 
-    $this->addToString($script);
-
     if (DataModelBuilder::getBuildProperty('builderAddBehaviors'))
     {
       $this->addCall($script);
     }
   }
 
-  protected function addToString(&$script)
-  {
-    foreach ($this->getTable()->getColumns() as $column)
-    {
-      if ($column->getAttribute('isPrimaryString'))
-      {
-        $script .= "
-  public function __toString()
-  {
-    return \$this->get{$column->getPhpName()}();
-  }
-";
-        break;
-      }
-    }
-  }
-
   protected function addCall(&$script)
   {
     $script .= "
+
   public function __call(\$method, \$arguments)
   {
     if (!\$callable = sfMixer::getCallable('{$this->getClassname()}:'.\$method))
@@ -112,6 +94,7 @@ require_once \''.ClassTools::getFilePath($this->getStubObjectBuilder()->getPacka
 
     return call_user_func_array(\$callable, \$arguments);
   }
+
 ";
   }
 
@@ -389,7 +372,16 @@ EOF;
       $behavior_file_name = 'Base'.$this->getTable()->getPhpName().'Behaviors';
       $behavior_file_path = ClassTools::getFilePath($this->getStubObjectBuilder()->getPackage().'.om', $behavior_file_name);
 
-      $script .= sprintf("\ninclude_once '%s';\n", $behavior_file_path);
+      $behavior_include_script = <<<EOF
+
+
+if (sfProjectConfiguration::getActive() instanceof sfApplicationConfiguration)
+{
+  include_once '%s';
+}
+
+EOF;
+      $script .= sprintf($behavior_include_script, $behavior_file_path);
     }
   }
 

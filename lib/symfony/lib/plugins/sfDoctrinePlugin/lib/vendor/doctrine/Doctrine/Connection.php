@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Connection.php 6152 2009-07-21 21:59:32Z jwage $
+ *  $Id: Connection.php 5801 2009-06-02 17:30:27Z piccoloprincipe $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -49,7 +49,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 6152 $
+ * @version     $Revision: 5801 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  * @author      Lukas Smith <smith@pooteeweet.org> (MDB2 library)
  */
@@ -105,7 +105,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * @var array $modules                      an array containing all modules
      *              transaction                 Doctrine_Transaction driver, handles savepoint and transaction isolation abstraction
      *
-     *              expression                  Doctrine_Expression_Driver, handles expression abstraction
+     *              expression                  Doctrine_Expression driver, handles expression abstraction
      *
      *              dataDict                    Doctrine_DataDict driver, handles datatype abstraction
      *
@@ -122,7 +122,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      *
      * @see Doctrine_Connection::__get()
      * @see Doctrine_DataDict
-     * @see Doctrine_Expression_Driver
+     * @see Doctrine_Expression
      * @see Doctrine_Export
      * @see Doctrine_Transaction
      * @see Doctrine_Sequence
@@ -153,7 +153,6 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
                                   'wildcards'           => array('%', '_'),
                                   'varchar_max_length'  => 255,
                                   'sql_file_delimiter'  => ";\n",
-                                  'max_identifier_length' => 64,
                                   );
 
     /**
@@ -170,18 +169,12 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
                                         'Mysql',
                                         'Pgsql',
                                         'Oracle',
+                                        'Informix',
                                         'Mssql',
                                         'Sqlite',
+                                        'Firebird'
                                         );
     protected $_count = 0;
-
-    /**
-     * @var array $_userFkNames                 array of foreign key names that have been used
-     */
-    protected $_usedNames = array(
-            'foreign_keys' => array(),
-            'indexes' => array()
-        );
 
     /**
      * the constructor
@@ -270,6 +263,11 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      */
     public function getAttribute($attribute)
     {
+        if (is_string($attribute)) {
+            $stringAttribute = $attribute;
+            $attribute = $this->getAttributeFromString($attribute);
+        }
+
         if ($attribute >= 100) {
             if ( ! isset($this->attributes[$attribute])) {
                 return parent::getAttribute($attribute);
@@ -324,6 +322,15 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      */
     public function setAttribute($attribute, $value)
     {
+        if (is_string($attribute)) {
+            $attributeString = $attribute;
+            $attribute = parent::getAttributeFromString($attribute);
+        }
+
+        if (is_string($value) && isset($attributeString)) {
+            $value = parent::getAttributeValueFromString($attributeString, $value);
+        }
+
         if ($attribute >= 100) {
             parent::setAttribute($attribute, $value);
         } else {
@@ -378,7 +385,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * lazy loads given module and returns it
      *
      * @see Doctrine_DataDict
-     * @see Doctrine_Expression_Driver
+     * @see Doctrine_Expression
      * @see Doctrine_Export
      * @see Doctrine_Transaction
      * @see Doctrine_Connection::$modules       all availible modules
@@ -471,7 +478,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
             $class = 'Doctrine_Adapter_' . ucwords($e[0]);
 
             if (class_exists($class)) {
-                $this->dbh = new $class($this->options['dsn'], $this->options['username'], $this->options['password'], $this->options);
+                $this->dbh = new $class($this->options['dsn'], $this->options['username'], $this->options['password']);
             } else {
                 throw new Doctrine_Connection_Exception("Couldn't locate driver named " . $e[0]);          
             }
@@ -609,13 +616,13 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
     }
 
     /**
-     * Updates table row(s) with specified data.
+     * Updates table row(s) with specified data
      *
      * @throws Doctrine_Connection_Exception    if something went wrong at the database level
-     * @param Doctrine_Table $table     The table to insert data into
-     * @param array $values             An associative array containing column-value pairs.
-     *                                  Values can be strings or Doctrine_Expression instances.
-     * @return integer                  the number of affected rows. Boolean false if empty value array was given,
+     * @param string $table     The table to insert data into
+     * @param array $values     An associateve array containing column-value pairs.
+     * @return mixed            boolean false if empty value array was given,
+     *                          otherwise returns the number of affected rows
      */
     public function update(Doctrine_Table $table, array $fields, array $identifier)
     {
@@ -646,10 +653,10 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
     /**
      * Inserts a table row with specified data.
      *
-     * @param Doctrine_Table $table     The table to insert data into.
-     * @param array $values             An associative array containing column-value pairs.
-     *                                  Values can be strings or Doctrine_Expression instances.
-     * @return integer                  the number of affected rows. Boolean false if empty value array was given,
+     * @param string $table     The table to insert data into.
+     * @param array $values     An associateve array containing column-value pairs.
+     * @return mixed            boolean false if empty value array was given,
+     *                          otherwise returns the number of affected rows
      */
     public function insert(Doctrine_Table $table, array $fields)
     {
@@ -675,6 +682,16 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
                 . ' VALUES (' . implode(', ', $a) . ')';
 
         return $this->exec($query, array_values($fields));
+    }
+
+    /**
+     * Set the charset on the current connection
+     *
+     * @param string    charset
+     */
+    public function setCharset($charset)
+    {
+
     }
 
     /**
@@ -739,6 +756,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
 		return $arr;
     }
 
+
     /**
      * convertBooleans
      * some drivers need the boolean values to be converted into integers
@@ -760,7 +778,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      *
      * @param mixed $input      parameter to be quoted
      * @param string $type
-     * @return string
+     * @return mixed
      */
     public function quote($input, $type = null)
     {
@@ -1009,8 +1027,9 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
 
                 return $stmt;
             }
-        } catch (Doctrine_Adapter_Exception $e) {
-        } catch (PDOException $e) { }
+        } 
+        catch (Doctrine_Adapter_Exception $e) { }
+        catch (PDOException $e) { }
 
         $this->rethrowException($e, $this);
     }
@@ -1093,14 +1112,13 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * returns a table object for given component name
      *
      * @param string $name              component name
-     * @return Doctrine_Table
+     * @return object Doctrine_Table
      */
     public function getTable($name)
     {
         if (isset($this->tables[$name])) {
             return $this->tables[$name];
         }
-        
         $class = $name . 'Table';
 
         if (class_exists($class, $this->getAttribute(Doctrine::ATTR_AUTOLOAD_TABLE_CLASSES)) &&
@@ -1109,7 +1127,9 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
         } else {
             $table = new Doctrine_Table($name, $this, true);
         }
-        
+
+        $this->tables[$name] = $table;
+
         return $table;
     }
 
@@ -1292,7 +1312,18 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
 
         return $this->dbh->errorInfo();
     }
-
+    
+    /**
+     * getCacheDriver
+     *
+     * @return Doctrine_Cache_Interface
+     * @deprecated Use getResultCacheDriver()
+     */
+    public function getCacheDriver()
+    {
+        return $this->getResultCacheDriver();
+    }
+    
     /**
      * getResultCacheDriver
      *
@@ -1403,7 +1434,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      *
      * Issue create database command for this instance of Doctrine_Connection
      *
-     * @return string       Doctrine_Exception catched in case of failure
+     * @return mixed Returns Doctrine_Exception or success string
      */
     public function createDatabase()
     {
@@ -1437,7 +1468,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      *
      * Issue drop database command for this instance of Doctrine_Connection
      *
-     * @return string       success string. Doctrine_Exception if operation failed
+     * @return mixed Returns Doctrine_Exception or success string
      */
     public function dropDatabase()
     {
@@ -1486,11 +1517,11 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
             $pdoDsn .= 'unix_socket=' . $info['unix_socket'] . ';';
         }
 
-        $pdoDsn .= 'host=' . $info['host'];
+ 	    $pdoDsn .= 'host=' . $info['host'];
 
-        if ($info['port']) {
-            $pdoDsn .= ';port=' . $info['port'];
-        }
+ 	    if ($info['port']) {
+ 	        $pdoDsn .= ';port=' . $info['port'];
+ 	    }
 
         if (isset($this->export->tmpConnectionDatabase) && $this->export->tmpConnectionDatabase) {
             $pdoDsn .= ';dbname=' . $this->export->tmpConnectionDatabase;
@@ -1499,11 +1530,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
         $username = $this->getOption('username');
         $password = $this->getOption('password');
 
-        $conn = $this->getManager()->openConnection(array($pdoDsn, $username, $password), 'doctrine_tmp_connection', false);
-        $conn->setOption('username', $username);
-        $conn->setOption('password', $password);
-
-        return $conn;
+        return $this->getManager()->openConnection(new PDO($pdoDsn, $username, $password), 'doctrine_tmp_connection', false);
     }
 
     /**
@@ -1565,82 +1592,5 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
         foreach ($array as $name => $values) {
             $this->$name = $values;
         }
-    }
-
-    /**
-     * Get/generate a unique foreign key name for a relationship
-     *
-     * @param  Doctrine_Relation $relation  Relation object to generate the foreign key name for
-     * @return string $fkName
-     */
-    public function generateUniqueRelationForeignKeyName(Doctrine_Relation $relation)
-    {
-        $parts = array(
-            $relation['localTable']->getTableName(),
-            $relation->getLocalColumnName(),
-            $relation['table']->getTableName(),
-            $relation->getForeignColumnName(),
-        );
-        $key = implode('_', array_merge($parts, array($relation['onDelete']), array($relation['onUpdate'])));
-        $format = $this->getAttribute(Doctrine::ATTR_FKNAME_FORMAT);
-
-        return $this->_generateUniqueName('foreign_keys', $parts, $key, $format, $this->properties['max_identifier_length']);
-    }
-
-    /**
-     * Get/generate unique index name for a table name and set of fields
-     *
-     * @param string $tableName     The name of the table the index exists
-     * @param string $fields        The fields that makes up the index
-     * @return string $indexName    The name of the generated index
-     */
-    public function generateUniqueIndexName($tableName, $fields)
-    {
-        $fields = (array) $fields;
-        $parts = array($tableName);
-        $parts = array_merge($parts, $fields);
-        $key = implode('_', $parts);
-        $format = $this->getAttribute(Doctrine::ATTR_IDXNAME_FORMAT);
-
-        return $this->_generateUniqueName('indexes', $parts, $key, $format, $this->properties['max_identifier_length']);
-    }
-
-    protected function _generateUniqueName($type, $parts, $key, $format = '%s', $maxLength = 64)
-    {
-        if (isset($this->_usedNames[$type][$key])) {
-            return $this->_usedNames[$type][$key];
-        }
-
-        $generated = implode('_', $parts);
-        
-        // If the final length is greater than 64 we need to create an abbreviated fk name
-        if (strlen(sprintf($format, $generated)) > $maxLength) {
-            $generated = '';
-
-            foreach ($parts as $part) {
-                $generated .= $part[0];
-            }
-
-            $name = $generated;
-        } else {
-            $name = $generated;
-        }
-
-        while (in_array($name, $this->_usedNames[$type])) {
-            $e = explode('_', $name);
-            $end = end($e);
-
-            if (is_numeric($end)) {
-                unset($e[count($e) - 1]);
-                $fkName = implode('_', $e);
-                $name = $fkName . '_' . ++$end; 
-            } else { 
-                $name .= '_1'; 
-	        }
-        }
-
-        $this->_usedNames[$type][$key] = $name;
-
-        return $name;
     }
 }

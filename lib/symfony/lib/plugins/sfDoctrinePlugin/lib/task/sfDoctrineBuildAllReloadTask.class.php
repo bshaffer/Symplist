@@ -18,7 +18,7 @@ require_once(dirname(__FILE__).'/sfDoctrineBaseTask.class.php');
  * @subpackage doctrine
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Jonathan H. Wage <jonwage@gmail.com>
- * @version    SVN: $Id: sfDoctrineBuildAllReloadTask.class.php 20869 2009-08-06 22:50:46Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineBuildAllReloadTask.class.php 15823 2009-02-26 19:16:05Z Jonathan.Wage $
  */
 class sfDoctrineBuildAllReloadTask extends sfDoctrineBaseTask
 {
@@ -33,7 +33,6 @@ class sfDoctrineBuildAllReloadTask extends sfDoctrineBaseTask
       new sfCommandOption('connection', null, sfCommandOption::PARAMETER_REQUIRED, 'The connection name', 'doctrine'),
       new sfCommandOption('no-confirmation', null, sfCommandOption::PARAMETER_NONE, 'Do not ask for confirmation'),
       new sfCommandOption('skip-forms', 'F', sfCommandOption::PARAMETER_NONE, 'Skip generating forms'),
-      new sfCommandOption('migrate', null, sfCommandOption::PARAMETER_NONE, 'Migrate instead of reset the database'),
       new sfCommandOption('dir', null, sfCommandOption::PARAMETER_REQUIRED | sfCommandOption::IS_ARRAY, 'The directories to look for fixtures'),
     ));
 
@@ -54,11 +53,6 @@ The task is equivalent to:
   [./symfony doctrine:build-model|INFO]
   [./symfony doctrine:insert-sql|INFO]
   [./symfony doctrine:data-load|INFO]
-
-Include the [--migrate|COMMENT] option if you would like to run your project's
-migrations rather than inserting the Doctrine SQL.
-
-  [./symfony doctrine:build-all-reload --migrate|INFO]
 EOF;
   }
 
@@ -69,10 +63,18 @@ EOF;
   {
     $dropDb = new sfDoctrineDropDbTask($this->dispatcher, $this->formatter);
     $dropDb->setCommandApplication($this->commandApplication);
-    $dropDb->setConfiguration($this->configuration);
-    $ret = $dropDb->run(array(), array(
-      'no-confirmation' => $options['no-confirmation'],
-    ));
+
+    $dropDbOptions = array();
+    $dropDbOptions[] = '--env='.$options['env'];
+    if (isset($options['no-confirmation']) && $options['no-confirmation'])
+    {
+      $dropDbOptions[] = '--no-confirmation';
+    }
+    if (isset($options['application']) && $options['application'])
+    {
+      $dropDbOptions[] = '--application=' . $options['application'];
+    }
+    $ret = $dropDb->run(array(), $dropDbOptions);
 
     if ($ret)
     {
@@ -81,11 +83,25 @@ EOF;
 
     $buildAllLoad = new sfDoctrineBuildAllLoadTask($this->dispatcher, $this->formatter);
     $buildAllLoad->setCommandApplication($this->commandApplication);
-    $buildAllLoad->setConfiguration($this->configuration);
-    $buildAllLoad->run(array(), array(
-      'dir'        => $options['dir'],
-      'skip-forms' => $options['skip-forms'],
-      'migrate'    => $options['migrate'],
-    ));
+
+    $buildAllLoadOptions = array();
+    $buildAllLoadOptions[] = '--env='.$options['env'];
+    if (!empty($options['dir']))
+    {
+      $buildAllLoadOptions[] = '--dir=' . implode(' --dir=', $options['dir']);
+    }
+    if (isset($options['append']) && $options['append'])
+    {
+      $buildAllLoadOptions[] = '--append';
+    }
+    if (isset($options['application']) && $options['application'])
+    {
+      $buildAllLoadOptions[] = '--application=' . $options['application'];
+    }
+    if (isset($options['skip-forms']) && $options['skip-forms'])
+    {
+      $buildAllLoadOptions[] = '--skip-forms';
+    }
+    $buildAllLoad->run(array(), $buildAllLoadOptions);
   }
 }

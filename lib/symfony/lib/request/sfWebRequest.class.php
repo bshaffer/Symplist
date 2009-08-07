@@ -18,7 +18,7 @@
  * @subpackage request
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Sean Kerr <sean@code-box.org>
- * @version    SVN: $Id: sfWebRequest.class.php 20692 2009-08-02 12:50:08Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfWebRequest.class.php 20047 2009-07-09 09:37:17Z FabianLange $
  */
 class sfWebRequest extends sfRequest
 {
@@ -83,11 +83,6 @@ class sfWebRequest extends sfRequest
 
         case 'PUT':
           $this->setMethod(self::PUT);
-          
-          $putParameters = array();
-          parse_str($this->getContent(), $putParameters);
-          $putParameters = get_magic_quotes_gpc() ? sfToolkit::stripslashesDeep($putParameters) : $putParameters;
-          $this->parameterHolder->add($putParameters);
           break;
 
         case 'DELETE':
@@ -186,7 +181,7 @@ class sfWebRequest extends sfRequest
       $protocol = 'http';
     }
 
-    $host = explode(':', $this->getHost());
+    $host = explode(":", $this->getHost());
     if (count($host) == 1)
     {
       $host[] = isset($pathArray['SERVER_PORT']) ? $pathArray['SERVER_PORT'] : '';
@@ -863,7 +858,7 @@ class sfWebRequest extends sfRequest
 
   public function checkCSRFProtection()
   {
-    $form = new BaseForm();
+    $form = new sfForm();
     $form->bind($form->isCSRFProtected() ? array($form->getCSRFFieldName() => $this->getParameter($form->getCSRFFieldName())) : array());
 
     if (!$form->isValid())

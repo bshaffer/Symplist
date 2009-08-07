@@ -16,7 +16,7 @@
  * @package    symfony
  * @subpackage routing
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfObjectRoute.class.php 20784 2009-08-04 20:53:57Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfObjectRoute.class.php 18835 2009-06-02 10:42:07Z fabien $
  */
 class sfObjectRoute extends sfRequestRoute
 {

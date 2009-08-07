@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage widget
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfWidgetFormSchemaFormatter.class.php 20798 2009-08-05 06:28:18Z fabien $
+ * @version    SVN: $Id: sfWidgetFormSchemaFormatter.class.php 20301 2009-07-19 10:57:32Z fabien $
  */
 abstract class sfWidgetFormSchemaFormatter
 {
@@ -24,7 +24,7 @@ abstract class sfWidgetFormSchemaFormatter
   protected
     $rowFormat                 = '',
     $helpFormat                = '%help%',
-    $errorRowFormat            = '%errors%',
+    $errorRowFormat            = '',
     $errorListFormatInARow     = "  <ul class=\"error_list\">\n%errors%  </ul>\n",
     $errorRowFormatInARow      = "    <li>%error%</li>\n",
     $namedErrorRowFormatInARow = "    <li>%name%: %error%</li>\n",
@@ -191,7 +191,7 @@ abstract class sfWidgetFormSchemaFormatter
 
     if (!$label && false !== $label)
     {
-      $label = str_replace('_', ' ', ucfirst('_id' == substr($name, -3) ? substr($name, 0, -3) : $name));
+      $label = str_replace('_', ' ', ucfirst($name));
     }
 
     return $this->translate($label);

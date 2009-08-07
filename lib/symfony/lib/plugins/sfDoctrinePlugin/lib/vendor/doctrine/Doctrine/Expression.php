@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Expression.php 5901 2009-06-22 15:44:45Z jwage $
+ *  $Id: Expression.php 5801 2009-06-02 17:30:27Z piccoloprincipe $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -20,17 +20,14 @@
  */
 
 /**
- * Doctrine_Expression memorizes a dql expression that use a db function.
- *
- * This class manages abstractions of dql expressions like query parts 
- * that use CONCAT(), MIN(), SUM().
+ * Doctrine_Expression
  *
  * @package     Doctrine
  * @subpackage  Expression
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 5901 $
+ * @version     $Revision: 5801 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 class Doctrine_Expression
@@ -40,16 +37,11 @@ class Doctrine_Expression
     protected $_tokenizer;
 
     /**
-     * Creates an expression.
-     *
-     * The constructor needs the dql fragment that contains one or more dbms 
-     * functions.
-     * <code>
-     * $e = new Doctrine_Expression("CONCAT('some', 'one')");
-     * </code>
+     * Create an expression 
      * 
-     * @param string $expr                  sql fragment
-     * @param Doctrine_Connection $conn     the connection (optional)
+     * @param string $expr The expression
+     * @param Doctrine_Connection $conn The connection (optional)
+     * @return void
      */
     public function __construct($expr, $conn = null)
     {
@@ -61,8 +53,7 @@ class Doctrine_Expression
     }
 
     /**
-     * Retrieves the connection associated to this expression at creation,
-     * or the current connection used if it was not specified. 
+     * getConnection 
      * 
      * @return Doctrine_Connection The connection
      */
@@ -76,10 +67,7 @@ class Doctrine_Expression
     }
 
     /**
-     * Sets the contained expression assuring that it is parsed.
-     * <code>
-     * $e->setExpression("CONCAT('some', 'one')");
-     * </code>
+     * setExpression 
      * 
      * @param string $clause The expression to set
      * @return void
@@ -90,11 +78,12 @@ class Doctrine_Expression
     }
 
     /**
-     * Parses a single expressions and substitutes dql abstract functions 
-     * with their concrete sql counterparts for the given connection.
+     * parseExpression 
      *
+     * @todo: What does this function do?
+     * 
      * @param string $expr The expression to parse
-     * @return string
+     * @return void
      */
     public function parseExpression($expr)
     {
@@ -117,11 +106,10 @@ class Doctrine_Expression
     }
 
     /**
-     * Parses a set of expressions at once. 
-     * @see parseExpression()
+     * parseClause 
      * 
-     * @param string $clause    The clause. Can be complex and parenthesised.
-     * @return string           The parsed clause.
+     * @param string $clause The clause
+     * @return string The parse clause
      */
     public function parseClause($clause)
     {
@@ -135,21 +123,20 @@ class Doctrine_Expression
     }
 
     /**
-     * Gets the sql fragment represented.
+     * getSql 
      * 
-     * @return string
+     * @return string The expression
      */
     public function getSql()
     {
+
         return $this->_expression;
     }
 
     /**
-     * Magic method.
+     * __toString 
      * 
-     * Returns a string representation of this object. Proxies to @see getSql().
-     * 
-     * @return string
+     * @return void
      */
     public function __toString()
     {

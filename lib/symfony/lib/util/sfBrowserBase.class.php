@@ -16,7 +16,7 @@
  * @package    symfony
  * @subpackage util
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfBrowserBase.class.php 20692 2009-08-02 12:50:08Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfBrowserBase.class.php 19411 2009-06-20 11:54:04Z fabien $
  */
 abstract class sfBrowserBase
 {
@@ -277,7 +277,7 @@ abstract class sfBrowserBase
       if (isset($parameters['_with_csrf']) && $parameters['_with_csrf'])
       {
         unset($parameters['_with_csrf']);
-        $form = new BaseForm();
+        $form = new sfForm();
         $parameters[$form->getCSRFFieldName()] = $form->getCSRFToken();
       }
 

@@ -16,6 +16,7 @@ default:
     # Optional features. Deactivating unused features boots performance a bit.
     use_database:           on        # Enable database manager. Set to off if you don't use a database.
     i18n:                   off       # Enable interface translation. Set to off if your application should not be translated.
+    check_symfony_version:  off       # Enable check of symfony version for every request. Set to on to have symfony clear the cache automatically when the framework is upgraded. Set to off if you always clear the cache after an upgrade.
     compressed:             off       # Enable PHP response compression. Set to on to compress the outgoing HTML via the PHP handler.
     check_lock:             off       # Enable the application lock system triggered by the clear-cache and disable tasks. Set to on to have all requests to disabled applications redirected to the $sf_symfony_lib_dir/exception/data/unavailable.php page.
 
@@ -38,11 +39,11 @@ default:
     # Cache settings
     cache:                  off       # Enable the template cache
     etag:                   on        # Enable etag handling
+    lazy_cache_key:         off       # Delays creation of a cache key until after checking whether an action or partial is cacheable (defaults to false for backward compatibility)
 
     # Logging and debugging settings
     web_debug:              off       # Enable the web debug toolbar
     error_reporting:        <?php echo (E_PARSE | E_COMPILE_ERROR | E_ERROR | E_CORE_ERROR | E_USER_ERROR)."\n" ?> # Determines which events are logged.
-    file_link_format:       ~         # Format to use to make file paths clickable (include placeholders %f and %l for file and line number)
 
     # Assets paths
     rich_text_js_dir:       js/tiny_mce
@@ -58,6 +59,10 @@ default:
 
     # Charset used for the response
     charset:                utf-8
+
+    # Miscellaneous
+    strip_comments:         on         # Remove comments in core framework classes as defined in the core_compile.yml
+    max_forwards:           5
 
     # Logging
     logging_enabled:        on

@@ -81,7 +81,5 @@ EOF;
     // customize php and yml files
     $finder = sfFinder::type('file')->name('*.php');
     $this->getFilesystem()->replaceTokens($finder->in(sfConfig::get('sf_lib_dir').'/form/'), '##', '##', $constants);
-
-    $this->reloadAutoload();
   }
 }

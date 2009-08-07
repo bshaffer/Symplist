@@ -14,7 +14,7 @@ require_once 'propel/engine/builder/om/php5/PHP5MultiExtendObjectBuilder.php';
  * @package    symfony
  * @subpackage propel
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: SfMultiExtendObjectBuilder.php 14770 2009-01-15 18:30:44Z Kris.Wallsmith $
+ * @version    SVN: $Id: SfMultiExtendObjectBuilder.php 9567 2008-06-12 23:38:08Z dwhittle $
  */
 class SfMultiExtendObjectBuilder extends PHP5MultiExtendObjectBuilder
 {
@@ -37,29 +37,5 @@ class SfMultiExtendObjectBuilder extends PHP5MultiExtendObjectBuilder
     }
 
     parent::addIncludes($script);
-  }
-
-  protected function addClassOpen(&$script)
-  {
-    parent::addClassOpen($script);
-
-    // remove comments and fix coding standards
-    $script = str_replace(array(" {\n", "\n\n\n"), array("\n{", "\n"), sfToolkit::stripComments($script));
-  }
-
-  protected function addClassBody(&$script)
-  {
-    parent::addClassBody($script);
-
-    // remove comments and fix coding standards
-    $script = str_replace(array("\t", "{\n  \n"), array('  ', "{\n"), sfToolkit::stripComments($script));
-  }
-
-  protected function addClassClose(&$script)
-  {
-    parent::addClassClose($script);
-
-    // fix coding standards
-    $script = preg_replace('#\n} // .+$#m', '}', $script);
   }
 }

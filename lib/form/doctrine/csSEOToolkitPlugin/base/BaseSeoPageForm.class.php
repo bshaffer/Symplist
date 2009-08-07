@@ -3,10 +3,9 @@
 /**
  * SeoPage form base class.
  *
- * @package    plugintracker
- * @subpackage form
- * @author     Your name here
- * @version    SVN: $Id$
+ * @package    form
+ * @subpackage seo_page
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
  */
 class BaseSeoPageForm extends BaseFormDoctrine
 {
@@ -34,15 +33,13 @@ class BaseSeoPageForm extends BaseFormDoctrine
       'priority'             => new sfValidatorNumber(array('required' => false)),
       'changeFreq'           => new sfValidatorChoice(array('choices' => array('always' => 'always', 'hourly' => 'hourly', 'daily' => 'daily', 'weekly' => 'weekly', 'monthly' => 'monthly', 'yearly' => 'yearly', 'never' => 'never'), 'required' => false)),
       'exclude_from_sitemap' => new sfValidatorBoolean(array('required' => false)),
-      'created_at'           => new sfValidatorDateTime(),
-      'updated_at'           => new sfValidatorDateTime(),
+      'created_at'           => new sfValidatorDateTime(array('required' => false)),
+      'updated_at'           => new sfValidatorDateTime(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('seo_page[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
-
-    $this->setupInheritance();
 
     parent::setup();
   }

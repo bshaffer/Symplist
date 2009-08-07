@@ -16,7 +16,7 @@ require_once(dirname(__FILE__).'/sfGeneratorBaseTask.class.php');
  * @package    symfony
  * @subpackage task
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfGenerateProjectTask.class.php 20859 2009-08-06 16:23:38Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfGenerateProjectTask.class.php 13588 2008-12-01 13:53:09Z Kris.Wallsmith $
  */
 class sfGenerateProjectTask extends sfGeneratorBaseTask
 {
@@ -39,11 +39,6 @@ class sfGenerateProjectTask extends sfGeneratorBaseTask
       new sfCommandArgument('name', sfCommandArgument::REQUIRED, 'The project name'),
     ));
 
-    $this->addOptions(array(
-      new sfCommandOption('orm', null, sfCommandOption::PARAMETER_REQUIRED, 'The ORM to use by default', 'Doctrine'),
-      new sfCommandOption('installer', null, sfCommandOption::PARAMETER_REQUIRED, 'An installer script to execute', null),
-    ));
-
     $this->aliases = array('init-project');
     $this->namespace = 'generate';
     $this->name = 'project';
@@ -58,20 +53,6 @@ for a new project in the current directory:
 
 If the current directory already contains a symfony project,
 it throws a [sfCommandException|COMMENT].
-
-By default, the task configures Doctrine as the ORM. If you want to use
-Propel, use the [--orm|INFO] option:
-
-  [./symfony generate:project blog --orm=Propel|INFO]
-
-If you don't want to use an ORM, pass [none|INFO] to [--orm|INFO] option:
-
-  [./symfony generate:project blog --orm=none|INFO]
-
-You can also pass the [--installer|INFO] option to further customize the
-project:
-
-  [./symfony generate:project blog --installer=./installer.php|INFO]
 EOF;
   }
 
@@ -85,52 +66,28 @@ EOF;
       throw new sfCommandException(sprintf('A project named "%s" already exists in this directory.', $arguments['name']));
     }
 
-    if (!in_array($options['orm'], array('Propel', 'Doctrine', 'none'), false))
-    {
-      throw new InvalidArgumentException(sprintf('Invalid ORM name "%s".', $options['orm']));
-    }
-
-    $this->arguments = $arguments;
-    $this->options = $options;
-
     // create basic project structure
-    $this->installDir(dirname(__FILE__).'/skeleton/project');
+    $finder = sfFinder::type('any')->discard('.sf');
+    $this->getFilesystem()->mirror(dirname(__FILE__).'/skeleton/project', sfConfig::get('sf_root_dir'), $finder);
 
-    // update ProjectConfiguration class (use a relative path when the symfony core is nested within the project)
-    $symfonyCoreAutoload = 0 === strpos(sfConfig::get('sf_symfony_lib_dir'), sfConfig::get('sf_root_dir')) ?
-      sprintf('dirname(__FILE__).\'/..%s/autoload/sfCoreAutoload.class.php\'', str_replace(sfConfig::get('sf_root_dir'), '', sfConfig::get('sf_symfony_lib_dir'))) :
-      var_export(sfConfig::get('sf_symfony_lib_dir').'/autoload/sfCoreAutoload.class.php', true);
+    // update project name and directory
+    $finder = sfFinder::type('file')->name('properties.ini', 'apache.conf', 'propel.ini', 'databases.yml');
+    $this->getFileSystem()->replaceTokens($finder->in(sfConfig::get('sf_config_dir')), '##', '##', array('PROJECT_NAME' => $arguments['name'], 'PROJECT_DIR' => sfConfig::get('sf_root_dir')));
 
-    $this->replaceTokens(array(sfConfig::get('sf_config_dir')), array('SYMFONY_CORE_AUTOLOAD' => $symfonyCoreAutoload));
+    // update ProjectConfiguration class
+    $this->getFileSystem()->replaceTokens(sfConfig::get('sf_config_dir').'/ProjectConfiguration.class.php', '##', '##', array('SYMFONY_LIB_DIR'  => sfConfig::get('sf_symfony_lib_dir')));
 
-    $this->tokens = array(
-      'ORM'          => $this->options['orm'],
-      'PROJECT_NAME' => $this->arguments['name'],
-      'PROJECT_DIR'  => sfConfig::get('sf_root_dir'),
-    );
-
-    $this->replaceTokens();
-
-    // execute the choosen ORM installer script
-    if ('none' !== $options['orm'])
-    {
-      include dirname(__FILE__).'/../../plugins/sf'.ucfirst(strtolower($options['orm'])).'Plugin/config/installer.php';
-    }
-
-    // execute a custom installer
-    if ($options['installer'] && $this->commandApplication)
-    {
-      $this->reloadTasks();
-
-      include $options['installer'];
-    }
+    // update vhost sample file
+    $this->getFileSystem()->replaceTokens(sfConfig::get('sf_config_dir').'/vhost.sample', '##', '##', array('PROJECT_NAME' => $arguments['name'], 'SYMFONY_WEB_DIR' => sfConfig::get('sf_web_dir'), 'SYMFONY_SF_DIR' => realpath(sfCoreAutoload::getInstance()->getBaseDir().'../data/web/sf')));
 
     // fix permission for common directories
     $fixPerms = new sfProjectPermissionsTask($this->dispatcher, $this->formatter);
     $fixPerms->setCommandApplication($this->commandApplication);
-    $fixPerms->setConfiguration($this->configuration);
     $fixPerms->run();
 
-    $this->replaceTokens();
+    // publish assets for core plugins
+    $publishAssets = new sfPluginPublishAssetsTask($this->dispatcher, $this->formatter);
+    $publishAssets->setCommandApplication($this->commandApplication);
+    $publishAssets->run(array(), array('--core-only'));
   }
 }

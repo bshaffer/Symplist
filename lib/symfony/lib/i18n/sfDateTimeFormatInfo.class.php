@@ -13,7 +13,7 @@
  * {@link http://prado.sourceforge.net/}
  *
  * @author     Wei Zhuo <weizhuo[at]gmail[dot]com>
- * @version    $Id: sfDateTimeFormatInfo.class.php 15086 2009-01-30 00:23:45Z FabianLange $
+ * @version    $Id: sfDateTimeFormatInfo.class.php 9128 2008-05-21 00:58:19Z Carl.Vondrick $
  * @package    symfony
  * @subpackage i18n
  */
@@ -227,7 +227,7 @@ class sfDateTimeFormatInfo
    */
   function getNarrowDayNames()
   {
-    return $this->data['dayNames']['stand-alone']['narrow'];
+    return $this->data['dayNames']['format']['narrow'];
   }
 
   /**
@@ -240,7 +240,7 @@ class sfDateTimeFormatInfo
    */
   function setNarrowDayNames($value)
   {
-    $this->data['dayNames']['stand-alone']['narrow'] = $value;
+    $this->data['dayNames']['format']['narrow'] = $value;
   }
 
   /**
@@ -280,7 +280,7 @@ class sfDateTimeFormatInfo
    */
   function getNarrowMonthNames()
   {
-    return $this->data['monthNames']['stand-alone']['narrow'];
+    return $this->data['monthNames']['format']['narrow'];
   }
 
   /**
@@ -293,7 +293,7 @@ class sfDateTimeFormatInfo
    */
   function setNarrowMonthNames($value)
   {
-    $this->data['monthNames']['stand-alone']['narrow'] = $value;
+    $this->data['monthNames']['format']['narrow'] = $value;
   }
 
   /**

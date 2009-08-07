@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Mssql.php 6132 2009-07-20 19:30:18Z jwage $
+ *  $Id: Mssql.php 5847 2009-06-09 08:13:25Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,7 +27,7 @@
  * @author      Lukas Smith <smith@pooteeweet.org> (PEAR MDB2 library)
  * @author      Frank M. Kromann <frank@kromann.info> (PEAR MDB2 Mssql driver)
  * @author      David Coallier <davidc@php.net> (PEAR MDB2 Mssql driver)
- * @version     $Revision: 6132 $
+ * @version     $Revision: 5847 $
  * @link        www.phpdoctrine.org
  * @since       1.0
  */
@@ -128,8 +128,8 @@ class Doctrine_Import_Mssql extends Doctrine_Import
                 'type'          => $decl['type'][0],
                 'alltypes'      => $decl['type'],
                 'length'        => $decl['length'],
-                'fixed'         => (bool) $decl['fixed'],
-                'unsigned'      => (bool) $decl['unsigned'],
+                'fixed'         => $decl['fixed'],
+                'unsigned'      => $decl['unsigned'],
                 'notnull'       => $isIdentity ? true : $isNullable,
                 'default'       => $val['column_def'],
                 'primary'       => $isPrimary,

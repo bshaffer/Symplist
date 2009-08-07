@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Driver.php 5901 2009-06-22 15:44:45Z jwage $
+ *  $Id: Driver.php 5801 2009-06-02 17:30:27Z piccoloprincipe $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,7 +27,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 5901 $
+ * @version     $Revision: 5801 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 abstract class Doctrine_Cache_Driver implements Doctrine_Cache_Interface
@@ -42,7 +42,7 @@ abstract class Doctrine_Cache_Driver implements Doctrine_Cache_Interface
      *
      * @param array $_options      an array of options
      */
-    public function __construct($options = array()) 
+    public function __construct($options) 
     {
         $this->_options = $options;
     }
@@ -76,16 +76,5 @@ abstract class Doctrine_Cache_Driver implements Doctrine_Cache_Interface
         }
 
         return $this->_options[$option];
-    }
-
-    /**
-     * Get the hash key passing its suffix
-     *
-     * @param string $id  The hash key suffix
-     * @return string     Hash key to be used by drivers
-     */
-    protected function _getKey($id)
-    {
-        return (isset($this->_options['prefix']) ? $this->_options['prefix'] : '') . $id;
     }
 }

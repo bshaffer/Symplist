@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage form
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfFormField.class.php 19762 2009-06-30 22:19:26Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfFormField.class.php 17858 2009-05-01 21:22:50Z FabianLange $
  */
 class sfFormField
 {
@@ -114,7 +114,7 @@ class sfFormField
    */
   function render($attributes = array())
   {
-    return $this->widget->render($this->renderName(), $this->value, $attributes, $this->error);
+    return $this->widget->render($this->parent ? $this->parent->getWidget()->generateName($this->name) : $this->name, $this->value, $attributes, $this->error);
   }
 
   /**
@@ -224,16 +224,6 @@ class sfFormField
     }
 
     return $this->parent->getWidget()->getFormFormatter()->generateLabelName($this->name);
-  }
-
-  /**
-   * Returns the name attribute of the widget.
-   * 
-   * @return string The name attribute of the widget
-   */
-  public function renderName()
-  {
-    return $this->parent ? $this->parent->getWidget()->generateName($this->name) : $this->name;
   }
 
   /**

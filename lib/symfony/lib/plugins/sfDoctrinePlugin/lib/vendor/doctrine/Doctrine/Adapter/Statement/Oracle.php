@@ -114,8 +114,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
      *
      * @return boolean              Returns TRUE on success or FALSE on failure.
      */
-    public function bindValue($param, $value, $type = null)
-    {
+    public function bindValue($param, $value, $type = null){
         /**
          * need to store the value internally since binding is done by reference
          */
@@ -149,8 +148,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
      * @param mixed $driverOptions
      * @return boolean              Returns TRUE on success or FALSE on failure.
      */
-    public function bindParam($column, &$variable, $type = null, $length = null, $driverOptions = array())
-    {
+    public function bindParam($column, &$variable, $type = null, $length = null, $driverOptions = array()){
         if ($driverOptions || $length ) {
             throw new Doctrine_Adapter_Exception('Unsupported parameters:$length, $driverOptions');
         }
@@ -173,7 +171,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
         }
         //print "Binding $variable to $variable_name".PHP_EOL;
         $status = @oci_bind_by_name($this->statement, $variable_name, $variable, $oci_length, $oci_type);
-        if ($status === false) {
+        if($status === false){
            $this->handleError();
         }
         return $status;
@@ -184,8 +182,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
      *
      * @return boolean              Returns TRUE on success or FALSE on failure.
      */
-    public function closeCursor()
-    {
+    public function closeCursor(){
         $this->bind_params = array();
         return oci_free_statement($this->statement);
     }
@@ -197,8 +194,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
      *                              by the Doctrine_Adapter_Statement_Interface object. If there is no result set,
      *                              this method should return 0.
      */
-    public function columnCount()
-    {
+    public function columnCount(){
         return oci_num_fields  ( $this->statement );
     }
 
@@ -208,8 +204,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
      * @see Doctrine_Adapter_Interface::errorCode()
      * @return string       error code string
      */
-    public function errorCode()
-    {
+    public function errorCode(){
         $oci_error = $this->getOciError();
         return $oci_error['code'];
     }
@@ -220,12 +215,10 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
      * @see Doctrine_Adapter_Interface::errorInfo()
      * @return array        error info array
      */
-    public function errorInfo()
-    {
+    public function errorInfo(){
         $oci_error = $this->getOciError();
         return $oci_error['message'] . " : " . $oci_error['sqltext'];
     }
-
     private function getOciError()
     {
         if (is_resource($this->statement)) {
@@ -391,7 +384,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
      */
     public function fetchColumn($columnIndex = 0)
     {
-        if ( ! is_integer($columnIndex)) {
+        if( ! is_integer($columnIndex)) {
             $this->handleError(array('message'=>"columnIndex parameter should be numeric"));
         }
         $row = $this->fetch(Doctrine::FETCH_NUM);
@@ -537,7 +530,6 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
     {
         return $this->attributes[$attribute];
     }
-
     /**
      * Set the default fetch mode for this statement 
      *

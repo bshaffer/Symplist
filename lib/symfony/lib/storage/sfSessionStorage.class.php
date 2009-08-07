@@ -21,7 +21,7 @@
  * @subpackage storage
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Sean Kerr <sean@code-box.org>
- * @version    SVN: $Id: sfSessionStorage.class.php 15552 2009-02-17 11:00:57Z dwhittle $
+ * @version    SVN: $Id: sfSessionStorage.class.php 15553 2009-02-17 11:04:14Z dwhittle $
  */
 class sfSessionStorage extends sfStorage
 {

@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Doctrine.php 6160 2009-07-24 19:20:08Z jwage $
+ *  $Id: Doctrine.php 5885 2009-06-15 06:48:35Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -29,14 +29,14 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 6160 $
+ * @version     $Revision: 5885 $
  */
 final class Doctrine
 {
     /**
      * VERSION
      */
-    const VERSION                   = '1.1.2';
+    const VERSION                   = '1.0.10';
 
     /**
      * ERROR CONSTANTS
@@ -161,7 +161,6 @@ final class Doctrine
     const ATTR_DBNAME_FORMAT        = 117;
     const ATTR_TBLCLASS_FORMAT      = 119;
     const ATTR_TBLNAME_FORMAT       = 120;
-    const ATTR_FKNAME_FORMAT        = 171;
     const ATTR_EXPORT               = 140;
     const ATTR_DECIMAL_PLACES       = 141;
 
@@ -177,35 +176,27 @@ final class Doctrine
     const ATTR_USE_NATIVE_ENUM      = 117;
     const ATTR_DEFAULT_SEQUENCE     = 133;
 
-    const ATTR_FETCHMODE                    = 118;
-    const ATTR_NAME_PREFIX                  = 121;
-    const ATTR_CREATE_TABLES                = 122;
-    const ATTR_COLL_LIMIT                   = 123;
-                                        
-    const ATTR_CACHE                        = 150;
-    const ATTR_RESULT_CACHE                 = 150;
-    const ATTR_CACHE_LIFESPAN               = 151;
-    const ATTR_RESULT_CACHE_LIFESPAN        = 151;
-    const ATTR_LOAD_REFERENCES              = 153;
-    const ATTR_RECORD_LISTENER              = 154;
-    const ATTR_THROW_EXCEPTIONS             = 155;
-    const ATTR_DEFAULT_PARAM_NAMESPACE      = 156;
-    const ATTR_QUERY_CACHE                  = 157;
-    const ATTR_QUERY_CACHE_LIFESPAN         = 158;
-    const ATTR_AUTOLOAD_TABLE_CLASSES       = 160;
-    const ATTR_MODEL_LOADING                = 161;
-    const ATTR_RECURSIVE_MERGE_FIXTURES     = 162;
-    const ATTR_USE_DQL_CALLBACKS            = 164;
-    const ATTR_AUTO_ACCESSOR_OVERRIDE       = 165;
-    const ATTR_AUTO_FREE_QUERY_OBJECTS      = 166;
-    const ATTR_DEFAULT_TABLE_CHARSET        = 167;
-    const ATTR_DEFAULT_TABLE_COLLATE        = 168;
-    const ATTR_DEFAULT_IDENTIFIER_OPTIONS   = 169;
-    const ATTR_DEFAULT_COLUMN_OPTIONS       = 170;
-    const ATTR_HYDRATE_OVERWRITE            = 172;
-    const ATTR_QUERY_CLASS                  = 173;
-    const ATTR_CASCADE_SAVES                = 174;
-    const ATTR_COLLECTION_CLASS             = 175;
+    const ATTR_FETCHMODE                = 118;
+    const ATTR_NAME_PREFIX              = 121;
+    const ATTR_CREATE_TABLES            = 122;
+    const ATTR_COLL_LIMIT               = 123;
+
+    const ATTR_CACHE                    = 150;
+    const ATTR_RESULT_CACHE             = 150;
+    const ATTR_CACHE_LIFESPAN           = 151;
+    const ATTR_RESULT_CACHE_LIFESPAN    = 151;
+    const ATTR_LOAD_REFERENCES          = 153;
+    const ATTR_RECORD_LISTENER          = 154;
+    const ATTR_THROW_EXCEPTIONS         = 155;
+    const ATTR_DEFAULT_PARAM_NAMESPACE  = 156;
+    const ATTR_QUERY_CACHE              = 157;
+    const ATTR_QUERY_CACHE_LIFESPAN     = 158;
+    const ATTR_AUTOLOAD_TABLE_CLASSES   = 160;
+    const ATTR_MODEL_LOADING            = 161;
+    const ATTR_RECURSIVE_MERGE_FIXTURES = 162;
+    const ATTR_USE_DQL_CALLBACKS        = 164;
+    const ATTR_AUTO_ACCESSOR_OVERRIDE   = 165;
+    const ATTR_HYDRATE_OVERWRITE        = 166;
 
     /**
      * LIMIT CONSTANTS
@@ -339,26 +330,6 @@ final class Doctrine
      * HYDRATE_NONE
      */
     const HYDRATE_NONE              = 4;
-    
-    /**
-     * HYDRATE_SCALAR
-     */
-    const HYDRATE_SCALAR            = 5;
-    
-    /**
-     * HYDRATE_SINGLE_SCALAR
-     */
-    const HYDRATE_SINGLE_SCALAR     = 6;
-
-    /**
-     * HYDRATE_NONE_ASSOC
-     */
-    const HYDRATE_NONE_ASSOC        = 7;
-
-    /**
-     * HYDRATE_NO_ALIAS_SCALAR
-     */
-    const HYDRATE_NO_ALIAS_SCALAR   = 8;
 
     /**
      * VALIDATION CONSTANTS
@@ -384,11 +355,6 @@ final class Doctrine
      * VALIDATE_ALL
      */
     const VALIDATE_ALL              = 7;
-
-    /** 
-     * VALIDATE_USER
-     */ 
-    const VALIDATE_USER             = 8;
 
     /**
      * IDENTIFIER_AUTOINC
@@ -441,13 +407,6 @@ final class Doctrine
      * @var string $path            doctrine root directory
      */
     private static $_path;
-
-    /**
-     * Path to the Doctrine extensions directory
-     *
-     * @var string $extensionsPath
-     */
-    private static $_extensionsPath;
 
     /**
      * Debug bool true/false option
@@ -507,17 +466,6 @@ final class Doctrine
     }
 
     /**
-     * Set the path to your core Doctrine libraries
-     *
-     * @param string $path The path to your Doctrine libraries
-     * @return void
-     */
-    public static function setPath($path)
-    {
-        self::$_path = $path;
-    }
-
-    /**
      * Get the root path to Doctrine
      *
      * @return string
@@ -529,37 +477,6 @@ final class Doctrine
         }
 
         return self::$_path;
-    }
-
-    /**
-     * Set the path to autoload extension classes from
-     *
-     * @param string $extensionsPath 
-     * @return void
-     */
-    public static function setExtensionsPath($extensionsPath)
-    {
-        self::$_extensionsPath = $extensionsPath;
-    }
-
-    /**
-     * Get the path to load extension classes from
-     *
-     * @return string $extensionsPath
-     */
-    public static function getExtensionsPath()
-    {
-        return self::$_extensionsPath;
-    }
-
-    /**
-     * Get all the loaded extension classes 
-     *
-     * @return array $extensionClasses
-     */
-    public static function getExtensionsClasses()
-    {
-        return Doctrine_Manager::getInstance()->getExtensionsClasses();
     }
 
     /**
@@ -610,7 +527,7 @@ final class Doctrine
 
                             $declaredAfter = get_declared_classes();
                             // Using array_slice because array_diff is broken is some PHP versions
-                            $foundClasses = array_slice($declaredAfter, count($declaredBefore));
+                            $foundClasses = array_slice($declaredAfter, count($declaredBefore) - 1);
                             if ($foundClasses) {
                                 foreach ($foundClasses as $className) {
                                     if (self::isValidModelClass($className)) {
@@ -630,7 +547,7 @@ final class Doctrine
                 }
             }
         }
-        asort($loadedModels);
+
         return $loadedModels;
     }
 
@@ -991,22 +908,6 @@ final class Doctrine
     }
 
     /**
-     * Generate a set of migration classes by generating differences between two sets
-     * of schema information
-     *
-     * @param  string $migrationsPath   Path to your Doctrine migration classes
-     * @param  string $from             From schema information
-     * @param  string $to               To schema information
-     * @return array $changes
-     */
-    public static function generateMigrationsFromDiff($migrationsPath, $from, $to)
-    {
-        $diff = new Doctrine_Migration_Diff($from, $to, $migrationsPath);
-
-        return $diff->generateMigrationClasses();
-    }
-
-    /**
      * Get the Doctrine_Table object for the passed model
      *
      * @param string $componentName
@@ -1036,7 +937,7 @@ final class Doctrine
      * simple autoload function
      * returns true if the class was loaded, otherwise false
      *
-     * @param string $className
+     * @param string $classname
      * @return boolean
      */
     public static function autoload($className)
@@ -1053,47 +954,12 @@ final class Doctrine
             return true;
         }
 
-        return false;
-    }
-
-    public static function modelsAutoload($className)
-    {
-        if (class_exists($className, false) || interface_exists($className, false)) {
-            return false;
-        }
-
         $loadedModels = self::$_loadedModelFiles;
 
         if (isset($loadedModels[$className]) && file_exists($loadedModels[$className])) {
             require $loadedModels[$className];
 
             return true;
-        }
-    }
-
-    /**
-     * Load classes from the Doctrine extensions directory/path
-     *
-     * @param string $className
-     * @return boolean
-     */
-    public static function extensionsAutoload($className)
-    {
-        if (class_exists($className, false) || interface_exists($className, false)) {
-            return false;
-        }
-
-        $extensions = Doctrine_Manager::getInstance()
-            ->getExtensions();
-
-        foreach ($extensions as $name => $path) {
-            $class = $path . DIRECTORY_SEPARATOR . str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
-
-            if (file_exists($class)) {
-                require $class;
-
-                return true;
-            }
         }
 
         return false;

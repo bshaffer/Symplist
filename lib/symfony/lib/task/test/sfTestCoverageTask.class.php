@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage task
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfTestCoverageTask.class.php 19717 2009-06-30 16:53:57Z fabien $
+ * @version    SVN: $Id: sfTestCoverageTask.class.php 12069 2008-10-08 12:27:04Z fabien $
  */
 class sfTestCoverageTask extends sfBaseTask
 {
@@ -73,7 +73,7 @@ EOF;
 
   protected function getTestHarness()
   {
-    $harness = new lime_harness(array('force_colors' => $options['color']));
+    $harness = new lime_harness(new lime_output_color());
     $harness->base_dir = sfConfig::get('sf_root_dir');
 
     return $harness;

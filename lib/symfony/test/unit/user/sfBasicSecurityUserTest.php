@@ -10,7 +10,7 @@
 
 require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 
-$t = new lime_test(47);
+$t = new lime_test(47, new lime_output_color());
 
 class MySessionStorage extends sfSessionTestStorage
 {
@@ -23,7 +23,7 @@ class MySessionStorage extends sfSessionTestStorage
 }
 
 $dispatcher = new sfEventDispatcher();
-$sessionPath = sys_get_temp_dir().'/sessions_'.rand(11111, 99999);
+$sessionPath = sfToolkit::getTmpDir().'/sessions_'.rand(11111, 99999);
 $storage = new MySessionStorage(array('session_path' => $sessionPath));
 
 $user = new sfBasicSecurityUser($dispatcher, $storage);

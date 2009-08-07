@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage plugin
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfPearRestPlugin.class.php 14831 2009-01-17 09:31:52Z dwhittle $
+ * @version    SVN: $Id: sfPearRestPlugin.class.php 14830 2009-01-17 09:31:34Z dwhittle $
  */
 class sfPearRestPlugin extends sfPearRest11
 {

@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Relation.php 5901 2009-06-22 15:44:45Z jwage $
+ *  $Id: Relation.php 5801 2009-06-02 17:30:27Z piccoloprincipe $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -28,7 +28,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 5901 $
+ * @version     $Revision: 5801 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 abstract class Doctrine_Relation implements ArrayAccess
@@ -49,9 +49,6 @@ abstract class Doctrine_Relation implements ArrayAccess
     
     // TRUE => mandatory, everything else is just a default value. this should be refactored
     // since TRUE can bot be used as a default value this way. All values should be default values.
-    /**
-     * @var array $definition   @see __construct()
-     */
     protected $definition = array('alias'       => true,
                                   'foreign'     => true,
                                   'local'       => true,
@@ -147,7 +144,6 @@ abstract class Doctrine_Relation implements ArrayAccess
                 ($this->definition['onUpdate']) ||
                 ($this->definition['onDelete']));
     }
-
     public function isDeferred()
     {
         return $this->definition['deferred'];
@@ -157,7 +153,6 @@ abstract class Doctrine_Relation implements ArrayAccess
     {
         return $this->definition['deferrable'];
     }
-
     public function isEqual()
     {
         return $this->definition['equal'];
@@ -237,7 +232,7 @@ abstract class Doctrine_Relation implements ArrayAccess
      * getTable
      * returns the foreign table object
      *
-     * @return Doctrine_Table
+     * @return object Doctrine_Table
      */
     final public function getTable()
     {
@@ -250,7 +245,7 @@ abstract class Doctrine_Relation implements ArrayAccess
      * getClass
      * returns the name of the related class
      *
-     * @return string
+     * @return object Doctrine_Record
      */
     final public function getClass()
     {
@@ -357,16 +352,6 @@ abstract class Doctrine_Relation implements ArrayAccess
      * @return Doctrine_Record|Doctrine_Collection
      */
     abstract public function fetchRelatedFor(Doctrine_Record $record);
-
-    /**
-     * Get the name of the foreign key for this relationship
-     *
-     * @return string $foreignKeyName
-     */
-    public function getForeignKeyName()
-    {
-        return $this['localTable']->getConnection()->generateUniqueRelationForeignKeyName($this);
-    }
 
     /**
      * __toString

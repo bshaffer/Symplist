@@ -6,7 +6,7 @@
  * @package    ##PROJECT_NAME##
  * @subpackage choice
  * @author     Your name here
- * @version    SVN: $Id: actions.class.php 16987 2009-04-04 14:16:46Z fabien $
+ * @version    SVN: $Id: actions.class.php 15627 2009-02-19 13:35:10Z Kris.Wallsmith $
  */
 class choiceActions extends sfActions
 {
@@ -30,7 +30,7 @@ class choiceActions extends sfActions
       $this->form->getValidator('author_article_list')->setOption('criteria', $criteria);
     }
 
-    if ($request->isMethod(sfRequest::POST))
+    if ($request->isMethod('post'))
     {
       $this->form->bind($request->getParameter('article'));
 

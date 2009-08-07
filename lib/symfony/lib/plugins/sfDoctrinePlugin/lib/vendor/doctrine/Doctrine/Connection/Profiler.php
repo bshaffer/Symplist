@@ -50,11 +50,6 @@ class Doctrine_Connection_Profiler implements Doctrine_Overloadable, IteratorAgg
     private $events     = array();
 
     /**
-     * @param array $eventSequences         an array containing sequences of all listened events as keys
-     */
-    private $eventSequences = array();
-
-    /**
      * constructor
      */
     public function __construct() {
@@ -92,15 +87,25 @@ class Doctrine_Connection_Profiler implements Doctrine_Overloadable, IteratorAgg
             // pre-event listener found
             $a[0]->start();
 
-            $eventSequence = $a[0]->getSequence();
-            if ( ! isset($this->eventSequences[$eventSequence])) {
+            if ( ! in_array($a[0], $this->events, true)) {
                 $this->events[] = $a[0];
-                $this->eventSequences[$eventSequence] = true;
             }
         } else {
             // after-event listener found
             $a[0]->end();
         }
+        /**
+         * If filtering by query type is enabled, only keep the query if
+         * it was one of the allowed types.
+         */
+         /**
+        if ( ! is_null($this->filterTypes)) {
+            if ( ! ($a[0]->getQueryType() & $this->_filterTypes)) {
+
+            }
+        }
+        */
+
     }
 
     /**
@@ -156,12 +161,7 @@ class Doctrine_Connection_Profiler implements Doctrine_Overloadable, IteratorAgg
      */
     public function pop() 
     {
-        $event = array_pop($this->events);
-        if ($event !== null)
-        {
-            unset($this->eventSequences[$event->getSequence()]);
-        }
-        return $event;
+        return array_pop($this->events);
     }
 
     /**

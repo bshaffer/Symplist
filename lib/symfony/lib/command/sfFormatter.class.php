@@ -14,43 +14,28 @@
  * @package    symfony
  * @subpackage command
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfFormatter.class.php 20834 2009-08-05 22:26:55Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfFormatter.class.php 17858 2009-05-01 21:22:50Z FabianLange $
  */
 class sfFormatter
 {
   protected
-    $size = null;
+    $size = 65;
 
-  function __construct($maxLineSize = null)
+  function __construct($maxLineSize = 65)
   {
-    if (is_null($maxLineSize))
-    {
-      // this is tricky because "tput cols 2>&1" is not accurate
-      $maxLineSize = ctype_digit(trim(shell_exec('tput cols 2>&1'))) ? (integer) shell_exec('tput cols') : 78;
-    }
-
     $this->size = $maxLineSize;
-  }
-
-  /**
-   * Sets a new style.
-   *
-   * @param string $name    The style name
-   * @param array  $options An array of options
-   */
-  public function setStyle($name, $options = array())
-  {
   }
 
   /**
    * Formats a text according to the given parameters.
    *
-   * @param  string $text         The test to style
-   * @param  mixed  $parameters   An array of parameters
+   * @param string $text       The test to style
+   * @param mixed  $parameters An array of parameters
+   * @param stream $stream     A stream (default to STDOUT)
    *
    * @return string The formatted text
    */
-  public function format($text = '', $parameters = array())
+  public function format($text = '', $parameters = array(), $stream = STDOUT)
   {
     return $text;
   }
@@ -58,27 +43,20 @@ class sfFormatter
   /**
    * Formats a message within a section.
    *
-   * @param string  $section  The section name
-   * @param string  $text     The text message
-   * @param integer $size     The maximum size allowed for a line
+   * @param string  $section The section name
+   * @param string  $text    The text message
+   * @param integer $size    The maximum size allowed for a line (65 by default)
    */
   public function formatSection($section, $text, $size = null)
   {
-    if (!$size)
-    {
-      $size = $this->size;
-    }
-
-    $section = sprintf('>> %-9s ', $section);
-
-    return $section.$this->excerpt($text, $size - strlen($section));
+    return sprintf(">> %-9s %s", $section, $this->excerpt($text, $size));
   }
 
   /**
    * Truncates a line.
    *
    * @param string  $text The text
-   * @param integer $size The maximum size of the returned string
+   * @param integer $size The maximum size of the returned string (65 by default)
    *
    * @return string The truncated string
    */

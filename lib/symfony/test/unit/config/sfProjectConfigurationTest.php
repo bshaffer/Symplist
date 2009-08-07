@@ -10,7 +10,7 @@
 
 require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 
-$t = new lime_test(3);
+$t = new lime_test(3, new lime_output_color());
 
 class ProjectConfiguration extends sfProjectConfiguration
 {
@@ -21,7 +21,7 @@ class ProjectConfiguration extends sfProjectConfiguration
   }
 }
 
-$configuration = new ProjectConfiguration(dirname(__FILE__).'/../../functional/fixtures');
+$configuration = new ProjectConfiguration(dirname(__FILE__).'/../../functional/fixtures/project');
 
 $t->diag('->setPlugins(), ->disablePlugins(), ->enableAllPluginsExcept()');
 foreach (array('setPlugins', 'disablePlugins', 'enableAllPluginsExcept') as $method)

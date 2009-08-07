@@ -16,7 +16,7 @@ require_once(dirname(__FILE__).'/sfPropelBaseTask.class.php');
  * @package    symfony
  * @subpackage propel
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfPropelBuildAllTask.class.php 20867 2009-08-06 21:43:11Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfPropelBuildAllTask.class.php 13645 2008-12-02 23:08:25Z Kris.Wallsmith $
  */
 class sfPropelBuildAllTask extends sfPropelBaseTask
 {
@@ -79,10 +79,7 @@ EOF;
 
     $buildModel = new sfPropelBuildModelTask($this->dispatcher, $this->formatter);
     $buildModel->setCommandApplication($this->commandApplication);
-    $buildModel->setConfiguration($this->configuration);
-    $ret = $buildModel->run(array(), array(
-      'phing-arg' => $options['phing-arg'],
-    ));
+    $ret = $buildModel->run(array(), $basePhingOptions);
 
     if ($ret)
     {
@@ -100,7 +97,6 @@ EOF;
 
       $buildForms = new sfPropelBuildFormsTask($this->dispatcher, $this->formatter);
       $buildForms->setCommandApplication($this->commandApplication);
-      $buildForms->setConfiguration($this->configuration);
       $ret = $buildForms->run();
 
       if ($ret)
@@ -110,7 +106,6 @@ EOF;
 
       $buildFilters = new sfPropelBuildFiltersTask($this->dispatcher, $this->formatter);
       $buildFilters->setCommandApplication($this->commandApplication);
-      $buildFilters->setConfiguration($this->configuration);
       $ret = $buildFilters->run();
 
       if ($ret)
@@ -123,10 +118,7 @@ EOF;
     {
       $buildSql = new sfPropelBuildSqlTask($this->dispatcher, $this->formatter);
       $buildSql->setCommandApplication($this->commandApplication);
-      $buildSql->setConfiguration($this->configuration);
-      $ret = $buildSql->run(array(), array(
-        'phing-arg' => $options['phing-arg'],
-      ));
+      $ret = $buildSql->run(array(), $basePhingOptions);
 
       if ($ret)
       {
@@ -135,19 +127,23 @@ EOF;
 
       $insertSql = new sfPropelInsertSqlTask($this->dispatcher, $this->formatter);
       $insertSql->setCommandApplication($this->commandApplication);
-      $insertSql->setConfiguration($this->configuration);
-      $ret = $insertSql->run(array(), array(
-        'phing-arg'       => $options['phing-arg'],
-        'connection'      => $options['connection'],
-        'no-confirmation' => $options['no-confirmation'],
-      ));
+
+      $insertSqlOptions = array_merge($basePhingOptions, array('--env='.$options['env'], '--connection='.$options['connection']));
+      if ($options['application'])
+      {
+        $insertSqlOptions[] = '--application='.$options['application'];
+      }
+      if ($options['no-confirmation'])
+      {
+        $insertSqlOptions[] = '--no-confirmation';
+      }
+
+      $ret = $insertSql->run(array(), $insertSqlOptions);
 
       if ($ret)
       {
         return $ret;
       }
     }
-
-    $this->reloadAutoload();
   }
 }

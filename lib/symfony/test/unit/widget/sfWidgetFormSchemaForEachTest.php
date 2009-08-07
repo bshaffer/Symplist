@@ -10,7 +10,7 @@
 
 require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 
-$t = new lime_test(4);
+$t = new lime_test(4, new lime_output_color());
 
 $w1 = new sfWidgetFormInput();
 $w = new sfWidgetFormSchema(array('w1' => $w1));

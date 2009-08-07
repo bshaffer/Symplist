@@ -45,6 +45,7 @@ class Doctrine_IntegrityMapper
         $this->invokeIntegrityActions($record);
     }
 
+
     /**
      * invokeIntegrityActions 
      * 

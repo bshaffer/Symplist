@@ -39,7 +39,6 @@ abstract class Doctrine_Record_Filter
     {
         $this->_table = $table;
     }
-
     public function getTable()
     {
         return $this->_table;

@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage helper
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: UrlHelper.php 20692 2009-08-02 12:50:08Z Kris.Wallsmith $
+ * @version    SVN: $Id: UrlHelper.php 14507 2009-01-06 19:12:41Z Kris.Wallsmith $
  */
 
 function link_to2($name, $routeName, $params, $options = array())
@@ -541,7 +541,7 @@ function _method_javascript_function($method)
   }
 
   // CSRF protection
-  $form = new BaseForm();
+  $form = new sfForm();
   if ($form->isCSRFProtected())
   {
     $function .= "var m = document.createElement('input'); m.setAttribute('type', 'hidden'); ";

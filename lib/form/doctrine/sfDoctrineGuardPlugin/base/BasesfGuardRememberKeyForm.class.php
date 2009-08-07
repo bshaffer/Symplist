@@ -3,10 +3,9 @@
 /**
  * sfGuardRememberKey form base class.
  *
- * @package    plugintracker
- * @subpackage form
- * @author     Your name here
- * @version    SVN: $Id$
+ * @package    form
+ * @subpackage sf_guard_remember_key
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
  */
 class BasesfGuardRememberKeyForm extends BaseFormDoctrine
 {
@@ -26,15 +25,13 @@ class BasesfGuardRememberKeyForm extends BaseFormDoctrine
       'user_id'      => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
       'remember_key' => new sfValidatorString(array('max_length' => 32, 'required' => false)),
       'ip_address'   => new sfValidatorDoctrineChoice(array('model' => 'sfGuardRememberKey', 'column' => 'ip_address', 'required' => false)),
-      'created_at'   => new sfValidatorDateTime(),
-      'updated_at'   => new sfValidatorDateTime(),
+      'created_at'   => new sfValidatorDateTime(array('required' => false)),
+      'updated_at'   => new sfValidatorDateTime(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('sf_guard_remember_key[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
-
-    $this->setupInheritance();
 
     parent::setup();
   }

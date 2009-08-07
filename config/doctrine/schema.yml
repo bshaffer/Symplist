@@ -2,15 +2,17 @@ SymfonyPlugin:
   actAs:                              
     Sluggable: ~
     Timestampable: ~
+    sfLuceneDoctrineTemplate: ~
     Commentable:  []
   columns:
     title:                            string(255)
     description:                      clob
     author_id:                        integer
     category_id:                      integer
+    active:                           boolean
   relations:
     PluginAuthor:
-      alias:                          User
+      alias:                          Author
       foreignAlias:                   Plugins
       local:                          author_id
     PluginCategory:

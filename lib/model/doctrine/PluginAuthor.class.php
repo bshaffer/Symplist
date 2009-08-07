@@ -16,4 +16,9 @@ class PluginAuthor extends BasePluginAuthor
   {
     return '@author?username='.$this['User']['username'];
   }
+  
+  public function getUsername()
+  {
+    return $this['User']['username'];
+  }
 }

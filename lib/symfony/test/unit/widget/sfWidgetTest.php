@@ -10,7 +10,7 @@
 
 require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 
-$t = new lime_test(32);
+$t = new lime_test(32, new lime_output_color());
 
 class MyWidget extends sfWidget
 {

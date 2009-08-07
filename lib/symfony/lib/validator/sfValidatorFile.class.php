@@ -151,7 +151,7 @@ class sfValidatorFile extends sfValidatorBase
     if ($this->hasOption('mime_types'))
     {
       $mimeTypes = is_array($this->getOption('mime_types')) ? $this->getOption('mime_types') : $this->getMimeTypesFromCategory($this->getOption('mime_types'));
-      if (!in_array($mimeType, array_map('strtolower', $mimeTypes)))
+      if (!in_array($mimeType, $mimeTypes))
       {
         throw new sfValidatorError($this, 'mime_types', array('mime_types' => $mimeTypes, 'mime_type' => $mimeType));
       }
@@ -168,9 +168,6 @@ class sfValidatorFile extends sfValidatorBase
    * This methods call each mime_type_guessers option callables to
    * guess the mime type.
    *
-   * This method always returns a lower-cased string as mime types are case-insensitive
-   * as per the RFC 2616 (http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.7).
-   *
    * @param  string $file      The absolute path of a file
    * @param  string $fallback  The default mime type to return if not guessable
    *
@@ -184,11 +181,11 @@ class sfValidatorFile extends sfValidatorBase
 
       if (!is_null($type) && $type !== false)
       {
-        return strtolower($type);
+        return $type;
       }
     }
 
-    return strtolower($fallback);
+    return $fallback;
   }
 
   /**
@@ -616,7 +613,7 @@ class sfValidatedFile
       'application/vnd.ms-artgalry' => 'cil',
       'application/vnd.ms-asf' => 'asf',
       'application/vnd.ms-excel' => 'xls',
-      'application/vnd.ms-excel.sheet.macroenabled.12' => 'xlsm',
+      'application/vnd.ms-excel.sheet.macroEnabled.12' => 'xlsm',
       'application/vnd.ms-lrm' => 'lrm',
       'application/vnd.ms-powerpoint' => 'ppt',
       'application/vnd.ms-project' => 'mpp',
@@ -778,6 +775,7 @@ class sfValidatedFile
       'application/x-word' => 'base64',
       'application/x-wordperfect6.1' => 'wp6',
       'application/x-x509-ca-cert' => 'crt',
+      'application/x-zip' => 'zip',
       'application/x-zip-compressed' => 'zip',
       'application/xhtml+xml' => 'xhtml',
       'application/zip' => 'zip',

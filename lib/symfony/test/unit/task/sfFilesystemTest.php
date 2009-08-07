@@ -24,7 +24,7 @@ class myFilesystem extends sfFilesystem
   }
 }
 
-$t = new lime_test(8);
+$t = new lime_test(8, new lime_output_color());
 
 $dispatcher = new sfEventDispatcher();
 $filesystem = new myFilesystem($dispatcher, null);

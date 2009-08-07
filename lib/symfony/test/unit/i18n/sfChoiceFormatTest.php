@@ -10,7 +10,7 @@
 
 require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 
-$t = new lime_test(89);
+$t = new lime_test(89, new lime_output_color());
 
 $n = new sfChoiceFormat();
 

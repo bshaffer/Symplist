@@ -11,7 +11,7 @@
 require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 require_once($_test_dir.'/../../../../test/unit/sfContextMock.class.php');
 
-$t = new lime_test(12);
+$t = new lime_test(12, new lime_output_color());
 
 $context = sfContext::getInstance();
 $v = new sfUrlValidator($context);

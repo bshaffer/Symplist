@@ -87,7 +87,7 @@ class sfSymfonyCommandApplication extends sfCommandApplication
    *
    * @param sfProjectConfiguration $configuration The project configuration
    */
-  public function loadTasks(sfProjectConfiguration $configuration)
+  protected function loadTasks(sfProjectConfiguration $configuration)
   {
     // Symfony core tasks
     $dirs = array(sfConfig::get('sf_symfony_lib_dir').'/task');

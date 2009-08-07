@@ -6,9 +6,9 @@
  * @package    symfony
  * @subpackage generator
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfModelGeneratorConfiguration.class.php 20548 2009-07-28 07:38:32Z fabien $
+ * @version    SVN: $Id: sfModelGeneratorConfiguration.class.php 19819 2009-07-02 11:45:11Z fabien $
  */
-abstract class sfModelGeneratorConfiguration
+class sfModelGeneratorConfiguration
 {
   protected
     $configuration = array();
@@ -384,83 +384,6 @@ abstract class sfModelGeneratorConfiguration
     return $default;
   }
 
-  /**
-   * getFormDisplay - return default field list if new/edit context do not override them.
-   *
-   * @return array
-   */
-  abstract public function getFormDisplay();
-
-  /**
-   * getNewDisplay - return field list for "new" context.
-   *
-   * @return array
-   */
-  abstract public function getNewDisplay();
-
-  /**
-   * getEditDisplay - return field list for "edit" context.
-   *
-   * @return array
-   */
-  abstract public function getEditDisplay();
-
-  /**
-   * Gets a new form object.
-   *
-   * @param  mixed $object
-   *
-   * @return sfForm
-   */
-  public function getForm($object = null)
-  {
-    $class = $this->getFormClass();
-
-    $form = new $class($object, $this->getFormOptions());
-
-    $this->fixFormFields($form);
-
-    return $form;
-  }
-
-  public function getFormOptions()
-  {
-    return array();
-  }
-
-  /**
-   * getConnection - return the orm connection string. Depends on which
-   * concrete implementation is currently used, but null means default.
-   *
-   * @return mixed
-   */
-  public function getConnection()
-  {
-    return null;
-  }
-
-  /**
-   * Removes visible fields not included for display.
-   *
-   * @param sfForm $form
-   */
-  protected function fixFormFields(sfForm $form)
-  {
-    $fieldsets = $this->getFormFields($form, $form->isNew() ? 'new' : 'edit');
-
-    // flatten fields and collect names
-    $fields = call_user_func_array('array_merge', array_values($fieldsets));
-    $names = array_map(array($this, 'mapFieldName'), $fields);
-
-    foreach ($form as $name => $field)
-    {
-      if (!$field->isHidden() && !in_array($name, $names))
-      {
-        unset($form[$name]);
-      }
-    }
-  }
-
   protected function mapFieldName(sfModelGeneratorConfigurationField $field)
   {
     return $field->getName();
@@ -502,7 +425,7 @@ abstract class sfModelGeneratorConfiguration
     }
     else
     {
-      $label = '_list' == $action ? 'Back to list' : substr($action, 1);
+      $label = '_list' == $action ? 'Cancel' : substr($action, 1);
     }
 
     $parameters['label'] = sfInflector::humanize($label);

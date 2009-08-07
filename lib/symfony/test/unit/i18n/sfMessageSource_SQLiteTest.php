@@ -11,7 +11,7 @@
 require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 
 $plan = 10;
-$t = new lime_test($plan);
+$t = new lime_test($plan, new lime_output_color());
 
 if (!extension_loaded('SQLite'))
 {

@@ -16,10 +16,33 @@
  * @subpackage doctrine
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Jonathan H. Wage <jonwage@gmail.com>
- * @version    SVN: $Id: sfDoctrineBaseTask.class.php 20867 2009-08-06 21:43:11Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineBaseTask.class.php 15865 2009-02-28 03:34:26Z Jonathan.Wage $
  */
 abstract class sfDoctrineBaseTask extends sfBaseTask
 {
+  static protected $done = false;
+
+  public function initialize(sfEventDispatcher $dispatcher, sfFormatter $formatter)
+  {
+    parent::initialize($dispatcher, $formatter);
+    self::$done = true;
+  }
+
+  protected function createConfiguration($application, $env)
+  {
+    $configuration = parent::createConfiguration($application, $env);
+
+    $autoloader = sfSimpleAutoload::getInstance();
+    $config = new sfAutoloadConfigHandler();
+    $mapping = $config->evaluate($configuration->getConfigPaths('config/autoload.yml'));
+    foreach ($mapping as $class => $file)
+    {
+      $autoloader->setClassPath($class, $file);
+    }
+    $autoloader->register();
+
+    return $configuration;
+  }
   /**
    * Get array of configuration variables for the Doctrine cli
    *
@@ -47,6 +70,15 @@ abstract class sfDoctrineBaseTask extends sfBaseTask
                     'migrations_path'     =>  $migrations,
                     'sql_path'            =>  $sql,
                     'yaml_schema_path'    =>  $yaml);
+
+    foreach ($config as $dir)
+    {
+      $dirs = (array) $dir;
+      foreach ($dirs as $dir)
+      {
+        Doctrine_Lib::makeDirectories($dir);
+      }
+    }
 
     return $config;
   }

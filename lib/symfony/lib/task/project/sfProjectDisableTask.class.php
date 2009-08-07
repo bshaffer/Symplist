@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage task
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfProjectDisableTask.class.php 20862 2009-08-06 18:37:28Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfProjectDisableTask.class.php 9890 2008-06-26 11:35:01Z fabien $
  */
 class sfProjectDisableTask extends sfBaseTask
 {
@@ -24,8 +24,8 @@ class sfProjectDisableTask extends sfBaseTask
   protected function configure()
   {
     $this->addArguments(array(
+      new sfCommandArgument('application', sfCommandArgument::REQUIRED, 'The application name'),
       new sfCommandArgument('env', sfCommandArgument::REQUIRED, 'The environment name'),
-      new sfCommandArgument('app', sfCommandArgument::OPTIONAL | sfCommandArgument::IS_ARRAY, 'The application name'),
     ));
 
     $this->aliases = array('disable');
@@ -34,14 +34,9 @@ class sfProjectDisableTask extends sfBaseTask
     $this->briefDescription = 'Disables an application in a given environment';
 
     $this->detailedDescription = <<<EOF
-The [project:disable|INFO] task disables an environment:
+The [project:disable|INFO] task disables an application for a specific environment:
 
-  [./symfony project:disable prod|INFO]
-
-You can also specify individual applications to be disabled in that
-environment:
-
-  [./symfony project:disable prod frontend backend|INFO]
+  [./symfony project:disable frontend prod|INFO]
 EOF;
   }
 
@@ -50,31 +45,19 @@ EOF;
    */
   protected function execute($arguments = array(), $options = array())
   {
-    if (1 == count($arguments['app']) && !file_exists(sfConfig::get('sf_apps_dir').'/'.$arguments['app'][0]))
+    $app = $arguments['application'];
+    $env = $arguments['env'];
+
+    $lockFile = sfConfig::get('sf_data_dir').'/'.$app.'_'.$env.'.lck';
+    if (file_exists($lockFile))
     {
-      // support previous task signature
-      $applications = array($arguments['env']);
-      $env = $arguments['app'][0];
+      $this->logSection('enable', sprintf('%s [%s] is currently DISABLED', $app, $env));
     }
     else
     {
-      $applications = count($arguments['app']) ? $arguments['app'] : sfFinder::type('dir')->relative()->maxdepth(0)->in(sfConfig::get('sf_apps_dir'));
-      $env = $arguments['env'];
-    }
+      $this->getFilesystem()->touch($lockFile);
 
-    foreach ($applications as $app)
-    {
-      $lockFile = sfConfig::get('sf_data_dir').'/'.$app.'_'.$env.'.lck';
-      if (file_exists($lockFile))
-      {
-        $this->logSection('enable', sprintf('%s [%s] is currently DISABLED', $app, $env));
-      }
-      else
-      {
-        $this->getFilesystem()->touch($lockFile);
-
-        $this->logSection('enable', sprintf('%s [%s] has been DISABLED', $app, $env));
-      }
+      $this->logSection('enable', sprintf('%s [%s] has been DISABLED', $app, $env));
     }
   }
 }

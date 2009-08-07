@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Oracle.php 5969 2009-06-28 21:07:34Z adrive $
+ *  $Id: Oracle.php 5801 2009-06-02 17:30:27Z piccoloprincipe $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -24,7 +24,7 @@
  * @subpackage  DataDict
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @version     $Revision: 5969 $
+ * @version     $Revision: 5801 $
  * @link        www.phpdoctrine.org
  * @since       1.0
  */
@@ -70,11 +70,8 @@ class Doctrine_DataDict_Oracle extends Doctrine_DataDict
 
                 $fixed  = ((isset($field['fixed']) && $field['fixed']) || $field['type'] == 'char') ? true : false;
                 
-                $unit = $this->conn->getParam('char_unit');
-                $unit = ! is_null($unit) ? ' '.$unit : '';
-
-                if ($length && $length <= $this->conn->getParam('varchar2_max_length')) {
-                    return $fixed ? 'CHAR('.$length.$unit.')' : 'VARCHAR2('.$length.$unit.')';
+                if ($length && $length <= $this->conn->varchar2_max_length) {
+                    return $fixed ? 'CHAR('.$length.')' : 'VARCHAR2('.$length.')';
                 }
             case 'clob':
                 return 'CLOB';
@@ -82,21 +79,8 @@ class Doctrine_DataDict_Oracle extends Doctrine_DataDict
                 return 'BLOB';
             case 'integer':
             case 'int':
-                $length = (!empty($field['length'])) ? $field['length'] : false;
-                if ( $length && $length <= $this->conn->number_max_precision)  {
-                    if ($length <= 1) {
-                        return 'NUMBER(3)'; // TINYINT
-                    } elseif ($length == 2) {
-                        return 'NUMBER(5)'; // SMALLINT
-                    } elseif ($length == 3) {
-                        return 'NUMBER(8)'; // MEDIUMINT
-                    } elseif ($length == 4) {
-                        return 'NUMBER(10)'; // INTEGER
-                    } elseif ($length <= 8) {
-                        return 'NUMBER(20)'; // BIGINT
-                    } else {
-                        return 'NUMBER('.$length.')';
-                    }
+                if ( ! empty($field['length']) && $field['length'] <= $this->conn->number_max_precision)  {
+                    return 'NUMBER('.$field['length'].')';
                 }
                 return 'INT';
             case 'boolean':
@@ -133,7 +117,7 @@ class Doctrine_DataDict_Oracle extends Doctrine_DataDict
         $type = array();
         $length = $unsigned = $fixed = null;
         if ( ! empty($field['data_length'])) {
-            $length = (int)$field['data_length'];
+            $length = $field['data_length'];
         }
 
         if ( ! isset($field['column_name'])) {
@@ -147,7 +131,7 @@ class Doctrine_DataDict_Oracle extends Doctrine_DataDict
                 $type[] = 'integer';
                 if ($length == '1') {
                     $type[] = 'boolean';
-                    if (preg_match('/^(is|has)/i', $field['column_name'])) {
+                    if (preg_match('/^(is|has)/', $field['column_name'])) {
                         $type = array_reverse($type);
                     }
                 }
@@ -161,7 +145,7 @@ class Doctrine_DataDict_Oracle extends Doctrine_DataDict
                 $type[] = 'string';
                 if ($length == '1') {
                     $type[] = 'boolean';
-                    if (preg_match('/^(is|has)/i', $field['column_name'])) {
+                    if (preg_match('/^(is|has)/', $field['column_name'])) {
                         $type = array_reverse($type);
                     }
                 }
@@ -182,23 +166,11 @@ class Doctrine_DataDict_Oracle extends Doctrine_DataDict
                     $type[] = 'decimal';
                 } else {
                     $type[] = 'integer';
-                    if ((int)$length == '1') {
+                    if ($length == '1') {
                         $type[] = 'boolean';
-                        if (preg_match('/^(is|has)/i', $field['column_name'])) {
+                        if (preg_match('/^(is|has)/', $field['column_name'])) {
                             $type = array_reverse($type);
-                        } else {
-                            $length = 1; //TINYINT
                         }
-                    } elseif ( ! is_null($length) && (int)$length <= 3) { // TINYINT
-                        $length = 1;
-                    } elseif ( ! is_null($length) && (int)$length <= 5) { // SMALLINT
-                        $length = 2;
-                    } elseif ( ! is_null($length) && (int)$length <= 8) { // MEDIUMINT
-                        $lenght = 3;
-                    } elseif ( ! is_null($length) && (int)$length <= 10) { // INT
-                        $length = 4;
-                    } elseif ( ! is_null($length) && (int)$length <= 20) { //BIGINT
-                        $length = 8;
                     }
                 }
                 break;
@@ -218,8 +190,7 @@ class Doctrine_DataDict_Oracle extends Doctrine_DataDict
             case 'rowid':
             case 'urowid':
             default:
-                $type[] = 'string';
-                $length = null;
+                throw new Doctrine_DataDict_Exception('unknown database attribute type: ' . $dbType);
         }
 
         return array('type'     => $type,

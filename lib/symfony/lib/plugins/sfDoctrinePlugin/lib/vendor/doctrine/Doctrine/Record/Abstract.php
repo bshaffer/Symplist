@@ -41,11 +41,11 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
     {
 
     }
-
     public function setUp()
     {
     	
     }	
+
 
     /**
      * getTable
@@ -66,7 +66,7 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
      */
     public function addListener($listener, $name = null)
     {
-        $this->_table->addRecordListener($listener, $name);
+        $this->_table->addRecordListener($listener, $name = null);
 
         return $this;
     }
@@ -112,37 +112,14 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
             return $this->_table->addIndex($name, $definition);
         }
     }
-
-    /**
-     * Specify an array of fields that are unique and will be validated as such
-     *
-     * @return void
-     */
-    public function unique()
-    {
-        $args = func_get_args();
-
-        if (count($args) == 1) {
-            $fields = (array) $args[0];
-        } else if (count($args) > 1) {
-            $fields = $args;
-        } else {
-            throw new Doctrine_Record_Exception('You must specify the fields to make a unique constraint on.');
-        }
-
-        return $this->_table->unique($fields);
-    }
-
     public function setAttribute($attr, $value)
     {
         $this->_table->setAttribute($attr, $value);
     }
-
     public function setTableName($tableName)
     {
         $this->_table->setTableName($tableName);
     }
-
     public function setInheritanceMap($map)
     {
         $this->_table->setOption('inheritanceMap', $map);
@@ -162,7 +139,6 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
             $this->_table->setOption('inheritanceMap', $mapColumnNames);
             return;
         }
-
         $this->_table->setOption('subclasses', array_keys($map));
     }
 
@@ -256,11 +232,10 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
      * @param mixed $options
      * @return void
      */
-    public function hasColumn($name, $type = null, $length = null, $options = array())
+    public function hasColumn($name, $type, $length = 2147483647, $options = "")
     {
         $this->_table->setColumn($name, $type, $length, $options);
     }
-
     public function hasColumns(array $definitions)
     {
         foreach ($definitions as $name => $options) {
@@ -290,18 +265,13 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
         $this->_table->addGenerator($generator, get_class($generator));
     }
 
+
     /**
-     * Loads the given plugin.
+     * actAs
+     * loads the given plugin
      *
-     * This method loads a behavior in the record. It will add the behavior 
-     * also to the record table if it.
-     * It is tipically called in @see setUp().
-     *
-     * @param mixed $tpl        if an object, must be a subclass of Doctrine_Template. 
-     *                          If a string, Doctrine will try to instantiate an object of the classes Doctrine_Template_$tpl and subsequently $tpl, using also autoloading capabilities if defined.
-     * @param array $options    argument to pass to the template constructor if $tpl is a class name
-     * @throws Doctrine_Record_Exception    if $tpl is neither an instance of Doctrine_Template subclass or a valid class name, that could be instantiated.
-     * @return Doctrine_Record  this object; provides a fluent interface.
+     * @param mixed $tpl
+     * @param array $options
      */
     public function actAs($tpl, array $options = array())
     {
@@ -334,12 +304,11 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
     }
 
     /**
-     * Adds a check constraint.
+     * check
+     * adds a check constraint
      *
-     * This method will add a CHECK constraint to the record table.
-     *
-     * @param mixed $constraint     either a SQL constraint portion or an array of CHECK constraints. If array, all values will be added as constraint
-     * @param string $name          optional constraint name. Not used if $constraint is an array.
+     * @param mixed $constraint     either a SQL constraint portion or an array of CHECK constraints
+     * @param string $name          optional constraint name
      * @return Doctrine_Record      this object
      */
     public function check($constraint, $name = null)

@@ -16,7 +16,7 @@ require_once(dirname(__FILE__).'/sfGeneratorBaseTask.class.php');
  * @package    symfony
  * @subpackage task
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfGenerateAppTask.class.php 20859 2009-08-06 16:23:38Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfGenerateAppTask.class.php 17762 2009-04-29 14:50:05Z fabien $
  */
 class sfGenerateAppTask extends sfGeneratorBaseTask
 {
@@ -42,8 +42,8 @@ class sfGenerateAppTask extends sfGeneratorBaseTask
     ));
 
     $this->addOptions(array(
-      new sfCommandOption('escaping-strategy', null, sfCommandOption::PARAMETER_REQUIRED, 'Output escaping strategy', true),
-      new sfCommandOption('csrf-secret', null, sfCommandOption::PARAMETER_REQUIRED, 'Secret to use for CSRF protection', true),
+      new sfCommandOption('escaping-strategy', null, sfCommandOption::PARAMETER_REQUIRED, 'Output escaping strategy', false),
+      new sfCommandOption('csrf-secret', null, sfCommandOption::PARAMETER_REQUIRED, 'Secret to use for CSRF protection', false),
     ));
 
     $this->aliases = array('init-app');
@@ -70,13 +70,9 @@ For the first application, the production environment script is named
 If an application with the same name already exists,
 it throws a [sfCommandException|COMMENT].
 
-By default, the output escaping is enabled (to prevent XSS), and a random
-secret is also generated to prevent CSRF.
+You can enable output escaping (to prevent XSS) by using the [escaping-strategy|COMMENT] option:
 
-You can disable output escaping by using the [escaping-strategy|COMMENT]
-option:
-
-  [./symfony generate:app frontend --escaping-strategy=off|INFO]
+  [./symfony generate:app frontend --escaping-strategy=on|INFO]
 
 You can enable session token in forms (to prevent CSRF) by defining
 a secret with the [csrf-secret|COMMENT] option:
@@ -118,9 +114,9 @@ EOF;
       $indexName = $app;
     }
 
-    if (true === $options['csrf-secret'])
+    if (false === $options['csrf-secret'])
     {
-      $options['csrf-secret'] = sha1(rand(111111111, 99999999).getmypid());
+      $options['csrf-secret'] = 'false';
     }
 
     // Set no_script_name value in settings.yml for production environment
@@ -159,7 +155,6 @@ EOF;
 
     $fixPerms = new sfProjectPermissionsTask($this->dispatcher, $this->formatter);
     $fixPerms->setCommandApplication($this->commandApplication);
-    $fixPerms->setConfiguration($this->configuration);
     $fixPerms->run();
 
     // Create test dir

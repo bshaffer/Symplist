@@ -30,11 +30,6 @@ Author:
   columns:
     name: string(255)
 
-AuthorInheritance:
-  inheritance:
-    extends: Author
-    type: column_aggregation
-
 Subscription:
   connection: doctrine2
   columns:
@@ -79,6 +74,7 @@ UniqueTest:
           length: 10
       type: unique
 
+
 Profile:
   columns:
     user_id: integer
@@ -103,10 +99,6 @@ Permission:
     name: string(255)
 
 UserGroup:
-  options:
-    symfony:
-      form: false
-      filter: false
   columns:
     user_id:
       type: integer
@@ -116,10 +108,6 @@ UserGroup:
       primary: true
 
 UserPermission:
-  options:
-    symfony:
-      form: false
-      filter: false
   columns:
     user_id:
       type: integer
@@ -129,10 +117,6 @@ UserPermission:
       primary: true
 
 GroupPermission:
-  options:
-    symfony:
-      form: false
-      filter: false
   columns:
     group_id:
       type: integer
@@ -140,19 +124,3 @@ GroupPermission:
     permission_id:
       type: integer
       primary: true
-
-FormGeneratorTest:
-  options:
-    symfony:
-      form: true
-      filter: false
-  columns:
-    name: string(255)
-
-FormGeneratorTest2:
-  options:
-    symfony:
-      form: false
-      filter: true
-  columns:
-    name: string(255)

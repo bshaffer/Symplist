@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Collection.php 5934 2009-06-24 18:48:27Z jwage $
+ *  $Id: Collection.php 5801 2009-06-02 17:30:27Z piccoloprincipe $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -28,7 +28,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 5934 $
+ * @version     $Revision: 5801 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 class Doctrine_Collection extends Doctrine_Access implements Countable, IteratorAggregate, Serializable
@@ -107,18 +107,6 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     public static function initNullObject(Doctrine_Null $null)
     {
         self::$null = $null;
-    }
-
-    public static function create($table, $keyColumn = null, $class = null)
-    {
-        if (is_null($class)) {
-            if ( ! $table instanceof Doctrine_Table) {
-                $table = Doctrine::getTable($table);
-            }
-            $class = $table->getAttribute(Doctrine::ATTR_COLLECTION_CLASS);
-        }
-
-        return new $class($table, $keyColumn);
     }
 
     /**
@@ -227,7 +215,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     /**
      * Get the first record in the collection
      *
-     * @return Doctrine_Record
+     * @return mixed
      */
     public function getFirst()
     {
@@ -237,7 +225,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     /**
      * Get the last record in the collection
      *
-     * @return Doctrine_Record
+     * @return mixed
      */
     public function getLast()
     {
@@ -247,7 +235,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     /**
      * Get the last record in the collection
      *
-     * @return Doctrine_Record
+     * @return mixed
      */
     public function end()
     {
@@ -257,7 +245,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     /**
      * Get the current key
      *
-     * @return Doctrine_Record
+     * @return mixed
      */
     public function key()
     {
@@ -592,7 +580,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
                 if ( ! $record->exists()) {
                     continue;
                 }
-                $sub = Doctrine_Collection::create($table);
+                $sub = new Doctrine_Collection($table);
 
                 foreach ($coll as $k => $related) {
                     if ($related[$foreign] == $record[$local]) {
@@ -612,7 +600,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
                 if ( ! $record->exists()) {
                     continue;
                 }
-                $sub = Doctrine_Collection::create($table);
+                $sub = new Doctrine_Collection($table);
                 foreach ($coll as $k => $related) {
                     if ($related->get($local) == $record[$identifier]) {
                         $sub->add($related->get($name));
@@ -688,7 +676,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      *
      * @param boolean $deep
      */
-    public function toArray($deep = true, $prefixKey = false)
+    public function toArray($deep = false, $prefixKey = false)
     {
         $data = array();
         foreach ($this as $key => $record) {
@@ -699,22 +687,6 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
         }
         
         return $data;
-    }
-
-    /**
-     * Build an array made up of the values from the 2 specified columns
-     *
-     * @param string $key 
-     * @param string $value 
-     * @return array $result
-     */
-    public function toKeyValueArray($key, $value)
-    {
-        $result = array();
-        foreach ($this as $record) {
-            $result[$record->$key] = $record->$value;
-        }
-        return $result;
     }
 
     /**
@@ -756,7 +728,6 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
             $this[$rowKey]->fromArray($row);
         }
     }
-
     public function synchronizeFromArray(array $array)
     {
         return $this->synchronizeWithArray($array);
@@ -769,7 +740,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * @param string $deep 
      * @return void
      */
-    public function exportTo($type, $deep = true)
+    public function exportTo($type, $deep = false)
     {
         if ($type == 'array') {
             return $this->toArray($deep);
@@ -933,7 +904,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     /**
      * Get collection data iterator
      *
-     * @return Iterator
+     * @return object ArrayIterator
      */
     public function getIterator()
     {
@@ -954,28 +925,10 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     /**
      * Returns the relation object
      *
-     * @return Doctrine_Relation
+     * @return object Doctrine_Relation
      */
     public function getRelation()
     {
         return $this->relation;
-    }
-
-    /** 
-     * checks if one of the containing records is modified 
-     * returns true if modified, false otherwise 
-     *  
-     * @return boolean  
-     */ 
-    final public function isModified() { 
-        $dirty = (count($this->getInsertDiff()) > 0 || count($this->getDeleteDiff()) > 0); 
-        if ( ! $dirty) {  
-            foreach($this as $record) { 
-                if ($dirty = $record->isModified()) {
-                    break;
-                } 
-            } 
-        } 
-        return $dirty; 
     }
 }

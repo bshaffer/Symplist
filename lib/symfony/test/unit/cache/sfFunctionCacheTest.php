@@ -11,7 +11,7 @@
 require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 require_once(dirname(__FILE__).'/sfCacheDriverTests.class.php');
 
-$t = new lime_test(15);
+$t = new lime_test(15, new lime_output_color());
 
 class sfSimpleCache extends sfCache
 {

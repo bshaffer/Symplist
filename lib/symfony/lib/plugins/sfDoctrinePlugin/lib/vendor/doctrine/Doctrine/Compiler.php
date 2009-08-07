@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Compiler.php 5920 2009-06-22 20:29:29Z jwage $
+ *  $Id: Compiler.php 5801 2009-06-02 17:30:27Z piccoloprincipe $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -29,7 +29,7 @@
  * @license     http://www.opensource.org/licenses/lgpllicense.php LGPL
  * @link        www.phpdoctrine.
  * @since       1.0
- * @version     $Revision: 5920 $
+ * @version     $Revision: 5801 $
  */
 class Doctrine_Compiler
 {
@@ -52,6 +52,8 @@ class Doctrine_Compiler
         // If we have an array of specified drivers then lets determine which drivers we should exclude
         if ( ! empty($includedDrivers)) {
             $drivers = array('db2',
+                             'firebird',
+                             'informix',
                              'mssql',
                              'mysql',
                              'oracle',

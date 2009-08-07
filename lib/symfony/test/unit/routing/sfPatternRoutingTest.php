@@ -10,7 +10,7 @@
 
 require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 
-$t = new lime_test(145);
+$t = new lime_test(146, new lime_output_color());
 
 class sfPatternRoutingTest extends sfPatternRouting
 {
@@ -42,7 +42,7 @@ class sfPatternRoutingTest extends sfPatternRouting
 
 class sfAlwaysAbsoluteRoute extends sfRoute
 {
-  public function generate($params = array(), $context = array(), $absolute = false)
+  public function generate($params, $context = array(), $absolute = false)
   {
     $url = parent::generate($params, $context, $absolute);
 
@@ -509,8 +509,10 @@ $rCached = new sfPatternRoutingTest($dispatcher, $cache, array_merge($options, a
 $rCached->parse('/first');
 $t->isnt($rCached->findRoute('/first'), false, '->findRoute() finds the route with lazy config cache activated');
 $t->is($rCached->isRouteLoaded('second'), false, '->isRouteLoaded() The second route is not loaded');
-$t->is($rCached->findRoute('/no/match/found2'), null, '->findRoute() returns null on non-matching route');
+$t->is($rCached->findRoute('/no/match/found'), null, '->findRoute() returns null on non-matching route');
+$t->is($rCached->findRoute('/no/match/found'), null, '->findRoute() returns null on non-matching route');
 $t->is($rCached->isRouteLoaded('second'), true, '->isRouteLoaded() The last route is loaded after a full routes scan');
+
 $rCached = new sfPatternRoutingTest($dispatcher, $cache, array_merge($options, array('lazy_routes_deserialize' => true)));
 $t->is($rCached->generate('second'), '/', '->generate() works on a lazy route');
 $rCached = new sfPatternRoutingTest($dispatcher, $cache, array_merge($options, array('lazy_routes_deserialize' => true)));

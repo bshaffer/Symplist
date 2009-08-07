@@ -3,10 +3,9 @@
 /**
  * PluginAuthor form base class.
  *
- * @package    plugintracker
- * @subpackage form
- * @author     Your name here
- * @version    SVN: $Id$
+ * @package    form
+ * @subpackage plugin_author
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
  */
 class BasePluginAuthorForm extends BaseFormDoctrine
 {
@@ -31,8 +30,6 @@ class BasePluginAuthorForm extends BaseFormDoctrine
     $this->widgetSchema->setNameFormat('plugin_author[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
-
-    $this->setupInheritance();
 
     parent::setup();
   }

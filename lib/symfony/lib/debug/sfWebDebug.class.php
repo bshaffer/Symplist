@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage debug
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfWebDebug.class.php 20871 2009-08-07 00:10:22Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfWebDebug.class.php 18104 2009-05-10 05:38:14Z Kris.Wallsmith $
  */
 class sfWebDebug
 {
@@ -29,8 +29,7 @@ class sfWebDebug
    *
    * Available options:
    *
-   *  * image_root_path:    The image root path
-   *  * request_parameters: The current request parameters
+   *  * image_root_path: The image root path
    *
    * @param sfEventDispatcher $dispatcher The event dispatcher
    * @param sfVarLogger       $logger     The logger
@@ -45,11 +44,6 @@ class sfWebDebug
     if (!isset($this->options['image_root_path']))
     {
       $this->options['image_root_path'] = '';
-    }
-
-    if (!isset($this->options['request_parameters']))
-    {
-      $this->options['request_parameters'] = array();
     }
 
     $this->configure();
@@ -70,7 +64,6 @@ class sfWebDebug
     if (sfConfig::get('sf_logging_enabled'))
     {
       $this->setPanel('config', new sfWebDebugPanelConfig($this));
-      $this->setPanel('view', new sfWebDebugPanelView($this));
     }
     $this->setPanel('logs', new sfWebDebugPanelLogs($this));
     $this->setPanel('memory', new sfWebDebugPanelMemory($this));
@@ -172,8 +165,6 @@ class sfWebDebug
    */
   public function asHtml()
   {
-    $current = isset($this->options['request_parameters']['sfWebDebugPanel']) ? $this->options['request_parameters']['sfWebDebugPanel'] : null;
-
     $titles = array();
     $panels = array();
     foreach ($this->panels as $name => $panel)
@@ -183,16 +174,14 @@ class sfWebDebug
         if (($content = $panel->getPanelContent()) || $panel->getTitleUrl())
         {
           $id = sprintf('sfWebDebug%sDetails', $name);
-          $titles[] = sprintf('<li class="%s"><a title="%s" href="%s"%s>%s</a></li>',
-            $panel->getStatus() ? 'sfWebDebug'.ucfirst($this->getPriority($panel->getStatus())) : '',
+          $titles[]  = sprintf('<li><a title="%s" href="%s"%s>%s</a></li>',
             $panel->getPanelTitle(),
             $panel->getTitleUrl() ? $panel->getTitleUrl() : '#',
             $panel->getTitleUrl() ? '' : ' onclick="sfWebDebugShowDetailsFor(\''.$id.'\'); return false;"',
             $title
           );
-          $panels[] = sprintf('<div id="%s" class="sfWebDebugTop" style="display:%s"><h1>%s</h1>%s</div>',
+          $panels[] = sprintf('<div id="%s" class="sfWebDebugTop" style="display: none"><h1>%s</h1>%s</div>',
             $id,
-            $name == $current ? 'block' : 'none',
             $panel->getPanelTitle(),
             $content
           );
@@ -206,7 +195,7 @@ class sfWebDebug
 
     return '
       <div id="sfWebDebug">
-        <div id="sfWebDebugBar">
+        <div id="sfWebDebugBar" class="sfWebDebug'.ucfirst($this->getPriority($this->logger->getHighestPriority())).'">
           <a href="#" onclick="sfWebDebugToggleMenu(); return false;"><img src="'.$this->options['image_root_path'].'/sf.png" alt="Debug toolbar" /></a>
 
           <ul id="sfWebDebugDetails" class="sfWebDebugMenu">
@@ -445,7 +434,6 @@ EOF;
   filter: alpha(opacity:80);
   z-index: 10000;
   white-space: nowrap;
-  background-color: #ddd;
 }
 
 #sfWebDebugBar[id]
@@ -664,18 +652,9 @@ EOF;
 
 .sfWebDebugDebugInfo
 {
-  color: #999;
-  font-size: 11px;
-  margin: 5px 0 5px 10px;
-  padding: 2px 0 2px 5px;
+  margin-left: 10px;
+  padding-left: 5px;
   border-left: 1px solid #aaa;
-  line-height: 1.25em;
-}
-
-.sfWebDebugDebugInfo .sfWebDebugLogInfo,
-.sfWebDebugDebugInfo a.sfWebDebugFileLink
-{
-  color: #333 !important;
 }
 
 .sfWebDebugCache
@@ -699,68 +678,6 @@ EOF;
   padding: 1px 4px;
   background-color: #666;
   color: #fff;
-}
-
-#sfWebDebugviewDetails ul
-{
-  padding-left: 2em;
-  margin: .5em 0;
-  list-style: none;
-}
-
-#sfWebDebugviewDetails li
-{
-  margin-bottom: .5em;
-}
-
-#sfWebDebug .sfWebDebugDataType,
-#sfWebDebug .sfWebDebugDataType a
-{
-  color: #666;
-  font-style: italic;
-}
-
-#sfWebDebug .sfWebDebugDataType a:hover
-{
-  text-decoration: underline;
-}
-
-#sfWebDebugDatabaseLogs
-{
-  margin-bottom: 10px;
-}
-
-#sfWebDebugDatabaseLogs li
-{
-  padding: 6px;
-}
-
-#sfWebDebugDatabaseLogs li:nth-child(odd)
-{
-  background-color: #CCC;
-}
-
-.sfWebDebugDatabaseQuery
-{
-  line-height: 1.25em;
-  margin-bottom: .5em;
-}
-
-.sfWebDebugDatabaseLogInfo
-{
-  color: #666;
-  font-size: 11px;
-}
-
-.sfWebDebugDatabaseQuery .sfWebDebugLogInfo
-{
-  color: #909;
-  font-weight: bold;
-}
-
-.sfWebDebugHighlight
-{
-  background: #FFC;
 }
 EOF;
   }

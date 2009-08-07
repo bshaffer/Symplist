@@ -16,7 +16,7 @@ require_once(dirname(__FILE__).'/../vendor/lime/lime.php');
  * @package    symfony
  * @subpackage test
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfTestFunctionalBase.class.php 19531 2009-06-25 06:35:13Z fabien $
+ * @version    SVN: $Id: sfTestFunctionalBase.class.php 19411 2009-06-20 11:54:04Z fabien $
  */
 abstract class sfTestFunctionalBase
 {
@@ -41,7 +41,7 @@ abstract class sfTestFunctionalBase
 
     if (is_null(self::$test))
     {
-      self::$test = !is_null($lime) ? $lime : new lime_test();
+      self::$test = !is_null($lime) ? $lime : new lime_test(null, new lime_output_color());
     }
 
     $this->setTesters(array_merge(array(

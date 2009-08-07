@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Condition.php 5901 2009-06-22 15:44:45Z jwage $
+ *  $Id: Condition.php 5801 2009-06-02 17:30:27Z piccoloprincipe $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,7 +27,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 5901 $
+ * @version     $Revision: 5801 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 abstract class Doctrine_Query_Condition extends Doctrine_Query_Part
@@ -44,7 +44,7 @@ abstract class Doctrine_Query_Condition extends Doctrine_Query_Part
         $tmp = trim($str);
         
         $parts = $this->_tokenizer->bracketExplode($str, array(' OR '), '(', ')');
-        
+
         if (count($parts) > 1) {
             $ret = array();
             foreach ($parts as $part) {
@@ -54,7 +54,7 @@ abstract class Doctrine_Query_Condition extends Doctrine_Query_Part
             $r = implode(' OR ', $ret);
         } else {
             $parts = $this->_tokenizer->bracketExplode($str, array(' AND '), '(', ')');
-
+            
             // Ticket #1388: We need to make sure we're not splitting a BETWEEN ...  AND ... clause
             $tmp = array();
 
@@ -121,10 +121,8 @@ abstract class Doctrine_Query_Condition extends Doctrine_Query_Part
                 if ( ! is_numeric($a[0])) {
                     // a component found
                     $field     = array_pop($a);
-                	$reference = implode('.', $a);
-                    $value     = $this->query->getConnection()->quoteIdentifier(
-                        $this->query->getSqlTableAlias($reference). '.' . $field
-                    );
+                	  $reference = implode('.', $a);
+                    $value = $this->query->getConnection()->quoteIdentifier($this->query->getTableAlias($reference). '.' . $field);
                 }
             }
         } else {

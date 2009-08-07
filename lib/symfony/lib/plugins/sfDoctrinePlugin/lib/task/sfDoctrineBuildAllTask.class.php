@@ -18,7 +18,7 @@ require_once(dirname(__FILE__).'/sfDoctrineBaseTask.class.php');
  * @subpackage doctrine
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Jonathan H. Wage <jonwage@gmail.com>
- * @version    SVN: $Id: sfDoctrineBuildAllTask.class.php 20859 2009-08-06 16:23:38Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineBuildAllTask.class.php 16087 2009-03-07 22:08:50Z Kris.Wallsmith $
  */
 class sfDoctrineBuildAllTask extends sfDoctrineBaseTask
 {
@@ -36,8 +36,7 @@ class sfDoctrineBuildAllTask extends sfDoctrineBaseTask
       new sfCommandOption('application', null, sfCommandOption::PARAMETER_OPTIONAL, 'The application name', true),
       new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'dev'),
       new sfCommandOption('no-confirmation', null, sfCommandOption::PARAMETER_NONE, 'Do not ask for confirmation'),
-      new sfCommandOption('skip-forms', 'F', sfCommandOption::PARAMETER_NONE, 'Skip generating forms'),
-      new sfCommandOption('migrate', null, sfCommandOption::PARAMETER_NONE, 'Migrate instead of reset the database'),
+      new sfCommandOption('skip-forms', 'F', sfCommandOption::PARAMETER_NONE, 'Skip generating forms')
     ));
 
     $this->detailedDescription = <<<EOF
@@ -58,18 +57,6 @@ To bypass the confirmation, you can pass the [no-confirmation|COMMENT]
 option:
 
   [./symfony doctrine:buil-all-load --no-confirmation|INFO]
-
-Include the [--migrate|COMMENT] option if you would like to run your project's
-migrations rather than inserting the Doctrine SQL.
-
-  [./symfony doctrine:build-all --migrate|INFO]
-
-This is equivalent to:
-
-  [./symfony doctrine:build-model|INFO]
-  [./symfony doctrine:build-sql|INFO]
-  [./symfony doctrine:build-forms|INFO]
-  [./symfony doctrine:migrate|INFO]
 EOF;
   }
 
@@ -78,10 +65,14 @@ EOF;
    */
   protected function execute($arguments = array(), $options = array())
   {
+    $baseOptions = $this->configuration instanceof sfApplicationConfiguration ? array(
+      '--application='.$this->configuration->getApplication(),
+      '--env='.$options['env'],
+    ) : array();
+
     $buildDb = new sfDoctrineBuildDbTask($this->dispatcher, $this->formatter);
     $buildDb->setCommandApplication($this->commandApplication);
-    $buildDb->setConfiguration($this->configuration);
-    $ret = $buildDb->run();
+    $ret = $buildDb->run(array(), $baseOptions);
 
     if ($ret)
     {
@@ -90,8 +81,7 @@ EOF;
 
     $buildModel = new sfDoctrineBuildModelTask($this->dispatcher, $this->formatter);
     $buildModel->setCommandApplication($this->commandApplication);
-    $buildModel->setConfiguration($this->configuration);
-    $ret = $buildModel->run();
+    $ret = $buildModel->run(array(), $baseOptions);
 
     if ($ret)
     {
@@ -100,8 +90,7 @@ EOF;
 
     $buildSql = new sfDoctrineBuildSqlTask($this->dispatcher, $this->formatter);
     $buildSql->setCommandApplication($this->commandApplication);
-    $buildSql->setConfiguration($this->configuration);
-    $ret = $buildSql->run();
+    $ret = $buildSql->run(array(), $baseOptions);
 
     if ($ret)
     {
@@ -112,8 +101,7 @@ EOF;
     {
       $buildForms = new sfDoctrineBuildFormsTask($this->dispatcher, $this->formatter);
       $buildForms->setCommandApplication($this->commandApplication);
-      $buildForms->setConfiguration($this->configuration);
-      $ret = $buildForms->run();
+      $ret = $buildForms->run(array(), $baseOptions);
 
       if ($ret)
       {
@@ -122,8 +110,7 @@ EOF;
 
       $buildFilters = new sfDoctrineBuildFiltersTask($this->dispatcher, $this->formatter);
       $buildFilters->setCommandApplication($this->commandApplication);
-      $buildFilters->setConfiguration($this->configuration);
-      $ret = $buildFilters->run();
+      $ret = $buildFilters->run(array(), $baseOptions);
 
       if ($ret)
       {
@@ -131,20 +118,9 @@ EOF;
       }
     }
 
-    if ($options['migrate'])
-    {
-      $migrate = new sfDoctrineMigrateTask($this->dispatcher, $this->formatter);
-      $migrate->setCommandApplication($this->commandApplication);
-      $migrate->setConfiguration($this->configuration);
-      $ret = $migrate->run();
-    }
-    else
-    {
-      $insertSql = new sfDoctrineInsertSqlTask($this->dispatcher, $this->formatter);
-      $insertSql->setCommandApplication($this->commandApplication);
-      $insertSql->setConfiguration($this->configuration);
-      $ret = $insertSql->run();
-    }
+    $insertSql = new sfDoctrineInsertSqlTask($this->dispatcher, $this->formatter);
+    $insertSql->setCommandApplication($this->commandApplication);
+    $ret = $insertSql->run(array(), $baseOptions);
 
     return $ret;
   }

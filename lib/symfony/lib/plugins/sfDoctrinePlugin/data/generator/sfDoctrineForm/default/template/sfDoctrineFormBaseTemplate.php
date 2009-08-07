@@ -3,10 +3,8 @@
 /**
  * Project form base class.
  *
- * @package    ##PROJECT_NAME##
- * @subpackage form
- * @author     ##AUTHOR_NAME##
- * @version    SVN: $Id$
+ * @package    form
+ * @version    SVN: $Id: sfDoctrineFormBaseTemplate.php 6174 2007-11-27 06:22:40Z fabien $
  */
 abstract class BaseFormDoctrine extends sfFormDoctrine
 {

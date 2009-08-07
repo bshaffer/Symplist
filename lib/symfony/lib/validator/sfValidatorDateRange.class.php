@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage validator
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfValidatorDateRange.class.php 15966 2009-03-03 17:29:06Z hartym $
+ * @version    SVN: $Id: sfValidatorDateRange.class.php 11671 2008-09-19 14:07:21Z fabien $
  */
 class sfValidatorDateRange extends sfValidatorBase
 {
@@ -25,8 +25,6 @@ class sfValidatorDateRange extends sfValidatorBase
    *
    *  * from_date:   The from date validator (required)
    *  * to_date:     The to date validator (required)
-   *  * from_field:  The name of the "from" date field (optional, default: from)
-   *  * to_field:    The name of the "to" date field (optional, default: to)
    *
    * @param array $options    An array of options
    * @param array $messages   An array of error messages
@@ -39,8 +37,6 @@ class sfValidatorDateRange extends sfValidatorBase
 
     $this->addRequiredOption('from_date');
     $this->addRequiredOption('to_date');
-    $this->addOption('from_field', 'from');
-    $this->addOption('to_field', 'to');
   }
 
   /**
@@ -48,15 +44,12 @@ class sfValidatorDateRange extends sfValidatorBase
    */
   protected function doClean($value)
   {
-    $fromField = $this->getOption('from_field');
-    $toField   = $this->getOption('to_field');
+    $value['from'] = $this->getOption('from_date')->clean(isset($value['from']) ? $value['from'] : null);
+    $value['to']   = $this->getOption('to_date')->clean(isset($value['to']) ? $value['to'] : null);
 
-    $value[$fromField] = $this->getOption('from_date')->clean(isset($value[$fromField]) ? $value[$fromField] : null);
-    $value[$toField]   = $this->getOption('to_date')->clean(isset($value[$toField]) ? $value[$toField] : null);
-
-    if ($value[$fromField] && $value[$toField])
+    if ($value['from'] && $value['to'])
     {
-      $v = new sfValidatorSchemaCompare($fromField, sfValidatorSchemaCompare::LESS_THAN_EQUAL, $toField, array('throw_global_error' => true), array('invalid' => $this->getMessage('invalid')));
+      $v = new sfValidatorSchemaCompare('from', sfValidatorSchemaCompare::LESS_THAN_EQUAL, 'to', array('throw_global_error' => true), array('invalid' => $this->getMessage('invalid')));
       $v->clean($value);
     }
 

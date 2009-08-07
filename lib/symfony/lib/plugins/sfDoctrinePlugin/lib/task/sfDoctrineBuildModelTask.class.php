@@ -18,7 +18,7 @@ require_once(dirname(__FILE__).'/sfDoctrineBaseTask.class.php');
  * @subpackage doctrine
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Jonathan H. Wage <jonwage@gmail.com>
- * @version    SVN: $Id: sfDoctrineBuildModelTask.class.php 20867 2009-08-06 21:43:11Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineBuildModelTask.class.php 14213 2008-12-19 21:03:13Z Jonathan.Wage $
  */
 class sfDoctrineBuildModelTask extends sfDoctrineBaseTask
 {
@@ -61,6 +61,8 @@ EOF;
 
     $config = $this->getCliConfig();
 
+    $this->_checkForPackageParameter($config['yaml_schema_path']);
+
     $tmpPath = sfConfig::get('sf_cache_dir').DIRECTORY_SEPARATOR.'tmp';
 
     if (!file_exists($tmpPath))
@@ -102,7 +104,34 @@ EOF;
     $import = new Doctrine_Import_Schema();
     $import->setOptions($options);
     $import->importSchema(array($tmpPath, $config['yaml_schema_path']), 'yml', $config['models_path']);
+  }
 
-    $this->reloadAutoload();
+  /**
+   * Check for package parameter in main schema files.
+   * sfDoctrinePlugin uses the package feature of Doctrine
+   * for plugins and cannot be used by the user
+   *
+   * @param string $path
+   * @return void
+   */
+  protected function _checkForPackageParameter($path)
+  {
+    $files = sfFinder::type('file')->name('*.yml')->in($path);
+    foreach ($files as $file)
+    {
+      $array = sfYaml::load($file);
+      if (is_array($array) AND !empty($array))
+      {
+        foreach ($array as $key => $value)
+        {
+          if ($key == 'package' || (is_array($value) && isset($value['package'])))
+          {
+            throw new sfDoctrineException(
+              sprintf('Cannot use package parameter in symfony Doctrine schema files. Found in "%s"', $file)
+            );
+          }
+        }
+      }
+    }
   }
 }

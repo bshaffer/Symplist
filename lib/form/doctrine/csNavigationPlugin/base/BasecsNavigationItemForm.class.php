@@ -3,10 +3,9 @@
 /**
  * csNavigationItem form base class.
  *
- * @package    plugintracker
- * @subpackage form
- * @author     Your name here
- * @version    SVN: $Id$
+ * @package    form
+ * @subpackage cs_navigation_item
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
  */
 class BasecsNavigationItemForm extends BaseFormDoctrine
 {
@@ -39,8 +38,6 @@ class BasecsNavigationItemForm extends BaseFormDoctrine
     $this->widgetSchema->setNameFormat('cs_navigation_item[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
-
-    $this->setupInheritance();
 
     parent::setup();
   }

@@ -11,7 +11,7 @@
 $app = 'frontend';
 require_once(dirname(__FILE__).'/../bootstrap/functional.php');
 
-$t = new lime_test(11);
+$t = new lime_test(11, new lime_output_color());
 
 $article = new Article();
 $article->title = 'test';
@@ -59,29 +59,23 @@ $articleForm = new MyArticleForm($article);
 $data = array(
   'is_on_homepage' => 1,
   'Author' => array(
-    'name' => 'i18n author test',
-    'type' => null),
+    'name' => 'i18n author test'),
   'en' => array(
     'title' => 'english title',
     'body'  => 'english body'),
   'fr' => array(
     'title' => 'french title',
-    'body'  => 'french body'),
-  'created_at' => time(),
-  'updated_at' => time(),
+    'body'  => 'french body')
 );
 
 $articleForm->bind($data);
 $t->is($articleForm->isValid(), true);
-
-$data = $articleForm->getValues();
 
 $values = array(
   'is_on_homepage' => true,
   'Author' => 
   array(
     'name' => 'i18n author test',
-    'type' => null
   ),
   'en' => 
   array(
@@ -98,8 +92,8 @@ $values = array(
     'slug' => '',
   ),
   'id' => null,
-  'created_at' => $data['created_at'],
-  'updated_at' => $data['updated_at'],
+  'created_at' => null,
+  'updated_at' => null,
 );
 
 $t->is($articleForm->getValues(), $values);
@@ -137,7 +131,6 @@ $expected = array(
   array(
     'id' => $article->Author->id,
     'name' => 'i18n author test',
-    'type' => null
   ),
 );
 
@@ -173,7 +166,6 @@ $expected = array(
   array(
     'id' => $article->Author->id,
     'name' => 'i18n author test',
-    'type' => null
   ),
 );
 

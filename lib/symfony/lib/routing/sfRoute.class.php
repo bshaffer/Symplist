@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage routing
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfRoute.class.php 20784 2009-08-04 20:53:57Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfRoute.class.php 19468 2009-06-23 07:14:37Z fabien $
  */
 class sfRoute implements Serializable
 {

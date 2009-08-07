@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Mssql.php 6050 2009-07-10 17:53:43Z dcousineau $
+ *  $Id: Mssql.php 5848 2009-06-09 08:15:56Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,7 +27,7 @@
  * @author      Lukas Smith <smith@pooteeweet.org> (PEAR MDB2 library)
  * @author      Frank M. Kromann <frank@kromann.info> (PEAR MDB2 Mssql driver)
  * @author      David Coallier <davidc@php.net> (PEAR MDB2 Mssql driver)
- * @version     $Revision: 6050 $
+ * @version     $Revision: 5848 $
  * @link        www.phpdoctrine.org
  * @since       1.0
  */
@@ -96,7 +96,7 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
                 return 'IMAGE';
             case 'integer':
             case 'int':
-                return (isset($field['unsigned']) && $field['unsigned']) ? 'BIGINT' : 'INT';
+                return 'INT';
             case 'boolean':
                 return 'BIT';
             case 'date':
@@ -191,8 +191,7 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
                 $length = null;
             break;
             default:
-                $type[] = 'string';
-                $length = null;
+                throw new Doctrine_DataDict_Exception('unknown database attribute type: '.$db_type);
         }
 
         return array('type'     => $type,
@@ -243,9 +242,7 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
 
 
         $notnull  = (isset($field['notnull'])  && $field['notnull'])  ? ' NOT NULL' : '';
-        //$unsigned = (isset($field['unsigned']) && $field['unsigned']) ? ' UNSIGNED' : '';
-        // MSSQL does not support the UNSIGNED keyword
-        $unsigned = '';
+        $unsigned = (isset($field['unsigned']) && $field['unsigned']) ? ' UNSIGNED' : '';
         $comment  = (isset($field['comment']) && $field['comment']) 
             ? " COMMENT '" . $field['comment'] . "'" : '';
 

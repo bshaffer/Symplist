@@ -10,7 +10,7 @@
 
 require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 
-$t = new lime_test(11);
+$t = new lime_test(11, new lime_output_color());
 
 // setup
 $temp = tempnam('/tmp/i18ndir', 'tmp');

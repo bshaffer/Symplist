@@ -44,7 +44,7 @@ class Doctrine_Parser_Xml extends Doctrine_Parser
      */
     public function dumpData($array, $path = null)
     {
-        $data = self::arrayToXml($array);
+        $data = $this->arrayToXml($array);
         
         return $this->doDump($data, $path);
     }
@@ -57,7 +57,7 @@ class Doctrine_Parser_Xml extends Doctrine_Parser
      * @param  string $xml          SimpleXmlElement
      * @return string $asXml        String of xml built from array
      */
-    public static function arrayToXml($array, $rootNodeName = 'data', $xml = null)
+    public function arrayToXml($array, $rootNodeName = 'data', $xml = null)
     {
         if ($xml === null) {
             $xml = new SimpleXmlElement("<?xml version=\"1.0\" encoding=\"utf-8\"?><$rootNodeName/>");
@@ -65,19 +65,10 @@ class Doctrine_Parser_Xml extends Doctrine_Parser
 
         foreach($array as $key => $value)
         {
-            $key = preg_replace('/[^a-z]/i', '', $key);
-
-            if (is_array($value) && ! empty($value)) {
+            if (is_array($value)) {
                 $node = $xml->addChild($key);
 
-                foreach ($value as $k => $v) {
-                    if (is_numeric($v)) {
-                        unset($value[$k]);
-                        $node->addAttribute($k, $v);
-                    }
-                }
-
-                self::arrayToXml($value, $rootNodeName, $node);
+                $this->arrayToXml($value, $rootNodeName, $node);
             } else if (is_int($key)) {               
                 $xml->addChild($value, 'true');
             } else {

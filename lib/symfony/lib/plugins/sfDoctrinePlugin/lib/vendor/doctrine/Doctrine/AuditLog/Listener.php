@@ -58,10 +58,9 @@ class Doctrine_AuditLog_Listener extends Doctrine_Record_Listener
      */
     public function preInsert(Doctrine_Event $event)
     {
-        $version = $this->_auditLog->getOption('version');
-        $name = $version['alias'] === null ? $version['name'] : $version['alias'];
+        $versionColumn = $this->_auditLog->getOption('versionColumn');
 
-        $event->getInvoker()->set($name, 1);
+        $event->getInvoker()->set($versionColumn, 1);
     }
 
     /**
@@ -78,7 +77,7 @@ class Doctrine_AuditLog_Listener extends Doctrine_Record_Listener
 
             $record  = $event->getInvoker();
             $version = new $class();
-            $version->merge($record->toArray(), false);
+            $version->merge($record->toArray());
             $version->save();
         }
     }
@@ -94,25 +93,22 @@ class Doctrine_AuditLog_Listener extends Doctrine_Record_Listener
     {
         if ($this->_auditLog->getOption('auditLog')) {
 	        $className = $this->_auditLog->getOption('className');
-            $version = $this->_auditLog->getOption('version');
-            $name = $version['alias'] === null ? $version['name'] : $version['alias'];
-	        $event->getInvoker()->set($name, null);
+	        $versionColumn = $this->_auditLog->getOption('versionColumn');
+	        $event->getInvoker()->set($versionColumn, null);
 
-            if ($this->_auditLog->getOption('deleteVersions')) {
-    	        $q = Doctrine_Query::create();
-    	        foreach ((array) $this->_auditLog->getOption('table')->getIdentifier() as $id) {
-    	            $conditions[] = 'obj.' . $id . ' = ?';
-    	            $values[] = $event->getInvoker()->get($id);
-    	        }
+	        $q = Doctrine_Query::create();
+	        foreach ((array) $this->_auditLog->getOption('table')->getIdentifier() as $id) {
+	            $conditions[] = 'obj.' . $id . ' = ?';
+	            $values[] = $event->getInvoker()->get($id);
+	        }
 
-    	        $rows = $q->delete($className)
-    					  ->from($className.' obj')
-    					  ->where(implode(' AND ', $conditions))
-    					  ->execute($values);
-    		}
+	        $rows = $q->delete($className)
+					  ->from($className.' obj')
+					  ->where(implode(' AND ', $conditions))
+					  ->execute($values);
         }
     }
-
+  
     /**
      * Pre update event hook for inserting new version record
      * This will only insert a version record if the auditLog is enabled
@@ -126,13 +122,12 @@ class Doctrine_AuditLog_Listener extends Doctrine_Record_Listener
             $class  = $this->_auditLog->getOption('className');
             $record = $event->getInvoker();
 
-            $version = $this->_auditLog->getOption('version');
-            $name = $version['alias'] === null ? $version['name'] : $version['alias'];
+            $versionColumn = $this->_auditLog->getOption('versionColumn');
 
-            $record->set($name, $this->_getNextVersion($record));
+            $record->set($versionColumn, $this->_getNextVersion($record));
 
             $version = new $class();
-            $version->merge($record->toArray(), false);
+            $version->merge($record->toArray());
             $version->save();
         }
     }

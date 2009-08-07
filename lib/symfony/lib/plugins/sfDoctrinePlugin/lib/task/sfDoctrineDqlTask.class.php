@@ -18,7 +18,7 @@ require_once(dirname(__FILE__).'/sfDoctrineBaseTask.class.php');
  * @subpackage doctrine
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Jonathan H. Wage <jonwage@gmail.com>
- * @version    SVN: $Id: sfDoctrineDqlTask.class.php 20002 2009-07-07 23:25:04Z Jonathan.Wage $
+ * @version    SVN: $Id: sfDoctrineDqlTask.class.php 14213 2008-12-19 21:03:13Z Jonathan.Wage $
  */
 class sfDoctrineDqlTask extends sfDoctrineBaseTask
 {
@@ -35,7 +35,6 @@ class sfDoctrineDqlTask extends sfDoctrineBaseTask
       new sfCommandOption('application', null, sfCommandOption::PARAMETER_OPTIONAL, 'The application name', true),
       new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'dev'),
       new sfCommandOption('show-sql', null, sfCommandOption::PARAMETER_NONE, 'Show the sql that would be executed'),
-      new sfCommandOption('table', null, sfCommandOption::PARAMETER_NONE, 'Return results in table format'),
     ));
 
     $this->aliases = array('doctrine-dql');
@@ -64,84 +63,30 @@ EOF;
     $dql = $arguments['dql_query'];
 
     $q = Doctrine_Query::create()
-      ->parseDqlQuery($dql);
+      ->parseQuery($dql);
 
     $this->logSection('doctrine', 'executing dql query');
 
     echo sprintf('DQL: %s', $dql) . "\n";
 
-    if ($options['show-sql'])
-    {
-      echo sprintf('SQL: %s', $q->getSqlQuery()) . "\n";
+    if ($options['show-sql']) {
+      echo sprintf('SQL: %s', $q->getSql()) . "\n";
     }
 
     $count = $q->count();
 
     if ($count)
     {
-      if (!$options['table'])
+      echo sprintf('found %s results', $count) . "\n";
+
+      $results = $q->fetchArray();
+      $yaml = sfYaml::dump($results, 4);
+      $lines = explode("\n", $yaml);
+      foreach ($lines as $line)
       {
-        $results = $q->fetchArray();
-
-        echo sprintf('found %s results', $count) . "\n";
-        $yaml = sfYaml::dump($results, 4);
-        $lines = explode("\n", $yaml);
-        foreach ($lines as $line)
-        {
-          echo $line."\n";
-        }
+        echo $line . "\n";
       }
-      else
-      {
-        $results = $q->execute(array(), Doctrine::HYDRATE_SCALAR);
-
-        $headers  = array();
-        // calculate lengths
-        foreach($results as $result)
-        {
-          foreach( $result as $field => $value )
-          {
-            if (!isset($headers[$field]))
-            {
-              $headers[$field] = 0;
-            }
-            $headers[$field] = max($headers[$field], strlen($value));
-          }
-        }
-
-        // print headers
-        $hdr  = "|";
-        $div  = "+";
-        foreach($headers as $field => &$length)
-        {
-          if ($length < strlen($field))
-          {
-            $length = strlen($field);
-          }
-          $hdr .= " ".str_pad($field, $length)." |";
-          $div .= str_pad("", $length + 2, "-")."+";
-        }
-        echo $div."\n";
-        echo $hdr."\n";
-        echo $div."\n";
-
-        // print results
-        foreach($results as $result)
-        {
-          echo '|';
-          foreach( $result as $field => $value )
-          {
-            echo ' '.str_pad($value,$headers[$field]).' |';
-          }
-          echo "\n";
-        }
-        echo $div . "\n";
-        echo sprintf('(%s results)', $count) . "\n";
-        echo "\n";
-      }
-    }
-    else
-    {
+    } else {
       $this->logSection('doctrine', 'no results found');
     }
   }

@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage debug
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfWebDebugPanelLogs.class.php 20134 2009-07-12 23:24:25Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfWebDebugPanelLogs.class.php 12982 2008-11-13 17:25:10Z hartym $
  */
 class sfWebDebugPanelLogs extends sfWebDebugPanel
 {
@@ -44,26 +44,32 @@ class sfWebDebugPanelLogs extends sfWebDebugPanel
     {
       $priority = $this->webDebug->getPriority($log['priority']);
 
-      // increase status
-      if ($log['priority'] < $this->getStatus())
-      {
-        $this->setStatus($log['priority']);
-      }
-
       if (strpos($type = $log['type'], 'sf') === 0)
       {
         $type = substr($type, 2);
       }
 
+      // xdebug information
+      $debug_info = '';
+      if (count($log['debug_stack']))
+      {
+        $debug_info .= '&nbsp;<a href="#" onclick="sfWebDebugToggle(\'debug_'.$line_nb.'\'); return false;"><img src="'.$this->webDebug->getOption('image_root_path').'/toggle.gif" alt="Toggle XDebug details" /></a><div class="sfWebDebugDebugInfo" id="debug_'.$line_nb.'" style="display:none">';
+        foreach ($log['debug_stack'] as $i => $logLine)
+        {
+          $debug_info .= '#'.$i.' &raquo; '.$this->formatLogLine($logLine).'<br/>';
+        }
+        $debug_info .= "</div>\n";
+      }
+
       ++$line_nb;
-      $html .= sprintf("<tr class='sfWebDebugLogLine sfWebDebug%s %s'><td class=\"sfWebDebugLogNumber\">%s</td><td class=\"sfWebDebugLogType\">%s&nbsp;%s</td><td>%s %s</td></tr>\n",
+      $html .= sprintf("<tr class='sfWebDebugLogLine sfWebDebug%s %s'><td class=\"sfWebDebugLogNumber\">%s</td><td class=\"sfWebDebugLogType\">%s&nbsp;%s</td><td>%s%s</td></tr>\n",
         ucfirst($priority),
         $log['type'],
         $line_nb,
         '<img src="'.$this->webDebug->getOption('image_root_path').'/'.$priority.'.png" alt="'.ucfirst($priority).'"/>',
         $type,
         $this->formatLogLine($log['message']),
-        $this->getToggleableDebugStack($log['debug_backtrace'])
+        $debug_info
       );
     }
     $html .= '</table>';
@@ -117,7 +123,7 @@ class sfWebDebugPanelLogs extends sfWebDebugPanel
                                                    '/line (\d+)$/'        => 'line <span class="sfWebDebugLogInfo">\\1</span>'));
 
     // special formatting for SQL lines
-    $logLine = $this->formatSql($logLine);
+    $logLine = preg_replace('/\b(SELECT|FROM|AS|LIMIT|ASC|COUNT|DESC|WHERE|LEFT JOIN|INNER JOIN|RIGHT JOIN|ORDER BY|GROUP BY|IN|LIKE|DISTINCT|DELETE|INSERT|INTO|VALUES)\b/', '<span class="sfWebDebugLogInfo">\\1</span>', $logLine);
 
     // remove username/password from DSN
     if (strpos($logLine, 'DSN') !== false)

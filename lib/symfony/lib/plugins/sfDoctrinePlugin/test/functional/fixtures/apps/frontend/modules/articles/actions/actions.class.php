@@ -29,7 +29,7 @@ class articlesActions extends sfActions
 
   public function executeUpdate($request)
   {
-    $this->forward404Unless($request->isMethod(sfRequest::POST));
+    $this->forward404Unless($request->isMethod('post'));
 
     $this->form = $this->getArticleForm($request->getParameter('id'));
 

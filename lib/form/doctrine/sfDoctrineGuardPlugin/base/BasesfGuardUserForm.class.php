@@ -3,10 +3,9 @@
 /**
  * sfGuardUser form base class.
  *
- * @package    plugintracker
- * @subpackage form
- * @author     Your name here
- * @version    SVN: $Id$
+ * @package    form
+ * @subpackage sf_guard_user
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
  */
 class BasesfGuardUserForm extends BaseFormDoctrine
 {
@@ -36,8 +35,8 @@ class BasesfGuardUserForm extends BaseFormDoctrine
       'is_active'        => new sfValidatorBoolean(array('required' => false)),
       'is_super_admin'   => new sfValidatorBoolean(array('required' => false)),
       'last_login'       => new sfValidatorDateTime(array('required' => false)),
-      'created_at'       => new sfValidatorDateTime(),
-      'updated_at'       => new sfValidatorDateTime(),
+      'created_at'       => new sfValidatorDateTime(array('required' => false)),
+      'updated_at'       => new sfValidatorDateTime(array('required' => false)),
       'groups_list'      => new sfValidatorDoctrineChoiceMany(array('model' => 'sfGuardGroup', 'required' => false)),
       'permissions_list' => new sfValidatorDoctrineChoiceMany(array('model' => 'sfGuardPermission', 'required' => false)),
     ));
@@ -49,8 +48,6 @@ class BasesfGuardUserForm extends BaseFormDoctrine
     $this->widgetSchema->setNameFormat('sf_guard_user[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
-
-    $this->setupInheritance();
 
     parent::setup();
   }
@@ -78,10 +75,10 @@ class BasesfGuardUserForm extends BaseFormDoctrine
 
   protected function doSave($con = null)
   {
+    parent::doSave($con);
+
     $this->savegroupsList($con);
     $this->savepermissionsList($con);
-
-    parent::doSave($con);
   }
 
   public function savegroupsList($con = null)

@@ -60,6 +60,7 @@ abstract class Doctrine_Pager_Range
         }
     }
 
+
     /**
      * getPager
      *
@@ -71,6 +72,7 @@ abstract class Doctrine_Pager_Range
     {
         return $this->pager;
     }
+
 
     /**
      * setPager
@@ -91,6 +93,7 @@ abstract class Doctrine_Pager_Range
         $this->_initialize();
     }
 
+
     /**
      * getOptions
      *
@@ -102,6 +105,7 @@ abstract class Doctrine_Pager_Range
     {
         return $this->_options;
     }
+
 
     /**
      * getOption
@@ -121,6 +125,7 @@ abstract class Doctrine_Pager_Range
         );
     }
 
+
     /**
      * _setOptions
      *
@@ -133,6 +138,7 @@ abstract class Doctrine_Pager_Range
     {
         $this->_options = $options;
     }
+
 
     /**
      * isInRange

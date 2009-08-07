@@ -14,6 +14,6 @@ class PluginCategory extends BasePluginCategory
 {
   public function getRoute()
   {
-    return '@plugin_category?slug='.$this['slug'];
+    return '@plugins_by_category?slug='.$this['slug'];
   }
 }

@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage test
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfTesterResponse.class.php 20564 2009-07-28 23:02:08Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfTesterResponse.class.php 12517 2008-11-01 07:10:55Z fabien $
  */
 class sfTesterResponse extends sfTester
 {
@@ -113,49 +113,6 @@ class sfTesterResponse extends sfTester
     if (isset($options['count']))
     {
       $this->tester->is(count($values), $options['count'], sprintf('response selector "%s" matches "%s" times', $selector, $options['count']));
-    }
-
-    return $this->getObjectToReturn();
-  }
-
-  /**
-   * Checks that a form is rendered correctly.
-   * 
-   * @param  sfForm|string $form     A form object or the name of a form class
-   * @param  string        $selector CSS selector for the root form element for this form
-   * 
-   * @return sfTestFunctionalBase|sfTester
-   */
-  public function checkForm($form, $selector = 'form')
-  {
-    if (!$form instanceof sfForm)
-    {
-      $form = new $form();
-    }
-
-    $rendered = array();
-    foreach ($this->domCssSelector->matchAll(sprintf('%1$s input, %1$s textarea, %1$s select', $selector))->getNodes() as $element)
-    {
-      $rendered[] = $element->getAttribute('name');
-    }
-
-    foreach ($form as $field => $widget)
-    {
-      $dom = new DOMDocument('1.0', sfConfig::get('sf_charset'));
-      $dom->loadHTML((string) $widget);
-
-      foreach ($dom->getElementsByTagName('*') as $element)
-      {
-        if (in_array($element->tagName, array('input', 'select', 'textarea')))
-        {
-          if (false !== $pos = array_search($element->getAttribute('name'), $rendered))
-          {
-            unset($rendered[$pos]);
-          }
-
-          $this->tester->ok(false !== $pos, sprintf('response includes "%s" form "%s" field - "%s %s[name=%s]"', get_class($form), $field, $selector, $element->tagName, $element->getAttribute('name')));
-        }
-      }
     }
 
     return $this->getObjectToReturn();
@@ -289,32 +246,6 @@ class sfTesterResponse extends sfTester
   }
 
   /**
-   * Tests the response content against a regex.
-   *
-   * @param string Regex
-   *
-   * @return sfTestFunctionalBase|sfTester
-   */
-  public function matches($regex)
-  {
-    if (!preg_match('/^(!)?([^a-zA-Z0-9\\\\]).+?\\2[ims]?$/', $regex, $match))
-    {
-      throw new InvalidArgumentException(sprintf('"%s" is not a valid regular expression.', $regex));
-    }
-
-    if ($match[1] == '!')
-    {
-      $this->tester->unlike($this->response->getContent(), substr($regex, 1), sprintf('response content does not match regex "%s"', substr($regex, 1)));
-    }
-    else
-    {
-      $this->tester->like($this->response->getContent(), $regex, sprintf('response content matches regex "%s"', $regex));
-    }
-
-    return $this->getObjectToReturn();
-  }
-
-  /**
    * Tests the status code.
    *
    * @param string $statusCode Status code to check, default 200
@@ -351,21 +282,10 @@ class sfTesterResponse extends sfTester
 
   /**
    * Outputs some debug information about the current response.
-   *
-   * @param string $realOutput Whether to display the actual content of the response when an error occurred
-   *                           or the exception message and the stack trace to ease debugging
    */
-  public function debug($realOutput = false)
+  public function debug()
   {
     print $this->tester->error('Response debug');
-
-    if (!$realOutput && !is_null(sfException::getLastException()))
-    {
-      // print the exception and the stack trace instead of the "normal" output
-      $this->tester->comment('WARNING');
-      $this->tester->comment('An error occurred when processing this request.');
-      $this->tester->comment('The real response content has been replaced with the exception message to ease debugging.');
-    }
 
     printf("HTTP/1.X %s\n", $this->response->getStatusCode());
 
@@ -388,15 +308,7 @@ class sfTesterResponse extends sfTester
     }
 
     echo "\n";
-    if (!$realOutput && !is_null($exception = sfException::getLastException()))
-    {
-      echo $exception;
-    }
-    else
-    {
-      echo $this->response->getContent();
-    }
-    echo "\n";
+    echo $this->response->getContent();
 
     exit(1);
   }

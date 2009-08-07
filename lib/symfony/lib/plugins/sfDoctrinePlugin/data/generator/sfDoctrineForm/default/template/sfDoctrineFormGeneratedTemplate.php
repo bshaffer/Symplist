@@ -3,12 +3,12 @@
 /**
  * <?php echo $this->modelName ?> form base class.
  *
- * @package    ##PROJECT_NAME##
- * @subpackage form
- * @author     ##AUTHOR_NAME##
- * @version    SVN: $Id$
+ * @package    form
+ * @subpackage <?php echo $this->underscore($this->modelName) ?>
+
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
  */
-class Base<?php echo $this->modelName ?>Form extends <?php echo $this->getFormClassToExtend() . "\n" ?>
+class Base<?php echo $this->modelName ?>Form extends BaseFormDoctrine
 {
   public function setup()
   {
@@ -48,8 +48,6 @@ class Base<?php echo $this->modelName ?>Form extends <?php echo $this->getFormCl
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
-    $this->setupInheritance();
-
     parent::setup();
   }
 
@@ -74,11 +72,11 @@ class Base<?php echo $this->modelName ?>Form extends <?php echo $this->getFormCl
 
   protected function doSave($con = null)
   {
+    parent::doSave($con);
+
 <?php foreach ($this->getManyToManyRelations() as $relation): ?>
     $this->save<?php echo $relation['alias'] ?>List($con);
 <?php endforeach; ?>
-
-    parent::doSave($con);
   }
 
 <?php foreach ($this->getManyToManyRelations() as $relation): ?>

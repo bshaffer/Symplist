@@ -63,6 +63,8 @@ all:
 #
 #    standard_helpers:       [Partial, Cache, Form]
 #
+#    max_forwards:           5
+#
 #    web_debug:              off
 #
 #    cache:                  off
@@ -77,6 +79,8 @@ all:
 #    use_flash:              on
 #
 #    enabled_modules:        [default]
+#
+#    strip_comments:         on
 #
 #    etag:                   on
 #

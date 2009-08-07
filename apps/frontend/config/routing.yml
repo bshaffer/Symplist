@@ -11,7 +11,7 @@ plugins_by_category:
   param:                              { module: plugin, action: byCategory }
 
 plugin:
-  url:                                /plugins/:slug
+  url:                                /plugins/:title
   param:                              { module: plugin, action: show }
 
 authors:

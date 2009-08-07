@@ -16,7 +16,7 @@ require_once(dirname(__FILE__).'/sfPropelBaseTask.class.php');
  * @package    symfony
  * @subpackage propel
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfPropelGenerateAdminTask.class.php 20859 2009-08-06 16:23:38Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfPropelGenerateAdminTask.class.php 15470 2009-02-12 21:27:18Z Kris.Wallsmith $
  */
 class sfPropelGenerateAdminTask extends sfPropelBaseTask
 {
@@ -162,19 +162,29 @@ EOF
     // execute the propel:generate-module task
     $task = new sfPropelGenerateModuleTask($this->dispatcher, $this->formatter);
     $task->setCommandApplication($this->commandApplication);
-    $task->setConfiguration($this->configuration);
+
+    $taskOptions = array(
+      '--theme='.$options['theme'],
+      '--env='.$options['env'],
+      '--route-prefix='.$routeOptions['name'],
+      '--with-propel-route',
+      '--generate-in-cache',
+      '--non-verbose-templates',
+    );
+
+    if (!is_null($options['singular']))
+    {
+      $taskOptions[] = '--singular='.$options['singular'];
+    }
+
+    if (!is_null($options['plural']))
+    {
+      $taskOptions[] = '--plural='.$options['plural'];
+    }
 
     $this->logSection('app', sprintf('Generating admin module "%s" for model "%s"', $module, $model));
 
-    return $task->run(array($arguments['application'], $module, $model), array(
-      'theme'                 => $options['theme'],
-      'route-prefix'          => $routeOptions['name'],
-      'with-propel-route'     => true,
-      'generate-in-cache'     => true,
-      'non-verbose-templates' => true,
-      'singular'              => $options['singular'],
-      'plural'                => $options['plural'],
-    ));
+    return $task->run(array($arguments['application'], $module, $model), $taskOptions);
   }
 
   protected function getRouteFromName($name)

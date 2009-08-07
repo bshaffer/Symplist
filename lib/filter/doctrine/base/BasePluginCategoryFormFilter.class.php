@@ -5,10 +5,9 @@ require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/BaseFormFilterDoctrin
 /**
  * PluginCategory filter form base class.
  *
- * @package    plugintracker
- * @subpackage filter
- * @author     Your name here
- * @version    SVN: $Id$
+ * @package    filters
+ * @subpackage PluginCategory *
+ * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 11675 2008-09-19 15:21:38Z fabien $
  */
 class BasePluginCategoryFormFilter extends BaseFormFilterDoctrine
 {
@@ -29,8 +28,6 @@ class BasePluginCategoryFormFilter extends BaseFormFilterDoctrine
     $this->widgetSchema->setNameFormat('plugin_category_filters[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
-
-    $this->setupInheritance();
 
     parent::setup();
   }

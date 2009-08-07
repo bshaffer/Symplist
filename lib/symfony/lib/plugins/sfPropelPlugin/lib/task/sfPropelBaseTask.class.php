@@ -8,13 +8,15 @@
  * file that was distributed with this source code.
  */
 
+require_once(dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'config/config.php');
+
 /**
  * Base class for all symfony Propel tasks.
  *
  * @package    symfony
  * @subpackage propel
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfPropelBaseTask.class.php 20867 2009-08-06 21:43:11Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfPropelBaseTask.class.php 15727 2009-02-23 16:19:10Z fabien $
  */
 abstract class sfPropelBaseTask extends sfBaseTask
 {
@@ -38,6 +40,22 @@ abstract class sfPropelBaseTask extends sfBaseTask
 
       self::$done = true;
     }
+  }
+
+  protected function createConfiguration($application, $env)
+  {
+    $configuration = parent::createConfiguration($application, $env);
+
+    $autoloader = sfSimpleAutoload::getInstance();
+    $config = new sfAutoloadConfigHandler();
+    $mapping = $config->evaluate($configuration->getConfigPaths('config/autoload.yml'));
+    foreach ($mapping as $class => $file)
+    {
+      $autoloader->setClassPath($class, $file);
+    }
+    $autoloader->register();
+
+    return $configuration;
   }
 
   protected function process(sfCommandManager $commandManager, $options)

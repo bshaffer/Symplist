@@ -23,3 +23,9 @@ sfGuardUserGroup:
   sgug_admin:
     sfGuardGroup:                     sgg_admin
     sfGuardUser:                      sgu_admin
+
+PluginCategory:
+  Uncategorized:
+   name:          Uncategorized
+   slug:          uncategorized
+   description:   Newly imported or unclaimed plugins.

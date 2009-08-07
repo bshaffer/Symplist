@@ -10,7 +10,7 @@
 
 require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 
-$t = new lime_test(14);
+$t = new lime_test(14, new lime_output_color());
 
 // ->getRenderer()
 $t->diag('->getRenderer()');
@@ -50,7 +50,7 @@ $t->is(get_class($w->getRenderer()), 'MyWidget', '->getRenderer() uses the rende
 
 // ->render()
 $t->diag('->render()');
-$w = new sfWidgetFormChoice(array('choices' => array('foo' => 'bar')));
+$w = new sfWidgetFormChoice(array('choices' => array()));
 $t->like($w->render('foo'), '/<select name="foo" id="foo">/', '->render() renders a select tag by default');
 $w->setOption('multiple', true);
 $t->like($w->render('foo'), '/<select name="foo\[\]" multiple="multiple" id="foo">/', '->render() adds a multiple attribute for multiple selects');

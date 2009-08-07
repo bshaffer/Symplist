@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage routing
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfObjectRouteCollection.class.php 17399 2009-04-17 16:05:36Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfObjectRouteCollection.class.php 17398 2009-04-17 16:01:14Z Kris.Wallsmith $
  */
 class sfObjectRouteCollection extends sfRouteCollection
 {
@@ -47,7 +47,7 @@ class sfObjectRouteCollection extends sfRouteCollection
       'with_wildcard_routes' => false,
     ), $this->options);
 
-    $this->options['requirements'] = array_merge(array($this->options['column'] => 'id' == $this->options['column'] ? '\d+' : null), $this->options['requirements']);
+    $this->options['requirements'] = array_merge(array($this->options['column'] => '\d+'), $this->options['requirements']);
     $this->options['model_methods'] = array_merge(array('list' => null, 'object' => null), $this->options['model_methods']);
 
     if (isset($this->options['route_class']))

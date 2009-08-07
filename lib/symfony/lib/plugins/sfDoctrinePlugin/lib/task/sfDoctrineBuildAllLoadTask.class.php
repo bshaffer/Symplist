@@ -18,7 +18,7 @@ require_once(dirname(__FILE__).'/sfDoctrineBaseTask.class.php');
  * @subpackage doctrine
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Jonathan H. Wage <jonwage@gmail.com>
- * @version    SVN: $Id: sfDoctrineBuildAllLoadTask.class.php 20859 2009-08-06 16:23:38Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineBuildAllLoadTask.class.php 18971 2009-06-05 15:44:44Z Jonathan.Wage $
  */
 class sfDoctrineBuildAllLoadTask extends sfDoctrineBaseTask
 {
@@ -33,7 +33,6 @@ class sfDoctrineBuildAllLoadTask extends sfDoctrineBaseTask
       new sfCommandOption('connection', null, sfCommandOption::PARAMETER_REQUIRED, 'The connection name', 'doctrine'),
       new sfCommandOption('no-confirmation', null, sfCommandOption::PARAMETER_NONE, 'Do not ask for confirmation'),
       new sfCommandOption('skip-forms', 'F', sfCommandOption::PARAMETER_NONE, 'Skip generating forms'),
-      new sfCommandOption('migrate', null, sfCommandOption::PARAMETER_NONE, 'Migrate instead of reset the database'),
       new sfCommandOption('dir', null, sfCommandOption::PARAMETER_REQUIRED | sfCommandOption::IS_ARRAY, 'The directories to look for fixtures'),
     ));
 
@@ -59,11 +58,6 @@ To bypass the confirmation, you can pass the [no-confirmation|COMMENT]
 option:
 
   [./symfony doctrine:build-all-load --no-confirmation|INFO]
-
-Include the [--migrate|COMMENT] option if you would like to run your project's
-migrations rather than inserting the Doctrine SQL.
-
-  [./symfony doctrine:build-all-load --migrate|INFO]
 EOF;
   }
 
@@ -76,21 +70,38 @@ EOF;
 
     $buildAll = new sfDoctrineBuildAllTask($this->dispatcher, $this->formatter);
     $buildAll->setCommandApplication($this->commandApplication);
-    $buildAll->setConfiguration($this->configuration);
-    $ret = $buildAll->run(array(), array(
-      'skip-forms'      => $options['skip-forms'],
-      'migrate'         => $options['migrate'],
-      'no-confirmation' => $options['no-confirmation'],
-    ));
+
+    $buildAllOptions = array();
+    if ($options['skip-forms'])
+    {
+      $buildAllOptions[] = '--skip-forms';
+    }
+    if ($options['no-confirmation'])
+    {
+      $buildAllOptions[] = '--no-confirmation';
+    }
+    if (isset($options['application']) && $options['application'])
+    {
+      $buildAllOptions[] = '--application=' . $options['application'];
+    }
+    $ret = $buildAll->run(array(), $buildAllOptions);
 
     if (0 == $ret)
     {
       $loadData = new sfDoctrineLoadDataTask($this->dispatcher, $this->formatter);
       $loadData->setCommandApplication($this->commandApplication);
-      $loadData->setConfiguration($this->configuration);
-      $loadData->run(array(), array(
-        'dir' => $options['dir'],
-      ));
+
+      $loadDataOptions = array('--env='.$options['env'], '--connection='.$options['connection']);
+      if (isset($options['application']))
+      {
+        $loadDataOptions[] = '--application='.$options['application'];
+      }
+      if (!empty($options['dir']))
+      {
+        $loadDataOptions[] = '--dir=' . implode(' --dir=', $options['dir']);
+      }
+
+      $loadData->run(array(), $loadDataOptions);
     }
 
     return $ret;

@@ -16,7 +16,7 @@ require_once(dirname(__FILE__).'/sfPropelBaseTask.class.php');
  * @package    symfony
  * @subpackage propel
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfPropelBuildAllLoadTask.class.php 20867 2009-08-06 21:43:11Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfPropelBuildAllLoadTask.class.php 12537 2008-11-01 14:43:27Z fabien $
  */
 class sfPropelBuildAllLoadTask extends sfPropelBaseTask
 {
@@ -73,23 +73,53 @@ EOF;
 
     $buildAll = new sfPropelBuildAllTask($this->dispatcher, $this->formatter);
     $buildAll->setCommandApplication($this->commandApplication);
-    $buildAll->setConfiguration($this->configuration);
-    $ret = $buildAll->run(array(), array(
-      'phing-arg'       => $options['phing-arg'],
-      'skip-forms'      => $options['skip-forms'],
-      'classes-only'    => $options['classes-only'],
-      'no-confirmation' => $options['no-confirmation'],
-    ));
+
+    $buildAllOptions = array('--env='.$options['env'], '--connection='.$options['connection']);
+    foreach ($options['phing-arg'] as $arg)
+    {
+      $buildAllOptions[] = '--phing-arg='.escapeshellarg($arg);
+    }
+    if ($options['application'])
+    {
+      $buildAllOptions[] = '--application='.$options['application'];
+    }
+    if ($options['skip-forms'])
+    {
+      $buildAllOptions[] = '--skip-forms';
+    }
+    if ($options['classes-only'])
+    {
+      $buildAllOptions[] = '--classes-only';
+    }
+    if ($options['no-confirmation'])
+    {
+      $buildAllOptions[] = '--no-confirmation';
+    }
+    $ret = $buildAll->run(array(), $buildAllOptions);
 
     if (0 == $ret)
     {
       $loadData = new sfPropelLoadDataTask($this->dispatcher, $this->formatter);
       $loadData->setCommandApplication($this->commandApplication);
-      $loadData->setConfiguration($this->configuration);
-      $loadData->run(array(), array(
-        'dir'    => $options['dir'],
-        'append' => $options['append'],
-      ));
+
+      $dataLoadOptions = array('--env='.$options['env'], '--connection='.$options['connection']);
+      if ($options['application'])
+      {
+        $dataLoadOptions[] = '--application='.$options['application'];
+      }
+      if ($options['dir'])
+      {
+        foreach ($options['dir'] as $dir)
+        {
+          $dataLoadOptions[] = '--dir='.$dir;
+        }
+      }
+      if ($options['append'])
+      {
+        $dataLoadOptions[] = '--append';
+      }
+
+      $loadData->run(array(), $dataLoadOptions);
     }
 
     $this->cleanup();

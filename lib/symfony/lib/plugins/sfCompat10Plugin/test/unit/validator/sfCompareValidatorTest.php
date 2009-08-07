@@ -12,7 +12,7 @@ require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 require_once($_test_dir.'/../../../../test/unit/sfContextMock.class.php');
 require_once(dirname(__FILE__).'/sfValidatorTestHelper.class.php');
 
-$t = new lime_test(55);
+$t = new lime_test(55, new lime_output_color());
 
 class sfRequest
 {

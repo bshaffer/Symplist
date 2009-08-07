@@ -3,10 +3,9 @@
 /**
  * SymfonyPluginComment form base class.
  *
- * @package    plugintracker
- * @subpackage form
- * @author     Your name here
- * @version    SVN: $Id$
+ * @package    form
+ * @subpackage symfony_plugin_comment
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
  */
 class BaseSymfonyPluginCommentForm extends BaseFormDoctrine
 {
@@ -25,8 +24,6 @@ class BaseSymfonyPluginCommentForm extends BaseFormDoctrine
     $this->widgetSchema->setNameFormat('symfony_plugin_comment[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
-
-    $this->setupInheritance();
 
     parent::setup();
   }

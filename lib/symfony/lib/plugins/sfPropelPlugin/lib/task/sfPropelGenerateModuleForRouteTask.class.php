@@ -16,7 +16,7 @@ require_once(dirname(__FILE__).'/sfPropelBaseTask.class.php');
  * @package    symfony
  * @subpackage propel
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfPropelGenerateModuleForRouteTask.class.php 20859 2009-08-06 16:23:38Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfPropelGenerateModuleForRouteTask.class.php 12161 2008-10-13 07:42:25Z fabien $
  */
 class sfPropelGenerateModuleForRouteTask extends sfPropelBaseTask
 {
@@ -79,18 +79,36 @@ EOF;
     // execute the propel:generate-module task
     $task = new sfPropelGenerateModuleTask($this->dispatcher, $this->formatter);
     $task->setCommandApplication($this->commandApplication);
-    $task->setConfiguration($this->configuration);
+
+    $taskOptions = array(
+      '--theme='.$options['theme'],
+      '--env='.$options['env'],
+      '--route-prefix='.$routeOptions['name'],
+      '--with-propel-route',
+    );
+
+    if ($routeOptions['with_show'])
+    {
+      $taskOptions[] = '--with-show';
+    }
+
+    if ($options['non-verbose-templates'])
+    {
+      $taskOptions[] = '--non-verbose-templates';
+    }
+
+    if (!is_null($options['singular']))
+    {
+      $taskOptions[] = '--singular='.$options['singular'];
+    }
+
+    if (!is_null($options['plural']))
+    {
+      $taskOptions[] = '--plural='.$options['plural'];
+    }
 
     $this->logSection('app', sprintf('Generating module "%s" for model "%s"', $module, $model));
 
-    return $task->run(array($arguments['application'], $module, $model), array(
-      'theme'                 => $options['theme'],
-      'route-prefix'          => $routeOptions['name'],
-      'with-propel-route'     => true,
-      'with-show'             => $routeOptions['with_show'],
-      'non-verbose-templates' => $options['non-verbose-templates'],
-      'singular'              => $options['singular'],
-      'plural'                => $options['plural'],
-    ));
+    return $task->run(array($arguments['application'], $module, $model), $taskOptions);
   }
 }

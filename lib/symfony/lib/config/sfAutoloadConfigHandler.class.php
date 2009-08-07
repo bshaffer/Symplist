@@ -82,7 +82,7 @@ class sfAutoloadConfigHandler extends sfYamlConfigHandler
         // file mapping
         foreach ($entry['files'] as $class => $file)
         {
-          $mapping[strtolower($class)] = $file;
+          $mapping[$class] = $file;
         }
       }
       else
@@ -140,7 +140,7 @@ class sfAutoloadConfigHandler extends sfYamlConfigHandler
         }
       }
 
-      $mapping[$localPrefix.strtolower($class)] = $file;
+      $mapping[$localPrefix.$class] = $file;
     }
 
     return $mapping;

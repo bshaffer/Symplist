@@ -1,10 +1,13 @@
 navigation:
   Main:
-    Plugins:      @plugins
+    Plugins:      @homepage
     Categories:   @plugin_categories
     Developers:   @authors
-    
-    
+  Footer:
+    home:         /
+    about:        /about
+    contact:      /contact
+        
 settings:
   database:
     driven:    on

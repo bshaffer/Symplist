@@ -16,7 +16,7 @@
  * @subpackage helper
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     David Heinemeier Hansson
- * @version    SVN: $Id: FormHelper.php 18926 2009-06-04 14:24:35Z FabianLange $
+ * @version    SVN: $Id: FormHelper.php 17858 2009-05-01 21:22:50Z FabianLange $
  */
 
 /**
@@ -229,7 +229,7 @@ function select_country_tag($name, $selected = null, $options = array())
     $countries = array_intersect_key($countries, array_flip($country_option)); 
   }
 
-  $c->sortArray($countries);
+  asort($countries);
 
   $option_tags = options_for_select($countries, $selected, $options);
   unset($options['include_blank'], $options['include_custom']);
@@ -275,7 +275,7 @@ function select_language_tag($name, $selected = null, $options = array())
     $languages = array_intersect_key($languages, array_flip($language_option)); 
   }
 
-  $c->sortArray($languages);
+  asort($languages);
 
   $option_tags = options_for_select($languages, $selected, $options);
   unset($options['include_blank'], $options['include_custom']);
@@ -334,7 +334,7 @@ function select_currency_tag($name, $selected = null, $options = array())
     }
   }
 
-  $c->sortArray($currencies);
+  asort($currencies);
 
   $option_tags = options_for_select($currencies, $selected, $options);
   unset($options['include_blank'], $options['include_custom']);

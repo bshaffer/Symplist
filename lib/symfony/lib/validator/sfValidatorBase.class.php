@@ -21,8 +21,9 @@
 abstract class sfValidatorBase
 {
   protected static
-    $charset = 'UTF-8',
-    $globalDefaultMessages = array('invalid' => 'Invalid.', 'required' => 'Required.');
+    $charset         = 'UTF-8',
+    $invalidMessage  = 'Invalid.',
+    $requiredMessage = 'Required.';
 
   protected
     $requiredOptions = array(),
@@ -51,7 +52,7 @@ abstract class sfValidatorBase
   public function __construct($options = array(), $messages = array())
   {
     $this->options  = array_merge(array('required' => true, 'trim' => false, 'empty_value' => null), $this->options);
-    $this->messages = array_merge(array('required' => self::$globalDefaultMessages['required'], 'invalid' => self::$globalDefaultMessages['invalid']), $this->messages);
+    $this->messages = array_merge(array('required' => self::$requiredMessage, 'invalid' => self::$invalidMessage), $this->messages);
 
     $this->configure($options, $messages);
 
@@ -122,7 +123,7 @@ abstract class sfValidatorBase
    */
   public function addMessage($name, $value)
   {
-    $this->messages[$name] = isset(self::$globalDefaultMessages[$name]) ? self::$globalDefaultMessages[$name] : $value;
+    $this->messages[$name] = $value;
   }
 
   /**
@@ -253,38 +254,23 @@ abstract class sfValidatorBase
   }
 
   /**
-   * Sets the default message for a given name.
-   *
-   * @param string $name    The name of the message
-   * @param string $message The default message string
-   */
-  static public function setDefaultMessage($name, $message)
-  {
-    self::$globalDefaultMessages[$name] = $message;
-  }
-
-  /**
-   * Sets the default invalid message.
-   *
-   * DEPRECATED. Use setDefaultMessage instead.
+   * Sets the default invalid message
    *
    * @param string $message
    */
   static public function setInvalidMessage($message)
   {
-    self::setDefaultMessage('invalid', $message);
+    self::$invalidMessage = $message;
   }
 
   /**
-   * Sets the default required message.
-   *
-   * DEPRECATED. Use setDefaultMessage instead.
+   * Sets the default required message
    *
    * @param string $message
    */
   static public function setRequiredMessage($message)
   {
-    self::setDefaultMessage('required', $message);
+    self::$requiredMessage = $message;
   }
 
   /**

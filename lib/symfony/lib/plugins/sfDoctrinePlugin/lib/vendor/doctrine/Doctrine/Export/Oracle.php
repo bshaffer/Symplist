@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Oracle.php 5969 2009-06-28 21:07:34Z adrive $
+ *  $Id: Oracle.php 5801 2009-06-02 17:30:27Z piccoloprincipe $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -29,7 +29,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 5969 $
+ * @version     $Revision: 5801 $
  */
 class Doctrine_Export_Oracle extends Doctrine_Export
 {
@@ -38,26 +38,29 @@ class Doctrine_Export_Oracle extends Doctrine_Export
      *
      * @param object $db database object that is extended by this class
      * @param string $name name of the database that should be created
-     * @return boolean      success of operation
+     * @return mixed MDB2_OK on success, a MDB2 error on failure
+     * @access public
      */
     public function createDatabase($name)
     {
-        if ($this->conn->getAttribute(Doctrine::ATTR_EMULATE_DATABASE)) {
-            $username   = $name;
-            $password   = $this->conn->dsn['password'] ? $this->conn->dsn['password'] : $name;
+        if ( ! $this->conn->getAttribute(Doctrine::ATTR_EMULATE_DATABASE))
+            throw new Doctrine_Export_Exception('database creation is only supported if the "emulate_database" attribute is enabled');
 
-            $tablespace = $this->conn->options['default_tablespace']
-                        ? ' DEFAULT TABLESPACE '.$this->conn->options['default_tablespace'] : '';
+        $username   = sprintf($this->conn->getAttribute(Doctrine::ATTR_DB_NAME_FORMAT), $name);
+        $password   = $this->conn->dsn['password'] ? $this->conn->dsn['password'] : $name;
 
-            $query  = 'CREATE USER ' . $username . ' IDENTIFIED BY ' . $password . $tablespace;
+        $tablespace = $this->conn->getAttribute(Doctrine::ATTR_DB_NAME_FORMAT)
+                    ? ' DEFAULT TABLESPACE '.$this->conn->options['default_tablespace'] : '';
+
+        $query  = 'CREATE USER ' . $username . ' IDENTIFIED BY ' . $password . $tablespace;
+        $result = $this->conn->exec($query);
+
+        try {
+            $query = 'GRANT CREATE SESSION, CREATE TABLE, UNLIMITED TABLESPACE, CREATE SEQUENCE, CREATE TRIGGER TO ' . $username;
             $result = $this->conn->exec($query);
-
-            try {
-                $query = 'GRANT CREATE SESSION, CREATE TABLE, UNLIMITED TABLESPACE, CREATE SEQUENCE, CREATE TRIGGER TO ' . $username;
-                $result = $this->conn->exec($query);
-            } catch (Exception $e) {
-                $this->dropDatabase($username);
-            }
+        } catch (Exception $e) {
+            $query = 'DROP USER '.$username.' CASCADE';
+            $result2 = $this->conn->exec($query);
         }
         return true;
     }
@@ -67,33 +70,18 @@ class Doctrine_Export_Oracle extends Doctrine_Export
      *
      * @param object $this->conn database object that is extended by this class
      * @param string $name name of the database that should be dropped
-     * @return boolean      success of operation
+     * @return mixed MDB2_OK on success, a MDB2 error on failure
      * @access public
      */
     public function dropDatabase($name)
     {
-        $sql = <<<SQL
-BEGIN
-  -- user_tables contains also materialized views
-  FOR I IN (SELECT table_name FROM user_tables WHERE table_name NOT IN (SELECT mview_name FROM user_mviews))
-  LOOP 
-    EXECUTE IMMEDIATE 'DROP TABLE "'||I.table_name||'" CASCADE CONSTRAINTS';
-  END LOOP;
-  
-  FOR I IN (SELECT SEQUENCE_NAME FROM USER_SEQUENCES)
-  LOOP
-    EXECUTE IMMEDIATE 'DROP SEQUENCE "'||I.SEQUENCE_NAME||'"';
-  END LOOP;
-END;
+        if ( ! $this->conn->getAttribute(Doctrine::ATTR_EMULATE_DATABASE))
+            throw new Doctrine_Export_Exception('database dropping is only supported if the
+                                                       "emulate_database" option is enabled');
 
-SQL;
+        $username = sprintf($this->conn->getAttribute(Doctrine::ATTR_DB_NAME_FORMAT), $name);
 
-        $this->conn->exec($sql);
-
-        if ($this->conn->getAttribute(Doctrine::ATTR_EMULATE_DATABASE)) {
-            $username = $name;
-            $this->conn->exec('DROP USER ' . $username . ' CASCADE');
-        }
+        return $this->conn->exec('DROP USER ' . $username . ' CASCADE');
     }
 
     /**
@@ -102,7 +90,7 @@ SQL;
      * @param string $name  name of the PK field
      * @param string $table name of the table
      * @param string $start start value for the sequence
-     * @return string        Sql code
+     * @return mixed        MDB2_OK on success, a MDB2 error on failure
      * @access private
      */
     public function _makeAutoincrement($name, $table, $start = 1)
@@ -148,6 +136,7 @@ DECLARE
    last_Sequence NUMBER;
    last_InsertID NUMBER;
 BEGIN
+   SELECT ' . $this->conn->quoteIdentifier($sequenceName) . '.NEXTVAL INTO :NEW.' . $name . ' FROM DUAL;
    IF (:NEW.' . $name . ' IS NULL OR :NEW.'.$name.' = 0) THEN
       SELECT ' . $this->conn->quoteIdentifier($sequenceName) . '.NEXTVAL INTO :NEW.' . $name . ' FROM DUAL;
    ELSE
@@ -548,7 +537,7 @@ END;';
         
         if ( isset($definition['type']))
         {
-            if (strtolower($definition['type']) == 'unique') {
+            if(strtolower($definition['type']) == 'unique') {
                 $type = strtoupper($definition['type']);
             } else {
                 throw new Doctrine_Export_Exception(
@@ -560,7 +549,7 @@ END;';
             return null;
         }
         
-        if ( !isset($definition['fields']) || !is_array($definition['fields'])) {
+        if (!isset($definition['fields']) || !is_array($definition['fields'])) {
             throw new Doctrine_Export_Exception('No columns given for index '.$name);
         }
         

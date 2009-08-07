@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage config
  * @author     Kris Wallsmith <kris.wallsmith@symfony-project.com>
- * @version    SVN: $Id: sfPluginConfiguration.class.php 20821 2009-08-05 21:18:18Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfPluginConfiguration.class.php 17858 2009-05-01 21:22:50Z FabianLange $
  */
 abstract class sfPluginConfiguration
 {
@@ -163,56 +163,6 @@ abstract class sfPluginConfiguration
     }
 
     return $config;
-  }
-
-  /**
-   * Connects the current plugin's tests to the "test:*" tasks.
-   */
-  public function connectTests()
-  {
-    $this->dispatcher->connect('task.test.filter_test_files', array($this, 'filterTestFiles'));
-  }
-
-  /**
-   * Listens for the "task.test.filter_test_files" event and adds tests from the current plugin.
-   * 
-   * @param  sfEvent $event
-   * @param  array   $files
-   * 
-   * @return array An array of files with the appropriate tests from the current plugin merged in
-   */
-  public function filterTestFiles(sfEvent $event, $files)
-  {
-    $task = $event->getSubject();
-
-    if ($task instanceof sfTestAllTask)
-    {
-      $directory = $this->rootDir.'/test';
-      $names = array();
-    }
-    else if ($task instanceof sfTestFunctionalTask)
-    {
-      $directory = $this->rootDir.'/test/functional';
-      $names = $event['arguments']['controller'];
-    }
-    else if ($task instanceof sfTestUnitTask)
-    {
-      $directory = $this->rootDir.'/test/unit';
-      $names = $event['arguments']['name'];
-    }
-
-    if (!count($names))
-    {
-      $names = array('*');
-    }
-
-    foreach ($names as $name)
-    {
-      $finder = sfFinder::type('file')->follow_link()->name(basename($name).'Test.php');
-      $files = array_merge($files, $finder->in($directory.'/'.dirname($name)));
-    }
-
-    return $files;
   }
 
   /**

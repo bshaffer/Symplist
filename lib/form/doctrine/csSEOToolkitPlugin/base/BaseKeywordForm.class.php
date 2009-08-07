@@ -3,10 +3,9 @@
 /**
  * Keyword form base class.
  *
- * @package    plugintracker
- * @subpackage form
- * @author     Your name here
- * @version    SVN: $Id$
+ * @package    form
+ * @subpackage keyword
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
  */
 class BaseKeywordForm extends BaseFormDoctrine
 {
@@ -29,8 +28,6 @@ class BaseKeywordForm extends BaseFormDoctrine
     $this->widgetSchema->setNameFormat('keyword[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
-
-    $this->setupInheritance();
 
     parent::setup();
   }

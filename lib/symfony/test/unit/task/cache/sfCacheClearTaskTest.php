@@ -10,7 +10,7 @@
 
 require_once(dirname(__FILE__).'/../../../bootstrap/task.php');
 
-$t = new lime_test(2);
+$t = new lime_test(2, new lime_output_color());
 
 $dispatcher = new sfEventDispatcher();
 $formatter = new sfFormatter();

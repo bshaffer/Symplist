@@ -3,10 +3,9 @@
 /**
  * Project filter form base class.
  *
- * @package    ##PROJECT_NAME##
- * @subpackage filter
- * @author     ##AUTHOR_NAME##
- * @version    SVN: $Id$
+ * @package    filters
+ *
+ * @version    SVN: $Id: sfDoctrineFormFilterBaseTemplate.php 11675 2008-09-19 15:21:38Z fabien $
  */
 abstract class BaseFormFilterDoctrine extends sfFormFilterDoctrine
 {

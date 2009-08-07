@@ -18,7 +18,7 @@ require_once(dirname(__FILE__).'/sfDoctrineBaseTask.class.php');
  * @subpackage doctrine
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Jonathan H. Wage <jonwage@gmail.com>
- * @version    SVN: $Id: sfDoctrineRebuildDbTask.class.php 20859 2009-08-06 16:23:38Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineRebuildDbTask.class.php 16087 2009-03-07 22:08:50Z Kris.Wallsmith $
  */
 class sfDoctrineRebuildDbTask extends sfDoctrineBaseTask
 {
@@ -30,8 +30,7 @@ class sfDoctrineRebuildDbTask extends sfDoctrineBaseTask
     $this->addOptions(array(
       new sfCommandOption('application', null, sfCommandOption::PARAMETER_OPTIONAL, 'The application name', true),
       new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'dev'),
-      new sfCommandOption('no-confirmation', null, sfCommandOption::PARAMETER_NONE, 'Whether to no-confirmation dropping of the database'),
-      new sfCommandOption('migrate', null, sfCommandOption::PARAMETER_NONE, 'Migrate instead of reset the database'),
+      new sfCommandOption('no-confirmation', null, sfCommandOption::PARAMETER_NONE, 'Whether to no-confirmation dropping of the database')
     ));
 
     $this->aliases = array('doctrine-rebuild-db');
@@ -45,11 +44,6 @@ The [doctrine:rebuild-db|INFO] task creates the database:
   [./symfony doctrine:rebuild-db|INFO]
 
 The task read connection information in [config/doctrine/databases.yml|COMMENT]:
-
-Include the [--migrate|COMMENT] option if you would like to run your application's
-migrations rather than inserting the Doctrine SQL.
-
-  [./symfony doctrine:rebuild-db --migrate|INFO]
 EOF;
   }
 
@@ -58,18 +52,23 @@ EOF;
    */
   protected function execute($arguments = array(), $options = array())
   {
+    $baseOptions = $this->configuration instanceof sfApplicationConfiguration ? array(
+      '--application='.$this->configuration->getApplication(),
+      '--env='.$options['env'],
+    ) : array();
+
+    $dropDbOptions = $baseOptions;
+    if (isset($options['no-confirmation']) && $options['no-confirmation'])
+    {
+      $dropDbOptions[] = '--no-confirmation';
+    }
+
     $dropDb = new sfDoctrineDropDbTask($this->dispatcher, $this->formatter);
     $dropDb->setCommandApplication($this->commandApplication);
-    $dropDb->setConfiguration($this->configuration);
-    $dropDb->run(array(), array(
-      'no-confirmation' => $options['no-confirmation'],
-    ));
+    $dropDb->run(array(), $dropDbOptions);
 
     $buildAll = new sfDoctrineBuildAllTask($this->dispatcher, $this->formatter);
     $buildAll->setCommandApplication($this->commandApplication);
-    $buildAll->setConfiguration($this->configuration);
-    $buildAll->run(array(), array(
-      'migrate' => $options['migrate'],
-    ));
+    $buildAll->run(array(), $baseOptions);
   }
 }

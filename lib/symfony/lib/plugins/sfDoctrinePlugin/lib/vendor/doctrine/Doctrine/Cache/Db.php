@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Db.php 6148 2009-07-21 20:45:03Z jwage $
+ *  $Id: Db.php 5801 2009-06-02 17:30:27Z piccoloprincipe $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,7 +27,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 6148 $
+ * @version     $Revision: 5801 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 class Doctrine_Cache_Db extends Doctrine_Cache_Driver implements Countable
@@ -38,7 +38,7 @@ class Doctrine_Cache_Db extends Doctrine_Cache_Driver implements Countable
      *
      * @param array $_options      an array of options
      */
-    public function __construct($options = array()) 
+    public function __construct($options) 
     {
         if ( ! isset($options['connection']) || 
              ! ($options['connection'] instanceof Doctrine_Connection)) {
@@ -82,31 +82,27 @@ class Doctrine_Cache_Db extends Doctrine_Cache_Driver implements Countable
             $sql .= " AND (expire is null OR expire > '" . date('Y-m-d H:i:s') . "')";
         }
 
-        $result = $this->getConnection()->execute($sql, array($this->_getKey($id)))->fetchAll(Doctrine::FETCH_NUM);
-
+        $result = $this->getConnection()->execute($sql, array($id))->fetchAll(Doctrine::FETCH_NUM);
+        
         if ( ! isset($result[0])) {
             return false;
         }
 
-        return unserialize($this->_hex2bin($result[0][0]));
+        return unserialize($this->_hex2Bin($result[0][0]));
     }
 
     protected function _hex2bin($hex)
     {
-        if ( ! is_string($hex)) {
-            return null;
-        }
+      if ( ! is_string($hex)) {
+          return null;
+      }
+  
+      $bin = '';
+      for ($a = 0; $a < strlen($hex); $a += 2) {
+          $bin .= chr(hexdec($hex{$a} . $hex{($a + 1)}));
+      }
 
-        if (bin2hex($hex) == $hex) {
-            return $hex;
-        }
-
-        $bin = '';
-        for ($a = 0; $a < strlen($hex); $a += 2) {
-            $bin .= chr(hexdec($hex{$a} . $hex{($a + 1)}));
-        }
-
-        return $bin;
+      return $bin;
     }
 
     /**
@@ -120,10 +116,10 @@ class Doctrine_Cache_Db extends Doctrine_Cache_Driver implements Countable
         $sql = 'SELECT id, expire FROM ' . $this->_options['tableName']
              . ' WHERE id = ?';
 
-        $result = $this->getConnection()->fetchOne($sql, array($this->_getKey($id)));
+        $result = $this->getConnection()->fetchOne($sql, array($id));
 
-        if (isset($result[0] )) {
-            return time();
+        if(isset($result[0] )){
+        	return time();
         }
         return false;
     }
@@ -140,34 +136,33 @@ class Doctrine_Cache_Db extends Doctrine_Cache_Driver implements Countable
      */
     public function save($id, $data, $lifeTime = false)
     {
-        if ($this->contains($id)) {
-            //record is in database, do update
-            $sql = 'UPDATE ' . $this->_options['tableName']
-                . ' SET data = ?, expire=? '
-                . ' WHERE id = ?';
-
-            if ($lifeTime) {
-                $expire = date('Y-m-d H:i:s', time() + $lifeTime);
-            } else {
-                $expire = NULL;
-            }
-
-            $params = array(bin2hex(serialize($data)), $expire, $this->_getKey($id));
+    	if ($this->contains($id)){
+    		//record is in database, do update
+    		$sql = 'UPDATE ' . $this->_options['tableName']
+    			   . ' SET data=?, expire=? '
+             . ' WHERE id = ?';
+        
+        if ($lifeTime) {
+            $expire = date('Y-m-d H:i:s',time() + $lifeTime);
         } else {
-            //record is not in database, do insert
-            $sql = 'INSERT INTO ' . $this->_options['tableName']
-                . ' (id, data, expire) VALUES (?, ?, ?)';
+            $expire = NULL;
+        }
+        $params = array(bin2hex(serialize($data)), $expire, $id);	
+    	} else {
+    		//record is not in database, do insert
+    		 $sql = 'INSERT INTO ' . $this->_options['tableName']
+             . ' (id, data, expire) VALUES (?, ?, ?)';
 
-            if ($lifeTime) {
-                $expire = date('Y-m-d H:i:s', time() + $lifeTime);
-            } else {
-                $expire = NULL;
-            }
-
-            $params = array($this->_getKey($id), bin2hex(serialize($data)), $expire);
+        if ($lifeTime) {
+            $expire = date('Y-m-d H:i:s', time() + $lifeTime);
+        } else {
+            $expire = NULL;
         }
 
-        return (bool) $this->getConnection()->exec($sql, $params);
+        $params = array($id, bin2hex(serialize($data)), $expire);	
+      }
+
+      return (bool) $this->getConnection()->exec($sql, $params);
     }
 
     /**
@@ -180,7 +175,7 @@ class Doctrine_Cache_Db extends Doctrine_Cache_Driver implements Countable
     {
         $sql = 'DELETE FROM ' . $this->_options['tableName'] . ' WHERE id = ?';
 
-        return (bool) $this->getConnection()->exec($sql, array($this->_getKey($id)));
+        return (bool) $this->getConnection()->exec($sql, array($id));
     }
 
     /**

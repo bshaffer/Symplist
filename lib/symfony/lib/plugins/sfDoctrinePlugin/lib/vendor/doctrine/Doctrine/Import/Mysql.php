@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Mysql.php 6132 2009-07-20 19:30:18Z jwage $
+ *  $Id: Mysql.php 5801 2009-06-02 17:30:27Z piccoloprincipe $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -25,7 +25,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  * @author      Lukas Smith <smith@pooteeweet.org> (PEAR MDB2 library)
- * @version     $Revision: 6132 $
+ * @version     $Revision: 5801 $
  * @link        www.phpdoctrine.org
  * @since       1.0
  */
@@ -159,8 +159,8 @@ class Doctrine_Import_Mysql extends Doctrine_Import
                           'alltypes'      => $decl['type'],
                           'ntype'         => $val['type'],
                           'length'        => $decl['length'],
-                          'fixed'         => (bool) $decl['fixed'],
-                          'unsigned'      => (bool) $decl['unsigned'],
+                          'fixed'         => $decl['fixed'],
+                          'unsigned'      => $decl['unsigned'],
                           'values'        => $values,
                           'primary'       => (strtolower($val['key']) == 'pri'),
                           'default'       => $val['default'],

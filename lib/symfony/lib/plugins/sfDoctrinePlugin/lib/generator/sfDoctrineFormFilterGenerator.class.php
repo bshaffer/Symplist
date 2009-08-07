@@ -94,8 +94,7 @@ class sfDoctrineFormFilterGenerator extends sfDoctrineFormGenerator
         mkdir($baseDir.'/base', 0777, true);
       }
 
-      file_put_contents($baseDir.'/base/Base'.$model.'FormFilter.class.php', $this->evalTemplate(is_null($this->getParentModel()) ? 'sfDoctrineFormFilterGeneratedTemplate.php' : 'sfDoctrineFormFilterGeneratedInheritanceTemplate.php'));
-
+      file_put_contents($baseDir.'/base/Base'.$model.'FormFilter.class.php', $this->evalTemplate('sfDoctrineFormFilterGeneratedTemplate.php'));
       if ($isPluginModel)
       {
         $pluginBaseDir = $pluginPaths[$pluginName].'/lib/filter/doctrine';
@@ -266,11 +265,9 @@ class sfDoctrineFormFilterGenerator extends sfDoctrineFormGenerator
           $options[] = "'choices' => array('', 1, 0)";
           break;
         case 'date':
-          $options[] = "'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false))";
-          break;
         case 'datetime':
         case 'timestamp':
-          $options[] = "'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59'))";
+          $options[] = "'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false))";
           break;
         case 'enum':
           $values = array_combine($column['values'], $column['values']);
@@ -333,36 +330,5 @@ class sfDoctrineFormFilterGenerator extends sfDoctrineFormGenerator
     $php = str_replace(',)', ')', $php);
     $php = str_replace('  ', ' ', $php);
     return $php;
-  }
-
-  /**
-   * Filter out models that have disabled generation of form classes
-   *
-   * @return array $models Array of models to generate forms for
-   */
-  protected function filterModels($models)
-  {
-    foreach ($models as $key => $model)
-    {
-      $table = Doctrine::getTable($model);
-      $symfonyOptions = $table->getOption('symfony');
-
-      if (isset($symfonyOptions['filter']) && !$symfonyOptions['filter'])
-      {
-        unset($models[$key]);
-      }
-    }
-
-    return $models;
-  }
-
-  /**
-   * Get the name of the form class to extend based on the inheritance of the model
-   *
-   * @return string
-   */
-  public function getFormClassToExtend()
-  {
-    return is_null($model = $this->getParentModel()) ? 'BaseFormFilterDoctrine' : sprintf('%sFormFilter', $model);
   }
 }

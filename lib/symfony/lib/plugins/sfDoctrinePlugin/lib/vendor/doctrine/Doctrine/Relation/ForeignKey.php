@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: ForeignKey.php 5934 2009-06-24 18:48:27Z jwage $
+ *  $Id: ForeignKey.php 5801 2009-06-02 17:30:27Z piccoloprincipe $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -29,7 +29,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 5934 $
+ * @version     $Revision: 5801 $
  */
 class Doctrine_Relation_ForeignKey extends Doctrine_Relation
 {
@@ -71,7 +71,7 @@ class Doctrine_Relation_ForeignKey extends Doctrine_Relation
             if ( ! $record->exists() || empty($id) || 
                  ! $this->definition['table']->getAttribute(Doctrine::ATTR_LOAD_REFERENCES)) {
                 
-                $related = Doctrine_Collection::create($this->getTable());
+                $related = new Doctrine_Collection($this->getTable());
             } else {
                 $query      = $this->getRelationDql(1);
                 $related    = $this->getTable()->getConnection()->query($query, $id);

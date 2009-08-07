@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage debug
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfDebug.class.php 19774 2009-07-01 09:46:42Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDebug.class.php 17858 2009-05-01 21:22:50Z FabianLange $
  */
 class sfDebug
 {
@@ -44,12 +44,10 @@ class sfDebug
       'extensions' => get_loaded_extensions(),
     );
 
-    natcasesort($values['extensions']); 
-
     // assign extension version
     if ($values['extensions'])
     {
-      foreach($values['extensions'] as $key => $extension)
+      foreach ($values['extensions'] as $key => $extension)
       {
         $values['extensions'][$key] = phpversion($extension) ? sprintf('%s (%s)', $extension, phpversion($extension)) : $extension;
       }
@@ -115,7 +113,6 @@ class sfDebug
     }
 
     return array(
-      'options'         => $request->getOptions(),
       'parameterHolder' => self::flattenParameterHolder($request->getParameterHolder(), true),
       'attributeHolder' => self::flattenParameterHolder($request->getAttributeHolder(), true),
     );
@@ -235,17 +232,5 @@ class sfDebug
     }
 
     return $nvalues;
-  }
-
-  /**
-   * Shortens a file path by replacing symfony directory constants.
-   * 
-   * @param  string $file
-   * 
-   * @return string
-   */
-  static public function shortenFilePath($file)
-  {
-    return preg_replace(array('#^'.preg_quote(sfConfig::get('sf_root_dir'), '#').'#', '#^'.preg_quote(realpath(sfConfig::get('sf_symfony_lib_dir')), '#').'#'), array('SF_ROOT_DIR', 'SF_SYMFONY_LIB_DIR'), $file);
   }
 }

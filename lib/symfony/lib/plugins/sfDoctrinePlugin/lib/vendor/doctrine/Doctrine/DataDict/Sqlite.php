@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Sqlite.php 5922 2009-06-22 20:56:38Z jwage $
+ *  $Id: Sqlite.php 5801 2009-06-02 17:30:27Z piccoloprincipe $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -25,7 +25,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  * @author      Lukas Smith <smith@pooteeweet.org> (PEAR MDB2 library)
- * @version     $Revision: 5922 $
+ * @version     $Revision: 5801 $
  * @link        www.phpdoctrine.org
  * @since       1.0
  */
@@ -250,8 +250,7 @@ class Doctrine_DataDict_Sqlite extends Doctrine_DataDict
                 $length = null;
                 break;
             default:
-                $type[] = 'string';
-                $length = null;
+                throw new Doctrine_DataDict_Exception('unknown database attribute type: '.$dbType);
         }
 
         return array('type'     => $type,

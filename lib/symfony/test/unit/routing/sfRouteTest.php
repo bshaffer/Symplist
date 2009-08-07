@@ -10,7 +10,7 @@
 
 require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 
-$t = new lime_test(50);
+$t = new lime_test(50, new lime_output_color());
 
 // ->matchesUrl()
 $t->diag('->matchesUrl()');

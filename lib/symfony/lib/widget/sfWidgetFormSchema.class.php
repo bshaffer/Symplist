@@ -595,7 +595,7 @@ class sfWidgetFormSchema extends sfWidgetForm implements ArrayAccess
    * @return string The generated name
    */
   public function generateName($name)
-  {  
+  {
     $format = $this->getNameFormat();
 
     if ('[%s]' == substr($format, -4) && preg_match('/^(.+?)\[(.+)\]$/', $name, $match))

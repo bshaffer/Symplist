@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Array.php 5798 2009-06-02 15:10:46Z piccoloprincipe $
+ *  $Id: Array.php 5801 2009-06-02 17:30:27Z piccoloprincipe $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,10 +27,10 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 5798 $
+ * @version     $Revision: 5801 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
-class Doctrine_Cache_Array extends Doctrine_Cache_Driver implements Countable
+class Doctrine_Cache_Array implements Countable, Doctrine_Cache_Interface
 {
     /**
      * @var array $data         an array of cached data
@@ -62,7 +62,7 @@ class Doctrine_Cache_Array extends Doctrine_Cache_Driver implements Countable
      */
     public function contains($id)
     {
-        return isset($this->data[$this->_getKey($id)]);
+        return isset($this->data[$id]);
     }
 
     /**
@@ -77,7 +77,7 @@ class Doctrine_Cache_Array extends Doctrine_Cache_Driver implements Countable
      */
     public function save($id, $data, $lifeTime = false)
     {
-        $this->data[$this->_getKey($id)] = $data;
+        $this->data[$id] = $data;
     }
 
     /**
@@ -88,7 +88,7 @@ class Doctrine_Cache_Array extends Doctrine_Cache_Driver implements Countable
      */
     public function delete($id)
     {
-        unset($this->data[$this->_getKey($id)]);
+        unset($this->data[$id]);
     }
 
     /**

@@ -996,3 +996,1506 @@ Aug 07 09:59:57 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/ind
 Aug 07 09:59:57 symfony [info] {sfWebDebugLogger} Component "csNavigation/tree" 5.03 ms (1)
 Aug 07 09:59:57 symfony [info] {sfWebDebugLogger} Partial "csNavigation/_tree" 40.51 ms (1)
 Aug 07 09:59:58 symfony [info] {sfWebResponse} Send content (223771 o)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 10:14:54 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 07 10:14:54 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 10:14:54 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 10:14:55 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'utf8' - ()
+Aug 07 10:14:55 symfony [info] {Doctrine_Connection_Statement} execute : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (1)
+Aug 07 10:14:55 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 10:14:55 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 10:14:55 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 07 10:14:55 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 07 10:14:55 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 10:14:55 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 10:14:59 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 10:14:59 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 10:14:59 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 10:14:59 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 10:14:59 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 10:14:59 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 10:14:59 symfony [info] {sfWebDebugLogger} Configuration 3856.48 ms (14)
+Aug 07 10:14:59 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.13 ms (2)
+Aug 07 10:14:59 symfony [info] {sfWebDebugLogger} Action "plugin/index" 7.63 ms (1)
+Aug 07 10:14:59 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 4045.15 ms (1)
+Aug 07 10:14:59 symfony [info] {sfWebDebugLogger} Component "csNavigation/tree" 14.68 ms (2)
+Aug 07 10:14:59 symfony [info] {sfWebDebugLogger} Partial "csNavigation/_tree" 113.83 ms (2)
+Aug 07 10:14:59 symfony [info] {sfWebResponse} Send content (160129 o)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 10:15:30 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 07 10:15:30 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 10:15:30 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 10:15:30 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'utf8' - ()
+Aug 07 10:15:30 symfony [info] {Doctrine_Connection_Statement} execute : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (1)
+Aug 07 10:15:30 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 10:15:30 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 10:15:30 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 07 10:15:30 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 07 10:15:30 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 10:15:30 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 10:15:33 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 10:15:33 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 10:15:33 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 10:15:56 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 07 10:15:56 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 10:15:56 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 10:15:56 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'utf8' - ()
+Aug 07 10:15:56 symfony [info] {Doctrine_Connection_Mysql} query : SELECT COUNT(*) AS num_results FROM cs_navigation_item c - ()
+Aug 07 10:15:56 symfony [info] {Doctrine_Connection_Mysql} query : SELECT c.id AS c__id, c.title AS c__title, c.description AS c__description, c.root_id AS c__root_id FROM cs_navigation_menu c - ()
+Aug 07 10:15:56 symfony [info] {Doctrine_Connection_Statement} execute : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (1)
+Aug 07 10:15:56 symfony [info] {Doctrine_Connection_Statement} execute : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE (c.lft > ? AND c.rgt < ?) AND c.level <= ? AND c.root_id = ? ORDER BY c.lft asc - (1, 8, 1, 1)
+Aug 07 10:15:56 symfony [info] {Doctrine_Connection_Statement} execute : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE (c.lft > ? AND c.rgt < ?) AND c.level <= ? AND c.root_id = ? ORDER BY c.lft asc - (2, 3, 2, 1)
+Aug 07 10:15:56 symfony [info] {Doctrine_Connection_Statement} execute : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE (c.lft > ? AND c.rgt < ?) AND c.level <= ? AND c.root_id = ? ORDER BY c.lft asc - (4, 5, 2, 1)
+Aug 07 10:15:56 symfony [info] {Doctrine_Connection_Statement} execute : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE (c.lft > ? AND c.rgt < ?) AND c.level <= ? AND c.root_id = ? ORDER BY c.lft asc - (6, 7, 2, 1)
+Aug 07 10:15:56 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 10:15:56 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 10:15:56 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 07 10:15:56 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 07 10:15:56 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 10:15:56 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 10:16:00 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 10:16:00 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 10:16:00 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 10:16:17 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 07 10:16:17 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 10:16:17 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 10:16:17 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 10:16:17 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 10:16:17 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 07 10:16:17 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 07 10:16:17 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 10:16:17 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 10:16:21 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 10:16:21 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 10:16:21 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 10:16:21 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 10:16:21 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 10:16:21 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 10:16:21 symfony [info] {sfWebDebugLogger} Configuration 7398.43 ms (13)
+Aug 07 10:16:21 symfony [info] {sfWebDebugLogger} Action "plugin/index" 7.43 ms (1)
+Aug 07 10:16:21 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 3400.98 ms (1)
+Aug 07 10:16:21 symfony [info] {sfWebDebugLogger} Component "csNavigation/tree" 10.98 ms (2)
+Aug 07 10:16:21 symfony [info] {sfWebDebugLogger} Partial "csNavigation/_tree" 55.34 ms (2)
+Aug 07 10:16:22 symfony [info] {sfWebResponse} Send content (147073 o)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 10:44:28 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 07 10:44:28 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 10:44:28 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 10:44:29 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 10:44:29 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 10:44:29 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 07 10:44:29 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 07 10:44:29 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 10:44:29 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 10:44:32 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 10:44:32 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 10:44:32 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 10:44:32 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 10:44:32 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 10:44:32 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 10:44:32 symfony [info] {sfWebDebugLogger} Configuration 7861.82 ms (13)
+Aug 07 10:44:32 symfony [info] {sfWebDebugLogger} Action "plugin/index" 8.21 ms (1)
+Aug 07 10:44:32 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 3509.38 ms (1)
+Aug 07 10:44:32 symfony [info] {sfWebDebugLogger} Component "csNavigation/tree" 16.97 ms (2)
+Aug 07 10:44:32 symfony [info] {sfWebDebugLogger} Partial "csNavigation/_tree" 61.49 ms (2)
+Aug 07 10:44:33 symfony [info] {sfWebResponse} Send content (147034 o)
+Aug 07 10:44:49 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 10:44:49 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 10:44:49 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 10:44:49 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 10:44:49 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 10:44:49 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 10:44:49 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 10:44:49 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 10:44:49 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 10:44:49 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 10:44:49 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 10:44:49 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 10:44:49 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 10:44:49 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:44:49 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:44:49 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:44:49 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 10:44:49 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 10:44:49 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 10:44:49 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 10:44:49 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 10:44:49 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 10:44:50 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 10:44:50 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 10:44:50 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 10:44:50 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 10:44:50 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 10:44:50 symfony [info] {sfPatternRouting} Match route "plugin_categories" (/plugins/categories) for /plugins/categories with parameters array (  'module' => 'plugin',  'action' => 'categories',)
+Aug 07 10:44:50 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 10:44:50 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 10:44:50 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 10:44:50 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 10:44:50 symfony [info] {pluginActions} Call "pluginActions->executeCategories()"
+Aug 07 10:44:53 symfony [err] {Doctrine_Exception} Couldn't find class PluginCategories
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 10:52:49 symfony [info] {sfPatternRouting} Match route "plugin_categories" (/plugins/categories) for /plugins/categories with parameters array (  'module' => 'plugin',  'action' => 'categories',)
+Aug 07 10:52:49 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 10:52:49 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 10:52:49 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 10:52:49 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 10:52:49 symfony [info] {pluginActions} Call "pluginActions->executeCategories()"
+Aug 07 10:52:49 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'utf8' - ()
+Aug 07 10:52:49 symfony [info] {Doctrine_Connection_Mysql} query : SELECT p.id AS p__id, p.name AS p__name, p.description AS p__description, p.slug AS p__slug FROM plugin_category p ORDER BY p.name ASC - ()
+Aug 07 10:52:49 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/categoriesSuccess.php"
+Aug 07 10:52:49 symfony [err] {sfConfigurationException} The route "plugin_category" does not exist.
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 10:53:12 symfony [info] {sfPatternRouting} Match route "plugin_categories" (/plugins/categories) for /plugins/categories with parameters array (  'module' => 'plugin',  'action' => 'categories',)
+Aug 07 10:53:12 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 10:53:12 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 10:53:12 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 10:53:12 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 10:53:12 symfony [info] {pluginActions} Call "pluginActions->executeCategories()"
+Aug 07 10:53:12 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'utf8' - ()
+Aug 07 10:53:12 symfony [info] {Doctrine_Connection_Mysql} query : SELECT p.id AS p__id, p.name AS p__name, p.description AS p__description, p.slug AS p__slug FROM plugin_category p ORDER BY p.name ASC - ()
+Aug 07 10:53:12 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/categoriesSuccess.php"
+Aug 07 10:53:12 symfony [err] {sfConfigurationException} The route "plugin_category" does not exist.
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 10:53:27 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 10:53:28 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 10:53:28 symfony [info] {sfPatternRouting} Match route "plugin_categories" (/plugins/categories) for /plugins/categories with parameters array (  'module' => 'plugin',  'action' => 'categories',)
+Aug 07 10:53:28 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 10:53:28 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 10:53:28 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 10:53:28 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 10:53:28 symfony [info] {pluginActions} Call "pluginActions->executeCategories()"
+Aug 07 10:53:28 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'utf8' - ()
+Aug 07 10:53:28 symfony [info] {Doctrine_Connection_Mysql} query : SELECT p.id AS p__id, p.name AS p__name, p.description AS p__description, p.slug AS p__slug FROM plugin_category p ORDER BY p.name ASC - ()
+Aug 07 10:53:28 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/categoriesSuccess.php"
+Aug 07 10:53:28 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 10:53:28 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 10:53:31 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 10:53:31 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 10:53:31 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 10:53:32 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 10:53:32 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 10:53:32 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 10:53:32 symfony [info] {sfWebDebugLogger} Configuration 3659.05 ms (14)
+Aug 07 10:53:32 symfony [info] {sfWebDebugLogger} Action "plugin/categories" 46.76 ms (1)
+Aug 07 10:53:32 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.11 ms (2)
+Aug 07 10:53:32 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/categories" 3836.33 ms (1)
+Aug 07 10:53:32 symfony [info] {sfWebDebugLogger} Component "csNavigation/tree" 61.40 ms (2)
+Aug 07 10:53:32 symfony [info] {sfWebDebugLogger} Partial "csNavigation/_tree" 69.38 ms (2)
+Aug 07 10:53:32 symfony [info] {sfWebResponse} Send content (157593 o)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Match route "plugins_by_category" (/plugins/categories/:slug) for /plugins/categories/uncategorized with parameters array (  'module' => 'plugin',  'action' => 'byCategory',  'slug' => 'uncategorized',)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 10:54:07 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 10:54:07 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 10:54:07 symfony [info] {sfPatternRouting} Match route "plugins_by_category" (/plugins/categories/:slug) for /plugins/categories/uncategorized with parameters array (  'module' => 'plugin',  'action' => 'byCategory',  'slug' => 'uncategorized',)
+Aug 07 10:54:07 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 10:54:07 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 10:54:07 symfony [info] {pluginActions} Call "pluginActions->executeByCategory()"
+Aug 07 10:54:11 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 10:54:11 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 10:54:11 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 10:54:11 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 10:54:11 symfony [info] {pluginActions} Call "pluginActions->executeByCategory()"
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 10:54:32 symfony [info] {sfPatternRouting} Match route "plugins_by_category" (/plugins/categories/:slug) for /plugins/categories/uncategorized with parameters array (  'module' => 'plugin',  'action' => 'byCategory',  'slug' => 'uncategorized',)
+Aug 07 10:54:32 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 10:54:32 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 10:54:32 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 10:54:32 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 10:54:32 symfony [info] {pluginActions} Call "pluginActions->executeByCategory()"
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 10:54:39 symfony [info] {sfPatternRouting} Match route "plugins_by_category" (/plugins/categories/:slug) for /plugins/categories/uncategorized with parameters array (  'module' => 'plugin',  'action' => 'byCategory',  'slug' => 'uncategorized',)
+Aug 07 10:54:39 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 10:54:39 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 10:54:40 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 10:54:40 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 10:54:40 symfony [info] {pluginActions} Call "pluginActions->executeByCategory()"
+Aug 07 10:54:40 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'utf8' - ()
+Aug 07 10:54:40 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.id AS p__id, p.name AS p__name, p.description AS p__description, p.slug AS p__slug FROM plugin_category p WHERE p.slug = ? LIMIT 1 - (uncategorized)
+Aug 07 10:54:43 symfony [notice] {sfWebDebugLogger}  Notice at /Users/bshafs/Sites/localhost/symplist/lib/symfony/lib/plugins/sfDoctrinePlugin/data/generator/sfDoctrineFormFilter/default/template/sfDoctrineFormFilterPluginTemplate.php on line 4 (Undefined property: sfAutoload::$table)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 10:55:29 symfony [info] {sfPatternRouting} Match route "plugins_by_category" (/plugins/categories/:slug) for /plugins/categories/uncategorized with parameters array (  'module' => 'plugin',  'action' => 'byCategory',  'slug' => 'uncategorized',)
+Aug 07 10:55:29 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 10:55:29 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 10:55:30 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 10:55:30 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 10:55:30 symfony [info] {pluginActions} Call "pluginActions->executeByCategory()"
+Aug 07 10:55:30 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'utf8' - ()
+Aug 07 10:55:30 symfony [info] {Doctrine_Connection_Statement} execute : SELECT p.id AS p__id, p.name AS p__name, p.description AS p__description, p.slug AS p__slug FROM plugin_category p WHERE p.slug = ? LIMIT 1 - (uncategorized)
+Aug 07 10:55:33 symfony [notice] {sfWebDebugLogger}  Notice at /Users/bshafs/Sites/localhost/symplist/lib/symfony/lib/plugins/sfDoctrinePlugin/data/generator/sfDoctrineFormFilter/default/template/sfDoctrineFormFilterPluginTemplate.php on line 4 (Undefined property: sfAutoload::$table)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 10:59:07 symfony [info] {sfPatternRouting} Match route "plugins_by_category" (/plugins/categories/:slug) for /plugins/categories/uncategorized with parameters array (  'module' => 'plugin',  'action' => 'byCategory',  'slug' => 'uncategorized',)
+Aug 07 10:59:07 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 10:59:07 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 10:59:07 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 10:59:07 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 10:59:07 symfony [info] {pluginActions} Call "pluginActions->executeByCategory()"
+Aug 07 10:59:07 symfony [info] {sfDoctrineLogger} executeQuery : SELECT p.id AS p__id, p.name AS p__name, p.description AS p__description, p.slug AS p__slug FROM plugin_category p WHERE p.slug = ? LIMIT 1 - (uncategorized )
+Aug 07 10:59:07 symfony [err] {Doctrine_Exception} Couldn't find class Plugin
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 10:59:22 symfony [info] {sfPatternRouting} Match route "plugins_by_category" (/plugins/categories/:slug) for /plugins/categories/uncategorized with parameters array (  'module' => 'plugin',  'action' => 'byCategory',  'slug' => 'uncategorized',)
+Aug 07 10:59:22 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 10:59:22 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 10:59:22 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (Array )
+Aug 07 10:59:22 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (Array )
+Aug 07 10:59:22 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 10:59:22 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 10:59:22 symfony [info] {pluginActions} Call "pluginActions->executeByCategory()"
+Aug 07 10:59:22 symfony [info] {sfDoctrineLogger} executeQuery : SELECT p.id AS p__id, p.name AS p__name, p.description AS p__description, p.slug AS p__slug FROM plugin_category p WHERE p.slug = ? LIMIT 1 - (uncategorized )
+Aug 07 10:59:22 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/byCategorySuccess.php"
+Aug 07 10:59:22 symfony [err] {Doctrine_Query_Exception} Unknown aggregate alias: name
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:00:08 symfony [info] {sfPatternRouting} Match route "plugins_by_category" (/plugins/categories/:slug) for /plugins/categories/uncategorized with parameters array (  'module' => 'plugin',  'action' => 'byCategory',  'slug' => 'uncategorized',)
+Aug 07 11:00:08 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:00:08 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 11:00:08 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (Array )
+Aug 07 11:00:09 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (Array )
+Aug 07 11:00:09 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:00:09 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:00:09 symfony [info] {pluginActions} Call "pluginActions->executeByCategory()"
+Aug 07 11:00:09 symfony [info] {sfDoctrineLogger} executeQuery : SELECT p.id AS p__id, p.name AS p__name, p.description AS p__description, p.slug AS p__slug FROM plugin_category p WHERE p.slug = ? LIMIT 1 - (uncategorized )
+Aug 07 11:00:09 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/byCategorySuccess.php"
+Aug 07 11:00:09 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.title AS s__title, s.description AS s__description, s.author_id AS s__author_id, s.category_id AS s__category_id, s.active AS s__active, s.slug AS s__slug, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM symfony_plugin s WHERE s.category_id = ? ORDER BY s.title ASC - (1 )
+Aug 07 11:00:09 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:00:09 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:00:09 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:00:09 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:00:09 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:00:09 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:00:09 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 11:00:09 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 11:00:09 symfony [info] {sfWebDebugLogger} Configuration 40.77 ms (13)
+Aug 07 11:00:09 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.48 ms (8)
+Aug 07 11:00:09 symfony [info] {sfWebDebugLogger} Action "plugin/byCategory" 51.88 ms (1)
+Aug 07 11:00:09 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/byCategory" 197.64 ms (1)
+Aug 07 11:00:09 symfony [info] {sfWebDebugLogger} Component "csNavigation/tree" 11.46 ms (2)
+Aug 07 11:00:09 symfony [info] {sfWebDebugLogger} Partial "csNavigation/_tree" 68.39 ms (2)
+Aug 07 11:00:09 symfony [info] {sfWebResponse} Send content (218241 o)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:00:29 symfony [info] {sfPatternRouting} Match route "plugins_by_category" (/plugins/categories/:slug) for /plugins/categories/uncategorized with parameters array (  'module' => 'plugin',  'action' => 'byCategory',  'slug' => 'uncategorized',)
+Aug 07 11:00:29 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:00:29 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 11:00:29 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (Array )
+Aug 07 11:00:29 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (Array )
+Aug 07 11:00:29 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:00:29 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:00:29 symfony [info] {pluginActions} Call "pluginActions->executeByCategory()"
+Aug 07 11:00:29 symfony [info] {sfDoctrineLogger} executeQuery : SELECT p.id AS p__id, p.name AS p__name, p.description AS p__description, p.slug AS p__slug FROM plugin_category p WHERE p.slug = ? LIMIT 1 - (uncategorized )
+Aug 07 11:00:29 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/byCategorySuccess.php"
+Aug 07 11:00:29 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.title AS s__title, s.description AS s__description, s.author_id AS s__author_id, s.category_id AS s__category_id, s.active AS s__active, s.slug AS s__slug, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM symfony_plugin s WHERE s.category_id = ? ORDER BY s.title ASC - (1 )
+Aug 07 11:00:29 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:00:29 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:00:29 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:00:29 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:00:29 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:00:29 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:00:29 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 11:00:29 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 11:00:29 symfony [info] {sfWebDebugLogger} Configuration 20.40 ms (12)
+Aug 07 11:00:29 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.47 ms (8)
+Aug 07 11:00:29 symfony [info] {sfWebDebugLogger} Action "plugin/byCategory" 51.75 ms (1)
+Aug 07 11:00:29 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/byCategory" 151.56 ms (1)
+Aug 07 11:00:29 symfony [info] {sfWebDebugLogger} Component "csNavigation/tree" 11.43 ms (2)
+Aug 07 11:00:29 symfony [info] {sfWebDebugLogger} Partial "csNavigation/_tree" 71.13 ms (2)
+Aug 07 11:00:30 symfony [info] {sfWebResponse} Send content (218241 o)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:00:36 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 07 11:00:36 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:00:36 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 11:00:36 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (Array )
+Aug 07 11:00:36 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (Array )
+Aug 07 11:00:36 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:00:36 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:00:36 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 07 11:00:36 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 07 11:00:36 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:00:36 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:00:36 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:00:36 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:00:36 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:00:37 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:00:37 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 11:00:37 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 11:00:37 symfony [info] {sfWebDebugLogger} Configuration 20.49 ms (12)
+Aug 07 11:00:37 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.41 ms (4)
+Aug 07 11:00:37 symfony [info] {sfWebDebugLogger} Action "plugin/index" 6.75 ms (1)
+Aug 07 11:00:37 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 116.34 ms (1)
+Aug 07 11:00:37 symfony [info] {sfWebDebugLogger} Component "csNavigation/tree" 11.55 ms (2)
+Aug 07 11:00:37 symfony [info] {sfWebDebugLogger} Partial "csNavigation/_tree" 58.61 ms (2)
+Aug 07 11:00:37 symfony [info] {sfWebResponse} Send content (218262 o)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:00:50 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 07 11:00:50 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:00:50 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 11:00:50 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:00:50 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:00:50 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 07 11:00:50 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 07 11:00:50 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:00:50 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:00:50 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:00:50 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:00:50 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:00:50 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:00:50 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 11:00:50 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 11:00:50 symfony [info] {sfWebDebugLogger} Configuration 2414.78 ms (12)
+Aug 07 11:00:50 symfony [info] {sfWebDebugLogger} Action "plugin/index" 7.33 ms (1)
+Aug 07 11:00:50 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 149.02 ms (1)
+Aug 07 11:00:50 symfony [info] {sfWebDebugLogger} Component "csNavigation/tree" 11.36 ms (2)
+Aug 07 11:00:50 symfony [info] {sfWebDebugLogger} Partial "csNavigation/_tree" 56.76 ms (2)
+Aug 07 11:00:51 symfony [info] {sfWebResponse} Send content (216002 o)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:00:55 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 07 11:00:55 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:00:55 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 11:00:55 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (Array )
+Aug 07 11:00:55 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (Array )
+Aug 07 11:00:55 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:00:55 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:00:55 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 07 11:00:55 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 07 11:00:55 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:00:55 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:00:55 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:00:55 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:00:55 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:00:55 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:00:55 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 11:00:55 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 11:00:55 symfony [info] {sfWebDebugLogger} Configuration 20.74 ms (12)
+Aug 07 11:00:55 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.23 ms (4)
+Aug 07 11:00:55 symfony [info] {sfWebDebugLogger} Action "plugin/index" 6.59 ms (1)
+Aug 07 11:00:55 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 109.84 ms (1)
+Aug 07 11:00:55 symfony [info] {sfWebDebugLogger} Component "csNavigation/tree" 11.33 ms (2)
+Aug 07 11:00:55 symfony [info] {sfWebDebugLogger} Partial "csNavigation/_tree" 55.35 ms (2)
+Aug 07 11:00:56 symfony [info] {sfWebResponse} Send content (218337 o)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:01:03 symfony [info] {sfPatternRouting} Match route "plugin_categories" (/plugins/categories) for /plugins/categories with parameters array (  'module' => 'plugin',  'action' => 'categories',)
+Aug 07 11:01:03 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:01:03 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 11:01:03 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (Array )
+Aug 07 11:01:03 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (Array )
+Aug 07 11:01:03 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:01:03 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:01:03 symfony [info] {pluginActions} Call "pluginActions->executeCategories()"
+Aug 07 11:01:03 symfony [info] {sfDoctrineLogger} executeQuery : SELECT p.id AS p__id, p.name AS p__name, p.description AS p__description, p.slug AS p__slug FROM plugin_category p ORDER BY p.name ASC
+Aug 07 11:01:03 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/categoriesSuccess.php"
+Aug 07 11:01:03 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:01:03 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:01:03 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:01:03 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:01:03 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:01:03 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:01:03 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 11:01:03 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 11:01:03 symfony [info] {sfWebDebugLogger} Configuration 20.53 ms (12)
+Aug 07 11:01:03 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.42 ms (5)
+Aug 07 11:01:03 symfony [info] {sfWebDebugLogger} Action "plugin/categories" 29.62 ms (1)
+Aug 07 11:01:03 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/categories" 124.07 ms (1)
+Aug 07 11:01:03 symfony [info] {sfWebDebugLogger} Component "csNavigation/tree" 12.21 ms (2)
+Aug 07 11:01:03 symfony [info] {sfWebDebugLogger} Partial "csNavigation/_tree" 64.98 ms (2)
+Aug 07 11:01:04 symfony [info] {sfWebResponse} Send content (217259 o)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:01:15 symfony [info] {sfPatternRouting} Match route "plugin_categories" (/plugins/categories) for /plugins/categories with parameters array (  'module' => 'plugin',  'action' => 'categories',)
+Aug 07 11:01:15 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:01:15 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 11:01:15 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:01:15 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:01:15 symfony [info] {pluginActions} Call "pluginActions->executeCategories()"
+Aug 07 11:01:15 symfony [info] {sfDoctrineLogger} executeQuery : SELECT p.id AS p__id, p.name AS p__name, p.description AS p__description, p.slug AS p__slug FROM plugin_category p ORDER BY p.name ASC
+Aug 07 11:01:15 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/categoriesSuccess.php"
+Aug 07 11:01:16 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:01:16 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:01:16 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:01:16 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:01:16 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:01:16 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:01:16 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 11:01:16 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 11:01:16 symfony [info] {sfWebDebugLogger} Configuration 1927.12 ms (12)
+Aug 07 11:01:16 symfony [info] {sfWebDebugLogger} Action "plugin/categories" 51.74 ms (1)
+Aug 07 11:01:16 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.06 ms (1)
+Aug 07 11:01:16 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/categories" 682.73 ms (1)
+Aug 07 11:01:16 symfony [info] {sfWebDebugLogger} Component "csNavigation/tree" 11.60 ms (2)
+Aug 07 11:01:16 symfony [info] {sfWebDebugLogger} Partial "csNavigation/_tree" 60.44 ms (2)
+Aug 07 11:01:16 symfony [info] {sfWebResponse} Send content (215690 o)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:01:48 symfony [info] {sfPatternRouting} Match route "plugins_by_category" (/plugins/categories/:slug) for /plugins/categories/uncategorized with parameters array (  'module' => 'plugin',  'action' => 'byCategory',  'slug' => 'uncategorized',)
+Aug 07 11:01:48 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:01:48 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 11:01:48 symfony [info] {sfDoctrineLogger} executeQuery : SELECT COUNT(*) AS num_results FROM cs_navigation_item c
+Aug 07 11:01:48 symfony [info] {sfDoctrineLogger} executeQuery : INSERT INTO cs_navigation_item (protected, locked, name, level) VALUES (?, ?, ?, ?) - (0, 0, Main, 0 )
+Aug 07 11:01:48 symfony [info] {sfDoctrineLogger} executeQuery : UPDATE cs_navigation_item SET root_id = ?, lft = ?, rgt = ? WHERE id = ? - (1, 1, 2, 1 )
+Aug 07 11:01:48 symfony [info] {sfDoctrineLogger} executeQuery : INSERT INTO cs_navigation_menu (title, root_id) VALUES (?, ?) - (Main, 1 )
+Aug 07 11:01:48 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? LIMIT 1 - (1 )
+Aug 07 11:01:48 symfony [info] {sfDoctrineLogger} executeQuery : UPDATE cs_navigation_item SET lft = lft + ? WHERE lft >= ? AND root_id = ? - (2, 2, 1 )
+Aug 07 11:01:48 symfony [info] {sfDoctrineLogger} executeQuery : UPDATE cs_navigation_item SET rgt = rgt + ? WHERE rgt >= ? AND root_id = ? - (2, 2, 1 )
+Aug 07 11:01:48 symfony [info] {sfDoctrineLogger} executeQuery : INSERT INTO cs_navigation_item (protected, locked, name, route, level, lft, rgt, root_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?) - (0, 0, Plugins, @homepage, 1, 2, 3, 1 )
+Aug 07 11:01:48 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? LIMIT 1 - (1 )
+Aug 07 11:01:48 symfony [info] {sfDoctrineLogger} executeQuery : UPDATE cs_navigation_item SET lft = lft + ? WHERE lft >= ? AND root_id = ? - (2, 4, 1 )
+Aug 07 11:01:48 symfony [info] {sfDoctrineLogger} executeQuery : UPDATE cs_navigation_item SET rgt = rgt + ? WHERE rgt >= ? AND root_id = ? - (2, 4, 1 )
+Aug 07 11:01:48 symfony [info] {sfDoctrineLogger} executeQuery : INSERT INTO cs_navigation_item (protected, locked, name, route, level, lft, rgt, root_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?) - (0, 0, Categories, @plugin_categories, 1, 4, 5, 1 )
+Aug 07 11:01:48 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? LIMIT 1 - (1 )
+Aug 07 11:01:48 symfony [info] {sfDoctrineLogger} executeQuery : UPDATE cs_navigation_item SET lft = lft + ? WHERE lft >= ? AND root_id = ? - (2, 6, 1 )
+Aug 07 11:01:48 symfony [info] {sfDoctrineLogger} executeQuery : UPDATE cs_navigation_item SET rgt = rgt + ? WHERE rgt >= ? AND root_id = ? - (2, 6, 1 )
+Aug 07 11:01:48 symfony [info] {sfDoctrineLogger} executeQuery : INSERT INTO cs_navigation_item (protected, locked, name, route, level, lft, rgt, root_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?) - (0, 0, Developers, @authors, 1, 6, 7, 1 )
+Aug 07 11:01:48 symfony [info] {sfDoctrineLogger} executeQuery : INSERT INTO cs_navigation_item (protected, locked, name, level) VALUES (?, ?, ?, ?) - (0, 0, Footer, 0 )
+Aug 07 11:01:49 symfony [info] {sfDoctrineLogger} executeQuery : UPDATE cs_navigation_item SET root_id = ?, lft = ?, rgt = ? WHERE id = ? - (5, 1, 2, 5 )
+Aug 07 11:01:49 symfony [info] {sfDoctrineLogger} executeQuery : INSERT INTO cs_navigation_menu (title, root_id) VALUES (?, ?) - (Footer, 5 )
+Aug 07 11:01:49 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? LIMIT 1 - (5 )
+Aug 07 11:01:49 symfony [info] {sfDoctrineLogger} executeQuery : UPDATE cs_navigation_item SET lft = lft + ? WHERE lft >= ? AND root_id = ? - (2, 2, 5 )
+Aug 07 11:01:49 symfony [info] {sfDoctrineLogger} executeQuery : UPDATE cs_navigation_item SET rgt = rgt + ? WHERE rgt >= ? AND root_id = ? - (2, 2, 5 )
+Aug 07 11:01:49 symfony [info] {sfDoctrineLogger} executeQuery : INSERT INTO cs_navigation_item (protected, locked, name, route, level, lft, rgt, root_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?) - (0, 0, home, /, 1, 2, 3, 5 )
+Aug 07 11:01:49 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? LIMIT 1 - (5 )
+Aug 07 11:01:49 symfony [info] {sfDoctrineLogger} executeQuery : UPDATE cs_navigation_item SET lft = lft + ? WHERE lft >= ? AND root_id = ? - (2, 4, 5 )
+Aug 07 11:01:49 symfony [info] {sfDoctrineLogger} executeQuery : UPDATE cs_navigation_item SET rgt = rgt + ? WHERE rgt >= ? AND root_id = ? - (2, 4, 5 )
+Aug 07 11:01:49 symfony [info] {sfDoctrineLogger} executeQuery : INSERT INTO cs_navigation_item (protected, locked, name, route, level, lft, rgt, root_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?) - (0, 0, about, /about, 1, 4, 5, 5 )
+Aug 07 11:01:49 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? LIMIT 1 - (5 )
+Aug 07 11:01:49 symfony [info] {sfDoctrineLogger} executeQuery : UPDATE cs_navigation_item SET lft = lft + ? WHERE lft >= ? AND root_id = ? - (2, 6, 5 )
+Aug 07 11:01:49 symfony [info] {sfDoctrineLogger} executeQuery : UPDATE cs_navigation_item SET rgt = rgt + ? WHERE rgt >= ? AND root_id = ? - (2, 6, 5 )
+Aug 07 11:01:49 symfony [info] {sfDoctrineLogger} executeQuery : INSERT INTO cs_navigation_item (protected, locked, name, route, level, lft, rgt, root_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?) - (0, 0, contact, /contact, 1, 6, 7, 5 )
+Aug 07 11:01:49 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:01:49 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:01:49 symfony [info] {pluginActions} Call "pluginActions->executeByCategory()"
+Aug 07 11:01:49 symfony [info] {sfDoctrineLogger} executeQuery : SELECT p.id AS p__id, p.name AS p__name, p.description AS p__description, p.slug AS p__slug FROM plugin_category p WHERE p.slug = ? LIMIT 1 - (uncategorized )
+Aug 07 11:01:49 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/byCategorySuccess.php"
+Aug 07 11:01:49 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.title AS s__title, s.description AS s__description, s.author_id AS s__author_id, s.category_id AS s__category_id, s.active AS s__active, s.slug AS s__slug, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM symfony_plugin s WHERE s.category_id = ? ORDER BY s.title ASC - (1 )
+Aug 07 11:01:49 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:01:49 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:01:49 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:01:49 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:01:49 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:01:49 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:01:49 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 11:01:49 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 11:01:49 symfony [info] {sfWebDebugLogger} Configuration 1910.20 ms (12)
+Aug 07 11:01:49 symfony [info] {sfWebDebugLogger} Database (Doctrine) 3.91 ms (65)
+Aug 07 11:01:49 symfony [info] {sfWebDebugLogger} Action "plugin/byCategory" 51.37 ms (1)
+Aug 07 11:01:49 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/byCategory" 184.37 ms (1)
+Aug 07 11:01:49 symfony [info] {sfWebDebugLogger} Component "csNavigation/tree" 11.65 ms (2)
+Aug 07 11:01:49 symfony [info] {sfWebDebugLogger} Partial "csNavigation/_tree" 67.84 ms (2)
+Aug 07 11:01:50 symfony [info] {sfWebResponse} Send content (225318 o)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:03:04 symfony [info] {sfPatternRouting} Match route "plugins_by_category" (/plugins/categories/:slug) for /plugins/categories/uncategorized with parameters array (  'module' => 'plugin',  'action' => 'byCategory',  'slug' => 'uncategorized',)
+Aug 07 11:03:04 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:03:04 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 11:03:04 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (1 )
+Aug 07 11:03:04 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (5 )
+Aug 07 11:03:04 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:03:04 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:03:05 symfony [info] {pluginActions} Call "pluginActions->executeByCategory()"
+Aug 07 11:03:05 symfony [info] {sfDoctrineLogger} executeQuery : SELECT p.id AS p__id, p.name AS p__name, p.description AS p__description, p.slug AS p__slug FROM plugin_category p WHERE p.slug = ? LIMIT 1 - (uncategorized )
+Aug 07 11:03:05 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/byCategorySuccess.php"
+Aug 07 11:03:05 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.title AS s__title, s.description AS s__description, s.author_id AS s__author_id, s.category_id AS s__category_id, s.active AS s__active, s.slug AS s__slug, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM symfony_plugin s WHERE s.category_id = ? ORDER BY s.title ASC - (1 )
+Aug 07 11:03:08 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:03:08 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:03:08 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:03:08 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:03:08 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:03:08 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:03:08 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 11:03:08 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 11:03:08 symfony [info] {sfWebDebugLogger} Configuration 20.49 ms (12)
+Aug 07 11:03:08 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.51 ms (8)
+Aug 07 11:03:08 symfony [info] {sfWebDebugLogger} Action "plugin/byCategory" 50.21 ms (1)
+Aug 07 11:03:08 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/byCategory" 3169.07 ms (1)
+Aug 07 11:03:08 symfony [info] {sfWebDebugLogger} Component "csNavigation/tree" 11.36 ms (2)
+Aug 07 11:03:08 symfony [info] {sfWebDebugLogger} Partial "csNavigation/_tree" 123.60 ms (2)
+Aug 07 11:03:08 symfony [info] {sfWebResponse} Send content (281467 o)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:title)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:03:46 symfony [info] {sfPatternRouting} Match route "plugins_by_category" (/plugins/categories/:slug) for /plugins/categories/uncategorized with parameters array (  'module' => 'plugin',  'action' => 'byCategory',  'slug' => 'uncategorized',)
+Aug 07 11:03:46 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:03:46 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 11:03:46 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (1 )
+Aug 07 11:03:46 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (5 )
+Aug 07 11:03:46 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:03:46 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:03:46 symfony [info] {pluginActions} Call "pluginActions->executeByCategory()"
+Aug 07 11:03:46 symfony [info] {sfDoctrineLogger} executeQuery : SELECT p.id AS p__id, p.name AS p__name, p.description AS p__description, p.slug AS p__slug FROM plugin_category p WHERE p.slug = ? LIMIT 1 - (uncategorized )
+Aug 07 11:03:46 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/byCategorySuccess.php"
+Aug 07 11:03:46 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.title AS s__title, s.description AS s__description, s.author_id AS s__author_id, s.category_id AS s__category_id, s.active AS s__active, s.slug AS s__slug, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM symfony_plugin s WHERE s.category_id = ? ORDER BY s.title ASC - (1 )
+Aug 07 11:03:49 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:03:49 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:03:49 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:03:49 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:03:50 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:03:50 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:03:50 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 11:03:50 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 11:03:50 symfony [info] {sfWebDebugLogger} Configuration 153.54 ms (13)
+Aug 07 11:03:50 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.45 ms (8)
+Aug 07 11:03:50 symfony [info] {sfWebDebugLogger} Action "plugin/byCategory" 50.68 ms (1)
+Aug 07 11:03:50 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/byCategory" 3130.24 ms (1)
+Aug 07 11:03:50 symfony [info] {sfWebDebugLogger} Component "csNavigation/tree" 15.10 ms (2)
+Aug 07 11:03:50 symfony [info] {sfWebDebugLogger} Partial "csNavigation/_tree" 74.91 ms (2)
+Aug 07 11:03:50 symfony [info] {sfWebResponse} Send content (281468 o)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:title)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:03:52 symfony [info] {sfPatternRouting} Match route "plugin" (/plugins/:title) for /plugins/csGlossaryPlugin with parameters array (  'module' => 'plugin',  'action' => 'show',  'title' => 'csGlossaryPlugin',)
+Aug 07 11:03:52 symfony [info] {sfFrontWebController} Action "plugin/show" does not exist
+Aug 07 11:03:52 symfony [err] {sfError404Exception} Action "plugin/show" does not exist.
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:title)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:04:02 symfony [info] {sfPatternRouting} Match route "plugin" (/plugins/:title) for /plugins/csGlossaryPlugin with parameters array (  'module' => 'plugin',  'action' => 'show',  'title' => 'csGlossaryPlugin',)
+Aug 07 11:04:02 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:04:02 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 11:04:03 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (1 )
+Aug 07 11:04:03 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (5 )
+Aug 07 11:04:03 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:04:03 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:04:03 symfony [info] {pluginActions} Call "pluginActions->executeShow()"
+Aug 07 11:04:03 symfony [err] {Doctrine_Table_Exception} You must specify the value to findBy
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:title)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:04:15 symfony [info] {sfPatternRouting} Match route "plugin" (/plugins/:title) for /plugins/csGlossaryPlugin with parameters array (  'module' => 'plugin',  'action' => 'show',  'title' => 'csGlossaryPlugin',)
+Aug 07 11:04:15 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:04:15 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 11:04:15 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (1 )
+Aug 07 11:04:15 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (5 )
+Aug 07 11:04:15 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:04:15 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:04:15 symfony [info] {pluginActions} Call "pluginActions->executeShow()"
+Aug 07 11:04:15 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.title AS s__title, s.description AS s__description, s.author_id AS s__author_id, s.category_id AS s__category_id, s.active AS s__active, s.slug AS s__slug, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM symfony_plugin s WHERE s.title = ? LIMIT 1 - (csGlossaryPlugin )
+Aug 07 11:04:15 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/showSuccess.php"
+Aug 07 11:04:15 symfony [err] {Doctrine_Record_UnknownPropertyException} Unknown record property / related component "Author" on "SymfonyPlugin"
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:title)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:07:18 symfony [info] {sfPatternRouting} Match route "plugin" (/plugins/:title) for /plugins/csGlossaryPlugin with parameters array (  'module' => 'plugin',  'action' => 'show',  'title' => 'csGlossaryPlugin',)
+Aug 07 11:07:18 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:07:18 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 11:07:18 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (1 )
+Aug 07 11:07:19 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (5 )
+Aug 07 11:07:19 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:07:19 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:07:19 symfony [info] {pluginActions} Call "pluginActions->executeShow()"
+Aug 07 11:07:19 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.title AS s__title, s.description AS s__description, s.author_id AS s__author_id, s.category_id AS s__category_id, s.active AS s__active, s.slug AS s__slug, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM symfony_plugin s WHERE s.title = ? LIMIT 1 - (csGlossaryPlugin )
+Aug 07 11:07:19 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/showSuccess.php"
+Aug 07 11:07:19 symfony [err] {sfConfigurationException} The module "csComments" is not enabled.
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:title)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:07:30 symfony [info] {sfPatternRouting} Match route "plugin" (/plugins/:title) for /plugins/csGlossaryPlugin with parameters array (  'module' => 'plugin',  'action' => 'show',  'title' => 'csGlossaryPlugin',)
+Aug 07 11:07:30 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:07:30 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 11:07:30 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (1 )
+Aug 07 11:07:30 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (5 )
+Aug 07 11:07:30 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:07:30 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:07:30 symfony [info] {pluginActions} Call "pluginActions->executeShow()"
+Aug 07 11:07:30 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.title AS s__title, s.description AS s__description, s.author_id AS s__author_id, s.category_id AS s__category_id, s.active AS s__active, s.slug AS s__slug, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM symfony_plugin s WHERE s.title = ? LIMIT 1 - (csGlossaryPlugin )
+Aug 07 11:07:30 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/showSuccess.php"
+Aug 07 11:07:30 symfony [info] {main} Call "csComments->executeThread()"
+Aug 07 11:07:31 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.body AS c__body, c.approved AS c__approved, c.approved_at AS c__approved_at, c.user_id AS c__user_id, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level, c.created_at AS c__created_at, c.updated_at AS c__updated_at, s.id AS s__id, s.comment_id AS s__comment_id FROM comment c LEFT JOIN symfony_plugin_comment s ON c.id = s.comment_id WHERE s.id IN (?) - (19 )
+Aug 07 11:07:31 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/sfCommentsPlugin/modules/csComments/templates/_thread.php"
+Aug 07 11:07:31 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/sfCommentsPlugin/modules/csComments/templates/_comments.php"
+Aug 07 11:07:31 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:07:31 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:07:31 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:07:31 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:07:31 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:07:31 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:07:31 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 11:07:31 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 11:07:31 symfony [info] {sfWebDebugLogger} Configuration 35.63 ms (13)
+Aug 07 11:07:31 symfony [info] {sfWebDebugLogger} Database (Doctrine) 214.62 ms (8)
+Aug 07 11:07:31 symfony [info] {sfWebDebugLogger} Action "plugin/show" 50.86 ms (1)
+Aug 07 11:07:31 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/show" 891.79 ms (1)
+Aug 07 11:07:31 symfony [info] {sfWebDebugLogger} Component "csComments/thread" 461.07 ms (1)
+Aug 07 11:07:31 symfony [info] {sfWebDebugLogger} Partial "csComments/_thread" 167.26 ms (1)
+Aug 07 11:07:31 symfony [info] {sfWebDebugLogger} Partial "csComments/_comments" 39.39 ms (1)
+Aug 07 11:07:31 symfony [info] {sfWebDebugLogger} Component "csNavigation/tree" 20.31 ms (2)
+Aug 07 11:07:31 symfony [info] {sfWebDebugLogger} Partial "csNavigation/_tree" 98.88 ms (2)
+Aug 07 11:07:31 symfony [info] {sfWebResponse} Send content (241013 o)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:title)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:08:27 symfony [info] {sfPatternRouting} Match route "plugin" (/plugins/:title) for /plugins/csGlossaryPlugin with parameters array (  'module' => 'plugin',  'action' => 'show',  'title' => 'csGlossaryPlugin',)
+Aug 07 11:08:27 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:08:27 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 11:08:27 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (1 )
+Aug 07 11:08:28 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (5 )
+Aug 07 11:08:28 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:08:28 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:08:28 symfony [info] {pluginActions} Call "pluginActions->executeShow()"
+Aug 07 11:08:28 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.title AS s__title, s.description AS s__description, s.author_id AS s__author_id, s.category_id AS s__category_id, s.active AS s__active, s.slug AS s__slug, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM symfony_plugin s WHERE s.title = ? LIMIT 1 - (csGlossaryPlugin )
+Aug 07 11:08:28 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/showSuccess.php"
+Aug 07 11:08:28 symfony [info] {main} Call "csComments->executeThread()"
+Aug 07 11:08:28 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.body AS c__body, c.approved AS c__approved, c.approved_at AS c__approved_at, c.user_id AS c__user_id, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level, c.created_at AS c__created_at, c.updated_at AS c__updated_at, s.id AS s__id, s.comment_id AS s__comment_id FROM comment c LEFT JOIN symfony_plugin_comment s ON c.id = s.comment_id WHERE s.id IN (?) - (19 )
+Aug 07 11:08:28 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/sfCommentsPlugin/modules/csComments/templates/_thread.php"
+Aug 07 11:08:28 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/sfCommentsPlugin/modules/csComments/templates/_comments.php"
+Aug 07 11:08:28 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:08:28 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:08:28 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:08:28 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:08:28 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:08:28 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:08:28 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 11:08:28 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 11:08:28 symfony [info] {sfWebDebugLogger} Configuration 22.40 ms (13)
+Aug 07 11:08:28 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.47 ms (8)
+Aug 07 11:08:28 symfony [info] {sfWebDebugLogger} Action "plugin/show" 49.44 ms (1)
+Aug 07 11:08:28 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/show" 212.36 ms (1)
+Aug 07 11:08:28 symfony [info] {sfWebDebugLogger} Component "csComments/thread" 57.92 ms (1)
+Aug 07 11:08:28 symfony [info] {sfWebDebugLogger} Partial "csComments/_thread" 19.17 ms (1)
+Aug 07 11:08:28 symfony [info] {sfWebDebugLogger} Partial "csComments/_comments" 3.92 ms (1)
+Aug 07 11:08:28 symfony [info] {sfWebDebugLogger} Component "csNavigation/tree" 11.51 ms (2)
+Aug 07 11:08:28 symfony [info] {sfWebDebugLogger} Partial "csNavigation/_tree" 67.21 ms (2)
+Aug 07 11:08:28 symfony [info] {sfWebResponse} Send content (240918 o)
+Aug 07 11:08:33 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:08:33 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:08:33 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:08:33 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:08:33 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:08:33 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:08:33 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:08:33 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:08:33 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:08:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:08:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:08:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:08:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:08:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:08:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:08:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:08:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:08:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:08:34 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 11:08:34 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 11:08:34 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 11:08:34 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:title)
+Aug 07 11:08:34 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 11:08:34 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 11:08:34 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:08:34 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 11:08:34 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:08:34 symfony [info] {sfPatternRouting} Match route "plugin" (/plugins/:title) for /plugins/csGlossaryPlugin with parameters array (  'module' => 'plugin',  'action' => 'show',  'title' => 'csGlossaryPlugin',)
+Aug 07 11:08:34 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:08:34 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 11:08:34 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (1 )
+Aug 07 11:08:34 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? - (5 )
+Aug 07 11:08:34 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:08:34 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:08:34 symfony [info] {pluginActions} Call "pluginActions->executeShow()"
+Aug 07 11:08:34 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.title AS s__title, s.description AS s__description, s.author_id AS s__author_id, s.category_id AS s__category_id, s.active AS s__active, s.slug AS s__slug, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM symfony_plugin s WHERE s.title = ? LIMIT 1 - (csGlossaryPlugin )
+Aug 07 11:08:34 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/showSuccess.php"
+Aug 07 11:08:34 symfony [info] {main} Call "csComments->executeThread()"
+Aug 07 11:08:34 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.body AS c__body, c.approved AS c__approved, c.approved_at AS c__approved_at, c.user_id AS c__user_id, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level, c.created_at AS c__created_at, c.updated_at AS c__updated_at, s.id AS s__id, s.comment_id AS s__comment_id FROM comment c LEFT JOIN symfony_plugin_comment s ON c.id = s.comment_id WHERE s.id IN (?) - (19 )
+Aug 07 11:08:34 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/sfCommentsPlugin/modules/csComments/templates/_thread.php"
+Aug 07 11:08:34 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/sfCommentsPlugin/modules/csComments/templates/_comments.php"
+Aug 07 11:08:34 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:08:34 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 11:08:34 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:08:34 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:08:34 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 11:08:34 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 11:08:34 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 11:08:34 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 11:08:34 symfony [info] {sfWebDebugLogger} Configuration 22.25 ms (13)
+Aug 07 11:08:34 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.46 ms (8)
+Aug 07 11:08:34 symfony [info] {sfWebDebugLogger} Action "plugin/show" 51.20 ms (1)
+Aug 07 11:08:34 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/show" 221.43 ms (1)
+Aug 07 11:08:34 symfony [info] {sfWebDebugLogger} Component "csComments/thread" 60.96 ms (1)
+Aug 07 11:08:34 symfony [info] {sfWebDebugLogger} Partial "csComments/_thread" 20.37 ms (1)
+Aug 07 11:08:34 symfony [info] {sfWebDebugLogger} Partial "csComments/_comments" 4.13 ms (1)
+Aug 07 11:08:34 symfony [info] {sfWebDebugLogger} Component "csNavigation/tree" 11.57 ms (2)
+Aug 07 11:08:34 symfony [info] {sfWebDebugLogger} Partial "csNavigation/_tree" 69.88 ms (2)
+Aug 07 11:08:35 symfony [info] {sfWebResponse} Send content (240981 o)

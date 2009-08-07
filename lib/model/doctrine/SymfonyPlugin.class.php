@@ -14,6 +14,6 @@ class SymfonyPlugin extends BaseSymfonyPlugin
 {
   public function getRoute()
   {
-    return '@plugin?slug='.$this['slug'];
+    return '@plugin?title='.$this['title'];
   }
 }

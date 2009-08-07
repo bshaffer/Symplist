@@ -20,15 +20,13 @@
 /**
  * sfFormDoctrine is the base class for forms based on Doctrine objects.
  *
- * This class extends BaseForm, a class generated automatically with each new project.
- *
  * @package    symfony
  * @subpackage form
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Jonathan H. Wage <jonwage@gmail.com>
  * @version    SVN: $Id: sfFormDoctrine.class.php 7845 2008-03-12 22:36:14Z fabien $
  */
-abstract class sfFormDoctrine extends sfFormObject
+abstract class sfFormDoctrine extends sfForm
 {
   protected
     $isNew  = true,
@@ -208,25 +206,12 @@ abstract class sfFormDoctrine extends sfFormObject
 
     $values = $this->processValues($values);
 
-    $this->doUpdateObject($values);
+    $this->object->fromArray($values);
 
     // embedded forms
     $this->updateObjectEmbeddedForms($values);
 
     return $this->object;
-  }
-
-  /**
-   * Updates the values of the object with the cleaned up values.
-   *
-   * If you want to add some logic before updating or update other associated
-   * objects, this is the method to override.
-   *
-   * @param array $values An array of values
-   */
-  protected function doUpdateObject($values)
-  {
-    $this->object->fromArray($values);
   }
 
   /**
@@ -279,7 +264,7 @@ abstract class sfFormDoctrine extends sfFormObject
     foreach ($valuesToProcess as $field => $value)
     {
       $method = sprintf('update%sColumn', self::camelize($field));
-      
+
       if (method_exists($this, $method))
       {
         if (false === $ret = $this->$method($value))
@@ -297,7 +282,7 @@ abstract class sfFormDoctrine extends sfFormObject
         if ($this->validatorSchema[$field] instanceof sfValidatorFile)
         {
           $values[$field] = $this->processUploadedFile($field, null, $valuesToProcess);
-        }          
+        }
       }
     }
 
@@ -537,13 +522,6 @@ abstract class sfFormDoctrine extends sfFormObject
     {
       return $file->save();
     }
-  }
-
-  /**
-   * Used in generated forms when models use inheritance.
-   */
-  protected function setupInheritance()
-  {
   }
 
   protected function camelize($text)

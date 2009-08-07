@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage widget
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfWidgetFormSelectCheckbox.class.php 18770 2009-05-29 18:34:27Z fabien $
+ * @version    SVN: $Id: sfWidgetFormSelectCheckbox.class.php 17068 2009-04-07 08:24:53Z fabien $
  */
 class sfWidgetFormSelectCheckbox extends sfWidgetForm
 {
@@ -109,7 +109,7 @@ class sfWidgetFormSelectCheckbox extends sfWidgetForm
         $baseAttributes['checked'] = 'checked';
       }
 
-      $inputs[$id] = array(
+      $inputs[] = array(
         'input' => $this->renderTag('input', array_merge($baseAttributes, $attributes)),
         'label' => $this->renderContentTag('label', $option, array('for' => $id)),
       );
@@ -126,7 +126,7 @@ class sfWidgetFormSelectCheckbox extends sfWidgetForm
       $rows[] = $this->renderContentTag('li', $input['input'].$this->getOption('label_separator').$input['label']);
     }
 
-    return !$rows ? '' : $this->renderContentTag('ul', implode($this->getOption('separator'), $rows), array('class' => $this->getOption('class')));
+    return $this->renderContentTag('ul', implode($this->getOption('separator'), $rows), array('class' => $this->getOption('class')));
   }
 
   public function __clone()

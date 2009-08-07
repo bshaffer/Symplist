@@ -12,7 +12,7 @@ require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 require_once($_test_dir.'/../../../../test/unit/sfContextMock.class.php');
 require_once(dirname(__FILE__).'/sfValidatorTestHelper.class.php');
 
-$t = new lime_test(36);
+$t = new lime_test(36, new lime_output_color());
 
 $context = sfContext::getInstance();
 $v = new sfStringValidator($context);

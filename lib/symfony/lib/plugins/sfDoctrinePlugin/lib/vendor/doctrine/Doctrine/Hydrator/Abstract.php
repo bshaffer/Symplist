@@ -32,27 +32,76 @@
  */
 abstract class Doctrine_Hydrator_Abstract extends Doctrine_Locator_Injectable
 {
-    protected
-        $_queryComponents = array(),
-        $_tableAliases = array();
+    /**
+     * @var array $_aliasMap                    two dimensional array containing the map for query aliases
+     *      Main keys are component aliases
+     *
+     *          table               table object associated with given alias
+     *
+     *          relation            the relation object owned by the parent
+     *
+     *          parent              the alias of the parent
+     *
+     *          agg                 the aggregates of this component
+     *
+     *          map                 the name of the column / aggregate value this
+     *                              component is mapped to a collection
+     */
+    protected $_queryComponents = array();
 
-    public function __construct($queryComponents, $tableAliases)
+    /**
+     * The current hydration mode.
+     */
+    protected $_hydrationMode = Doctrine::HYDRATE_RECORD;
+
+    /**
+     * constructor
+     *
+     * @param Doctrine_Connection|null $connection
+     */
+    public function __construct() {}
+
+    /**
+     * Sets the fetchmode.
+     *
+     * @param integer $fetchmode  One of the Doctrine::HYDRATE_* constants.
+     */
+    public function setHydrationMode($hydrationMode)
     {
-        $this->_queryComponents = $queryComponents;
-        $this->_tableAliases = $tableAliases;
+        $this->_hydrationMode = $hydrationMode;
     }
 
     /**
-     * Checks whether a name is ignored. Used during result set parsing to skip
-     * certain elements in the result set that do not have any meaning for the result.
-     * (I.e. ORACLE limit/offset emulation adds doctrine_rownum to the result set).
+     * Get the fetchmode
      *
-     * @param string $name
-     * @return boolean
+     * @return integer $fetchMode One of the Doctrine::HYDRATE_* constants
      */
-    protected function _isIgnoredName($name)
+    public function getHydrationMode()
     {
-        return $name == 'DOCTRINE_ROWNUM';
+        return $this->_hydrationMode;
+    }
+
+    /**
+     * setAliasMap
+     * sets the whole component alias map
+     *
+     * @param array $map            alias map
+     * @return Doctrine_Hydrate     this object
+     */
+    public function setQueryComponents(array $queryComponents)
+    {
+        $this->_queryComponents = $queryComponents;
+    }
+
+    /**
+     * getAliasMap
+     * returns the component alias map
+     *
+     * @return array    component alias map
+     */
+    public function getQueryComponents()
+    {
+        return $this->_queryComponents;
     }
 
     /**
@@ -65,8 +114,11 @@ abstract class Doctrine_Hydrator_Abstract extends Doctrine_Locator_Injectable
      * The key idea is the loop over the rowset only once doing all the needed operations
      * within this massive loop.
      *
+     * @todo: Can we refactor this function so that it is not so long and 
+     * nested?
+     *
      * @param mixed $stmt
-     * @return mixed
+     * @return array
      */
-    abstract public function hydrateResultSet($stmt);
+    abstract public function hydrateResultSet($stmt, $tableAliases);
 }

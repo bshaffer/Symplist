@@ -49,17 +49,6 @@ class SfPeerBuilder extends PHP5PeerBuilder
     parent::addIncludes($script);
   }
 
-  protected function addConstantsAndAttributes(&$script)
-  {
-    $boolean = $this->getTable()->getAttribute('isI18N') ? 'true' : 'false';
-    $script .= "
-	/** class enabled with symfony I18N functionality */
-	const IS_I18N = $boolean;
-";
-
-    parent::addConstantsAndAttributes($script);
-  }
-
   protected function addSelectMethods(&$script)
   {
     parent::addSelectMethods($script);
@@ -426,7 +415,16 @@ class SfPeerBuilder extends PHP5PeerBuilder
     {
       file_put_contents($absolute_behavior_file_path, sprintf("<?php\nsfPropelBehavior::add('%s', %s);\n", $this->getTable()->getPhpName(), var_export(unserialize($behaviors), true)));
 
-      $script .= sprintf("\ninclude_once '%s';\n", $behavior_file_path);
+      $behavior_include_script = <<<EOF
+
+
+if (sfProjectConfiguration::getActive() instanceof sfApplicationConfiguration)
+{
+  include_once '%s';
+}
+
+EOF;
+      $script .= sprintf($behavior_include_script, $behavior_file_path);
     }
   }
 

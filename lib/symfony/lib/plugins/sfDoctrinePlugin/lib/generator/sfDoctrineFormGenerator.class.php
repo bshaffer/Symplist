@@ -111,8 +111,7 @@ class sfDoctrineFormGenerator extends sfGenerator
         mkdir($baseDir.'/base', 0777, true);
       }
 
-      file_put_contents($baseDir.'/base/Base'.$model.'Form.class.php', $this->evalTemplate(is_null($this->getParentModel()) ? 'sfDoctrineFormGeneratedTemplate.php' : 'sfDoctrineFormGeneratedInheritanceTemplate.php'));
-
+      file_put_contents($baseDir.'/base/Base'.$model.'Form.class.php', $this->evalTemplate('sfDoctrineFormGeneratedTemplate.php'));
       if ($isPluginModel)
       {
         $pluginBaseDir = $pluginPaths[$pluginName].'/lib/form/doctrine';
@@ -216,25 +215,20 @@ class sfDoctrineFormGenerator extends sfGenerator
   /**
    * Returns an array of relations that represents a many to many relationship.
    *
-   * @return array An array of relations
+   * A table is considered to be a m2m table if it has 2 foreign keys that are also primary keys.
+   *
+   * @return array An array of relations.
    */
   public function getManyToManyRelations()
   {
     $relations = array();
     foreach ($this->table->getRelations() as $relation)
     {
-      if (
-        Doctrine_Relation::MANY == $relation->getType()
-        &&
-        isset($relation['refTable'])
-        &&
-        (is_null($this->getParentModel()) || !Doctrine::getTable($this->getParentModel())->hasRelation($relation->getAlias()))
-      )
+      if ($relation->getType() === Doctrine_Relation::MANY && isset($relation['refTable']))
       {
         $relations[] = $relation;
       }
     }
-
     return $relations;
   }
 
@@ -603,31 +597,8 @@ class sfDoctrineFormGenerator extends sfGenerator
                                    Doctrine::MODEL_LOADING_CONSERVATIVE);
     $models = Doctrine::getLoadedModels();
     $models =  Doctrine::initializeModels($models);
-    $models = Doctrine::filterInvalidModels($models);
-    $this->models = $this->filterModels($models);
-
+    $this->models = Doctrine::filterInvalidModels($models);
     return $this->models;
-  }
-
-  /**
-   * Filter out models that have disabled generation of form classes
-   *
-   * @return array $models Array of models to generate forms for
-   */
-  protected function filterModels($models)
-  {
-    foreach ($models as $key => $model)
-    {
-      $table = Doctrine::getTable($model);
-      $symfonyOptions = $table->getOption('symfony');
-
-      if (isset($symfonyOptions['form']) && !$symfonyOptions['form'])
-      {
-        unset($models[$key]);
-      }
-    }
-
-    return $models;
   }
 
   /**
@@ -644,40 +615,5 @@ class sfDoctrineFormGenerator extends sfGenerator
     $php = str_replace(',)', ')', $php);
     $php = str_replace('  ', ' ', $php);
     return $php;
-  }
-
-  /**
-   * Returns the name of the model class this model extends.
-   * 
-   * @return string|null
-   */
-  public function getParentModel()
-  {
-    $model = $this->modelName;
-
-    // find the first non-abstract parent
-    while ($model = get_parent_class($model))
-    {
-      if ('Doctrine_Record' == $model)
-      {
-        break;
-      }
-
-      $r = new ReflectionClass($model);
-      if (!$r->isAbstract())
-      {
-        return $r->getName();
-      }
-    }
-  }
-
-  /**
-   * Get the name of the form class to extend based on the inheritance of the model
-   *
-   * @return string
-   */
-  public function getFormClassToExtend()
-  {
-    return is_null($model = $this->getParentModel()) ? 'BaseFormDoctrine' : sprintf('%sForm', $model);
   }
 }

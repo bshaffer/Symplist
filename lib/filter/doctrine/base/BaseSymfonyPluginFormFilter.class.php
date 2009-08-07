@@ -5,10 +5,9 @@ require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/BaseFormFilterDoctrin
 /**
  * SymfonyPlugin filter form base class.
  *
- * @package    plugintracker
- * @subpackage filter
- * @author     Your name here
- * @version    SVN: $Id$
+ * @package    filters
+ * @subpackage SymfonyPlugin *
+ * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 11675 2008-09-19 15:21:38Z fabien $
  */
 class BaseSymfonyPluginFormFilter extends BaseFormFilterDoctrine
 {
@@ -19,9 +18,10 @@ class BaseSymfonyPluginFormFilter extends BaseFormFilterDoctrine
       'description' => new sfWidgetFormFilterInput(),
       'author_id'   => new sfWidgetFormDoctrineChoice(array('model' => 'PluginAuthor', 'add_empty' => true)),
       'category_id' => new sfWidgetFormDoctrineChoice(array('model' => 'PluginCategory', 'add_empty' => true)),
+      'active'      => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'slug'        => new sfWidgetFormFilterInput(),
-      'created_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
-      'updated_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'created_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
+      'updated_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
     ));
 
     $this->setValidators(array(
@@ -29,16 +29,15 @@ class BaseSymfonyPluginFormFilter extends BaseFormFilterDoctrine
       'description' => new sfValidatorPass(array('required' => false)),
       'author_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'PluginAuthor', 'column' => 'id')),
       'category_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'PluginCategory', 'column' => 'id')),
+      'active'      => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'slug'        => new sfValidatorPass(array('required' => false)),
-      'created_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
-      'updated_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'created_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
+      'updated_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
     ));
 
     $this->widgetSchema->setNameFormat('symfony_plugin_filters[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
-
-    $this->setupInheritance();
 
     parent::setup();
   }
@@ -56,6 +55,7 @@ class BaseSymfonyPluginFormFilter extends BaseFormFilterDoctrine
       'description' => 'Text',
       'author_id'   => 'ForeignKey',
       'category_id' => 'ForeignKey',
+      'active'      => 'Boolean',
       'slug'        => 'Text',
       'created_at'  => 'Date',
       'updated_at'  => 'Date',

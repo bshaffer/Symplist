@@ -46,7 +46,6 @@ class Doctrine_File_Index extends Doctrine_Record
         $this->hasColumn('file_id', 'integer', 8, array('notnull' => true,
                                                         'primary' => true));
     }
-
     public function setUp()
     {
         $this->hasOne('Doctrine_File', array('local' => 'file_id',

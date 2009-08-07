@@ -10,7 +10,7 @@
 
 require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 
-$t = new lime_test(147);
+$t = new lime_test(145, new lime_output_color());
 
 class FormTest extends sfForm
 {
@@ -291,39 +291,6 @@ $t->is(isset($values['first_name']), true, '"sfForm" implements the Iterator int
 $t->is(isset($values['last_name']), true, '"sfForm" implements the Iterator interface');
 $t->is_deeply(array_keys($values), array('first_name', 'last_name', 'image'), '"sfForm" implements the Iterator interface');
 
-// ->useFields()
-$t->diag('->useFields()');
-$f = new FormTest();
-$f->setWidgetSchema(new sfWidgetFormSchema(array(
-  'first_name' => new sfWidgetFormInput(),
-  'last_name'  => new sfWidgetFormInput(),
-  'email'      => new sfWidgetFormInput(),
-)));
-$f->useFields(array('first_name', 'last_name'));
-$t->is($f->getWidgetSchema()->getPositions(), array('first_name', 'last_name'), '->useFields() removes all fields except the ones given as an argument');
-$f->setWidgetSchema(new sfWidgetFormSchema(array(
-  'first_name' => new sfWidgetFormInput(),
-  'last_name'  => new sfWidgetFormInput(),
-  'email'      => new sfWidgetFormInput(),
-)));
-$f->useFields(array('email', 'first_name'));
-$t->is($f->getWidgetSchema()->getPositions(), array('email', 'first_name'), '->useFields() reorders the fields');
-$f->setWidgetSchema(new sfWidgetFormSchema(array(
-  'first_name' => new sfWidgetFormInput(),
-  'last_name'  => new sfWidgetFormInput(),
-  'email'      => new sfWidgetFormInput(),
-)));
-$f->useFields(array('email', 'first_name'), false);
-$t->is($f->getWidgetSchema()->getPositions(), array('first_name', 'email'), '->useFields() does not reorder the fields if the second argument is false');
-$f->setWidgetSchema(new sfWidgetFormSchema(array(
-  'id'         => new sfWidgetFormInputHidden(),
-  'first_name' => new sfWidgetFormInput(),
-  'last_name'  => new sfWidgetFormInput(),
-  'email'      => new sfWidgetFormInput(),
-)));
-$f->useFields(array('first_name', 'last_name'));
-$t->is($f->getWidgetSchema()->getPositions(), array('first_name', 'last_name', 'id'), '->useFields() does not remove hidden fields');
-
 // ->bind() ->isValid() ->hasErrors() ->getValues() ->getValue() ->isBound() ->getErrorSchema()
 $t->diag('->bind() ->isValid() ->getValues() ->isBound() ->getErrorSchema()');
 $f = new FormTest();
@@ -426,7 +393,7 @@ $output = <<<EOF
   </ul>
 
 EOF;
-$t->is($f->renderGlobalErrors(), fix_linebreaks($output), '->renderGlobalErrors() renders global errors as an HTML list');
+$t->is($f->renderGlobalErrors(), $output, '->renderGlobalErrors() renders global errors as an HTML list');
 
 // ->render()
 $t->diag('->render()');
@@ -454,7 +421,7 @@ $output = <<<EOF
 </tr>
 
 EOF;
-$t->is($f->__toString(), fix_linebreaks($output), '->__toString() renders the form as HTML');
+$t->is($f->__toString(), $output, '->__toString() renders the form as HTML');
 $output = <<<EOF
 <tr>
   <th><label for="first_name">First name</label></th>
@@ -466,7 +433,7 @@ $output = <<<EOF
 </tr>
 
 EOF;
-$t->is($f->render(array('first_name' => array('class' => 'foo'))), fix_linebreaks($output), '->render() renders the form as HTML');
+$t->is($f->render(array('first_name' => array('class' => 'foo'))), $output, '->render() renders the form as HTML');
 $t->is((string) $f['id'], '<input type="hidden" name="id" value="3" id="id" />', '->offsetGet() returns a sfFormField');
 $t->is((string) $f['first_name'], '<input type="text" name="first_name" value="Fabien" id="first_name" />', '->offsetGet() returns a sfFormField');
 $t->is((string) $f['last_name'], '<input type="text" name="last_name" value="Potencier" id="last_name" />', '->offsetGet() returns a sfFormField');
@@ -488,7 +455,7 @@ $output = <<<EOF
 </tr>
 
 EOF;
-$t->is($f->__toString(), fix_linebreaks($output), '->__toString() renders the form as HTML');
+$t->is($f->__toString(), $output, '->__toString() renders the form as HTML');
 $output = <<<EOF
 <tr>
   <th><label for="first_name">First name</label></th>
@@ -500,7 +467,7 @@ $output = <<<EOF
 </tr>
 
 EOF;
-$t->is($f->render(array('first_name' => array('class' => 'foo'))), fix_linebreaks($output), '->render() renders the form as HTML');
+$t->is($f->render(array('first_name' => array('class' => 'foo'))), $output, '->render() renders the form as HTML');
 $t->is((string) $f['id'], '<input type="hidden" name="id" value="1" id="id" />', '->offsetGet() returns a sfFormField');
 $t->is((string) $f['first_name'], '<input type="text" name="first_name" value="Fabien" id="first_name" />', '->offsetGet() returns a sfFormField');
 $t->is((string) $f['last_name'], '<input type="text" name="last_name" value="Potencier" id="last_name" />', '->offsetGet() returns a sfFormField');
@@ -516,12 +483,12 @@ $output = <<<EOF
 </li>
 
 EOF;
-$t->is($f->renderUsing('list'), fix_linebreaks($output), 'renderUsing() renders the widget schema using the given form formatter');
+$t->is($f->renderUsing('list'), $output, 'renderUsing() renders the widget schema using the given form formatter');
 $t->is($f->getWidgetSchema()->getFormFormatterName(), 'table', 'renderUsing() does not persist form formatter name for the current form instance');
 
 $w = $f->getWidgetSchema();
 $w->addFormFormatter('custom', new sfWidgetFormSchemaFormatterList($w));
-$t->is($f->renderUsing('custom'), fix_linebreaks($output), 'renderUsing() renders a custom form formatter');
+$t->is($f->renderUsing('custom'), $output, 'renderUsing() renders a custom form formatter');
 
 try
 {
@@ -576,6 +543,13 @@ $t->is($w['author'][sfForm::getCSRFFieldName()], null, '->embedForm() removes th
 
 $t->is($w['author']->generateName('first_name'), 'article[author][first_name]', '->embedForm() changes the name format to reflect the embedding');
 $t->is($w['author']['company']->generateName('name'), 'article[author][company][name]', '->embedForm() changes the name format to reflect the embedding');
+
+// tests for ticket #4754
+$f1 = new TestForm1();
+$f2 = new TestForm2();
+$f1->embedForm('f2', $f2);
+$t->is($f1['f2']['c']->render(), '<textarea rows="4" cols="30" name="f2[c]" id="f2_c"></textarea>', '->embedForm() generates a correct id in embedded form fields');
+$t->is($f1['f2']['c']->renderLabel(), '<label for="f2_c">2_c</label>', '->embedForm() generates a correct label id correctly in embedded form fields');
 
 // tests for ticket #4754
 $f1 = new TestForm1();

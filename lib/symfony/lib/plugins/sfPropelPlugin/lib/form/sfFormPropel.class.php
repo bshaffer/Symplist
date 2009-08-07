@@ -12,14 +12,12 @@
 /**
  * sfFormPropel is the base class for forms based on Propel objects.
  *
- * This class extends BaseForm, a class generated automatically with each new project.
- *
  * @package    symfony
  * @subpackage form
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfFormPropel.class.php 18331 2009-05-16 11:13:47Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfFormPropel.class.php 16007 2009-03-04 23:23:33Z Kris.Wallsmith $
  */
-abstract class sfFormPropel extends sfFormObject
+abstract class sfFormPropel extends sfForm
 {
   protected
     $isNew  = true,
@@ -198,25 +196,12 @@ abstract class sfFormPropel extends sfFormObject
 
     $values = $this->processValues($values);
 
-    $this->doUpdateObject($values);
+    $this->object->fromArray($values, BasePeer::TYPE_FIELDNAME);
 
     // embedded forms
     $this->updateObjectEmbeddedForms($values);
 
     return $this->object;
-  }
-
-  /**
-   * Updates the values of the object with the cleaned up values.
-   *
-   * If you want to add some logic before updating or update other associated
-   * objects, this is the method to override.
-   *
-   * @param array $values An array of values
-   */
-  protected function doUpdateObject($values)
-  {
-    $this->object->fromArray($values, BasePeer::TYPE_FIELDNAME);
   }
 
   /**

@@ -19,11 +19,26 @@ class pluginActions extends sfActions
   
   public function executeByCategory(sfWebRequest $request)
   {
+    $this->pager = new sfDoctrinePager('SymfonyPlugin', 10);
     $this->category = Doctrine::getTable('PluginCategory')->findOneBySlug($request->getParameter('slug'));
     $this->forward404Unless($this->category);
-    
-    $this->pager = new DoctrinePager('Plugin', 10);
-    $this->pager->setQuery(Doctrine::getTable("Plugin")->createQuery()->where('category_id = ?', $this->category['id']));
+
+    $q = Doctrine::getTable("SymfonyPlugin")->createQuery()
+                ->where('category_id = ?', $this->category['id'])
+                ->orderBy('title ASC');
+                
+    $this->pager->setQuery($q);
+
     $this->pager->setPage($request->getParameter('page', 1));
+  }
+  
+  public function executeCategories(sfWebRequest $request)
+  {
+    $this->categories = Doctrine::getTable('PluginCategory')->createQuery('c')->orderBy('name ASC')->execute();
+  }
+  
+  public function executeShow(sfWebRequest $request)
+  {
+    $this->plugin = Doctrine::getTable("SymfonyPlugin")->findOneByTitle($request->getParameter('title'));
   }
 }

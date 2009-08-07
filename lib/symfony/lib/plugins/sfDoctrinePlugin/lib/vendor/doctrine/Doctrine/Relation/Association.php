@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Association.php 5934 2009-06-24 18:48:27Z jwage $
+ *  $Id: Association.php 5801 2009-06-02 17:30:27Z piccoloprincipe $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -30,7 +30,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 5934 $
+ * @version     $Revision: 5801 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 class Doctrine_Relation_Association extends Doctrine_Relation
@@ -42,7 +42,6 @@ class Doctrine_Relation_Association extends Doctrine_Relation
     {
         return $this->definition['refTable'];
     }
-
     public function getAssociationTable()
     {
         return $this->definition['refTable'];
@@ -77,7 +76,7 @@ class Doctrine_Relation_Association extends Doctrine_Relation
         return $dql;
     }
 
-	/**
+    /**
      * getLocalRefColumnName
      * returns the column name of the local reference column
      */
@@ -125,7 +124,7 @@ class Doctrine_Relation_Association extends Doctrine_Relation
     {
         $id = $record->getIncremented();
         if (empty($id) || ! $this->definition['table']->getAttribute(Doctrine::ATTR_LOAD_REFERENCES)) {
-            $coll = Doctrine_Collection::create($this->getTable());
+            $coll = new Doctrine_Collection($this->getTable());
         } else {
             $coll = $this->getTable()->getConnection()->query($this->getRelationDql(1), array($id));
         }

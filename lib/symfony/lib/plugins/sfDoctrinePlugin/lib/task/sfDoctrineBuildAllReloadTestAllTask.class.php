@@ -33,7 +33,6 @@ class sfDoctrineBuildAllReloadTestAllTask extends sfDoctrineBaseTask
       new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'dev'),
       new sfCommandOption('append', null, sfCommandOption::PARAMETER_NONE, 'Don\'t delete current data in the database'),
       new sfCommandOption('dir', null, sfCommandOption::PARAMETER_REQUIRED | sfCommandOption::IS_ARRAY, 'The directories to look for fixtures'),
-      new sfCommandOption('migrate', null, sfCommandOption::PARAMETER_NONE, 'Migrate instead of reset the database'),
       new sfCommandOption('force', null, sfCommandOption::PARAMETER_NONE, 'Whether to force dropping of the database'),
     ));
 
@@ -58,11 +57,6 @@ The task is equivalent to:
 
 The task takes an application argument because of the [doctrine:data-load|COMMENT]
 task. See [doctrine:data-load|COMMENT] help page for more information.
-
-Include the [--migrate|COMMENT] option if you would like to run your project's
-migrations rather than inserting the Doctrine SQL.
-
-  [./symfony doctrine:build-all-reload-test-all --migrate|INFO]
 EOF;
   }
 
@@ -73,13 +67,26 @@ EOF;
   {
     $buildAllReload = new sfDoctrineBuildAllReloadTask($this->dispatcher, $this->formatter);
     $buildAllReload->setCommandApplication($this->commandApplication);
-    $buildAllReload->setConfiguration($this->configuration);
-    $ret = $buildAllReload->run(array(), array(
-      'dir'             => $options['dir'],
-      'append'          => $options['append'],
-      'no-confirmation' => $options['no-confirmation'],
-      'migrate'         => $options['migrate'],
-    ));
+
+    $buildAllReloadOptions = array();
+    if (!empty($options['application']))
+    {
+      $buildAllReloadOptions[] = '--application=' . $options['application'];
+    }
+    $buildAllReloadOptions[] = '--env='.$options['env'];
+    if (!empty($options['dir']))
+    {
+      $buildAllReloadOptions[] = '--dir=' . implode(' --dir=', $options['dir']);
+    }
+    if (isset($options['append']) && $options['append'])
+    {
+      $buildAllReloadOptions[] = '--append';
+    }
+    if (isset($options['no-confirmation']) && $options['no-confirmation'])
+    {
+      $buildAllReloadOptions[] = '--no-confirmation';
+    }
+    $ret = $buildAllReload->run(array(), $buildAllReloadOptions);
 
     if ($ret)
     {
@@ -90,7 +97,6 @@ EOF;
     
     $testAll = new sfTestAllTask($this->dispatcher, $this->formatter);
     $testAll->setCommandApplication($this->commandApplication);
-    $testAll->setConfiguration($this->configuration);
     $testAll->run();
   }
 }

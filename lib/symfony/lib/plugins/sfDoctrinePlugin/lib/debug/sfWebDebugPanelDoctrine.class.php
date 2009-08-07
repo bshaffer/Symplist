@@ -39,9 +39,9 @@ class sfWebDebugPanelDoctrine extends sfWebDebugPanel
    */
   public function getTitle()
   {
-    if ($events = $this->getDoctrineEvents())
+    if ($sqlLogs = $this->getSqlLogs())
     {
-      return '<img src="'.$this->webDebug->getOption('image_root_path').'/database.png" alt="SQL queries" /> '.count($events);
+      return '<img src="'.$this->webDebug->getOption('image_root_path').'/database.png" alt="SQL queries" /> '.count($sqlLogs);
     }
   }
 
@@ -64,34 +64,27 @@ class sfWebDebugPanelDoctrine extends sfWebDebugPanel
   {
     return '
       <div id="sfWebDebugDatabaseLogs">
-      <ol>'.implode("\n", $this->getSqlLogs()).'</ol>
+      <ol><li>'.implode("</li>\n<li>", $this->getSqlLogs()).'</li></ol>
       </div>
     ';
   }
-
+  
   /**
-   * Filters out Doctrine log entries.
+   * Filter the logs to only include the entries from sfDoctrineLogger
    *
-   * @param  sfEvent $event
-   * @param  array   $logs
-   *
-   * @return array
+   * @param sfEvent $event
+   * @param array $Logs
+   * @return array $newLogs
    */
-  public function filterLogs(sfEvent $event, $logs)
+  public function filterLogs(sfEvent $event, $newSqlogs)
   {
     $newLogs = array();
-    foreach ($logs as $log)
+    foreach ($newSqlogs as $newSqlog)
     {
-      if (class_exists($log['type']))
+      if ('sfDoctrineLogger' != $newSqlog['type'])
       {
-        $r = new ReflectionClass($log['type']);
-        if ($r->isSubclassOf('Doctrine_Connection') || $r->implementsInterface('Doctrine_Adapter_Statement_Interface'))
-        {
-          continue;
-        }
+        $newLogs[] = $newSqlog;
       }
-
-      $newLogs[] = $log;
     }
 
     return $newLogs;
@@ -109,93 +102,67 @@ class sfWebDebugPanelDoctrine extends sfWebDebugPanel
   }
 
   /**
-   * Returns an array of Doctrine query events.
-   * 
-   * @return array
-   */
-  protected function getDoctrineEvents()
-  {
-    $databaseManager = sfContext::getInstance()->getDatabaseManager();
-
-    $events = array();
-    foreach ($databaseManager->getNames() as $name)
-    {
-      $database = $databaseManager->getDatabase($name);
-      if ($database instanceof sfDoctrineDatabase && $profiler = $database->getProfiler())
-      {
-        foreach ($profiler->getQueryExecutionEvents() as $event)
-        {
-          $events[$event->getSequence()] = $event;
-        }
-      }
-    }
-
-    // sequence events
-    ksort($events);
-
-    return $events;
-  }
-
-  /**
-   * Builds the sql logs and returns them as an array.
+   * Build the sql logs and return them as an array
    *
-   * @return array
+   * @return array $newSqlogs
    */
   protected function getSqlLogs()
   {
-    $logs = $this->webDebug->getLogger()->getLogs();
-
-    $html = array();
-    foreach ($this->getDoctrineEvents() as $i => $event)
+    $logs = array();
+    $bindings = array();
+    $i = 0;
+    foreach ($this->webDebug->getLogger()->getLogs() as $log)
     {
-      $conn = $event->getInvoker() instanceof Doctrine_Connection ? $event->getInvoker() : $event->getInvoker()->getConnection();
-      $params = sfDoctrineConnectionProfiler::fixParams($event->getParams());
-      $query = $this->formatSql($event->getQuery());
-
-      // interpolate parameters
-      foreach ($params as $param)
+      if ('sfDoctrineLogger' != $log['type'])
       {
-        $query = join(var_export($param, true), explode('?', $query, 2));
+        continue;
       }
 
-      // slow query
-      if ($event->slowQuery && $this->getStatus() > sfLogger::NOTICE)
+      if (preg_match('/^.*?(\b(?:SELECT|INSERT|UPDATE|DELETE)\b.*)$/', $log['message'], $match))
       {
-        $this->setStatus(sfLogger::NOTICE);
+        $logs[$i++] = self::formatSql($match[1]);
+        $bindings[$i - 1] = array();
       }
-
-      // backtrace
-      $backtrace = null;
-      foreach ($logs as $i => $log)
+      else if (preg_match('/Binding (.*) at position (.+?) w\//', $log['message'], $match))
       {
-        if (!$log['debug_backtrace'])
-        {
-          // backtrace disabled
-          break;
-        }
-
-        if (false !== strpos($log['message'], $event->getQuery()))
-        {
-          // assume queries are being requested in order
-          unset($logs[$i]);
-          $backtrace = '&nbsp;'.$this->getToggleableDebugStack($log['debug_backtrace']);
-          break;
-        }
+        $bindings[$i - 1][] = $match[2].' = '.$match[1];
       }
-
-      $html[] = sprintf('
-        <li class="%s">
-          <p class="sfWebDebugDatabaseQuery">%s</p>
-          <p class="sfWebDebugDatabaseLogInfo">%ss, "%s" connection%s</p>
-        </li>',
-        $event->slowQuery ? 'sfWebDebugWarning' : '',
-        $query,
-        number_format($event->getElapsedSecs(), 2),
-        $conn->getName(),
-        $backtrace
-      );
     }
 
-    return $html;
+    foreach ($logs as $i => $log)
+    {
+      if (count($bindings[$i]))
+      {
+        $logs[$i] .= sprintf(' (%s)', implode(', ', $bindings[$i]));
+      }
+    }
+
+    return $logs;
+  }
+
+  /**
+   * Format a SQL with some colors on SQL keywords to make it more readable
+   *
+   * @param  string $sql    SQL string to format
+   * @return string $newSql The new formatted SQL string
+   */
+  static protected function formatSql($sql)
+  {
+    $color = "#990099";
+    $newSql = $sql;
+    $newSql = str_replace("SELECT ", "<span style=\"color: $color;\"><b>SELECT </b></span>  ",$newSql);
+    $newSql = str_replace("FROM ", "<span style=\"color: $color;\"><b>FROM </b></span>",$newSql);
+    $newSql = str_replace(" LEFT JOIN ", "<span style=\"color: $color;\"><b> LEFT JOIN </b></span>",$newSql);
+    $newSql = str_replace(" INNER JOIN ", "<span style=\"color: $color;\"><b> INNER JOIN </b></span>",$newSql);
+    $newSql = str_replace(" WHERE ", "<span style=\"color: $color;\"><b> WHERE </b></span>",$newSql);
+    $newSql = str_replace(" GROUP BY ", "<span style=\"color: $color;\"><b> GROUP BY </b></span>",$newSql);
+    $newSql = str_replace(" HAVING ", "<span style=\"color: $color;\"><b> HAVING </b></span>",$newSql);
+    $newSql = str_replace(" AS ", "<span style=\"color: $color;\"><b> AS </b></span>  ",$newSql);
+    $newSql = str_replace(" ON ", "<span style=\"color: $color;\"><b> ON </b></span>",$newSql);
+    $newSql = str_replace(" ORDER BY ", "<span style=\"color: $color;\"><b> ORDER BY </b></span>",$newSql);
+    $newSql = str_replace(" LIMIT ", "<span style=\"color: $color;\"><b> LIMIT </b></span>",$newSql);
+    $newSql = str_replace(" OFFSET ", "<span style=\"color: $color;\"><b> OFFSET </b></span>",$newSql);
+
+    return $newSql;
   }
 }

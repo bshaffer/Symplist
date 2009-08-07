@@ -140,6 +140,7 @@ class Doctrine_Template_Listener_Sluggable extends Doctrine_Record_Listener
         return call_user_func_array($this->_options['builder'], array($value, $record));
     }
 
+
     /**
      * Creates a unique slug for a given Doctrine_Record. This function enforces the uniqueness by 
      * incrementing the values with a postfix if the slug is not unique
@@ -187,16 +188,7 @@ class Doctrine_Template_Listener_Sluggable extends Doctrine_Record_Listener
 	        $softDelete = $record->getTable()->getTemplate('Doctrine_Template_SoftDelete');
 	
 	        // we have to consider both situations here
-            if ($softDelete->getOption('type') == 'boolean') {
-                $conn = $query->getConnection();
-
-                $query->addWhere(
-                    '(r.' . $softDelete->getOption('name') . ' = ' . $conn->convertBooleans(true) .
-                    ' OR r.' . $softDelete->getOption('name') . ' = ' . $conn->convertBooleans(false) . ')'
-                );
-            } else {
-                $query->addWhere('(r.' . $softDelete->getOption('name') . ' IS NOT NULL OR r.' . $softDelete->getOption('name') . ' IS NULL)');
-            }
+            $query->addWhere('(r.' . $softDelete->getOption('name') . ' = true OR r.' . $softDelete->getOption('name') . ' IS NOT NULL OR r.' . $softDelete->getOption('name') . ' = false OR r.' . $softDelete->getOption('name') . ' IS NULL)');
         }
 
         $similarSlugResult = $query->execute();

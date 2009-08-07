@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: RawSql.php 5901 2009-06-22 15:44:45Z jwage $
+ *  $Id: RawSql.php 5860 2009-06-09 16:35:27Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -33,7 +33,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 5901 $
+ * @version     $Revision: 5860 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 class Doctrine_RawSql extends Doctrine_Query_Abstract
@@ -42,8 +42,8 @@ class Doctrine_RawSql extends Doctrine_Query_Abstract
      * @var array $fields
      */
     private $fields = array();
-
-    /**
+    
+	/**
      * Constructor.
      *
      * @param Doctrine_Connection  The connection object the query will use.
@@ -57,10 +57,13 @@ class Doctrine_RawSql extends Doctrine_Query_Abstract
         $this->useQueryCache(false);
     }
 
-    protected function clear()
+
+    /**
+     * @deprecated
+     */
+    public function parseQueryPart($queryPartName, $queryPart, $append = false)
     {
-        $this->_preQuery = false;
-        $this->_pendingJoinConditions = array();
+        return $this->parseDqlQueryPart($queryPartName, $queryPart, $append);
     }
 
     /**
@@ -102,7 +105,7 @@ class Doctrine_RawSql extends Doctrine_Query_Abstract
      */
     protected function _addDqlQueryPart($queryPartName, $queryPart, $append = false)
     {
-        return $this->parseDqlQueryPart($queryPartName, $queryPart, $append);
+        return $this->parseQueryPart($queryPartName, $queryPart, $append);
     }
     
     /**
@@ -110,8 +113,7 @@ class Doctrine_RawSql extends Doctrine_Query_Abstract
      *
      * @param $queryPart sting The name of the querypart
      */
-    private function _parseSelectFields($queryPart)
-    {
+    private function _parseSelectFields($queryPart){
         preg_match_all('/{([^}{]*)}/U', $queryPart, $m);
         $this->fields = $m[1];
         $this->_sqlParts['select'] = array();
@@ -167,7 +169,7 @@ class Doctrine_RawSql extends Doctrine_Query_Abstract
                     if ( ! isset($parts[$type][0])) {
                         $parts[$type][0] = $part;
                     } else {
-                        // why does this add to index 0 and not append to the
+                        // why does this add to index 0 and not append to the 
                         // array. If it had done that one could have used 
                         // parseQueryPart.
                         $parts[$type][0] .= ' '.$part;
@@ -189,15 +191,6 @@ class Doctrine_RawSql extends Doctrine_Query_Abstract
      */
     public function getSqlQuery($params = array())
     {        
-        // Assign building/execution specific params
-        $this->_params['exec'] = $params;
-
-        // Initialize prepared parameters array
-        $this->_execParams = $this->getFlattenedParams();
-
-        // Initialize prepared parameters array
-        $this->fixArrayParameterValues($this->_execParams);
-
         $select = array();
 
         foreach ($this->fields as $field) {
@@ -252,9 +245,9 @@ class Doctrine_RawSql extends Doctrine_Query_Abstract
         // first add the fields of the root component
         reset($this->_queryComponents);
         $componentAlias = key($this->_queryComponents);
-        
-        $this->_rootAlias = $componentAlias;
 
+        $this->_rootAlias = $componentAlias;
+        
         $q .= implode(', ', $select[$componentAlias]);
         unset($select[$componentAlias]);
 
@@ -290,7 +283,7 @@ class Doctrine_RawSql extends Doctrine_Query_Abstract
      *
      * @return string       the built sql query
      */
-	public function getCountSqlQuery($params = array())
+	public function getCountQuery($params = array())
     {
         //Doing COUNT( DISTINCT rootComponent.id )
         //This is not correct, if the result is not hydrated by doctrine, but it mimics the behaviour of Doctrine_Query::getCountQuery
@@ -340,9 +333,15 @@ class Doctrine_RawSql extends Doctrine_Query_Abstract
      */
     public function count($params = array())
     {
-        $sql = $this->getCountSqlQuery();
-        $params = $this->getCountQueryParams($params);
-        $results = $this->getConnection()->fetchAll($sql, $params);
+        $q = $this->getCountQuery();
+
+        if ( ! is_array($params)) {
+            $params = array($params);
+        }
+
+        $params = array_merge($this->_params['join'], $this->_params['where'], $this->_params['having'], $params);
+
+        $results = $this->getConnection()->fetchAll($q, $params);
 
         if (count($results) > 1) {
             $count = count($results);

@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage task
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfTask.class.php 20869 2009-08-06 22:50:46Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfTask.class.php 18135 2009-05-11 11:55:46Z fabien $
  */
 abstract class sfTask
 {
@@ -62,26 +62,6 @@ abstract class sfTask
   }
 
   /**
-   * Returns the formatter instance.
-   *
-   * @return sfFormatter The formatter instance
-   */
-  public function getFormatter()
-  {
-    return $this->formatter;
-  }
-
-  /**
-   * Sets the formatter instance.
-   *
-   * @param sfFormatter The formatter instance
-   */
-  public function setFormatter(sfFormatter $formatter)
-  {
-    $this->formatter = $formatter;
-  }
-
-  /**
    * Runs the task from the CLI.
    *
    * @param sfCommandManager $commandManager  An sfCommandManager instance
@@ -100,8 +80,8 @@ abstract class sfTask
   /**
    * Runs the task.
    *
-   * @param array|string $arguments  An array of arguments or a string representing the CLI arguments and options
-   * @param array        $options    An array of options
+   * @param array $arguments  An array of arguments
+   * @param array $options    An array of options
    *
    * @return integer 0 if everything went fine, or an error code
    */
@@ -109,68 +89,16 @@ abstract class sfTask
   {
     $commandManager = new sfCommandManager(new sfCommandArgumentSet($this->getArguments()), new sfCommandOptionSet($this->getOptions()));
 
-    if (is_array($arguments) && is_string(key($arguments)))
+    // add -- before each option if needed
+    foreach ($options as &$option)
     {
-      // index arguments by name for ordering and reference
-      $indexArguments = array();
-      foreach ($this->arguments as $argument)
+      if (0 !== strpos($option, '--'))
       {
-        $indexArguments[$argument->getName()] = $argument;
+        $option = '--'.$option;
       }
-
-      foreach ($arguments as $name => $value)
-      {
-        if (false !== $pos = array_search($name, array_keys($indexArguments)))
-        {
-          if ($indexArguments[$name]->isArray())
-          {
-            $value = join(' ', (array) $value);
-            $arguments[$pos] = isset($arguments[$pos]) ? $arguments[$pos].' '.$value : $value;
-          }
-          else
-          {
-            $arguments[$pos] = $value;
-          }
-
-          unset($arguments[$name]);
-        }
-      }
-
-      ksort($arguments);
     }
 
-    // index options by name for reference
-    $indexedOptions = array();
-    foreach ($this->options as $option)
-    {
-      $indexedOptions[$option->getName()] = $option;
-    }
-
-    foreach ($options as $name => $value)
-    {
-      if (is_string($name))
-      {
-        if (false === $value || is_null($value) || ($indexedOptions[$name]->isArray() && !$value))
-        {
-          unset($options[$name]);
-          continue;
-        }
-
-        // convert associative array
-        $value = true === $value ? $name : sprintf('%s=%s', $name, isset($indexedOptions[$name]) && $indexedOptions[$name]->isArray() ? join(' --'.$name.'=', (array) $value) : $value);
-      }
-
-      // add -- before each option if needed
-      if (0 !== strpos($value, '--'))
-      {
-        $value = '--'.$value;
-      }
-
-      $options[] = $value;
-      unset($options[$name]);
-    }
-
-    return $this->doRun($commandManager, is_string($arguments) ? $arguments : implode(' ', array_merge($arguments, $options)));
+    return $this->doRun($commandManager, implode(' ', array_merge($arguments, $options)));
   }
 
   /**
@@ -415,26 +343,20 @@ abstract class sfTask
       $messages = array($messages);
     }
 
-    $style = str_replace('_LARGE', '', $style, $count);
-    $large = (Boolean) $count;
-
     $len = 0;
     $lines = array();
     foreach ($messages as $message)
     {
-      $lines[] = sprintf($large ? '  %s  ' : ' %s ', $message);
-      $len = max($this->strlen($message) + ($large ? 4 : 2), $len);
+      $lines[] = sprintf('  %s  ', $message);
+      $len = max($this->strlen($message) + 4, $len);
     }
 
-    $messages = $large ? array(str_repeat(' ', $len)) : array();
+    $messages = array(str_repeat(' ', $len));
     foreach ($lines as $line)
     {
       $messages[] = $line.str_repeat(' ', $len - $this->strlen($line));
     }
-    if ($large)
-    {
-      $messages[] = str_repeat(' ', $len);
-    }
+    $messages[] = str_repeat(' ', $len);
 
     foreach ($messages as $message)
     {
@@ -447,11 +369,10 @@ abstract class sfTask
    *
    * @param string|array $question The question to ask
    * @param string       $style    The style to use (QUESTION by default)
-   * @param string       $default  The default answer if none is given by the user
    *
    * @param string       The user answer
    */
-  public function ask($question, $style = 'QUESTION', $default = null)
+  public function ask($question, $style = 'QUESTION')
   {
     if (false === $style)
     {
@@ -462,9 +383,7 @@ abstract class sfTask
       $this->logBlock($question, is_null($style) ? 'QUESTION' : $style);
     }
 
-    $ret = trim(fgets(STDIN));
-
-    return $ret ? $ret : $default;
+    return trim(fgets(STDIN));
   }
 
   /**
@@ -494,69 +413,6 @@ abstract class sfTask
     {
       return !$answer || 'y' == strtolower($answer[0]);
     }
-  }
-
-  /**
-   * Asks for a value and validates the response.
-   *
-   * Available options:
-   *
-   *  * value:    A value to try against the validator before asking the user
-   *  * attempts: Max number of times to ask before giving up (false by default, which means infinite)
-   *  * style:    Style for question output (QUESTION by default)
-   *
-   * @param   string|array    $question
-   * @param   sfValidatorBase $validator
-   * @param   array           $options
-   *
-   * @return  mixed
-   */
-  public function askAndValidate($question, sfValidatorBase $validator, array $options = array())
-  {
-    if (!is_array($question))
-    {
-      $question = array($question);
-    }
-
-    $options = array_merge(array(
-      'value'    => null,
-      'attempts' => false,
-      'style'    => 'QUESTION',
-    ), $options);
-
-    // does the provided value passes the validator?
-    if ($options['value'])
-    {
-      try
-      {
-        return $validator->clean($options['value']);
-      }
-      catch (sfValidatorError $error)
-      {
-      }
-    }
-
-    // no, ask the user for a valid user
-    $error = null;
-    while (false === $options['attempts'] || $options['attempts']--)
-    {
-      if (!is_null($error))
-      {
-        $this->logBlock($error->getMessage(), 'ERROR');
-      }
-
-      $value = $this->ask($question, null, $options['style']);
-
-      try
-      {
-        return $validator->clean($value);
-      }
-      catch (sfValidatorError $error)
-      {
-      }
-    }
-
-    throw $error;
   }
 
   /**

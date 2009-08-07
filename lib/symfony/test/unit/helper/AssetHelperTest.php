@@ -15,7 +15,7 @@ require_once(dirname(__FILE__).'/../../../lib/helper/TagHelper.php');
 require_once(dirname(__FILE__).'/../../../lib/helper/UrlHelper.php');
 require_once(dirname(__FILE__).'/../../../lib/helper/AssetHelper.php');
 
-$t = new lime_test(67);
+$t = new lime_test(61, new lime_output_color());
 
 class myRequest
 {
@@ -230,34 +230,15 @@ class MyForm extends sfForm
 // get_javascripts_for_form() get_stylesheets_for_form()
 $t->diag('get_javascripts_for_form() get_stylesheets_for_form()');
 $form = new MyForm();
-$output = <<<EOF
+$t->is(get_javascripts_for_form($form), <<<EOF
 <script type="text/javascript" src="/path/to/a/foo.js"></script>
 <script type="text/javascript" src="/path/to/a/bar.js"></script>
 
-EOF;
-$t->is(get_javascripts_for_form($form), fix_linebreaks($output), 'get_javascripts_for_form() returns script tags');
-$output = <<<EOF
+EOF
+, 'get_javascripts_for_form() returns script tags');
+$t->is(get_stylesheets_for_form($form), <<<EOF
 <link rel="stylesheet" type="text/css" media="all" href="/path/to/a/foo.css" />
 <link rel="stylesheet" type="text/css" media="print" href="/path/to/a/bar.css" />
 
-EOF;
-$t->is(get_stylesheets_for_form($form), fix_linebreaks($output), 'get_stylesheets_for_form() returns link tags');
-
-// custom web paths
-$t->diag('Custom asset path handling');
-
-sfConfig::set('sf_web_js_dir_name', 'static/js');
-$t->is(javascript_path('xmlhr'), '/static/js/xmlhr.js', 'javascript_path() decorates a relative filename with js dir name and extension with custom js dir');
-$t->is(javascript_include_tag('xmlhr'),
-  '<script type="text/javascript" src="/static/js/xmlhr.js"></script>'."\n", 
-  'javascript_include_tag() takes a javascript name as its first argument');
-
-sfConfig::set('sf_web_css_dir_name', 'static/css');
-$t->is(stylesheet_path('style'), '/static/css/style.css', 'stylesheet_path() decorates a relative filename with css dir name and extension with custom css dir');
-$t->is(stylesheet_tag('style'), 
-  '<link rel="stylesheet" type="text/css" media="screen" href="/static/css/style.css" />'."\n", 
-  'stylesheet_tag() takes a stylesheet name as its first argument');
-
-sfConfig::set('sf_web_images_dir_name', 'static/img');
-$t->is(image_path('img'), '/static/img/img.png', 'image_path() decorates a relative filename with images dir name and png extension with custom images dir');
-$t->is(image_tag('test'), '<img src="/static/img/test.png" />', 'image_tag() takes an image name as its first argument');
+EOF
+, 'get_stylesheets_for_form() returns link tags');

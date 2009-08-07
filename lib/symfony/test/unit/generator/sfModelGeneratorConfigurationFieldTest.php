@@ -10,7 +10,7 @@
 
 require_once dirname(__FILE__).'/../../bootstrap/unit.php';
 
-$t = new lime_test(12);
+$t = new lime_test(12, new lime_output_color());
 
 // ->isPartial() ->isComponent() ->isLink()
 $t->diag('->isPartial() ->isComponent() ->isLink()');

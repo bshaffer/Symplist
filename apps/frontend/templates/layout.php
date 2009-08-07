@@ -8,9 +8,9 @@
   <body>
     <?php use_helper('Navigation') ?>
     <div id="header">
-      <h1 id="site-title">plugintracker</h1>
+      <h1 id="site-title">Symplist</h1>
       
-      <?php include_navigation() ?>
+      <?php include_navigation(array('id' => 'nav')) ?>
     </div>
 
     <div id="page" class="container_16 clearfix">      
@@ -21,11 +21,7 @@
 
     <div id="footer">
       <ul id="footer-nav">
-        <li><a href="#"> Link 1</a></li>
-        <li><a href="#"> Link 2</a></li>
-        <li><a href="#"> Link 3</a></li>
-        <li><a href="#"> Link 4</a></li>
-        <li><a href="#"> Link 5</a></li>
+        <?php include_navigation(array('menu' => 'Footer')) ?>
       </ul>
     </div>
   </body>

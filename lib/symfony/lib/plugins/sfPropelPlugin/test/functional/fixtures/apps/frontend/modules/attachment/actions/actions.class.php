@@ -6,7 +6,7 @@
  * @package    test
  * @subpackage attachment
  * @author     Your name here
- * @version    SVN: $Id: actions.class.php 16987 2009-04-04 14:16:46Z fabien $
+ * @version    SVN: $Id: actions.class.php 14010 2008-12-13 14:27:57Z Kris.Wallsmith $
  */
 class attachmentActions extends sfActions
 {
@@ -15,7 +15,7 @@ class attachmentActions extends sfActions
     $this->form = new AttachmentForm();
     unset($this->form['article_id']);
 
-    if ($request->isMethod(sfRequest::POST))
+    if ($request->isMethod('post'))
     {
       $this->form->bind($request->getParameter('attachment'), $request->getFiles('attachment'));
 
@@ -33,7 +33,7 @@ class attachmentActions extends sfActions
     $this->form = new ArticleForm(null, array('with_attachment' => true));
 
     if (
-      $request->isMethod(sfRequest::POST)
+      $request->isMethod('post')
       &&
       $this->form->bindAndSave($request->getParameter('article'), $request->getFiles('article'))
     )

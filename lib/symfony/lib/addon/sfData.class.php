@@ -71,7 +71,7 @@ abstract class sfData
    *
    * @param array $files The path names of the YAML data files
    */
-  protected function doLoadData(array $files)
+  protected function doLoadData($files)
   {
     $this->object_references = array();
     $this->maps = array();

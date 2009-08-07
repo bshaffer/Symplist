@@ -16,7 +16,7 @@
  * @subpackage helper
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     David Heinemeier Hansson
- * @version    SVN: $Id: AssetHelper.php 17865 2009-05-02 09:23:55Z FabianLange $
+ * @version    SVN: $Id: AssetHelper.php 17858 2009-05-01 21:22:50Z FabianLange $
  */
 
 /**
@@ -75,7 +75,7 @@ function auto_discovery_link_tag($type = 'rss', $url = '', $tag_options = array(
  */
 function javascript_path($source, $absolute = false)
 {
-  return _compute_public_path($source, sfConfig::get('sf_web_js_dir_name', 'js'), 'js', $absolute);
+  return _compute_public_path($source, 'js', 'js', $absolute);
 }
 
 /**
@@ -163,7 +163,7 @@ function javascript_include_tag()
  */
 function stylesheet_path($source, $absolute = false)
 {
-  return _compute_public_path($source, sfConfig::get('sf_web_css_dir_name', 'css'), 'css', $absolute);
+  return _compute_public_path($source, 'css', 'css', $absolute);
 }
 
 /**
@@ -298,7 +298,7 @@ function decorate_with($layout)
  */
 function image_path($source, $absolute = false)
 {
-  return _compute_public_path($source, sfConfig::get('sf_web_images_dir_name', 'images'), 'png', $absolute);
+  return _compute_public_path($source, 'images', 'png', $absolute);
 }
 
 /**

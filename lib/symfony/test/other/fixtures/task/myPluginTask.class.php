@@ -1,5 +1,5 @@
 <?php
-class myPluginTask extends sfBaseTask 
+class myPluginTask extends aTask 
 {
   public function configure()
   {

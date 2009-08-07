@@ -20,7 +20,8 @@
  */
 
 /**
- * Builds result sets in to the object graph using php arrays
+ * Doctrine_Hydrate_Array
+ * defines an array fetching strategy for Doctrine_Hydrate
  *
  * @package     Doctrine
  * @subpackage  Hydrate
@@ -30,42 +31,51 @@
  * @version     $Revision$
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
-class Doctrine_Hydrator_ArrayDriver extends Doctrine_Hydrator_Graph
+class Doctrine_Hydrator_ArrayDriver
 {
     public function getElementCollection($component)
     {
         return array();
     }
-
     public function getElement(array $data, $component)
     {
         return $data;
     }
-
+    /*
+    public function isIdentifiable(array $data, Doctrine_Table $table)
+    {
+        return ( ! empty($data));
+    }
+    */
     public function registerCollection($coll)
     {
 
     }
-
-    public function initRelated(&$record, $name)
+    public function initRelated(array &$data, $name)
     {
-        if ( ! isset($record[$name])) {
-            $record[$name] = array();
+        if ( ! isset($data[$name])) {
+            $data[$name] = array();
         }
         return true;
     }
-
     public function getNullPointer() 
     {
         return null;    
     }
-
-    public function getLastKey(&$coll)
+    public function getLastKey(&$data)
     {
-        end($coll);
-        return key($coll);
+        end($data);
+        return key($data);
     }
-
+    
+    /**
+     * sets the last element of given data array / collection
+     * as previous element
+     *
+     * @param boolean|integer $index
+     * @return void
+     * @todo Detailed documentation
+     */
     public function setLastElement(&$prev, &$coll, $index, $dqlAlias, $oneToOne)
     {
         if ($coll === null) {
@@ -88,5 +98,10 @@ class Doctrine_Hydrator_ArrayDriver extends Doctrine_Hydrator_Graph
                 $prev[$dqlAlias] =& $coll[key($coll)];
             }
         }
+    }
+
+    public function flush()
+    {
+        
     }
 }

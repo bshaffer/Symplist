@@ -11,7 +11,7 @@
 require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 sfToolkit::addIncludePath(sfConfig::get('sf_symfony_lib_dir').'/plugins/sfPropelPlugin/lib/vendor');
 
-$t = new lime_test(1);
+$t = new lime_test(1, new lime_output_color());
 
 $configuration = array(
   'propel' => array(

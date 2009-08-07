@@ -19,17 +19,7 @@ include $root_dir.'/config/ProjectConfiguration.class.php';
 $configuration = ProjectConfiguration::getApplicationConfiguration($app, 'test', isset($debug) ? $debug : true);
 sfContext::createInstance($configuration);
 
-// remove all cache
-sf_functional_test_shutdown();
-register_shutdown_function('sf_functional_test_shutdown');
-
-$configuration->initializeDoctrine();
-if (isset($fixtures))
-{
-  $configuration->loadFixtures($fixtures);
-}
-
-function sf_functional_test_shutdown_cleanup()
+function sf_functional_test_shutdown()
 {
   sfToolkit::clearDirectory(sfConfig::get('sf_cache_dir'));
   sfToolkit::clearDirectory(sfConfig::get('sf_log_dir'));
@@ -40,17 +30,15 @@ function sf_functional_test_shutdown_cleanup()
   }
 }
 
-function sf_functional_test_shutdown()
+// remove all cache
+sf_functional_test_shutdown();
+
+$configuration->initializeDoctrine();
+if (isset($fixtures))
 {
-  // try/catch needed due to http://bugs.php.net/bug.php?id=33598
-  try
-  {
-    sf_functional_test_shutdown_cleanup();
-  }
-  catch (Exception $e)
-  {
-    echo $e.PHP_EOL;
-  }
+  $configuration->loadFixtures($fixtures);
 }
+
+register_shutdown_function('sf_functional_test_shutdown');
 
 return true;

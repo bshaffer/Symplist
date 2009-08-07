@@ -10,7 +10,7 @@
 
 require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 
-$t = new lime_test(24);
+$t = new lime_test(24, new lime_output_color());
 
 foreach (array(
   'cache', 'configuration', 'controller', 'database', 

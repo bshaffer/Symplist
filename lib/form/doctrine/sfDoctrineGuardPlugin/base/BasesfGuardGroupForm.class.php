@@ -3,10 +3,9 @@
 /**
  * sfGuardGroup form base class.
  *
- * @package    plugintracker
- * @subpackage form
- * @author     Your name here
- * @version    SVN: $Id$
+ * @package    form
+ * @subpackage sf_guard_group
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
  */
 class BasesfGuardGroupForm extends BaseFormDoctrine
 {
@@ -26,8 +25,8 @@ class BasesfGuardGroupForm extends BaseFormDoctrine
       'id'               => new sfValidatorDoctrineChoice(array('model' => 'sfGuardGroup', 'column' => 'id', 'required' => false)),
       'name'             => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'description'      => new sfValidatorString(array('max_length' => 1000, 'required' => false)),
-      'created_at'       => new sfValidatorDateTime(),
-      'updated_at'       => new sfValidatorDateTime(),
+      'created_at'       => new sfValidatorDateTime(array('required' => false)),
+      'updated_at'       => new sfValidatorDateTime(array('required' => false)),
       'users_list'       => new sfValidatorDoctrineChoiceMany(array('model' => 'sfGuardUser', 'required' => false)),
       'permissions_list' => new sfValidatorDoctrineChoiceMany(array('model' => 'sfGuardPermission', 'required' => false)),
     ));
@@ -39,8 +38,6 @@ class BasesfGuardGroupForm extends BaseFormDoctrine
     $this->widgetSchema->setNameFormat('sf_guard_group[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
-
-    $this->setupInheritance();
 
     parent::setup();
   }
@@ -68,10 +65,10 @@ class BasesfGuardGroupForm extends BaseFormDoctrine
 
   protected function doSave($con = null)
   {
+    parent::doSave($con);
+
     $this->saveusersList($con);
     $this->savepermissionsList($con);
-
-    parent::doSave($con);
   }
 
   public function saveusersList($con = null)

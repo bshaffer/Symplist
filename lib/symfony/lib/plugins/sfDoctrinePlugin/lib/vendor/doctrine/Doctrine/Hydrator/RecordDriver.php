@@ -20,7 +20,8 @@
  */
 
 /**
- * Builds result sets in to the object graph using Doctrine_Record instances
+ * Doctrine_Hydrate_RecordDriver
+ * Hydration strategy used for creating collections of entity objects.
  *
  * @package     Doctrine
  * @subpackage  Hydrate
@@ -30,9 +31,8 @@
  * @version     $Revision$
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  * @author      Roman Borschel <roman@code-factory.org>
- * @author      Jonathan H. Wage <jonwage@gmail.com>
  */
-class Doctrine_Hydrator_RecordDriver extends Doctrine_Hydrator_Graph
+class Doctrine_Hydrator_RecordDriver extends Doctrine_Locator_Injectable
 {
     protected $_collections = array();
     protected $_tables = array();
@@ -40,17 +40,24 @@ class Doctrine_Hydrator_RecordDriver extends Doctrine_Hydrator_Graph
 
     public function getElementCollection($component)
     {
-        $coll = Doctrine_Collection::create($component);
+        $coll = new Doctrine_Collection($component);
         $this->_collections[] = $coll;
 
         return $coll;
     }
+
+    public function getLastKey($coll) 
+    {
+        $coll->end();
+        
+        return $coll->key();
+    }
     
-    public function initRelated(&$record, $name)
+    public function initRelated(Doctrine_Record $record, $name)
     {
         if ( ! isset($this->_initializedRelations[$record->getOid()][$name])) {
             $relation = $record->getTable()->getRelation($name);
-            $coll = Doctrine_Collection::create($relation->getTable()->getComponentName());
+            $coll = new Doctrine_Collection($relation->getTable()->getComponentName());
             $coll->setReference($record, $relation);
             $record[$name] = $coll;
             $this->_initializedRelations[$record->getOid()][$name] = true;
@@ -58,7 +65,7 @@ class Doctrine_Hydrator_RecordDriver extends Doctrine_Hydrator_Graph
         return true;
     }
     
-    public function registerCollection($coll)
+    public function registerCollection(Doctrine_Collection $coll)
     {
         $this->_collections[] = $coll;
     }
@@ -81,14 +88,21 @@ class Doctrine_Hydrator_RecordDriver extends Doctrine_Hydrator_Graph
 
         return $record;
     }
-
-    public function getLastKey(&$coll) 
+    
+    public function flush()
     {
-        $coll->end();
-        
-        return $coll->key();
+        // take snapshots from all initialized collections
+        foreach ($this->_collections as $key => $coll) {
+            $coll->takeSnapshot();
+        }
+        foreach ($this->_tables as $table) {
+            $table->setAttribute(Doctrine::ATTR_LOAD_REFERENCES, true);
+        }
+        $this->_initializedRelations = null;
+        $this->_collections = null;
+        $this->_tables = null;
     }
-
+    
     /**
      * sets the last element of given data array / collection
      * as previous element
@@ -115,21 +129,7 @@ class Doctrine_Hydrator_RecordDriver extends Doctrine_Hydrator_Graph
             $prev[$dqlAlias] = $coll->getLast();
         }
     }
-
-    public function flush()
-    {
-        // take snapshots from all initialized collections
-        foreach ($this->_collections as $key => $coll) {
-            $coll->takeSnapshot();
-        }
-        foreach ($this->_tables as $table) {
-            $table->setAttribute(Doctrine::ATTR_LOAD_REFERENCES, true);
-        }
-        $this->_initializedRelations = null;
-        $this->_collections = null;
-        $this->_tables = null;
-    }
-
+    
     /**
      * Get the classname to return. Most often this is just the options['name']
      *
@@ -155,32 +155,17 @@ class Doctrine_Hydrator_RecordDriver extends Doctrine_Hydrator_Graph
             return $component;
         }
         
-        $matchedComponents = array($component);
         foreach ($subclasses as $subclass) {
             $table = Doctrine::getTable($subclass);
             $inheritanceMap = $table->getOption('inheritanceMap');
-            if (count($inheritanceMap) > 1) {
-                $needMatches = count($inheritanceMap);
-                foreach ($inheritanceMap as $key => $value) {
-                    $key = $this->_tables[$component]->getFieldName($key);
-                    if ( isset($data[$key]) && $data[$key] == $value) {
-                        --$needMatches;
-                    }
-                }
-                if ($needMatches == 0) {
-                    $matchedComponents[] = $table->getComponentName();
-                }
+            list($key, $value) = each($inheritanceMap);
+            $key = $this->_tables[$component]->getFieldName($key);
+            if ( ! isset($data[$key]) || $data[$key] != $value) {
+                continue;
             } else {
-                list($key, $value) = each($inheritanceMap);
-                $key = $this->_tables[$component]->getFieldName($key);
-                if ( ! isset($data[$key]) || $data[$key] != $value) {
-                    continue;
-                } else {
-                    $matchedComponents[] = $table->getComponentName();
-                }
+                return $table->getComponentName();
             }
         }
-        
-        return $matchedComponents[count($matchedComponents)-1];
+        return $component;
     }
 }
