@@ -1,0 +1,3 @@
+all:
+  sfSettingsPlugin:
+    edit_mode: standard_admin

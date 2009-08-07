@@ -1,0 +1,58 @@
+These tests cover various important aspects of Swift Mailer.
+
+For those of you who aren't seriously into testing, you'll probably just
+want to run the smoke tests since these are visual tests with graphics and
+all you need to do is compare the results.  There are also some benchmarks, and some
+unit tests included.
+
+BEFORE YOU CAN DO ANYTHING, YOU MUST SET UP THE TEST ENVIRONMENT
+
+Setting up the test environment
+-------------------------------
+
+YOU NEED SIMPLETEST INSTALLED SOMEWHERE ALREADY FOR THE UNITS!
+
+1.  CHMOD tests/tmp/ to be writable to the web user:
+
+- $  chmod 0777 ./tests/tmp
+
+2.  Extract the files in tests/files/extract_these_first.tar.bz2  used as pretend attachments:
+
+- $  cd ./tests/files
+- $  tar xvjf extract_these_first.tar.bz2
+
+3.  Edit the TestConfiguration.php file.  It contains things such as the simpletest path
+    and addresses to use in sending for the smoke tests.
+
+
+Running the Smoke Tests
+-------------------------
+
+The smoke tests are easy.  They're just visual tests.  Simply open up the files in test/smokes/
+in your web browser and follow the instructions on the screen.
+
+Running the Unit Tests
+-----------------------
+
+The unit tests require you to have simpletest installed.
+
+http://www.sourceforge.net/projects/simpletest/
+
+Ope the tests/units/runTests.php file in your web browser, then select test cases, or a group of tests from the left.
+
+A green bar indicates everything is ok.  A red bar indicates a failure.
+
+Running the Benchmarks
+------------------------
+
+YOU NEED THE XDEBUG2 PHP EXTENSION TO RUN THE BENCHMARKS
+
+There are 3 benchmark files included in tests/benchmarks/.  These will actually send emails
+to the addresses given in the TestConfiguration.php files.
+
+If you don't have Xdebug2 installed, you can get it from PECL using:
+
+- $  pecl install xdebug-2.0.0RC3
+
+
+ - End of file -

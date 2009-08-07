@@ -1,0 +1,24 @@
+cscomments_comments_add:
+  url:  /csComments/comments/add
+  param:  { module: csComments, action: add }
+
+cscomments_comments_do_add:
+  url:  /csComments/comments/addComment
+  param:  { module: csComments, action: doAdd }
+  
+cscomments_comments_edit:
+  url:  /csComments/comments/editComment
+  param:  { module: csComments, action: doEdit }
+
+cscomments_comments_delete:
+  url:  /csComments/comments/deleteComment
+  param:  { module: csComments, action: doDelete }
+
+comment_csCommentAdmin:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Comment
+    module:               csCommentAdmin
+    prefix_path:          csCommentAdmin
+    column:               id
+    with_wildcard_routes: true

@@ -1,0 +1,21 @@
+---
+Comment: 
+  actAs:
+    NestedSet:
+      hasManyRoots: true
+      rootColumnName: root_id
+    Timestampable:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    body:
+      type:     clob
+    approved:
+      type:     boolean
+      default:  false
+    approved_at:
+      type:     timestamp
+    user_id:
+      type:     integer

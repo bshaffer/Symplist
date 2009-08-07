@@ -1,0 +1,42 @@
+### csFormTransformPlugin
+
+This plugin allows you to provide a quick web 2.0 look to your forms using the jQuery jqtransform plugin
+
+[jqtransform](http://www.dfc-e.com/metiers/multimedia/opensource/jqtransform/)
+
+##Implementation
+
+__Requirements__: Included jQuery Library on the page
+
+__First__ set your form's formatter by adding the following code to your form's {{{ setup() }}} method:
+
+	[php]
+	public function configure()
+	{
+		...
+		
+		$formatter = new csWidgetFormSchemaFormatterJQTransform($this->widgetSchema);
+		$this->widgetSchema->addFormFormatter('cs-formatter', $formatter);
+		$this->widgetSchema->setFormFormatterName('cs-formatter');
+	}
+
+Alternatively, place the code above in your Base Form in a method, for example {{{ setJQFormatter() }}},
+and then call this method in any form you want to format in this way.
+
+__Second__ add {{{ use_helper('FormTransform'); }}} to your view where you are displaying your form.
+
+__Third__ add the class _jqtransform_ to the form or forms you want to be transformed.
+
+And you're done!  __Note__: Don't forget to publish your assets (_./symfony plugin:publish-assets_).  If you do, the javascripts will not be included.
+
+##Options
+
+You can add/override the javascripts / stylesheets included in this plugin by overriding the plugin's app.yml:
+
+	[yml]
+	all:
+	csFormTransformPlugin:
+		stylesheets:  ['/csFormTransformPlugin/css/jqtransform.css']
+		javascripts:  ['/csFormTransformPlugin/js/jquery.jqtransform.js']
+		
+This allows you to easily give your transformed forms custom styles

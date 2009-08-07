@@ -1,0 +1,73 @@
+/* @group Admin Bar for meta data */
+#seo_admin_bar
+{
+	background-color:#CCCCCC;
+	display:block;
+	left:0;
+	margin:0;
+	position:absolute;
+	top:0;
+	z-index:1001;
+	opacity:.95;
+	font-size:12px;
+}
+#seo_admin_bar ul
+{
+	margin:0;
+	padding:0;
+}
+#seo_admin_bar li
+{
+	padding-left:20px;
+}
+#seo_admin_forms li
+{
+/*	background-color:tan;*/
+	margin:0;
+	float:left;
+	list-style-type:none;
+	padding-right:20px;
+}
+#seo_admin_forms form
+{
+	padding-bottom:20px;
+}
+#seo_admin_buttons li
+{
+	float:left;
+	list-style-type:none;
+	padding-top:5px;
+	padding-right: 20px ;
+	padding-bottom: 5px;
+	margin-right:10px;
+	background: #CCCCCC none no-repeat right center;
+}
+#seo_admin_buttons li.sitemap
+{
+	background-image:url(../images/sitemap.gif);
+}
+#seo_admin_buttons li.metadata
+{
+	background-image:url(../images/metadata.gif);
+}
+#seo_admin_buttons a
+{
+	color:#444;
+}
+#seo_admin_forms input, #seo_admin_forms textarea, #seo_admin_forms select, #seo_admin_forms label 
+{
+	display:block;
+}
+#seo_admin_forms label 
+{
+	margin:5px;
+}
+#seo_admin_forms #priority_slider
+{
+	display:inline;
+}
+#seo_admin_forms #seo_page_exclude_from_sitemap
+{
+	float:left;
+}
+/* @End*/

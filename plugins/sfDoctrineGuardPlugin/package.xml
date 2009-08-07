@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.4.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+ <name>sfDoctrineGuardPlugin</name>
+ <channel>plugins.symfony-project.org</channel>
+ <summary>Identity management plugin.</summary>
+ <description>Identity management plugin.</description>
+ <lead>
+  <name>Jonathan H. Wage</name>
+  <user>jwage</user>
+  <email>jonwage@gmail.com</email>
+  <active>yes</active>
+ </lead>
+ <date>2008-12-15</date>
+ <version>
+   <release>3.0.0</release>
+   <api>3.0.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.symfony-project.com/license">MIT license</license>
+ <notes>-</notes>
+ <contents>
+   <dir name="/">
+     <file role="data" name="README" />
+     <file role="data" name="LICENSE" />
+
+     <dir name="config">
+       <file role="data" name="config.php" />
+       <dir name="doctrine">
+         <!-- model -->
+         <file role="data" name="schema.yml" />
+      </dir>
+     </dir>
+
+     <dir name="data">
+       <dir name="fixtures">
+         <!-- fixtures -->
+         <file role="data" name="fixtures.yml.sample" />
+       </dir>
+     </dir>
+
+     <dir name="lib">
+       <dir name="form">
+         <dir name="doctrine">
+           <dir name="base">
+             <file role="data" name="BasesfGuardFormSignin.class.php" />
+             <file role="data" name="BasesfGuardUserAdminForm.class.php" />
+           </dir>
+           <file role="data" name="sfGuardFormSignin.class.php" />
+           <file role="data" name="sfGuardUserAdminForm.class.php" />
+           <file role="data" name="PluginsfGuardGroupForm.class.php" />
+           <file role="data" name="PluginsfGuardGroupPermissionForm.class.php" />
+           <file role="data" name="PluginsfGuardPermissionForm.class.php" />
+           <file role="data" name="PluginsfGuardRememberKeyForm.class.php" />
+           <file role="data" name="PluginsfGuardUserForm.class.php" />
+           <file role="data" name="PluginsfGuardUserGroupForm.class.php" />
+           <file role="data" name="PluginsfGuardUserPermissionForm.class.php" />
+         </dir>
+       </dir>
+       <dir name="filter">
+        <dir name="doctrine">
+          <file role="data" name="PluginsfGuardGroupFormFilter.class.php" />
+          <file role="data" name="PluginsfGuardGroupPermissionFormFilter.class.php" />
+          <file role="data" name="PluginsfGuardPermissionFormFilter.class.php" />
+          <file role="data" name="PluginsfGuardRememberKeyFormFilter.class.php" />
+          <file role="data" name="PluginsfGuardUserFormFilter.class.php" />
+          <file role="data" name="PluginsfGuardUserGroupFormFilter.class.php" />
+          <file role="data" name="PluginsfGuardUserPermissionFormFilter.class.php" />
+        </dir>
+       </dir>
+       <dir name="model">
+         <dir name="doctrine">
+           <file role="data" name="PluginsfGuardGroup.class.php" />
+           <file role="data" name="PluginsfGuardGroupTable.class.php" />
+           <file role="data" name="PluginsfGuardGroupPermission.class.php" />
+           <file role="data" name="PluginsfGuardGroupPermissionTable.class.php" />
+           <file role="data" name="PluginsfGuardPermission.class.php" />
+           <file role="data" name="PluginsfGuardPermissionTable.class.php" />
+           <file role="data" name="PluginsfGuardUser.class.php" />
+           <file role="data" name="PluginsfGuardUserTable.class.php" />
+           <file role="data" name="PluginsfGuardUserGroup.class.php" />
+           <file role="data" name="PluginsfGuardUserGroupTable.class.php" />
+           <file role="data" name="PluginsfGuardUserPermission.class.php" />
+           <file role="data" name="PluginsfGuardUserPermissionTable.class.php" />
+           <file role="data" name="PluginsfGuardRememberKey.class.php" />
+           <file role="data" name="PluginsfGuardRememberKeyTable.class.php" />
+         </dir>
+       </dir>
+
+       <dir name="user">
+         <file role="data" name="sfGuardSecurityUser.class.php" />
+       </dir>
+
+       <file role="data" name="sfGuardBasicSecurityFilter.class.php" />
+       <file role="data" name="sfGuardRouting.class.php" />
+
+       <dir name="task">
+         <file role="data" name="sfGuardCreateAdminTask.class.php" />
+         <file role="data" name="sfGuardCreateUserTask.class.php" />
+         <file role="data" name="sfGuardAddPermissionTask.class.php" />
+         <file role="data" name="sfGuardAddGroupTask.class.php" />
+       </dir>
+
+       <dir name="validator">
+         <file role="data" name="sfGuardValidatorUser.class.php" />
+       </dir>
+     </dir>
+
+     <dir name="modules">
+       <dir name="sfGuardAuth">
+         <file role="data" name="actions/actions.class.php" />
+         <file role="data" name="config/security.yml" />
+         <file role="data" name="lib/BasesfGuardAuthActions.class.php" />
+         <file role="data" name="templates/secureSuccess.php" />
+         <file role="data" name="templates/signinSuccess.php" />
+       </dir>
+
+       <dir name="sfGuardGroup">
+         <file role="data" name="actions/actions.class.php" />
+         <file role="data" name="config/generator.yml" />
+         <file role="data" name="lib/BasesfGuardGroupActions.class.php" />
+         <file role="data" name="lib/sfGuardGroupGeneratorConfiguration.class.php" />
+         <file role="data" name="lib/sfGuardGroupGeneratorHelper.class.php" />
+       </dir>
+
+       <dir name="sfGuardPermission">
+         <file role="data" name="actions/actions.class.php" />
+         <file role="data" name="config/generator.yml" />
+         <file role="data" name="lib/BasesfGuardPermissionActions.class.php" />
+         <file role="data" name="lib/sfGuardPermissionGeneratorConfiguration.class.php" />
+         <file role="data" name="lib/sfGuardPermissionGeneratorHelper.class.php" />
+       </dir>
+
+       <dir name="sfGuardUser">
+         <file role="data" name="actions/actions.class.php" />
+         <file role="data" name="config/generator.yml" />
+         <file role="data" name="lib/BasesfGuardUserActions.class.php" />
+         <file role="data" name="lib/sfGuardUserGeneratorConfiguration.class.php" />
+         <file role="data" name="lib/sfGuardUserGeneratorHelper.class.php" />
+       </dir>
+     </dir>
+   </dir>
+ </contents>
+
+ <dependencies>
+  <required>
+   <php>
+    <min>5.0.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.1</min>
+   </pearinstaller>
+   <package>
+    <name>symfony</name>
+    <channel>pear.symfony-project.com</channel>
+    <min>1.2.0</min>
+    <max>1.3.0</max>
+    <exclude>1.3.0</exclude>
+   </package>
+  </required>
+ </dependencies>
+
+ <phprelease>
+ </phprelease>
+
+ <changelog>
+   <release>
+      <version>
+        <release>3.0.1</release>
+        <api>3.0.0</api>
+      </version>
+      <stability>
+       <release>stable</release>
+       <api>stable</api>
+      </stability>
+      <license uri="http://www.symfony-project.com/license">MIT license</license>
+      <date>2008-12-15</date>
+      <license>MIT</license>
+      <notes>
+        * fabien: fixed login method when called from an Ajax request
+      </notes>
+    </release>
+   <release>
+      <version>
+        <release>3.0.0</release>
+        <api>3.0.0</api>
+      </version>
+      <stability>
+       <release>stable</release>
+       <api>stable</api>
+      </stability>
+      <license uri="http://www.symfony-project.com/license">MIT license</license>
+      <date>2008-12-15</date>
+      <license>MIT</license>
+      <notes>First packaged release of sfDoctrineGuardPlugin</notes>
+    </release>
+  </changelog>
+</package>

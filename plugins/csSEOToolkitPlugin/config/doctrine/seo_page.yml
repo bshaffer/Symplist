@@ -1,0 +1,18 @@
+SeoPage:
+  actAs: [Timestampable]
+  columns:
+    url:    string(255)
+    title:  string(255)
+    description:  clob
+    keywords:   string(255)
+    priority:    
+      type:         decimal
+      default:      .5
+      scale:        1
+    changeFreq:  
+      type:         enum
+      values:       [always,hourly,daily,weekly,monthly,yearly,never]
+      default:      weekly
+    exclude_from_sitemap:
+      type:     boolean
+      default:  false

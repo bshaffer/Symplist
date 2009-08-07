@@ -1,0 +1,35 @@
+plugins:
+  url:                                /plugins
+  param:                              { module: plugin, action: list }
+
+plugin_categories:
+  url:                                /plugins/categories
+  param:                              { module: plugin, action: categories }
+
+plugins_by_category:
+  url:                                /plugins/categories/:slug
+  param:                              { module: plugin, action: byCategory }
+
+plugin:
+  url:                                /plugins/:slug
+  param:                              { module: plugin, action: show }
+
+authors:
+  url:                                /authors
+  param:                              { module: author, action: index }
+
+author:
+  url:                                /authors/:username
+  param:                              { module: author, action: index }
+
+# default rules
+homepage:
+  url:                                /
+  param:                              { module: plugin, action: index }
+
+default_index:
+  url:                                /:module
+  param:                              { action: index }
+
+default:
+  url:                                /:module/:action/*

@@ -1,0 +1,998 @@
+Aug 01 19:22:02 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 01 19:22:02 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 01 19:22:02 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 01 19:22:02 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 01 19:22:02 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 01 19:22:02 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:22:02 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:22:02 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:22:02 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:22:02 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:22:02 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:22:02 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:22:02 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:22:02 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:22:02 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:22:02 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:22:02 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:22:02 symfony [info] {main} Call "csSEO->executeMeta_data()"
+Aug 01 19:22:02 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_meta_data.php"
+Aug 01 19:22:02 symfony [info] {main} Call "csSEO->executeMetas()"
+Aug 01 19:22:02 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.url AS s__url, s.title AS s__title, s.description AS s__description, s.keywords AS s__keywords, s.priority AS s__priority, s.changefreq AS s__changefreq, s.exclude_from_sitemap AS s__exclude_from_sitemap, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM seo_page s WHERE s.url = ? LIMIT 1 - (/plugin )
+Aug 01 19:22:02 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_metas.php"
+Aug 01 19:22:02 symfony [info] {sfDoctrineLogger} executeQuery : INSERT INTO seo_page (priority, changefreq, exclude_from_sitemap, url, title, description, keywords, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) - (0.5, weekly, 0, /plugin, uea, uea, , 2009-08-01 19:22:02, 2009-08-01 19:22:02 )
+Aug 01 19:22:02 symfony [info] {main} Call "csSEO->executeMetas()"
+Aug 01 19:22:02 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.url AS s__url, s.title AS s__title, s.description AS s__description, s.keywords AS s__keywords, s.priority AS s__priority, s.changefreq AS s__changefreq, s.exclude_from_sitemap AS s__exclude_from_sitemap, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM seo_page s WHERE s.url = ? LIMIT 1 - (/plugin )
+Aug 01 19:22:02 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_metas.php"
+Aug 01 19:22:02 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 01 19:22:02 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 01 19:22:02 symfony [info] {sfWebDebugLogger} Configuration 750.64 ms (12)
+Aug 01 19:22:02 symfony [info] {sfWebDebugLogger} Action "plugin/index" 0.54 ms (1)
+Aug 01 19:22:02 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 115.59 ms (1)
+Aug 01 19:22:02 symfony [info] {sfWebDebugLogger} Component "csSEO/meta_data" 0.08 ms (1)
+Aug 01 19:22:02 symfony [info] {sfWebDebugLogger} Partial "csSEO/_meta_data" 71.76 ms (1)
+Aug 01 19:22:02 symfony [info] {sfWebDebugLogger} Component "csSEO/metas" 33.82 ms (2)
+Aug 01 19:22:02 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.05 ms (6)
+Aug 01 19:22:02 symfony [info] {sfWebDebugLogger} Partial "csSEO/_metas" 2.41 ms (2)
+Aug 01 19:22:02 symfony [info] {sfWebResponse} Send content (146197 o)
+Aug 01 19:22:30 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 01 19:22:30 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 01 19:22:30 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 01 19:22:30 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 01 19:22:30 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 01 19:22:30 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:22:30 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:22:30 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:22:30 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:22:30 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:22:30 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:22:30 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:22:30 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:22:30 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:22:30 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:22:30 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:22:30 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:22:30 symfony [info] {main} Call "csSEO->executeMeta_data()"
+Aug 01 19:22:30 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_meta_data.php"
+Aug 01 19:22:30 symfony [info] {main} Call "csSEO->executeMetas()"
+Aug 01 19:22:30 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.url AS s__url, s.title AS s__title, s.description AS s__description, s.keywords AS s__keywords, s.priority AS s__priority, s.changefreq AS s__changefreq, s.exclude_from_sitemap AS s__exclude_from_sitemap, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM seo_page s WHERE s.url = ? LIMIT 1 - (/plugin )
+Aug 01 19:22:30 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_metas.php"
+Aug 01 19:22:30 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 01 19:22:30 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 01 19:22:30 symfony [info] {sfWebDebugLogger} Configuration 742.02 ms (11)
+Aug 01 19:22:30 symfony [info] {sfWebDebugLogger} Action "plugin/index" 0.56 ms (1)
+Aug 01 19:22:30 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 36.50 ms (1)
+Aug 01 19:22:30 symfony [info] {sfWebDebugLogger} Component "csSEO/meta_data" 0.10 ms (1)
+Aug 01 19:22:30 symfony [info] {sfWebDebugLogger} Partial "csSEO/_meta_data" 18.72 ms (1)
+Aug 01 19:22:30 symfony [info] {sfWebDebugLogger} Component "csSEO/metas" 14.49 ms (1)
+Aug 01 19:22:30 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (2)
+Aug 01 19:22:30 symfony [info] {sfWebDebugLogger} Partial "csSEO/_metas" 1.03 ms (1)
+Aug 01 19:22:30 symfony [info] {sfWebResponse} Send content (130727 o)
+Aug 01 19:23:05 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 01 19:23:05 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 01 19:23:05 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 01 19:23:05 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 01 19:23:05 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 01 19:23:05 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:23:05 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:23:05 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:23:05 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:23:05 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:23:05 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:23:05 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:23:05 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:23:05 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:23:05 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:23:05 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:23:05 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:23:05 symfony [info] {main} Call "csSEO->executeMeta_data()"
+Aug 01 19:23:05 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_meta_data.php"
+Aug 01 19:23:05 symfony [info] {main} Call "csSEO->executeMetas()"
+Aug 01 19:23:05 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.url AS s__url, s.title AS s__title, s.description AS s__description, s.keywords AS s__keywords, s.priority AS s__priority, s.changefreq AS s__changefreq, s.exclude_from_sitemap AS s__exclude_from_sitemap, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM seo_page s WHERE s.url = ? LIMIT 1 - (/plugin )
+Aug 01 19:23:05 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_metas.php"
+Aug 01 19:23:05 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 01 19:23:05 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 01 19:23:05 symfony [info] {sfWebDebugLogger} Configuration 5.39 ms (11)
+Aug 01 19:23:05 symfony [info] {sfWebDebugLogger} Action "plugin/index" 0.60 ms (1)
+Aug 01 19:23:05 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 31.82 ms (1)
+Aug 01 19:23:05 symfony [info] {sfWebDebugLogger} Component "csSEO/meta_data" 0.07 ms (1)
+Aug 01 19:23:05 symfony [info] {sfWebDebugLogger} Partial "csSEO/_meta_data" 20.27 ms (1)
+Aug 01 19:23:05 symfony [info] {sfWebDebugLogger} Component "csSEO/metas" 16.23 ms (1)
+Aug 01 19:23:05 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (2)
+Aug 01 19:23:05 symfony [info] {sfWebDebugLogger} Partial "csSEO/_metas" 1.01 ms (1)
+Aug 01 19:23:05 symfony [info] {sfWebResponse} Send content (130759 o)
+Aug 01 19:23:06 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 01 19:23:06 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 01 19:23:06 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 01 19:23:06 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 01 19:23:06 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 01 19:23:06 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:23:06 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:23:06 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:23:06 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:23:06 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:23:06 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:23:06 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:23:06 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:23:06 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:23:06 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:23:06 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:23:06 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:23:06 symfony [info] {main} Call "csSEO->executeMeta_data()"
+Aug 01 19:23:06 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_meta_data.php"
+Aug 01 19:23:06 symfony [info] {main} Call "csSEO->executeMetas()"
+Aug 01 19:23:06 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.url AS s__url, s.title AS s__title, s.description AS s__description, s.keywords AS s__keywords, s.priority AS s__priority, s.changefreq AS s__changefreq, s.exclude_from_sitemap AS s__exclude_from_sitemap, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM seo_page s WHERE s.url = ? LIMIT 1 - (/plugin )
+Aug 01 19:23:06 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_metas.php"
+Aug 01 19:23:06 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 01 19:23:06 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 01 19:23:06 symfony [info] {sfWebDebugLogger} Configuration 5.31 ms (11)
+Aug 01 19:23:06 symfony [info] {sfWebDebugLogger} Action "plugin/index" 0.60 ms (1)
+Aug 01 19:23:06 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 26.54 ms (1)
+Aug 01 19:23:06 symfony [info] {sfWebDebugLogger} Component "csSEO/meta_data" 0.07 ms (1)
+Aug 01 19:23:06 symfony [info] {sfWebDebugLogger} Partial "csSEO/_meta_data" 17.19 ms (1)
+Aug 01 19:23:06 symfony [info] {sfWebDebugLogger} Component "csSEO/metas" 13.02 ms (1)
+Aug 01 19:23:06 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (2)
+Aug 01 19:23:06 symfony [info] {sfWebDebugLogger} Partial "csSEO/_metas" 1.00 ms (1)
+Aug 01 19:23:06 symfony [info] {sfWebResponse} Send content (130759 o)
+Aug 01 19:23:07 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 01 19:23:07 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 01 19:23:07 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 01 19:23:07 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 01 19:23:07 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 01 19:23:07 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:23:07 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:23:07 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:23:07 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:23:07 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:23:07 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:23:07 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:23:07 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:23:07 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:23:07 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:23:07 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:23:07 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:23:07 symfony [info] {main} Call "csSEO->executeMeta_data()"
+Aug 01 19:23:07 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_meta_data.php"
+Aug 01 19:23:07 symfony [info] {main} Call "csSEO->executeMetas()"
+Aug 01 19:23:07 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.url AS s__url, s.title AS s__title, s.description AS s__description, s.keywords AS s__keywords, s.priority AS s__priority, s.changefreq AS s__changefreq, s.exclude_from_sitemap AS s__exclude_from_sitemap, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM seo_page s WHERE s.url = ? LIMIT 1 - (/plugin )
+Aug 01 19:23:07 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_metas.php"
+Aug 01 19:23:07 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 01 19:23:07 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 01 19:23:07 symfony [info] {sfWebDebugLogger} Configuration 5.18 ms (11)
+Aug 01 19:23:07 symfony [info] {sfWebDebugLogger} Action "plugin/index" 0.60 ms (1)
+Aug 01 19:23:07 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 26.25 ms (1)
+Aug 01 19:23:07 symfony [info] {sfWebDebugLogger} Component "csSEO/meta_data" 0.07 ms (1)
+Aug 01 19:23:07 symfony [info] {sfWebDebugLogger} Partial "csSEO/_meta_data" 16.99 ms (1)
+Aug 01 19:23:07 symfony [info] {sfWebDebugLogger} Component "csSEO/metas" 13.01 ms (1)
+Aug 01 19:23:07 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (2)
+Aug 01 19:23:07 symfony [info] {sfWebDebugLogger} Partial "csSEO/_metas" 0.93 ms (1)
+Aug 01 19:23:07 symfony [info] {sfWebResponse} Send content (130759 o)
+Aug 01 19:23:07 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 01 19:23:07 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 01 19:23:07 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 01 19:23:07 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 01 19:23:07 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 01 19:23:07 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:23:07 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:23:07 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:23:07 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:23:07 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:23:08 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:23:08 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:23:08 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:23:08 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:23:08 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:23:08 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:23:08 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:23:08 symfony [info] {main} Call "csSEO->executeMeta_data()"
+Aug 01 19:23:08 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_meta_data.php"
+Aug 01 19:23:08 symfony [info] {main} Call "csSEO->executeMetas()"
+Aug 01 19:23:08 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.url AS s__url, s.title AS s__title, s.description AS s__description, s.keywords AS s__keywords, s.priority AS s__priority, s.changefreq AS s__changefreq, s.exclude_from_sitemap AS s__exclude_from_sitemap, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM seo_page s WHERE s.url = ? LIMIT 1 - (/plugin )
+Aug 01 19:23:08 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_metas.php"
+Aug 01 19:23:08 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 01 19:23:08 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 01 19:23:08 symfony [info] {sfWebDebugLogger} Configuration 5.95 ms (11)
+Aug 01 19:23:08 symfony [info] {sfWebDebugLogger} Action "plugin/index" 0.60 ms (1)
+Aug 01 19:23:08 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 427.10 ms (1)
+Aug 01 19:23:08 symfony [info] {sfWebDebugLogger} Component "csSEO/meta_data" 0.12 ms (1)
+Aug 01 19:23:08 symfony [info] {sfWebDebugLogger} Partial "csSEO/_meta_data" 28.66 ms (1)
+Aug 01 19:23:08 symfony [info] {sfWebDebugLogger} Component "csSEO/metas" 21.69 ms (1)
+Aug 01 19:23:08 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.03 ms (2)
+Aug 01 19:23:08 symfony [info] {sfWebDebugLogger} Partial "csSEO/_metas" 1.57 ms (1)
+Aug 01 19:23:08 symfony [info] {sfWebResponse} Send content (130758 o)
+Aug 01 19:23:09 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 01 19:23:09 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 01 19:23:09 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 01 19:23:09 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 01 19:23:09 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 01 19:23:09 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:23:09 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:23:09 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:23:09 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:23:09 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:23:09 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:23:09 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:23:09 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:23:09 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:23:09 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:23:09 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:23:09 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:23:09 symfony [info] {main} Call "csSEO->executeMeta_data()"
+Aug 01 19:23:09 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_meta_data.php"
+Aug 01 19:23:09 symfony [info] {main} Call "csSEO->executeMetas()"
+Aug 01 19:23:09 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.url AS s__url, s.title AS s__title, s.description AS s__description, s.keywords AS s__keywords, s.priority AS s__priority, s.changefreq AS s__changefreq, s.exclude_from_sitemap AS s__exclude_from_sitemap, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM seo_page s WHERE s.url = ? LIMIT 1 - (/plugin )
+Aug 01 19:23:09 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_metas.php"
+Aug 01 19:23:09 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 01 19:23:09 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 01 19:23:09 symfony [info] {sfWebDebugLogger} Configuration 5.21 ms (11)
+Aug 01 19:23:09 symfony [info] {sfWebDebugLogger} Action "plugin/index" 0.57 ms (1)
+Aug 01 19:23:09 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 26.43 ms (1)
+Aug 01 19:23:09 symfony [info] {sfWebDebugLogger} Component "csSEO/meta_data" 0.07 ms (1)
+Aug 01 19:23:09 symfony [info] {sfWebDebugLogger} Partial "csSEO/_meta_data" 17.21 ms (1)
+Aug 01 19:23:09 symfony [info] {sfWebDebugLogger} Component "csSEO/metas" 13.08 ms (1)
+Aug 01 19:23:09 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (2)
+Aug 01 19:23:09 symfony [info] {sfWebDebugLogger} Partial "csSEO/_metas" 0.99 ms (1)
+Aug 01 19:23:09 symfony [info] {sfWebResponse} Send content (130759 o)
+Aug 01 19:25:27 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 01 19:25:27 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 01 19:25:27 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 01 19:25:27 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 01 19:25:27 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 01 19:25:27 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:25:27 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:25:27 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:25:27 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:25:27 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:25:27 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:25:27 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:25:27 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:25:27 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:25:27 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:25:27 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:25:27 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:25:27 symfony [info] {main} Call "csSEO->executeMeta_data()"
+Aug 01 19:25:27 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_meta_data.php"
+Aug 01 19:25:27 symfony [info] {main} Call "csSEO->executeMetas()"
+Aug 01 19:25:27 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.url AS s__url, s.title AS s__title, s.description AS s__description, s.keywords AS s__keywords, s.priority AS s__priority, s.changefreq AS s__changefreq, s.exclude_from_sitemap AS s__exclude_from_sitemap, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM seo_page s WHERE s.url = ? LIMIT 1 - (/plugin )
+Aug 01 19:25:27 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_metas.php"
+Aug 01 19:25:27 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 01 19:25:27 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 01 19:25:27 symfony [info] {sfWebDebugLogger} Configuration 6.89 ms (11)
+Aug 01 19:25:27 symfony [info] {sfWebDebugLogger} Action "plugin/index" 0.61 ms (1)
+Aug 01 19:25:27 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 28.93 ms (1)
+Aug 01 19:25:27 symfony [info] {sfWebDebugLogger} Component "csSEO/meta_data" 0.11 ms (1)
+Aug 01 19:25:27 symfony [info] {sfWebDebugLogger} Partial "csSEO/_meta_data" 18.14 ms (1)
+Aug 01 19:25:27 symfony [info] {sfWebDebugLogger} Component "csSEO/metas" 13.88 ms (1)
+Aug 01 19:25:27 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (2)
+Aug 01 19:25:27 symfony [info] {sfWebDebugLogger} Partial "csSEO/_metas" 0.95 ms (1)
+Aug 01 19:25:27 symfony [info] {sfWebResponse} Send content (130758 o)
+Aug 01 19:27:05 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 01 19:27:05 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 01 19:27:05 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 01 19:27:05 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 01 19:27:05 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 01 19:27:05 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:27:05 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:27:05 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:27:05 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:27:05 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:27:05 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:27:05 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:27:05 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:27:05 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:27:05 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:27:05 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:27:05 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:27:05 symfony [info] {main} Call "csSEO->executeMeta_data()"
+Aug 01 19:27:05 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_meta_data.php"
+Aug 01 19:27:05 symfony [info] {main} Call "csSEO->executeMetas()"
+Aug 01 19:27:05 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.url AS s__url, s.title AS s__title, s.description AS s__description, s.keywords AS s__keywords, s.priority AS s__priority, s.changefreq AS s__changefreq, s.exclude_from_sitemap AS s__exclude_from_sitemap, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM seo_page s WHERE s.url = ? LIMIT 1 - (/plugin )
+Aug 01 19:27:05 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_metas.php"
+Aug 01 19:27:05 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 01 19:27:05 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 01 19:27:05 symfony [info] {sfWebDebugLogger} Configuration 741.98 ms (11)
+Aug 01 19:27:05 symfony [info] {sfWebDebugLogger} Action "plugin/index" 0.55 ms (1)
+Aug 01 19:27:05 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 35.90 ms (1)
+Aug 01 19:27:05 symfony [info] {sfWebDebugLogger} Component "csSEO/meta_data" 0.07 ms (1)
+Aug 01 19:27:05 symfony [info] {sfWebDebugLogger} Partial "csSEO/_meta_data" 17.68 ms (1)
+Aug 01 19:27:05 symfony [info] {sfWebDebugLogger} Component "csSEO/metas" 13.28 ms (1)
+Aug 01 19:27:05 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (2)
+Aug 01 19:27:05 symfony [info] {sfWebDebugLogger} Partial "csSEO/_metas" 1.03 ms (1)
+Aug 01 19:27:05 symfony [info] {sfWebResponse} Send content (130728 o)
+Aug 01 19:34:51 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 01 19:34:51 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 01 19:34:51 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 01 19:34:51 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 01 19:34:51 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 01 19:34:51 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:34:51 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:34:51 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:34:51 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:34:51 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:34:51 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:34:51 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:34:51 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:34:51 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:34:51 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:34:51 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:34:51 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:34:51 symfony [info] {main} Call "csSEO->executeMeta_data()"
+Aug 01 19:34:51 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_meta_data.php"
+Aug 01 19:34:51 symfony [info] {main} Call "csSEO->executeMetas()"
+Aug 01 19:34:51 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.url AS s__url, s.title AS s__title, s.description AS s__description, s.keywords AS s__keywords, s.priority AS s__priority, s.changefreq AS s__changefreq, s.exclude_from_sitemap AS s__exclude_from_sitemap, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM seo_page s WHERE s.url = ? LIMIT 1 - (/plugin )
+Aug 01 19:34:51 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_metas.php"
+Aug 01 19:34:51 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 01 19:34:51 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 01 19:34:51 symfony [info] {sfWebDebugLogger} Configuration 537.93 ms (11)
+Aug 01 19:34:51 symfony [info] {sfWebDebugLogger} Action "plugin/index" 0.56 ms (1)
+Aug 01 19:34:51 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 218.39 ms (1)
+Aug 01 19:34:51 symfony [info] {sfWebDebugLogger} Component "csSEO/meta_data" 0.07 ms (1)
+Aug 01 19:34:51 symfony [info] {sfWebDebugLogger} Partial "csSEO/_meta_data" 163.04 ms (1)
+Aug 01 19:34:51 symfony [info] {sfWebDebugLogger} Component "csSEO/metas" 158.80 ms (1)
+Aug 01 19:34:51 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (2)
+Aug 01 19:34:51 symfony [info] {sfWebDebugLogger} Partial "csSEO/_metas" 1.00 ms (1)
+Aug 01 19:34:51 symfony [info] {sfWebResponse} Send content (130891 o)
+Aug 01 19:35:21 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 01 19:35:21 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 01 19:35:21 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 01 19:35:21 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 01 19:35:21 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 01 19:35:21 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:35:21 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:35:21 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:35:21 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:35:21 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:35:21 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:35:21 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:35:21 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:35:21 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:35:21 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:35:21 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:35:21 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:35:21 symfony [info] {main} Call "csSEO->executeMeta_data()"
+Aug 01 19:35:21 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_meta_data.php"
+Aug 01 19:35:21 symfony [info] {main} Call "csSEO->executeMetas()"
+Aug 01 19:35:21 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.url AS s__url, s.title AS s__title, s.description AS s__description, s.keywords AS s__keywords, s.priority AS s__priority, s.changefreq AS s__changefreq, s.exclude_from_sitemap AS s__exclude_from_sitemap, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM seo_page s WHERE s.url = ? LIMIT 1 - (/plugin )
+Aug 01 19:35:21 symfony [info] {sfPartialView} Render "/Library/WebServer/Documents/plugintracker/plugins/csSEOToolkitPlugin/modules/csSEO/templates/_metas.php"
+Aug 01 19:35:21 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 01 19:35:21 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 01 19:35:21 symfony [info] {sfWebDebugLogger} Configuration 5.34 ms (11)
+Aug 01 19:35:21 symfony [info] {sfWebDebugLogger} Action "plugin/index" 0.58 ms (1)
+Aug 01 19:35:21 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 33.77 ms (1)
+Aug 01 19:35:21 symfony [info] {sfWebDebugLogger} Component "csSEO/meta_data" 0.07 ms (1)
+Aug 01 19:35:21 symfony [info] {sfWebDebugLogger} Partial "csSEO/_meta_data" 21.98 ms (1)
+Aug 01 19:35:21 symfony [info] {sfWebDebugLogger} Component "csSEO/metas" 17.99 ms (1)
+Aug 01 19:35:21 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (2)
+Aug 01 19:35:21 symfony [info] {sfWebDebugLogger} Partial "csSEO/_metas" 0.96 ms (1)
+Aug 01 19:35:21 symfony [info] {sfWebResponse} Send content (130883 o)
+Aug 01 19:39:13 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:39:13 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:39:13 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:39:13 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:39:13 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:39:13 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:39:13 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:39:13 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:39:13 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:39:13 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:39:13 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:39:13 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:39:13 symfony [err] {InvalidArgumentException} Unable to load "SeoHelper.php" helper in: /Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/lib/helper, /Library/WebServer/Documents/plugintracker/apps/frontend/lib/helper, /Library/WebServer/Documents/plugintracker/lib/helper, /Library/WebServer/Documents/plugintracker/lib/symfony/lib/plugins/sfDoctrinePlugin/lib/helper, /Library/WebServer/Documents/plugintracker/plugins/csAdminGeneratorPlugin/lib/helper, /Library/WebServer/Documents/plugintracker/plugins/csFormTransformPlugin/lib/helper, /Library/WebServer/Documents/plugintracker/lib/symfony/lib/helper, ., /opt/local/lib/php.
+Aug 01 19:39:23 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:39:23 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:39:23 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:39:23 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:39:23 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:39:23 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:39:23 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:39:23 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:39:23 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:39:23 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:39:23 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:39:23 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:39:23 symfony [err] {InvalidArgumentException} Unable to load "SeoHelper.php" helper in: /Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/lib/helper, /Library/WebServer/Documents/plugintracker/apps/frontend/lib/helper, /Library/WebServer/Documents/plugintracker/lib/helper, /Library/WebServer/Documents/plugintracker/lib/symfony/lib/plugins/sfDoctrinePlugin/lib/helper, /Library/WebServer/Documents/plugintracker/plugins/csAdminGeneratorPlugin/lib/helper, /Library/WebServer/Documents/plugintracker/plugins/csFormTransformPlugin/lib/helper, /Library/WebServer/Documents/plugintracker/lib/symfony/lib/helper, ., /opt/local/lib/php.
+Aug 01 19:41:07 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:41:07 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:41:07 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:41:07 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:41:07 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:41:07 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:41:07 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:41:07 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:41:07 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:41:07 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:41:07 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:41:07 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:41:07 symfony [err] {InvalidArgumentException} Unable to load "SeoHelper.php" helper in: /Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/lib/helper, /Library/WebServer/Documents/plugintracker/apps/frontend/lib/helper, /Library/WebServer/Documents/plugintracker/lib/helper, /Library/WebServer/Documents/plugintracker/lib/symfony/lib/plugins/sfDoctrinePlugin/lib/helper, /Library/WebServer/Documents/plugintracker/plugins/csAdminGeneratorPlugin/lib/helper, /Library/WebServer/Documents/plugintracker/plugins/csFormTransformPlugin/lib/helper, /Library/WebServer/Documents/plugintracker/lib/symfony/lib/helper, ., /opt/local/lib/php.
+Aug 01 19:41:26 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:41:26 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:41:26 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:41:26 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:41:26 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:41:26 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:41:26 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:41:26 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:41:26 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:41:26 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:41:26 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:41:26 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:41:26 symfony [err] {InvalidArgumentException} Unable to load "SeoHelper.php" helper in: /Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/lib/helper, /Library/WebServer/Documents/plugintracker/apps/frontend/lib/helper, /Library/WebServer/Documents/plugintracker/lib/helper, /Library/WebServer/Documents/plugintracker/lib/symfony/lib/plugins/sfDoctrinePlugin/lib/helper, /Library/WebServer/Documents/plugintracker/plugins/csAdminGeneratorPlugin/lib/helper, /Library/WebServer/Documents/plugintracker/plugins/csFormTransformPlugin/lib/helper, /Library/WebServer/Documents/plugintracker/lib/symfony/lib/helper, ., /opt/local/lib/php.
+Aug 01 19:42:00 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:42:00 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:42:00 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:42:00 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:42:00 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:42:00 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:42:00 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:42:00 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:42:00 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:42:00 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:42:00 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:42:00 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:42:00 symfony [err] {InvalidArgumentException} Unable to load "SeoHelper.php" helper in: /Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/lib/helper, /Library/WebServer/Documents/plugintracker/apps/frontend/lib/helper, /Library/WebServer/Documents/plugintracker/lib/helper, /Library/WebServer/Documents/plugintracker/lib/symfony/lib/plugins/sfDoctrinePlugin/lib/helper, /Library/WebServer/Documents/plugintracker/plugins/csAdminGeneratorPlugin/lib/helper, /Library/WebServer/Documents/plugintracker/plugins/csFormTransformPlugin/lib/helper, /Library/WebServer/Documents/plugintracker/lib/symfony/lib/helper, ., /opt/local/lib/php.
+Aug 01 19:45:27 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:45:27 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:45:27 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:45:27 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:45:27 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:45:27 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:45:27 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:45:27 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:45:27 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:45:27 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:45:27 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:45:27 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:45:27 symfony [err] {InvalidArgumentException} Unable to load "SeoHelper.php" helper in: /Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/lib/helper, /Library/WebServer/Documents/plugintracker/apps/frontend/lib/helper, /Library/WebServer/Documents/plugintracker/lib/helper, /Library/WebServer/Documents/plugintracker/lib/symfony/lib/plugins/sfDoctrinePlugin/lib/helper, /Library/WebServer/Documents/plugintracker/plugins/csAdminGeneratorPlugin/lib/helper, /Library/WebServer/Documents/plugintracker/plugins/csFormTransformPlugin/lib/helper, /Library/WebServer/Documents/plugintracker/lib/symfony/lib/helper, ., /opt/local/lib/php.
+Aug 01 19:48:03 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:48:03 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:48:03 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:48:03 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:48:03 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:48:03 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:48:03 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:48:03 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:48:03 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:48:03 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:48:03 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:48:03 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:48:03 symfony [err] {InvalidArgumentException} Unable to load "SeoHelper.php" helper in: /Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/lib/helper, /Library/WebServer/Documents/plugintracker/apps/frontend/lib/helper, /Library/WebServer/Documents/plugintracker/lib/helper, /Library/WebServer/Documents/plugintracker/lib/symfony/lib/plugins/sfDoctrinePlugin/lib/helper, /Library/WebServer/Documents/plugintracker/plugins/csAdminGeneratorPlugin/lib/helper, /Library/WebServer/Documents/plugintracker/plugins/csFormTransformPlugin/lib/helper, /Library/WebServer/Documents/plugintracker/lib/symfony/lib/helper, ., /opt/local/lib/php.
+Aug 01 19:48:07 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:48:07 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:48:07 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:48:07 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:48:07 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:48:07 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:48:07 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:48:07 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:48:07 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:48:07 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:48:07 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:48:07 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:48:07 symfony [err] {InvalidArgumentException} Unable to load "SeoHelper.php" helper in: /Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/lib/helper, /Library/WebServer/Documents/plugintracker/apps/frontend/lib/helper, /Library/WebServer/Documents/plugintracker/lib/helper, /Library/WebServer/Documents/plugintracker/lib/symfony/lib/plugins/sfDoctrinePlugin/lib/helper, /Library/WebServer/Documents/plugintracker/plugins/csAdminGeneratorPlugin/lib/helper, /Library/WebServer/Documents/plugintracker/plugins/csFormTransformPlugin/lib/helper, /Library/WebServer/Documents/plugintracker/lib/symfony/lib/helper, ., /opt/local/lib/php.
+Aug 01 19:48:25 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:48:25 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:48:25 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:48:25 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:48:25 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:48:25 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:48:25 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:48:25 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:48:25 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:48:25 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:48:25 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:48:25 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:48:44 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:48:44 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:48:44 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:48:44 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:48:44 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:48:44 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:48:44 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:48:44 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:48:44 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:48:44 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:48:44 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:48:44 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:48:44 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 01 19:48:44 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 01 19:48:44 symfony [info] {sfWebDebugLogger} Configuration 3.27 ms (9)
+Aug 01 19:48:44 symfony [info] {sfWebDebugLogger} Action "plugin/index" 0.61 ms (1)
+Aug 01 19:48:44 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 7.04 ms (1)
+Aug 01 19:48:44 symfony [info] {sfWebResponse} Send content (80023 o)
+Aug 01 19:50:13 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:50:13 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:50:13 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:50:13 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:50:13 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:50:13 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:50:13 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:50:13 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:50:13 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:50:13 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:50:13 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:50:13 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:50:13 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 01 19:50:13 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 01 19:50:13 symfony [info] {sfWebDebugLogger} Configuration 3.69 ms (9)
+Aug 01 19:50:13 symfony [info] {sfWebDebugLogger} Action "plugin/index" 0.59 ms (1)
+Aug 01 19:50:13 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 5.94 ms (1)
+Aug 01 19:50:13 symfony [info] {sfWebResponse} Send content (80021 o)
+Aug 01 19:50:40 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 19:50:40 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 19:50:40 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 19:50:40 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 19:50:40 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 19:50:40 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 19:50:40 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 19:50:40 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 19:50:40 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 19:50:40 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 19:50:40 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:50:40 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 19:50:40 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 01 19:50:40 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 01 19:50:40 symfony [info] {sfWebDebugLogger} Configuration 3.35 ms (9)
+Aug 01 19:50:40 symfony [info] {sfWebDebugLogger} Action "plugin/index" 0.61 ms (1)
+Aug 01 19:50:40 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 6.17 ms (1)
+Aug 01 19:50:40 symfony [info] {sfWebResponse} Send content (80033 o)
+Aug 01 22:13:29 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 22:13:29 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 22:13:29 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 22:13:29 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 22:13:29 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 22:13:29 symfony [info] {myUser} Automatic user logout due to timeout
+Aug 01 22:13:29 symfony [info] {myUser} User is not authenticated
+Aug 01 22:13:29 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 22:13:29 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 22:13:29 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 22:13:29 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 22:13:29 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 22:13:29 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 22:13:29 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 22:13:29 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 01 22:13:29 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 01 22:13:29 symfony [info] {sfWebDebugLogger} Configuration 4.95 ms (9)
+Aug 01 22:13:29 symfony [info] {sfWebDebugLogger} Action "plugin/index" 0.97 ms (1)
+Aug 01 22:13:29 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 28.25 ms (1)
+Aug 01 22:13:29 symfony [info] {sfWebResponse} Send content (87297 o)
+Aug 01 22:13:59 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 22:13:59 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 22:13:59 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 22:13:59 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 22:13:59 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 22:13:59 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 22:13:59 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 22:13:59 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 22:13:59 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 22:13:59 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 22:13:59 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 22:13:59 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 22:13:59 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 01 22:13:59 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 01 22:13:59 symfony [info] {sfWebDebugLogger} Configuration 41.50 ms (10)
+Aug 01 22:13:59 symfony [info] {sfWebDebugLogger} Action "plugin/index" 0.59 ms (1)
+Aug 01 22:13:59 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 44.54 ms (1)
+Aug 01 22:13:59 symfony [info] {sfWebResponse} Send content (80142 o)
+Aug 01 22:14:12 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 22:14:12 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 22:14:12 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 22:14:12 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 22:14:12 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 22:14:12 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 22:14:12 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 22:14:12 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 22:14:12 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 22:14:12 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 22:14:12 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 22:14:12 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 22:14:12 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 01 22:14:12 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 01 22:14:12 symfony [info] {sfWebDebugLogger} Configuration 235.05 ms (9)
+Aug 01 22:14:12 symfony [info] {sfWebDebugLogger} Action "plugin/index" 0.58 ms (1)
+Aug 01 22:14:12 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 11.39 ms (1)
+Aug 01 22:14:12 symfony [info] {sfWebResponse} Send content (80141 o)
+Aug 01 22:14:22 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 01 22:14:22 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 01 22:14:22 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 01 22:14:22 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 01 22:14:22 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 01 22:14:22 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 01 22:14:22 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 01 22:14:22 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 01 22:14:22 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 01 22:14:22 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 01 22:14:22 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 22:14:22 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 01 22:14:22 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 01 22:14:22 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 01 22:14:22 symfony [info] {sfWebDebugLogger} Configuration 3.63 ms (9)
+Aug 01 22:14:22 symfony [info] {sfWebDebugLogger} Action "plugin/index" 0.57 ms (1)
+Aug 01 22:14:22 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 6.01 ms (1)
+Aug 01 22:14:22 symfony [info] {sfWebResponse} Send content (80136 o)
+Aug 07 08:12:54 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 07 08:12:54 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 08:12:54 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 08:12:54 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 08:12:54 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'default',  'action' => 'index',)
+Aug 07 08:12:54 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 08:12:54 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 08:12:54 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 07 08:12:54 symfony [info] {defaultActions} Call "defaultActions->executeIndex()"
+Aug 07 08:12:54 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/lib/symfony/lib/controller/default/templates/indexSuccess.php"
+Aug 07 08:12:54 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/lib/symfony/lib/controller/default/templates/defaultLayout.php"
+Aug 07 08:12:54 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/lib/symfony/lib/controller/default/templates/defaultLayout.php"
+Aug 07 08:12:54 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 08:12:54 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 08:12:54 symfony [info] {sfWebDebugLogger} Configuration 1747.98 ms (9)
+Aug 07 08:12:54 symfony [info] {sfWebDebugLogger} Action "default/index" 0.99 ms (1)
+Aug 07 08:12:54 symfony [info] {sfWebDebugLogger} View "Success" for "default/index" 91.81 ms (1)
+Aug 07 08:12:54 symfony [info] {sfWebResponse} Send content (80740 o)
+Aug 07 08:12:57 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 07 08:12:57 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 08:12:57 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 08:12:57 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 08:12:57 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /plugins with parameters array (  'module' => 'plugins',  'action' => 'index',)
+Aug 07 08:12:57 symfony [info] {sfFrontWebController} Action "plugins/index" does not exist
+Aug 07 08:12:57 symfony [err] {sfError404Exception} Action "plugins/index" does not exist.
+Aug 07 08:12:59 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 07 08:12:59 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 08:12:59 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 08:12:59 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 08:12:59 symfony [info] {sfPatternRouting} Match route "plugin" (/plugin) for /plugin with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 07 08:12:59 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 08:12:59 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 08:12:59 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Aug 07 08:12:59 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 07 08:12:59 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 07 08:12:59 symfony [info] {sfPHPView} Decorate content with "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 07 08:12:59 symfony [info] {sfPHPView} Render "/Library/WebServer/Documents/plugintracker/apps/frontend/templates/layout.php"
+Aug 07 08:12:59 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 08:12:59 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 08:12:59 symfony [info] {sfWebDebugLogger} Configuration 58.60 ms (10)
+Aug 07 08:12:59 symfony [info] {sfWebDebugLogger} Action "plugin/index" 1.07 ms (1)
+Aug 07 08:12:59 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 49.45 ms (1)
+Aug 07 08:12:59 symfony [info] {sfWebResponse} Send content (81815 o)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugin)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 09:43:35 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'default',  'action' => 'index',)
+Aug 07 09:43:35 symfony [err] {sfParseException} Configuration file "/Users/bshafs/Sites/localhost/symplist/lib/symfony/lib/config/config/filters.yml" specifies category "common" with missing class key.
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins)
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 09:45:42 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 07 09:45:42 symfony [err] {sfParseException} Configuration file "/Users/bshafs/Sites/localhost/symplist/lib/symfony/lib/config/config/filters.yml" specifies category "common" with missing class key.
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins)
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 09:46:34 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 07 09:46:34 symfony [err] {sfParseException} Configuration file "/Users/bshafs/Sites/localhost/symplist/lib/symfony/lib/config/config/filters.yml" specifies category "common" with missing class key.
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins)
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 09:47:01 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 09:47:58 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 07 09:47:58 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 09:47:58 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 09:47:58 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 09:47:58 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 07 09:47:58 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 07 09:47:58 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 09:47:58 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 09:47:58 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 09:47:58 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 09:47:58 symfony [info] {sfWebDebugLogger} Configuration 3924.18 ms (9)
+Aug 07 09:47:58 symfony [info] {sfWebDebugLogger} Action "plugin/index" 7.26 ms (1)
+Aug 07 09:47:58 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 94.00 ms (1)
+Aug 07 09:48:03 symfony [info] {sfWebResponse} Send content (108493 o)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 09:56:44 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 07 09:56:44 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 09:56:44 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 09:56:44 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 09:56:44 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 07 09:56:44 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 07 09:56:44 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 09:56:44 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 09:56:44 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 09:56:44 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 09:56:44 symfony [info] {sfWebDebugLogger} Configuration 3904.21 ms (10)
+Aug 07 09:56:44 symfony [info] {sfWebDebugLogger} Action "plugin/index" 7.77 ms (1)
+Aug 07 09:56:44 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 31.08 ms (1)
+Aug 07 09:56:48 symfony [info] {sfWebResponse} Send content (121183 o)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 09:57:35 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 07 09:57:35 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 09:57:35 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 09:57:35 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 09:57:35 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 07 09:57:35 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 07 09:57:35 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 09:57:35 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 09:57:35 symfony [err] {sfConfigurationException} The module "csNavigation" is not enabled.
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 09:57:56 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 07 09:57:56 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 09:57:56 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 09:57:56 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 09:57:56 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 07 09:57:56 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 07 09:57:56 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 09:57:56 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 09:57:59 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 09:58:20 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 07 09:58:20 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 09:58:20 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 09:58:20 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 09:58:20 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 07 09:58:20 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 07 09:58:20 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 09:58:20 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 09:58:23 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfRoute "plugins" (/plugins)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfRoute "plugin_categories" (/plugins/categories)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfRoute "plugins_by_category" (/plugins/categories/:slug)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfRoute "plugin" (/plugins/:slug)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfRoute "authors" (/authors)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfRoute "author" (/authors/:username)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 09:59:53 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'plugin',  'action' => 'index',)
+Aug 07 09:59:53 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 09:59:53 symfony [info] {sfFilterChain} Executing filter "csNavigationFilter"
+Aug 07 09:59:53 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'utf8' - ()
+Aug 07 09:59:53 symfony [info] {Doctrine_Connection_Mysql} query : SELECT COUNT(*) AS num_results FROM cs_navigation_item c - ()
+Aug 07 09:59:53 symfony [info] {Doctrine_Connection_Statement} execute : INSERT INTO cs_navigation_item (protected, locked, name, level) VALUES (?, ?, ?, ?) - (0, 0, Main, 0)
+Aug 07 09:59:53 symfony [info] {Doctrine_Connection_Statement} execute : UPDATE cs_navigation_item SET root_id = ?, lft = ?, rgt = ? WHERE id = ? - (1, 1, 2, 1)
+Aug 07 09:59:53 symfony [info] {Doctrine_Connection_Statement} execute : INSERT INTO cs_navigation_menu (title, root_id) VALUES (?, ?) - (Main, 1)
+Aug 07 09:59:53 symfony [info] {Doctrine_Connection_Statement} execute : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? LIMIT 1 - (1)
+Aug 07 09:59:53 symfony [info] {Doctrine_Connection_Statement} execute : UPDATE cs_navigation_item SET lft = lft + ? WHERE lft >= ? AND root_id = ? - (2, 2, 1)
+Aug 07 09:59:53 symfony [info] {Doctrine_Connection_Statement} execute : UPDATE cs_navigation_item SET rgt = rgt + ? WHERE rgt >= ? AND root_id = ? - (2, 2, 1)
+Aug 07 09:59:53 symfony [info] {Doctrine_Connection_Statement} execute : INSERT INTO cs_navigation_item (protected, locked, name, route, level, lft, rgt, root_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?) - (0, 0, Plugins, @plugins, 1, 2, 3, 1)
+Aug 07 09:59:53 symfony [info] {Doctrine_Connection_Statement} execute : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? LIMIT 1 - (1)
+Aug 07 09:59:54 symfony [info] {Doctrine_Connection_Statement} execute : UPDATE cs_navigation_item SET lft = lft + ? WHERE lft >= ? AND root_id = ? - (2, 4, 1)
+Aug 07 09:59:54 symfony [info] {Doctrine_Connection_Statement} execute : UPDATE cs_navigation_item SET rgt = rgt + ? WHERE rgt >= ? AND root_id = ? - (2, 4, 1)
+Aug 07 09:59:54 symfony [info] {Doctrine_Connection_Statement} execute : INSERT INTO cs_navigation_item (protected, locked, name, route, level, lft, rgt, root_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?) - (0, 0, Categories, @plugin_categories, 1, 4, 5, 1)
+Aug 07 09:59:54 symfony [info] {Doctrine_Connection_Statement} execute : SELECT c.id AS c__id, c.name AS c__name, c.route AS c__route, c.protected AS c__protected, c.locked AS c__locked, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level FROM cs_navigation_item c WHERE c.id = ? LIMIT 1 - (1)
+Aug 07 09:59:54 symfony [info] {Doctrine_Connection_Statement} execute : UPDATE cs_navigation_item SET lft = lft + ? WHERE lft >= ? AND root_id = ? - (2, 6, 1)
+Aug 07 09:59:54 symfony [info] {Doctrine_Connection_Statement} execute : UPDATE cs_navigation_item SET rgt = rgt + ? WHERE rgt >= ? AND root_id = ? - (2, 6, 1)
+Aug 07 09:59:54 symfony [info] {Doctrine_Connection_Statement} execute : INSERT INTO cs_navigation_item (protected, locked, name, route, level, lft, rgt, root_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?) - (0, 0, Developers, @authors, 1, 6, 7, 1)
+Aug 07 09:59:54 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 09:59:54 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 09:59:54 symfony [info] {pluginActions} Call "pluginActions->executeIndex()"
+Aug 07 09:59:54 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/modules/plugin/templates/indexSuccess.php"
+Aug 07 09:59:54 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 09:59:54 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/frontend/templates/layout.php"
+Aug 07 09:59:57 symfony [info] {main} Call "csNavigation->executeTree()"
+Aug 07 09:59:57 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/csNavigationPlugin/modules/csNavigation/templates/_tree.php"
+Aug 07 09:59:57 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 09:59:57 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 09:59:57 symfony [info] {sfWebDebugLogger} Configuration 3305.03 ms (13)
+Aug 07 09:59:57 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.96 ms (17)
+Aug 07 09:59:57 symfony [info] {sfWebDebugLogger} Action "plugin/index" 12.08 ms (1)
+Aug 07 09:59:57 symfony [info] {sfWebDebugLogger} View "Success" for "plugin/index" 3305.77 ms (1)
+Aug 07 09:59:57 symfony [info] {sfWebDebugLogger} Component "csNavigation/tree" 5.03 ms (1)
+Aug 07 09:59:57 symfony [info] {sfWebDebugLogger} Partial "csNavigation/_tree" 40.51 ms (1)
+Aug 07 09:59:58 symfony [info] {sfWebResponse} Send content (223771 o)

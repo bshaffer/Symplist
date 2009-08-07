@@ -1,0 +1,7 @@
+jsthumbnail:
+  url:                    /jsThumbnail
+  param:                  { module: jsThumbnail, action: thumbnail }
+
+jsthumbnail_remote:
+  url:                    /jsThumbnail/remote
+  param:                  { module: jsThumbnail, action: remote }

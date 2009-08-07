@@ -1,0 +1,42 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Comment
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          comment_csCommentAdmin
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:  
+        user_id:  { label: User }
+        object_link: { label: Item }
+        body: { label: Comment Body }
+      list:  
+        actions:  
+          approve_all:  { label: Approve All }
+        max_per_page: 10
+        sort: [created_at, desc]
+        # display:  [=body, _object_link, _object_type, created_at]
+        display:  [=body, created_at, approved]
+        object_actions:
+          _edit:    ~
+          _delete:  ~
+          approve:
+            label:    Approve
+        batch_actions:
+          approve:
+            label: Approve Selected
+          unapprove:
+            label: Unapprove Selected
+          _delete:  ~  
+      filter:  
+        display:  [body, user_id, approved]
+      form:    
+        display:  [body, user_id, approved]
+      edit:    ~
+      new:     ~

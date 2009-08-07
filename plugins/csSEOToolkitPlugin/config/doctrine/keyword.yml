@@ -1,0 +1,6 @@
+Keyword:
+  columns:
+    name:
+      type:     string(255)
+      unique:   true
+      notnull:  true

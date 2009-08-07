@@ -1,0 +1,39 @@
+SymfonyPlugin:
+  actAs:                              
+    Sluggable: ~
+    Timestampable: ~
+    Commentable:  []
+  columns:
+    title:                            string(255)
+    description:                      clob
+    author_id:                        integer
+    category_id:                      integer
+  relations:
+    PluginAuthor:
+      alias:                          User
+      foreignAlias:                   Plugins
+      local:                          author_id
+    PluginCategory:
+      alias:                          Category
+      foreignAlias:                   Plugins
+      local:                          category_id
+      
+PluginAuthor:
+  columns:
+    first_name:                 string(255)
+    last_name:                  string(255)
+    email:                      string(255)
+    sf_guard_user_id:           integer(4)
+  relations:
+    sfGuardUser:
+      alias:                          User
+      foreignAlias:                   Author
+      type:                           one
+      foreignType:                    one
+
+PluginCategory:
+  actAs:
+    Sluggable:  ~
+  columns:
+    name:                       string(255)
+    description:                clob

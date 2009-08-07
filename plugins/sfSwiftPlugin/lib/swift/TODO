@@ -1,0 +1,10 @@
+Swift Mailer TODO List
+-------------------------
+
+  * Add an eventCancelled property and setEventCancelled() method all events
+  * Merge Swift_Connection and Swift_ConnectionBase
+  * Create a SignedMessage class using openssl_pcks7_sign()
+  * Add VERP functionality, probably via plugin
+  * Possibly make ConnectionRotator/Multi deal with failied connections during the
+    send process - again, for batch mailing. Currently these connections only check
+    for failures at connection time.

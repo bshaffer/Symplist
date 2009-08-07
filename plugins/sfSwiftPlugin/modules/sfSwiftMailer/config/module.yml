@@ -1,0 +1,7 @@
+all:
+  smtp_host:         smtp.somehost.com
+  smtp_user:         smtpuser
+  smtp_pass:         smtppass
+  
+  
+ 

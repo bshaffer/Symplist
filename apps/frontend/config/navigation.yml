@@ -1,0 +1,10 @@
+navigation:
+  Main:
+    Plugins:      @plugins
+    Categories:   @plugin_categories
+    Developers:   @authors
+    
+    
+settings:
+  database:
+    driven:    on

@@ -1,0 +1,65 @@
+
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           sfSetting
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          sf_setting
+    with_doctrine_route:     1
+
+    config:
+      fields:
+        multi_value:    { label: Value }
+      list:
+        title:          Settings
+        display:        [=name, _multi_value]
+        actions:  []
+        object_actions: []
+        batch_actions:  []
+      edit:
+        title:          Edit Setting
+        display:        [name, _type, options]
+        fields:
+          options:      { type: textarea_tag, params: size=45x8 }
+      actions: ~
+      filter:  
+        class: false
+      form:    ~
+      new:     ~
+
+
+
+###### Old
+# generator:
+#   class:              sfDoctrineGenerator
+#   param:
+#     model_class:      sfSetting
+#     theme:            default
+# 
+#     fields:
+#       multi_value:    { name: Value }
+# 
+#     list:
+#       title:          Settings
+# <?php if ( sfConfig::get('app_sfSettingsPlugin_edit_mode', 'single_page') == 'single_page' ) : ?>
+#       display:        [=name, _multi_value]
+# <?php else: ?>
+#       display:        [name]
+#       object_actions:
+#         _edit: -
+#         _delete: -
+# <?php endif; ?>
+# 
+#     edit:
+#       title:          Edit Setting
+# <?php if ( sfConfig::get('app_sfSettingsPlugin_edit_mode', 'single_page') == 'single_page' ) : ?>
+#       display:        [name, _type, options]
+# <?php else: ?>
+#       display:        [name, _type, options, _value]
+# <?php endif; ?>
+#       fields:
+#         options:      { type: textarea_tag, params: size=45x8 }

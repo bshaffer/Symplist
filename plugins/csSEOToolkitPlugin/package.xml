@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.4.6" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+ <name>csSEOToolkitPlugin</name>
+ <channel>pear.symfony-project.com</channel>
+ <summary>Plug-and-Play Search Engine Optomization </summary>
+ <description>
+	Provides helpers for you to improve your website's search engine optomization.
+ </description>
+ <lead>
+  <name>Brent Shaffer</name>
+  <user>bshaffer</user>
+  <email>bshaffer@centresource.com</email>
+  <active>yes</active>
+ </lead>
+ <date>2009-04-26</date>
+ <time>15:54:35</time>
+ <version>
+  <release>1.0.0</release>
+  <api>1.0.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.symfony-project.org/license">MIT license</license>
+ <notes>-</notes>
+ <contents>
+  <dir name="/">
+   <file role="data" name="README" />
+   <file role="data" name="LICENSE" />
+   <dir name="config">
+		<file role="data" name="app.yml" />
+   	<dir name="doctrine">
+			<file role="data" name="keyword.yml" />
+			<file role="data" name="seo_page.yml" />
+    </dir>
+		<file role="data" name="routing.yml" />
+   </dir>
+   <dir name="lib">
+		<dir name="api">	
+   		<file role="data" name="SeoInflector.class.php" />
+   		<file role="data" name="SeoKeywordToolkit.class.php" />
+   		<file role="data" name="SeoPurifier.class.php" />
+   		<file role="data" name="SeoToolkit.class.php" />
+    </dir>
+		<dir name="filter">	
+			<dir name="doctrine">
+     		<file role="data" name="PluginKeywordFormFilter.class.php" />
+     		<file role="data" name="PluginSeoPageFormFilter.class.php" />
+    	</dir>
+    </dir>
+		<dir name="form">	
+			<dir name="doctrine">
+     		<file role="data" name="MetaDataForm.class.php" />
+     		<file role="data" name="PluginKeywordForm.class.php" />
+     		<file role="data" name="PluginSeoPageForm.class.php" />
+     		<file role="data" name="SitemapItemForm.class.php" />
+    	</dir>
+    </dir>
+		<dir name="helper">	
+   		<file role="data" name="SeoHelper.php" />
+    </dir>
+		<dir name="model">	
+			<dir name="doctrine">
+				<file role="data" name="PluginKeyword.class.php" />
+     		<file role="data" name="PluginKeywordTable.class.php" />
+     		<file role="data" name="PluginSeoPage.class.php" />
+     		<file role="data" name="PluginSeoPageTable.class.php" />
+    	</dir>
+    </dir>
+		<dir name="task">	
+   		<file role="data" name="seoBaseTask.class.php" />
+   		<file role="data" name="seoRebuildMetasTask.class.php" />
+   		<file role="data" name="seoRemove404Task.class.php" />
+    </dir>
+		<dir name="test">	
+   		<file role="data" name="SeoLimeTest.class.php" />
+   		<file role="data" name="SeoTaskBrowser.class.php" />
+   		<file role="data" name="SeoTestFunctional.class.php" />
+    </dir>
+		<dir name="vendor">	
+			<dir name="simplehtmldom">	
+   			<file role="data" name="simple_html_dom.php" />
+    	</dir>
+    </dir>
+   </dir>
+	  <dir name="modules">
+	   <!-- model classes -->
+	  	<dir name="csSEO">
+	   		<dir name="actions">
+					<file role="data" name="actions.class.php" />
+					<file role="data" name="components.class.php" />
+				</dir>
+	   		<dir name="templates">
+					<file role="data" name="_meta_data.php" />
+					<file role="data" name="_metas.php" />
+					<file role="data" name="_seo_admin_bar.php" />
+					<file role="data" name="error404Success.php" />
+					<file role="data" name="sitemapXML.php" />															
+				</dir>			
+			</dir>
+	  </dir>
+	  <dir name="web">
+			<dir name="images">
+				<file role="data" name="metadata.gif" />
+				<file role="data" name="sitemap.gif" />
+			</dir>
+	  	<dir name="js">
+				<file role="data" name="slider.js" />
+			</dir>
+	  	<dir name="css">
+				<file role="data" name="seo.css" />
+				<file role="data" name="slider_default.css" />
+			</dir>
+		</dir>
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.1.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.1</min>
+   </pearinstaller>
+   <package>
+    <name>symfony</name>
+    <channel>pear.symfony-project.com</channel>
+    <min>1.2.0</min>
+    <max>1.2.0</max>
+    <!-- <exclude>1.2.0</exclude> -->
+   </package>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>1.0.0</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2009-04-26</date>
+   <license uri="http://www.symfony-project.org/license">MIT license</license>
+   <notes>
+   * Initial creation of plugin
+   </notes>
+  </release>
+ </changelog>
+</package>

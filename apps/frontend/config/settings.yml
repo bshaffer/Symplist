@@ -1,0 +1,31 @@
+prod:
+  .settings:
+    no_script_name:                   on
+    logging_enabled:                  off
+
+  .actions:
+    error_404_module:                 error404
+    error_404_action:                 error404
+
+dev:
+  .settings:
+    error_reporting:                  <?php echo (E_ALL | E_STRICT) . "\n" ?>
+    web_debug:                        on
+    cache:                            off
+    no_script_name:                   off
+    etag:                             off
+
+test:
+  .settings:
+    error_reporting:                  <?php echo ((E_ALL | E_STRICT) ^ E_NOTICE) . "\n" ?>
+    cache:                            off
+    web_debug:                        off
+    no_script_name:                   off
+    etag:                             off
+
+all:
+  .settings:
+    csrf_secret:                      false
+    escaping_strategy:                false
+    escaping_method:                  ESC_SPECIALCHARS
+    enabled_modules:                  [ default, csNavigation ]

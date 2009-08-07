@@ -1,0 +1,168 @@
+body {
+background:#333333 url(../images/patternbg_fill.png) repeat-x scroll center top;
+color:#333333;
+font-family:Arial,Helvetica,sans-serif;
+font-size:12px;
+line-height:18px;
+}
+#page {
+background-color:#FFFFFF;
+padding:2em 0;
+width:1000px;
+}
+#sf_admin_container td, th {
+padding:3px 6px !important;
+}
+#main-nav {
+margin-top:60px;
+position:absolute;
+z-index:100;
+}
+#login_admin {
+position:absolute;
+right:2em;
+top:25px;
+}
+#login_admin li {
+float:right;
+list-style-type:none;
+}
+a.public-link {
+font-size:1.2em;
+font-weight:bold;
+}
+a {
+color:#7AA6A4;
+text-decoration:none;
+}
+div#header {
+padding:0;
+position:relative;
+}
+#sf_admin_actions_container
+{
+	width:100%;
+	clear:both;
+}
+.sf_admin_batch_actions_choice
+{
+	float:left;
+}
+.sf_admin_actions
+{
+	display:inline;
+}
+
+.filter-actions
+{
+	float:right;
+	margin-top:-15px;
+}
+div#sf_admin_bar {
+	background-color:#EFEFEF;
+	margin-bottom:1em;
+	margin-left:245px;
+	padding:0.5em 1em;
+	width:658px;
+}
+div#sf_admin_content {
+	width:680px;
+}
+.edit_actions
+{
+	display:block;
+}
+
+
+/*@group sf filters*/
+h2.admin-title {
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-left: 251px;
+}
+div#sf_admin_content {
+	width: 660px;
+}
+
+div#sf_admin_container {
+	background: transparent url('../images/sidebar-image.jpg') scroll repeat-y top left;
+	/*padding: 1em;*/
+	position: relative;
+}
+
+div#sf_admin_container h1 {
+	position:absolute;
+	padding:10px;
+/*	margin: -1.6em 0 0;*/
+}
+div#sf_admin_bar {
+	background-color: #efefef;
+	padding: .5em 1em .5em;
+	margin-bottom: 1em;
+	margin-left:245px;
+	width:690px;
+}
+div.sf_admin_filter {
+	float: right;
+	width:100%;
+}
+ul#sf-filter-list li {
+	list-style: none;
+	margin-bottom: 1em;
+/*	width: 195px;*/
+}
+/*div.sf_admin_form div{
+	margin-bottom: 1.5em;
+}*/
+form.sf-filter input,
+div.reset-link {
+	clear: both;
+	display: inline;
+}
+
+div.reset-link {
+	margin-right: .75em;
+}
+
+div.sf_admin_list {
+	margin-top: 1.5em;
+}
+
+form.sf-filter label {
+	color: #7AA6A4;
+	display: block;
+	font-style: bold;
+	font-size: 14px;
+	padding-bottom: .5em;
+}
+ul#sf-filter-list br {
+	display: none;
+}
+ul#sf-filter-list {
+	margin-bottom: .25em;
+}
+ul#sf-filter-list input[type=radio] {
+	display: inline;
+}
+
+input.sf-checkbox {
+	float: left;
+	margin: .75px .5em 0 0;
+}
+
+
+ul.sf_admin_actions li {
+	list-style: none;
+	margin-left: 12px;
+}
+div#sf_sidebar-right {
+	position: absolute;
+	top: 12px;
+	left: 0px;
+}
+
+ul.sf_admin_td_actions li {
+	list-style: none;
+	margin-left: 1px;
+}
+/*@end*/

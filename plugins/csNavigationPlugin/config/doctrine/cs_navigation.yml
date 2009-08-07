@@ -1,0 +1,27 @@
+csNavigationItem:
+  actAs:  
+    NestedSet:
+      hasManyRoots: true
+  columns:
+    name:     
+      type:   string(255)
+    route:    
+      type:   string(255)
+    protected:
+      type:   boolean
+      default: false
+    locked:
+      type:   boolean
+      default: false
+
+csNavigationMenu:
+  columns:
+    title:  string(255)
+    description: string(255)
+    root_id:   integer
+  relations:
+    csNavigationItem:
+      alias:        NavigationRoot
+      foreignAlias: NavigationMenu
+      local:        root_id
+      foreign:      id

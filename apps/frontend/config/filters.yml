@@ -1,0 +1,10 @@
+rendering:                            ~
+security:                             ~
+
+# insert your own filters here
+csNavigation:
+  class: csNavigationFilter
+
+cache:                                ~
+common:                               ~
+execution:                            ~

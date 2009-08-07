@@ -1,0 +1,6 @@
+navigation:
+  Home:   
+    partners: 
+      PartnerLink:    '@link'
+      PartnerLink2:   '@link2'
+  Foo:      '@bar'

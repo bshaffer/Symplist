@@ -1,0 +1,48 @@
+             !!!!! IMPORTANT INFORMATION !!!!!
+--------------------------------------------------------------
+
+
+Upgrading to 3.3.x
+--------------------
+
+Users upgrading from version <= 3.2.x to version >= 3.3.x should be aware that:
+
+ 1. The class Swift_Connection_Exception has been renamed to Swift_ConnectionException.
+    This will affect any users catching these exceptions with try/catch.  A simple find &
+    replace should suffice.  The change was brought in purely for the sake of naming
+    conventions with all the other exceptions.
+ 2. $swift->log, $swift->log->enable() and $swift->log->disable() no longer exist. You should now
+    use $log = Swift_LogContainer::getLog() and $log->setLogLevel( ... ) instead.
+ 3. All exceptions now extend a Swift_Exception class and dump log information if available.
+
+
+Upgrading from 2.x
+----------------------
+
+If you are upgrading from Version 2.x or 1.x, you MUST read the
+documentation online at:
+
+http://www.swiftmailer.org/wikidocs/
+
+Things have changed a lot.  Your code won't work without a small
+amount of attention.  For those who are impatient and want a quick-
+fix answer, change references to "Swift", to "EasySwift".
+
+e.g.
+
+<?php
+
+//this
+require_once "lib/Swift.php";
+//becomes
+require_once "lib/EasySwift.php";
+
+//this
+$swift = new Swift(...);
+//becomes
+$swift = new EasySwift(...);
+
+?>
+
+NOTE: PLUGINS FROM VERSION 2 WILL NOT WORK IN THIS VERSION
+

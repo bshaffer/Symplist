@@ -1,0 +1,4 @@
+all:
+  csFormTransformPlugin:
+    stylesheets:  ['/csFormTransformPlugin/css/jqtransform.css']
+    javascripts:  ['/csFormTransformPlugin/js/jquery.jqtransform.js']

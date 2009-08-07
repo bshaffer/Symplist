@@ -1,0 +1,36 @@
+# sfSwift plugin
+
+The `sfSwiftPlugin` is a symfony plugin that provides e-mail sending capabilities through the use of the Swift Mailer library http://www.swiftmailer.org/.
+
+This is only an abstraction to provide autoloading to the library.
+
+
+## Installation
+
+To install sfSwiftPlugin, type:
+  
+      
+        symfony plugin-install http://plugins.symfony-project.com/sfSwiftPlugin
+      
+
+If you wan´t do save the Swift Mailer library in a global directory go to http://www.swiftmailer.org/download/ and extract/checkout the Swift Mailer library
+
+### Swift Mailer libary in a global directory
+
+Copy the `autoload.yml.sample` from `%SF_PLUGINS_DIR%/sfSwiftPlugin/config/` to your symfony `%SF_CONFIG_DIR%` folder and set the path:
+
+      
+    autoload:
+      swift_mailer_classes:
+        ...
+        path: /your/path/to/swift/
+        ...
+      
+
+## Usage
+
+There is an included module called `sfSwiftMailer` that has a test emailing called `ThankYou` which you can use as an example for using the library.
+
+Also be sure to review the docs at http://www.swiftmailer.org/wikidocs/
+
+Enjoy!

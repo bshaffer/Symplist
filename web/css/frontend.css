@@ -1,0 +1,16 @@
+#header, #footer {
+  padding: 0 !important;
+}
+
+#header {
+  background: #53A9D7 url('../images/frontend/header.jpg') repeat-x center top;
+  height: 136px;
+}
+
+#footer {
+  background: #000000 url('../images/frontend/footer.png') repeat-x left top;
+  height: 287px;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+}

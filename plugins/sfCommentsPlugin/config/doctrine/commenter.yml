@@ -1,0 +1,16 @@
+Commenter:
+  columns:
+    username:
+      type:       string(255)
+    email:
+      type:       string(255)
+    website:
+      type:       string(255)
+  relations:
+    Comment:
+      local:        id
+      type:         one
+      alias:        Comment
+      foreign:      user_id
+      foreignType:  one
+      foreignAlias: Commenter

@@ -1,0 +1,146 @@
+csSEOToolkitPlugin
+==================
+
+Provides you with several tools to optimize your website for search engines
+
+* Inline editing of metadata for authenticated users
+* Inline prioritizing of pages for your sitemap.xml
+* Ability to add site-wide "seo keywords" to your project, wrapped in "em" tags for emphesis
+* Friendly 404 error page with url-based search results for possible desired pages
+
+Installation
+------------
+After installing the plugin, remember to run the task "./symfony plugin:publish-asset" to include the associated styles, scripts and images.
+Secondly, include the csSEO module in your application via your *enabled_modules* setting in settings.yml
+
+MetaData
+--------
+
+Include the Seo Helper in your layout:
+
+	[php]
+	<?php use_helper('Seo') ?>
+	
+Use the seo helpers instead of include_metas():
+
+	[php]
+	<?php include_seo_metas($sf_content) ?>
+
+Pass $sf_content to this helper if you want it to auto-generate title, description, and keyword data for your page automatically.  This is **strongly recommended**.
+This function call should go above the include_title() method in your layout.  This will allow the SeoPage object to override the default if desired.
+
+###MetaData Auto Generation
+The **auto-generated** metadata is pulled by looking for H1 tags for the titles, and paragraph, breaking, blockquote, and div tags for description.  Keywords are found by taking the top frequently used words found in the content of the page.
+Generated titles can be given a prefix.  For example, the content of H1 tags can be prepended to the name of your site like so:
+> My Site | My Generated Title
+
+In this case, the text "My Site | " would be configurable through your project's app.yml:
+
+	[yml]
+	app:
+		csSEOToolkitPlugin:
+			SitePrefix:					'My Site | ' 
+			
+If no H1 tag is found in the content, either the plugin can be configured to use the symfony-specified title, or a "default title" method can be applied.  
+
+	[yml]
+	DefaultTitleMethod:       getDefaultTitle       #If on, calls a static method on SeoPageTable to determine the title
+	DefaultTitle:             My Site               #If on, uses title specified if no H1s are found.  otherwise, uses title from view.yml 
+
+Now, the helper will call SeoPageTable::getDefaultTitle() if no H1 tags are found.  You could then add this to your SeoPageTable class:
+
+	[php]
+	static public function getDefaultTitle()
+	{
+		$request = sfContext::getInstance()->getRequest();
+		return $request->getParameter('office') ? sfInflector::humanize($request->getParameter('office')) : My Site;
+	}
+
+The above method would return the title of the office requested if available, but otherwise would return the name of the site.
+
+###Underriding
+Underriding allows your site to ONLY use database-driven metadata when specifically added. In other words, you can disable metadata generation for your metas:
+
+	[yml]
+	all:
+	csSEOToolkitPlugin:
+		Underride:
+			Title:           on                #If on, titles are not auto-generated
+			Description:     off               #If on, descriptions are not auto-generated
+			Keywords:        on                #If on, keywords are not auto-generated
+
+In the above example, meta descriptions are auto generated, but titles and keywords are not.
+
+
+###SEO Admin Bar
+
+To edit metadata and sitemap info inline, add the admin bar helper method to your layout.php
+
+	[php]
+	<?php seo_admin_bar() ?>
+
+This bar is only available to authenticated users.  By default, the method called on the user class is **isAuthenticated()**.  To choose your own method, configure your app.yml:
+
+	[yml]
+	app:
+		csSEOToolkitPlugin:
+			AuthMethod:					myAuthMethod
+			
+This method will be called on your user class, and if _true_ will display the SEO admin bar.  If you are using the sfDoctrineGuardPlugin, it is stongly recommended that you use the **isSuperAdmin** method for SEO Administration.
+
+The SEO admin bar comes bundled with a stylesheet and javascripts for your convenience.  If these conflict with your site, you can remove them:
+
+	[yml]
+	app:
+		csSEOToolkitPlugin:
+			IncludeAssets:			off
+			
+Sitemap.xml
+-----------
+
+Your auto-generated sitemap.xml is always available by browsing directly to sitemap.xml in your web root:
+
+> http://myproject.localhost/index.php/sitemap.xml
+
+This information is configurable using the seo admin toolbar mentioned above.  The options for customization are priority (decimal percentage scale from 0-1) and changeFreq (options vary from always to never)
+It is also optional to remove an item from the sitemap.xml by clicking the checkbox labeled __Exclude from Sitemap__
+
+SEO Keywords
+--------
+
+Any text placed within emphasis tags are weighed more heavily by search engine robots.  Because of this, the Keywords helper lets you add these tags to your text automatically.
+Add the following code in your layout using the SEO helper:
+
+	[php]
+	<?php echo keyword_encode($sf_content, 'p') ?>
+	
+This will process your page content (or whatever content passed to the helper) and wrap <*em*> tags around any keywords found.
+The helper takes a second optional parameter for a valid CSS selector.  This will tell the helper to only apply the tags to keywords found within the given selectors.
+It is currently recommended to only replace keywords within paragraph tags.
+Keywords are given the style 'keyword', and by default have no styling applied.  They only appear as within tags to the robots.
+ 
+Error404 Module
+---------------
+
+To implement the custom 404 module in your website, add the following code to your application's settings.yml:
+
+	[yml]
+	all:
+		.settings:
+			error_404_module:       csSEO
+			error_404_action:       error404
+
+That is all!  If you have a preferred algorithm for searching, override the module or write your own **getSearchQuery()** method for the SeoPageTable class.  
+
+*SeoPageTable*->**getSearchQuery()** accepts a single argument: an array of keywords to search. 	
+
+Tasks
+-----
+
+csSEOPlugin currently supports two tasks:
+
+ * remove-404
+ * rebuild-metas
+
+the *remove-404* task checks all the pages stored in your database, and flags those returning a 404 status code.  The titles and ids are displayed on the command line.  You can then confirm to remove these entries from the database.
+the *rebuild-metas* task uses your current app.yml settings for meta generation and runs this process across all the pages in your database.

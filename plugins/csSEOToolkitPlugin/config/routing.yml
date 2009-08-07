@@ -1,0 +1,11 @@
+meta_data_edit:
+  url:    /seo/meta_data/edit
+  param:  { module: csSEO, action: editMetaData }
+  
+sitemap_xml_edit:
+  url:    /seo/sitemap_data/edit
+  param:  { module: csSEO, action: editSitemapData }
+  
+sitemap_xml:
+  url:    /sitemap.xml
+  param:  { module: csSEO, action: sitemap, location_slug: main, format: xml }

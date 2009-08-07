@@ -1,0 +1,53 @@
+<?php
+
+require_once TestConfiguration::SWIFT_LIBRARY_PATH . "/Swift.php";
+Swift_ClassLoader::load("EasySwift");
+Swift_ClassLoader::load("Swift_Connection_SMTP");
+Swift_ClassLoader::load("Swift_Connection_Sendmail");
+Swift_ClassLoader::load("Swift_Connection_NativeMail");
+Swift_ClassLoader::load("Swift_Connection_Rotator");
+Swift_ClassLoader::load("Swift_Connection_Multi");
+Swift_ClassLoader::load("Swift_Authenticator_LOGIN");
+Swift_ClassLoader::load("Swift_Authenticator_PLAIN");
+Swift_ClassLoader::load("Swift_Authenticator_CRAMMD5");
+Swift_ClassLoader::load("Swift_Cache_Disk");
+Swift_ClassLoader::load("Swift_Cache_Memory");
+Swift_ClassLoader::load("Swift_Events_SendEvent");
+Swift_ClassLoader::load("Swift_Events_ConnectEvent");
+Swift_ClassLoader::load("Swift_Events_DisconnectEvent");
+Swift_ClassLoader::load("Swift_Events_CommandEvent");
+Swift_ClassLoader::load("Swift_Events_ResponseEvent");
+Swift_ClassLoader::load("Swift_Events_BeforeSendListener");
+Swift_ClassLoader::load("Swift_Events_SendListener");
+Swift_ClassLoader::load("Swift_Events_BeforeCommandListener");
+Swift_ClassLoader::load("Swift_Events_CommandListener");
+Swift_ClassLoader::load("Swift_Events_ResponseListener");
+Swift_ClassLoader::load("Swift_Events_ConnectListener");
+Swift_ClassLoader::load("Swift_Events_DisconnectListener");
+Swift_ClassLoader::load("Swift_Plugin_AntiFlood");
+Swift_ClassLoader::load("Swift_Plugin_BandwidthMonitor");
+Swift_ClassLoader::load("Swift_Plugin_Throttler");
+Swift_ClassLoader::load("Swift_Plugin_VerboseSending");
+Swift_ClassLoader::load("Swift_Plugin_ConnectionRotator");
+Swift_ClassLoader::load("Swift_Plugin_Decorator");
+Swift_ClassLoader::load("Swift_Message_Headers");
+Swift_ClassLoader::load("Swift_CacheFactory");
+Swift_ClassLoader::load("Swift_Log_DefaultLog");
+Swift_ClassLoader::load("Swift_Message_Encoder");
+Swift_ClassLoader::load("Swift_Cache_JointOutputStream");
+require_once TestConfiguration::SWIFT_LIBRARY_PATH . "/Swift/Authenticator/@PopB4Smtp.php";
+Swift_ClassLoader::load("Swift_Authenticator_PopB4Smtp_Pop3Connection");
+
+require_once dirname(__FILE__) . "/AbstractTestWithSend.php";
+require_once dirname(__FILE__) . "/AbstractTestOfCache.php";
+require_once dirname(__FILE__) . "/AbstractTestOfAuthenticator.php";
+require_once dirname(__FILE__) . "/stubs/MimeExtension.php";
+require_once dirname(__FILE__) . "/stubs/DummyConnection.php";
+
+Mock::Generate("DummyConnection", "FullMockConnection");
+Mock::Generate("Swift_Connection_Rotator", "MockRotatorConnection");
+Mock::Generate("Swift_Message", "MockMessage");
+Mock::Generate("Swift_Events_SendListener", "MockSendListener");
+Mock::Generate("Swift_Connection_SMTP", "MockSMTPConnection");
+Mock::GeneratePartial("Swift_Connection_SMTP", "MockSMTPConnectionAuth", array("read", "write", "isAlive", "start", "stop"));
+Mock::Generate("Swift_Message_Headers", "MockHeaders");

@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.5.4" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
+ <name>sfSwiftPlugin</name>
+ <channel>pear.symfony-project.com</channel>
+ <summary>Email plugin</summary>
+ <description>Email plugin (provides abstraction and autoloading of classes) using Swift Mailer Library</description>
+ <lead>
+  <name>Gordon Franke</name>
+  <user>gordon</user>
+  <email />
+  <active>yes</active>
+ </lead>
+ <developer>
+  <name>Jason Ibele</name>
+  <user>Draven</user>
+  <email />
+  <active>no</active>
+ </developer>
+ <date>2007-12-11</date>
+ <time>11:23:48</time>
+ <version>
+  <release>1.5.1</release>
+  <api>3.3.2</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.symfony-project.com/license">MIT license</license>
+ <notes>only use autoload function if needed</notes>
+ <contents>
+  <dir baseinstalldir="/sfSwiftPlugin" name="/">
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="2a309e77c0872c81e3d1123b28ba59e4" name="config/autoload.yml.sample" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="a17e2383de6c0f6fa85cb979bfc1424f" name="lib/swift/CHANGES" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="8e92466468b9c4e598138cd8a96335c2" name="lib/swift/CRITICAL.txt" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="d6b5db7d9085c0acfdf85572409463c8" name="lib/swift/INSTALL" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="c73b943dc75f6f65e007c56ac6515c8f" name="lib/swift/LICENSE" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="c2e4dc1cb2dc28e880676b8941d85fdb" name="lib/swift/README" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="c1ea4e34b3f25ed5f22573afe2df68a7" name="lib/swift/TODO" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="f1bb37fc5844beb02aab0ce700ba7600" name="lib/swift/VERSION" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="7cdf31b09e4e0dce3c94c5a804e5c4cf" name="lib/swift/lib/EasySwift.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="3af7a5f2af6e9e36bfbc5721e19ef55e" name="lib/swift/lib/Swift.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="fbf107e52686d45bcdcdde6dabc38590" name="lib/swift/lib/Swift/Address.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="f0697a4eb3787d64f6c3d309501bdfb0" name="lib/swift/lib/Swift/AddressContainer.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="5f4d49b82ab8a20bc166a7b21a58e548" name="lib/swift/lib/Swift/Authenticator.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="f154f992d06933816df0e1f0e0a922fd" name="lib/swift/lib/Swift/BadResponseException.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="22cd85e332e1775130c1106b05c2bf4d" name="lib/swift/lib/Swift/BatchMailer.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="c5d16cc9220acc0e6a6cc8758032303f" name="lib/swift/lib/Swift/Cache.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="cb87c14621f7955d44a0b89ae5f4ce37" name="lib/swift/lib/Swift/CacheFactory.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="c33744c93d8ea5c74f2fd90c6fb07758" name="lib/swift/lib/Swift/ClassLoader.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="984f17e104d43bd73ee06731325a6652" name="lib/swift/lib/Swift/Connection.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="ef1ab7232b9b782f1f296b6b9b8bc1c7" name="lib/swift/lib/Swift/ConnectionBase.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="5bca63568e593b4598c551b236f92fe0" name="lib/swift/lib/Swift/ConnectionException.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="4ec18a7168fe167ba7fef40cacc6c99d" name="lib/swift/lib/Swift/Events.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="3426d66b370c15f09731ac5d2e225a35" name="lib/swift/lib/Swift/Exception.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="2864019d30f7e295c55e9990a5b419aa" name="lib/swift/lib/Swift/File.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="9b38cf3d4b5827407f942c4a38ed5af2" name="lib/swift/lib/Swift/FileException.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="b5a3f70f224b16cf585491f8ada2309e" name="lib/swift/lib/Swift/Iterator.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="9c3be6a3428b14115d9df4af63fff639" name="lib/swift/lib/Swift/Log.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="28f1abb3ad775fb67156f7ddc5139087" name="lib/swift/lib/Swift/LogContainer.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="7a2277fd9dfaead9fb04ab993925e6d9" name="lib/swift/lib/Swift/Message.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="c1b5327e74b8d1e8a7fe187ca444aed2" name="lib/swift/lib/Swift/RecipientList.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="f1e56db17517beeee9432bca9d1091f2" name="lib/swift/lib/Swift/Authenticator/@PopB4Smtp.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="fe5ff3f695359b2bda22ebd792f370d1" name="lib/swift/lib/Swift/Authenticator/CRAMMD5.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="e75dff9d05a8633bf55cab545105002b" name="lib/swift/lib/Swift/Authenticator/LOGIN.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="b596fb21d61db7db51692e5ca048dab3" name="lib/swift/lib/Swift/Authenticator/PLAIN.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="6dc4df2d862cf02c72a5818cffa2b3c4" name="lib/swift/lib/Swift/Authenticator/PopB4Smtp/Pop3Connection.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="4cfb2a139573bb539da6100b9589228b" name="lib/swift/lib/Swift/Cache/Disk.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="8918675571140d7376f201d0d2eba272" name="lib/swift/lib/Swift/Cache/JointOutputStream.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="5548f9fc1385131497e47963851a6d68" name="lib/swift/lib/Swift/Cache/Memory.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="518e06c8495fd9a0768f1917e0c4d6ab" name="lib/swift/lib/Swift/Cache/OutputStream.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="9e2930c089a6b9fafdbb2313189640c0" name="lib/swift/lib/Swift/Connection/Multi.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="d3011dcfe22a342a3f5b19cd5dbb1ace" name="lib/swift/lib/Swift/Connection/NativeMail.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="bc2c762d27edcea0db0747d02af10924" name="lib/swift/lib/Swift/Connection/Rotator.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="826598ce683ab98925551f81b2492fbd" name="lib/swift/lib/Swift/Connection/Sendmail.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="cc074d05007a7ea5ed7da2acd8e12f43" name="lib/swift/lib/Swift/Connection/SMTP.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="59a44a647becbf8083a770b611d49186" name="lib/swift/lib/Swift/Events/BeforeCommandListener.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="aeb1ef9a43dd161a13034905e6cf3451" name="lib/swift/lib/Swift/Events/BeforeSendListener.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="476c558a0e600fdac0b1d7770847ef06" name="lib/swift/lib/Swift/Events/CommandEvent.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="fca6c1a99cef77893cd8d912726933b5" name="lib/swift/lib/Swift/Events/CommandListener.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="7bdf9f5f7a155d97b727ef5930463286" name="lib/swift/lib/Swift/Events/ConnectEvent.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="fe040238a4567b2a1d040b700cca1738" name="lib/swift/lib/Swift/Events/ConnectListener.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="3ef3a51098d5bcd500c1e1c232bd5a86" name="lib/swift/lib/Swift/Events/DisconnectEvent.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="c3e481cea35090bb16e64d4d361b7000" name="lib/swift/lib/Swift/Events/DisconnectListener.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="62f809473f948f91d7510fca27f05750" name="lib/swift/lib/Swift/Events/Listener.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="09c2bdcd698318497aa247f9ccfa7967" name="lib/swift/lib/Swift/Events/ListenerMapper.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="358775800fcc46fc88917694669298db" name="lib/swift/lib/Swift/Events/ResponseEvent.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="52923db5dd48ec5dbbc2bcf1b951415d" name="lib/swift/lib/Swift/Events/ResponseListener.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="f8ceba4274e975a8498544528765491e" name="lib/swift/lib/Swift/Events/SendEvent.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="bb263b69373f8b4055059e4cc5ecf63f" name="lib/swift/lib/Swift/Events/SendListener.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="796aea7834af49fdb726b0268e83f681" name="lib/swift/lib/Swift/Iterator/Array.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="41127604355d469943b8bcf8257787c3" name="lib/swift/lib/Swift/Iterator/MySQLResult.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="b3ad11b4ce82c5860c545d734503b45a" name="lib/swift/lib/Swift/Log/DefaultLog.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="1bd489f94988354db37bad1794a528b7" name="lib/swift/lib/Swift/Message/Attachment.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="4f5369caa2d46df7fa1633c5f343baaa" name="lib/swift/lib/Swift/Message/EmbeddedFile.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="029393e8089328314dc61cdf1ad473a8" name="lib/swift/lib/Swift/Message/Encoder.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="cf068f8b763339fba473299c6bac181c" name="lib/swift/lib/Swift/Message/Headers.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="ca42508ccb7496a3316e29feff01b8ae" name="lib/swift/lib/Swift/Message/Image.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="5957a4b0c13b125be5703718d98529b7" name="lib/swift/lib/Swift/Message/Mime.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="b857c4849eec0dfc8a96202876e5c9fc" name="lib/swift/lib/Swift/Message/MimeException.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="4c25f81de8b57f6a5fdc44325c853ce6" name="lib/swift/lib/Swift/Message/Part.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="5307e3110f253c17600b6a8b4a803a70" name="lib/swift/lib/Swift/Plugin/AntiFlood.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="07443ad9c60be2e743618cf68c8f7a49" name="lib/swift/lib/Swift/Plugin/BandwidthMonitor.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="751002325ceeb01ff07e4574f72bfee9" name="lib/swift/lib/Swift/Plugin/ConnectionRotator.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="2ce562bb39a77f806ef19601f336221c" name="lib/swift/lib/Swift/Plugin/Decorator.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="0137afb4711af61964ba50ee3b37b648" name="lib/swift/lib/Swift/Plugin/EasySwiftResponseTracker.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="70716f996842b6c62d5eb7413dc20cfc" name="lib/swift/lib/Swift/Plugin/FileEmbedder.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="6b495a7574b78e6886497934fc59c530" name="lib/swift/lib/Swift/Plugin/MailSend.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="95d37886b18c5673b28d3e0091c92e4c" name="lib/swift/lib/Swift/Plugin/Throttler.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="021d0289147f388423888dc9ae62f283" name="lib/swift/lib/Swift/Plugin/VerboseSending.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="b767a68b084230ed76582c224c0b5474" name="lib/swift/lib/Swift/Plugin/Decorator/Replacements.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="4cc17ee88ee5ef21b95fe496b2370a97" name="lib/swift/lib/Swift/Plugin/VerboseSending/AbstractView.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="71dcc35503993a1cff2ca78e9e56c5e1" name="lib/swift/lib/Swift/Plugin/VerboseSending/DefaultView.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="4d0961e4cf403ecd1778a5f9afa5b1ec" name="lib/swift/tests/README_FIRST" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="0ce695351dd71f0b3e0f4682d974d4ae" name="lib/swift/tests/TestConfiguration.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="222f6440d9e9a9290ab3d6511ee16d80" name="lib/swift/tests/benchmarks/mem_attachments_with_swift.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="016d5ce370ea5f1b77c7801b3b805496" name="lib/swift/tests/benchmarks/mem_sending_with_swift.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="60c7bd7dd6c2e16d2d66b637380113c6" name="lib/swift/tests/benchmarks/time_sending_with_swift.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="fee0b4bffb8d20f56f5fca899ea24303" name="lib/swift/tests/files/cv.pdf" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="3ac9a1509f5f4c735fb0bdcae178af01" name="lib/swift/tests/files/durham.gif" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="bd7ecd5e29754341d6a638b6d823a385" name="lib/swift/tests/files/extract_these_first.tar.bz2" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="adbd50d63d20bef5119e54d335dfa279" name="lib/swift/tests/files/gecko.png" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="9ed62e7c6c8aaf9f64433d585a99a14f" name="lib/swift/tests/files/manchester.jpeg" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="37f6b22eac0c061a01ad3a3a70112f66" name="lib/swift/tests/files/encodings/iso-8859-1.txt" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="ee9413871dbc971dae8067e1da340938" name="lib/swift/tests/files/encodings/utf-8.txt" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="c41472cc680a1460cdde613432f8bfcf" name="lib/swift/tests/smokes/runTestOfAttachment.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="094d2a387dbc02821ab1f269f1ac6b4d" name="lib/swift/tests/smokes/runTestOfBasicSend.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="7b239cefa94e60389b94ea0767832170" name="lib/swift/tests/smokes/runTestOfEmbeddedImage.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="c9a818e8301b80ff73d8962461ec7fe0" name="lib/swift/tests/smokes/runTestOfHeaderEncoding.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="79cdb5a03e95a13453c195b87cc961e1" name="lib/swift/tests/smokes/runTestOfMultipart.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="cc7ab1be5be746c910f5227c2c4fb87c" name="lib/swift/tests/smokes/components/Runner.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="d081c4c16ee3c1057ca2fb3269bc6be5" name="lib/swift/tests/smokes/components/template.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="eef7552771c1ea72aae3e4cec6167ec1" name="lib/swift/tests/smokes/images/smoke1.png" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="fb8fab942ea56757c2c0f9c613fd23f7" name="lib/swift/tests/smokes/images/smoke2.png" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="2594412c3ccfe89c0e287fd6c174a5a1" name="lib/swift/tests/smokes/images/smoke3.png" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="6d9d2d45862bbd412a16ce65daeae8dd" name="lib/swift/tests/smokes/images/smoke4.png" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="99b9552aa5fb45e24e177ef46b4a4b93" name="lib/swift/tests/smokes/images/smoke5.png" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="2bb01d5f774b2db7424f2e8f3156b965" name="lib/swift/tests/units/runTests.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="0bd752f0c41b9cee6ab940cb2c6ec71c" name="lib/swift/tests/units/support-files/AbstractTestOfAuthenticator.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="bee8d45c22d9021fb38093d6497fdfe0" name="lib/swift/tests/units/support-files/AbstractTestOfCache.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="f8cdbf522c398c6872e9da343e6c21b0" name="lib/swift/tests/units/support-files/AbstractTestWithSend.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="b627b3abc294dab5a0bf680a4bf744ab" name="lib/swift/tests/units/support-files/BasicTestSuite.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="66a1f7fc99c834926b22bce967803e1a" name="lib/swift/tests/units/support-files/common.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="ef8d14ce63bb5902dc2345dc9c187603" name="lib/swift/tests/units/support-files/list_panel.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="4b36023fcb05e8704922e46060ff426e" name="lib/swift/tests/units/support-files/test_runner.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="ce1f0f20e93e1c74a575b9e7c34d7035" name="lib/swift/tests/units/support-files/stubs/DummyConnection.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="0e08f627a64ec7935362771a0bb9a3eb" name="lib/swift/tests/units/support-files/stubs/MimeExtension.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="8c2d67050be1232026adcd126d16860e" name="lib/swift/tests/units/support-files/templates/list_panel.tpl.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="56072aa91202eccd68d47ed4c4e70f4d" name="lib/swift/tests/units/testcases/AuthenticationTests/TestOfAuthenticator.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="2c7dffb8761effdbf1e4902558d373c9" name="lib/swift/tests/units/testcases/AuthenticationTests/TestOfCRAMMD5Authenticator.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="bb30c607f7a9ab523bcbe66fc2768219" name="lib/swift/tests/units/testcases/AuthenticationTests/TestOfLOGINAuthenticator.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="a960d36dc7f5df04d375f007dfcc4ea5" name="lib/swift/tests/units/testcases/AuthenticationTests/TestOfPLAINAuthenticator.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="f757af645c7cee09c73a35f787f44aca" name="lib/swift/tests/units/testcases/AuthenticationTests/TestOfPop3Connection.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="0f31b87fc5df97bacad2bb35784da7f6" name="lib/swift/tests/units/testcases/AuthenticationTests/TestOfPopB4SmtpAuthenticator.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="68682ea4f70714dee43c8b65863c34a1" name="lib/swift/tests/units/testcases/CacheTests/TestOfDiskCache.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="c8477400deb7687b9da0586107ceb446" name="lib/swift/tests/units/testcases/CacheTests/TestOfJointOutputStream.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="cd2cb08224597333809e2cbbeeb24719" name="lib/swift/tests/units/testcases/CacheTests/TestOfMemoryCache.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="b0d0e5b0ab89e20f121e52f330dad0e0" name="lib/swift/tests/units/testcases/ConnectionTests/TestOfConnectionRotatorPlugin.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="bdf4f1d9934600a12b25148dc476a67f" name="lib/swift/tests/units/testcases/ConnectionTests/TestOfMailSendPlugin.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="c3b9565a63b9402dd87c8c27a2ed00a4" name="lib/swift/tests/units/testcases/ConnectionTests/TestOfMultiConnection.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="fb2dfe999344aa0f568da633dab82d89" name="lib/swift/tests/units/testcases/ConnectionTests/TestOfNativeMailConnection.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="8668fc7eb6f6d3b43123f75dd79ec854" name="lib/swift/tests/units/testcases/ConnectionTests/TestOfRotatorConnection.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="e1db10e41d6349f89d74b327fba7b8e1" name="lib/swift/tests/units/testcases/ConnectionTests/TestOfSendmailConnection.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="c31bce403b1a9cd49aaddf3696267b90" name="lib/swift/tests/units/testcases/ConnectionTests/TestOfSMTPConnection.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="437528294c4f63d613a2cbf98b2ff018" name="lib/swift/tests/units/testcases/CoreTests/TestOfAddress.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="b71f81bc9a09ba03fda2b775cd14d3f9" name="lib/swift/tests/units/testcases/CoreTests/TestOfArrayIterator.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="afcb5ef05eee59fe77a9f8f26518841e" name="lib/swift/tests/units/testcases/CoreTests/TestOfDefaultLog.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="b98fb5e526433904fb2b061b6bce4ea9" name="lib/swift/tests/units/testcases/CoreTests/TestOfEasySwift.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="9bac06f1876485513d3b4120f16efd64" name="lib/swift/tests/units/testcases/CoreTests/TestOfFile.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="08768a2d28e3437a1511ccdd80864434" name="lib/swift/tests/units/testcases/CoreTests/TestOfRecipientList.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="3dd1626436b70e0ffa5d95d19a439a77" name="lib/swift/tests/units/testcases/CoreTests/TestOfSwiftCore.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="071c9ed7f74d6ec632575672597460c5" name="lib/swift/tests/units/testcases/MimeTests/TestOfAttachment.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="fc1ea860ef0b84774e7ed1886d08d5b0" name="lib/swift/tests/units/testcases/MimeTests/TestOfEmbeddedFile.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="eea4ad2da1e6414e1862b78e803a15c6" name="lib/swift/tests/units/testcases/MimeTests/TestOfEncoder.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="03fdd682f247f441cb43143920fc2912" name="lib/swift/tests/units/testcases/MimeTests/TestOfHeaders.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="80dfcfb875c9870b02ca6c9886ec3f33" name="lib/swift/tests/units/testcases/MimeTests/TestOfImage.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="20e52822225cbe80957cf3d24807761c" name="lib/swift/tests/units/testcases/MimeTests/TestOfMessage.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="53bcd202da6b7737ed9c276c14a3ff6f" name="lib/swift/tests/units/testcases/MimeTests/TestOfMime.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="71d78bfa4f699289a5579aa2ceba941b" name="lib/swift/tests/units/testcases/MimeTests/TestOfMimePart.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="6fac601217848e3d71f9162903d95b06" name="lib/swift/tests/units/testcases/PluginTests/TestOfAntiFloodPlugin.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="381dd994c9d88b92f12f2e6e69f811ff" name="lib/swift/tests/units/testcases/PluginTests/TestOfBandwidthMonitorPlugin.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="beedebe74547def0c15365697663e067" name="lib/swift/tests/units/testcases/PluginTests/TestOfPluginAPI.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="24b20e46fac058f66dd79443ef05b4cc" name="lib/swift/tests/units/testcases/PluginTests/Test_OfThrottlerPlugin.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="992424abff8eaaa4a6b967394b1c08be" name="modules/sfSwiftMailer/actions/actions.class.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="98fa5220cddfab10f548e145b3c53b3f" name="modules/sfSwiftMailer/config/module.yml" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="bafcac5821c3957465c229988c562d27" name="modules/sfSwiftMailer/config/view.yml" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="4561a50a6ce8f1606feeb99f8a12f0c6" name="modules/sfSwiftMailer/templates/thankYouHtmlSuccess.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="57fbebf846ea99ad4879aa8d2b66b501" name="modules/sfSwiftMailer/templates/thankYouSuccess.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="aecd2b99b3ad5d84120ce9d8928605ec" name="modules/sfSwiftMailer/templates/thankYouTextSuccess.php" role="php" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="19fd58de414170ee8ee11f09b185358a" name="LICENSE" role="data" />
+   <file baseinstalldir="/sfSwiftPlugin" md5sum="11798fc7e4cabc33541886dec3216c3d" name="README" role="data" />
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.0.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.5.4</min>
+   </pearinstaller>
+   <package>
+    <name>symfony</name>
+    <channel>pear.symfony-project.com</channel>
+    <min>1.0.0</min>
+    <max>1.0.99999</max>
+   </package>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>1.5.1</release>
+    <api>3.3.2</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2007-12-11</date>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <notes>only use autoload function if needed</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.5.0</release>
+    <api>3.3.2</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2007-11-01</date>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <notes>switch to autoload function</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.4.0</release>
+    <api>3.2.6</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2007-11-01</date>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <notes>implement sfSwiftMailerBridge thanks to Joaquin.Bravo (now use `Swift` instead of `sfSwiftPlugin`)</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.3.1</release>
+    <api>3.2.2</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2007-05-14</date>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <notes>update swift libary to 3.2.2 see `CHANGES` file in the `lib/Swift` directory of the plugin</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.3.0</release>
+    <api>3.2.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2007-05-08</date>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <notes>update swift libary to 3.2.0 see `CHANGES` file in the `lib/Swift` directory of the plugin</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.2.4</release>
+    <api>3.1.5</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2007-04-26</date>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <notes>update the libary to 3.1.5 see `CHANGES` file in the `lib/Swift` directory of the plugin</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.2.3</release>
+    <api>3.1.4</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2007-04-24</date>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <notes>update the libary to 3.1.4 see `CHANGES` file in the `lib/` directory of the plugin</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.2.2</release>
+    <api>3.1.3</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2007-04-18</date>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <notes>update the libary to 3.1.3 see `CHANGES` file in the `lib/` directory of the plugin and correct the example</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.2.1</release>
+    <api>3.1.2</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2007-04-02</date>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <notes>update the libary to 3.1.2 see `CHANGES` file in the `lib/` directory of the plugin</notes>
+  </release>
+ </changelog>
+</package>

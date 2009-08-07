@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.7.2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+ <name>jsThumbnailPlugin</name>
+ <channel>pear.symfony-project.com</channel>
+ <summary>The jsThumbnailPlugin is a symfony plugin that creates Thumbnails on the fly using the GD library.</summary>
+ <description>The jsThumbnailPlugin is a symfony plugin that creates Thumbnails on the fly using the GD library. It uses the Symfony cache system to cache the thumbnails. It creates a thumbnail of a image in the given size and stores it in cache for the next calls, until the image changes.</description>
+ <lead>
+  <name>Julian Stricker</name>
+  <user>JulianStricker</user>
+  <email>julian@julianstricker.com</email>
+  <active>yes</active>
+ </lead>
+ <date>2008-12-03</date>
+ <time>09:51:00</time>
+ <version>
+  <release>1.1.0</release>
+  <api>1.1.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.symfony-project.com/license">MIT license</license>
+ <notes>-</notes>
+ <contents>
+  <dir name="/">
+   <file name="lib/helper/ThumbnailHelper.php" role="data" />
+   <file name="modules/jsThumbnail/actions/actions.class.php" role="data" />
+   <file name="README" role="data" />
+   <file name="LICENSE" role="data" />
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.1.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.1</min>
+   </pearinstaller>
+   <package>
+    <name>symfony</name>
+    <channel>pear.symfony-project.com</channel>
+    <min>0.8.1</min>
+    <max>1.2.0</max>
+    <exclude>1.2.0</exclude>
+   </package>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>1.1.0</release>
+    <api>1.1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2008-12-03</date>
+   <notes>
+     * Julian: added new attribute 'mode'
+     * Julian: fixed Bug with Symfony 1.1
+   </notes>
+  </release>
+ </changelog>
+</package>

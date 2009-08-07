@@ -1,0 +1,16 @@
+all:
+  csSEOToolkitPlugin:
+    #plugin-wide settings
+    AuthMethod:               isAuthenticated   #used to determine when seo admin bar is visible
+    IncludeAssets:            on                #includes default css/javascript for your admin bar
+    
+    #For page title generation
+    SitePrefix:               off               #Override this with your site prefix (ex: "Mysite | ")
+    DefaultTitle:             off               #If on, uses title specified if no H1s are found.  otherwise, uses title from view.yml
+    DefaultTitleMethod:       off               #If on, calls a static method on SeoPageTable to determine the title
+    
+    #For metadata generation
+    Underride:
+      Title:           off               #If on, titles are not auto-generated
+      Description:     off               #If on, descriptions are not auto-generated
+      Keywords:        off               #If on, keywords are not auto-generated

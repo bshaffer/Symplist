@@ -1,0 +1,7 @@
+all:
+  comments:
+    commenter_class:            Commenter
+    AllowAnonymous:             true
+    textarea_params:             
+      size:                      40x6
+      
