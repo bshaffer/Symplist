@@ -12,5 +12,6 @@ class CommentForm extends PluginCommentForm
 {
   public function configure()
   {
+    parent::configure();
   }
 }

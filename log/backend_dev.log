@@ -1,0 +1,1325 @@
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin" (/symfony_plugin.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_new" (/symfony_plugin/new.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_create" (/symfony_plugin.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_edit" (/symfony_plugin/:id/edit.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_update" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_delete" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_show" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_object" (/symfony_plugin/:id/:action.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_collection" (/symfony_plugin/:action/action.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post" (/post.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_new" (/post/new.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_create" (/post.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_edit" (/post/:id/edit.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_update" (/post/:id.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_delete" (/post/:id.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_show" (/post/:id.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_object" (/post/:id/:action.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_collection" (/post/:action/action.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page" (/page.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_new" (/page/new.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_create" (/page.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_edit" (/page/:id/edit.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_update" (/page/:id.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_delete" (/page/:id.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_show" (/page/:id.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_object" (/page/:id/:action.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_collection" (/page/:action/action.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/login)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/logout)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_password" (/request_password)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/login)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/login)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/logout)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_password" (/request_password)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_filter" (/sf_guard_user/filter.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_batch" (/sf_guard_user/batch.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user" (/sf_guard_user.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_new" (/sf_guard_user/new.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_create" (/sf_guard_user.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_edit" (/sf_guard_user/:id/edit.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_update" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_delete" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_show" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_object" (/sf_guard_user/:id/:action.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_collection" (/sf_guard_user/:action/action.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_filter" (/sf_guard_group/filter.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_batch" (/sf_guard_group/batch.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group" (/sf_guard_group.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_new" (/sf_guard_group/new.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_create" (/sf_guard_group.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_edit" (/sf_guard_group/:id/edit.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_update" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_delete" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_show" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_object" (/sf_guard_group/:id/:action.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_collection" (/sf_guard_group/:action/action.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_filter" (/sf_guard_permission/filter.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_batch" (/sf_guard_permission/batch.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission" (/sf_guard_permission.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_new" (/sf_guard_permission/new.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_create" (/sf_guard_permission.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_edit" (/sf_guard_permission/:id/edit.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_update" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_delete" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_show" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_object" (/sf_guard_permission/:id/:action.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_collection" (/sf_guard_permission/:action/action.:sf_format)
+Aug 07 11:41:38 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'symfony_plugin',  'action' => 'index',)
+Aug 07 11:41:39 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:41:39 symfony [info] {sfFilterChain} Executing filter "sfGuardBasicSecurityFilter"
+Aug 07 11:41:39 symfony [notice] {sfGuardBasicSecurityFilter} The filter "sfGuardBasicSecurityFilter" is deprecated. Use "sfGuardRememberMeFilter" instead.
+Aug 07 11:41:39 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:41:39 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:41:39 symfony [info] {symfony_pluginActions} Call "symfony_pluginActions->executeIndex()"
+Aug 07 11:41:39 symfony [info] {sfDoctrineLogger} executeQuery : SELECT COUNT(*) AS num_results FROM symfony_plugin s
+Aug 07 11:41:39 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/indexSuccess.php"
+Aug 07 11:41:39 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_assets.php"
+Aug 07 11:41:39 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_flashes.php"
+Aug 07 11:41:39 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_header.php"
+Aug 07 11:41:39 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters.php"
+Aug 07 11:41:39 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters_field.php"
+Aug 07 11:41:39 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters_field.php"
+Aug 07 11:41:39 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters_field.php"
+Aug 07 11:41:39 symfony [info] {sfDoctrineLogger} executeQuery : SELECT p.id AS p__id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.email AS p__email, p.sf_guard_user_id AS p__sf_guard_user_id FROM plugin_author p
+Aug 07 11:41:39 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters_field.php"
+Aug 07 11:41:39 symfony [info] {sfDoctrineLogger} executeQuery : SELECT p.id AS p__id, p.name AS p__name, p.description AS p__description, p.slug AS p__slug FROM plugin_category p
+Aug 07 11:41:39 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters_field.php"
+Aug 07 11:41:39 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters_field.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters_field.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_th_tabular.php"
+Aug 07 11:41:40 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:41:40 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:41:40 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:41:40 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:41:40 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:41:40 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:41:40 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:41:40 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:41:40 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:41:40 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:41:40 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:41:40 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:41:40 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:41:40 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:41:40 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:41:40 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:41:40 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:41:40 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_pagination.php"
+Aug 07 11:41:40 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.title AS s__title, s.description AS s__description, s.author_id AS s__author_id, s.category_id AS s__category_id, s.active AS s__active, s.slug AS s__slug, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM symfony_plugin s LIMIT 20
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:41:40 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_batch_actions.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_actions.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_footer.php"
+Aug 07 11:41:41 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/layout.php"
+Aug 07 11:41:41 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/layout.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/_public_menu.php"
+Aug 07 11:41:41 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/_admin_menu.php"
+Aug 07 11:41:41 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 11:41:41 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 11:41:41 symfony [info] {sfWebDebugLogger} Configuration 2256.25 ms (11)
+Aug 07 11:41:41 symfony [info] {sfWebDebugLogger} Action "symfony_plugin/index" 260.63 ms (1)
+Aug 07 11:41:41 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.25 ms (4)
+Aug 07 11:41:41 symfony [info] {sfWebDebugLogger} View "Success" for "symfony_plugin/index" 1902.27 ms (1)
+Aug 07 11:41:41 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_assets" 4.51 ms (1)
+Aug 07 11:41:41 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_flashes" 3.95 ms (1)
+Aug 07 11:41:41 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_header" 4.16 ms (1)
+Aug 07 11:41:41 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_filters" 422.91 ms (1)
+Aug 07 11:41:41 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_filters_field" 347.34 ms (7)
+Aug 07 11:41:41 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list" 1324.34 ms (1)
+Aug 07 11:41:41 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_th_tabular" 81.34 ms (1)
+Aug 07 11:41:41 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_pagination" 16.21 ms (1)
+Aug 07 11:41:41 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_td_batch_actions" 89.54 ms (20)
+Aug 07 11:41:41 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_td_tabular" 662.86 ms (20)
+Aug 07 11:41:41 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_field_boolean" 96.30 ms (20)
+Aug 07 11:41:41 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_td_actions" 225.18 ms (20)
+Aug 07 11:41:41 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_batch_actions" 5.63 ms (1)
+Aug 07 11:41:41 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_actions" 5.56 ms (1)
+Aug 07 11:41:41 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_footer" 3.91 ms (1)
+Aug 07 11:41:41 symfony [info] {sfWebDebugLogger} Partial "global/_public_menu" 6.53 ms (1)
+Aug 07 11:41:41 symfony [info] {sfWebDebugLogger} Partial "global/_admin_menu" 6.99 ms (1)
+Aug 07 11:41:43 symfony [info] {sfWebResponse} Send content (1486698 o)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin" (/symfony_plugin.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_new" (/symfony_plugin/new.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_create" (/symfony_plugin.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_edit" (/symfony_plugin/:id/edit.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_update" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_delete" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_show" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_object" (/symfony_plugin/:id/:action.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_collection" (/symfony_plugin/:action/action.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post" (/post.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_new" (/post/new.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_create" (/post.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_edit" (/post/:id/edit.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_update" (/post/:id.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_delete" (/post/:id.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_show" (/post/:id.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_object" (/post/:id/:action.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_collection" (/post/:action/action.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page" (/page.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_new" (/page/new.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_create" (/page.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_edit" (/page/:id/edit.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_update" (/page/:id.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_delete" (/page/:id.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_show" (/page/:id.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_object" (/page/:id/:action.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_collection" (/page/:action/action.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/login)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/logout)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_password" (/request_password)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/login)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/login)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/logout)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_password" (/request_password)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_filter" (/sf_guard_user/filter.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_batch" (/sf_guard_user/batch.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user" (/sf_guard_user.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_new" (/sf_guard_user/new.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_create" (/sf_guard_user.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_edit" (/sf_guard_user/:id/edit.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_update" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_delete" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_show" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:41:59 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_object" (/sf_guard_user/:id/:action.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_collection" (/sf_guard_user/:action/action.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_filter" (/sf_guard_group/filter.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_batch" (/sf_guard_group/batch.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group" (/sf_guard_group.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_new" (/sf_guard_group/new.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_create" (/sf_guard_group.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_edit" (/sf_guard_group/:id/edit.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_update" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_delete" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_show" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_object" (/sf_guard_group/:id/:action.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_collection" (/sf_guard_group/:action/action.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_filter" (/sf_guard_permission/filter.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_batch" (/sf_guard_permission/batch.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission" (/sf_guard_permission.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_new" (/sf_guard_permission/new.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_create" (/sf_guard_permission.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_edit" (/sf_guard_permission/:id/edit.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_update" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_delete" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_show" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_object" (/sf_guard_permission/:id/:action.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_collection" (/sf_guard_permission/:action/action.:sf_format)
+Aug 07 11:42:00 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'symfony_plugin',  'action' => 'index',)
+Aug 07 11:42:00 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:42:00 symfony [info] {sfFilterChain} Executing filter "sfGuardBasicSecurityFilter"
+Aug 07 11:42:00 symfony [notice] {sfGuardBasicSecurityFilter} The filter "sfGuardBasicSecurityFilter" is deprecated. Use "sfGuardRememberMeFilter" instead.
+Aug 07 11:42:00 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:42:00 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:42:00 symfony [info] {symfony_pluginActions} Call "symfony_pluginActions->executeIndex()"
+Aug 07 11:42:00 symfony [info] {sfDoctrineLogger} executeQuery : SELECT COUNT(*) AS num_results FROM symfony_plugin s
+Aug 07 11:42:00 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/indexSuccess.php"
+Aug 07 11:42:00 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_assets.php"
+Aug 07 11:42:00 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_flashes.php"
+Aug 07 11:42:00 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_header.php"
+Aug 07 11:42:00 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters.php"
+Aug 07 11:42:00 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters_field.php"
+Aug 07 11:42:00 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters_field.php"
+Aug 07 11:42:00 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters_field.php"
+Aug 07 11:42:00 symfony [info] {sfDoctrineLogger} executeQuery : SELECT p.id AS p__id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.email AS p__email, p.sf_guard_user_id AS p__sf_guard_user_id FROM plugin_author p
+Aug 07 11:42:00 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters_field.php"
+Aug 07 11:42:00 symfony [info] {sfDoctrineLogger} executeQuery : SELECT p.id AS p__id, p.name AS p__name, p.description AS p__description, p.slug AS p__slug FROM plugin_category p
+Aug 07 11:42:00 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters_field.php"
+Aug 07 11:42:00 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters_field.php"
+Aug 07 11:42:00 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters_field.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_batch_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_th_tabular.php"
+Aug 07 11:42:01 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:42:01 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:42:01 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:42:01 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:42:01 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:42:01 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:42:01 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:42:01 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:42:01 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:42:01 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:42:01 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:42:01 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:42:01 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:42:01 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:42:01 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:42:01 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:42:01 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:42:01 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_pagination.php"
+Aug 07 11:42:01 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.title AS s__title, s.description AS s__description, s.author_id AS s__author_id, s.category_id AS s__category_id, s.active AS s__active, s.slug AS s__slug, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM symfony_plugin s LIMIT 20
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:42:01 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_field_boolean.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_footer.php"
+Aug 07 11:42:02 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/layout.php"
+Aug 07 11:42:02 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/layout.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/_public_menu.php"
+Aug 07 11:42:02 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/_admin_menu.php"
+Aug 07 11:42:02 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 11:42:02 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 11:42:02 symfony [info] {sfWebDebugLogger} Configuration 355.84 ms (11)
+Aug 07 11:42:02 symfony [info] {sfWebDebugLogger} Action "symfony_plugin/index" 130.73 ms (1)
+Aug 07 11:42:02 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.70 ms (4)
+Aug 07 11:42:02 symfony [info] {sfWebDebugLogger} View "Success" for "symfony_plugin/index" 1771.75 ms (1)
+Aug 07 11:42:02 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_assets" 4.54 ms (1)
+Aug 07 11:42:02 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_flashes" 4.08 ms (1)
+Aug 07 11:42:02 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_header" 4.17 ms (1)
+Aug 07 11:42:02 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_filters" 324.16 ms (1)
+Aug 07 11:42:02 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_filters_field" 286.45 ms (7)
+Aug 07 11:42:02 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_batch_actions" 4.03 ms (1)
+Aug 07 11:42:02 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_actions" 5.32 ms (1)
+Aug 07 11:42:02 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list" 1352.53 ms (1)
+Aug 07 11:42:02 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_th_tabular" 211.76 ms (1)
+Aug 07 11:42:02 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_pagination" 15.96 ms (1)
+Aug 07 11:42:02 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_td_batch_actions" 82.39 ms (20)
+Aug 07 11:42:02 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_td_tabular" 649.05 ms (20)
+Aug 07 11:42:02 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_field_boolean" 90.15 ms (20)
+Aug 07 11:42:02 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_td_actions" 207.75 ms (20)
+Aug 07 11:42:02 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_footer" 3.76 ms (1)
+Aug 07 11:42:02 symfony [info] {sfWebDebugLogger} Partial "global/_public_menu" 6.03 ms (1)
+Aug 07 11:42:02 symfony [info] {sfWebDebugLogger} Partial "global/_admin_menu" 6.28 ms (1)
+Aug 07 11:42:04 symfony [info] {sfWebResponse} Send content (1502588 o)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin" (/symfony_plugin.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_new" (/symfony_plugin/new.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_create" (/symfony_plugin.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_edit" (/symfony_plugin/:id/edit.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_update" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_delete" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_show" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_object" (/symfony_plugin/:id/:action.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_collection" (/symfony_plugin/:action/action.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post" (/post.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_new" (/post/new.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_create" (/post.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_edit" (/post/:id/edit.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_update" (/post/:id.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_delete" (/post/:id.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_show" (/post/:id.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_object" (/post/:id/:action.:sf_format)
+Aug 07 11:42:17 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_collection" (/post/:action/action.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page" (/page.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_new" (/page/new.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_create" (/page.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_edit" (/page/:id/edit.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_update" (/page/:id.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_delete" (/page/:id.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_show" (/page/:id.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_object" (/page/:id/:action.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_collection" (/page/:action/action.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/login)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/logout)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_password" (/request_password)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/login)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/login)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/logout)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_password" (/request_password)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_filter" (/sf_guard_user/filter.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_batch" (/sf_guard_user/batch.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user" (/sf_guard_user.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_new" (/sf_guard_user/new.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_create" (/sf_guard_user.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_edit" (/sf_guard_user/:id/edit.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_update" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_delete" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_show" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_object" (/sf_guard_user/:id/:action.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_collection" (/sf_guard_user/:action/action.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_filter" (/sf_guard_group/filter.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_batch" (/sf_guard_group/batch.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group" (/sf_guard_group.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_new" (/sf_guard_group/new.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_create" (/sf_guard_group.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_edit" (/sf_guard_group/:id/edit.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_update" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_delete" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_show" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_object" (/sf_guard_group/:id/:action.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_collection" (/sf_guard_group/:action/action.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_filter" (/sf_guard_permission/filter.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_batch" (/sf_guard_permission/batch.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission" (/sf_guard_permission.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_new" (/sf_guard_permission/new.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_create" (/sf_guard_permission.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_edit" (/sf_guard_permission/:id/edit.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_update" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_delete" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_show" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_object" (/sf_guard_permission/:id/:action.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_collection" (/sf_guard_permission/:action/action.:sf_format)
+Aug 07 11:42:18 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'symfony_plugin',  'action' => 'index',)
+Aug 07 11:42:18 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:42:18 symfony [info] {sfFilterChain} Executing filter "sfGuardBasicSecurityFilter"
+Aug 07 11:42:18 symfony [notice] {sfGuardBasicSecurityFilter} The filter "sfGuardBasicSecurityFilter" is deprecated. Use "sfGuardRememberMeFilter" instead.
+Aug 07 11:42:18 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:42:18 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:42:18 symfony [info] {symfony_pluginActions} Call "symfony_pluginActions->executeIndex()"
+Aug 07 11:42:18 symfony [info] {sfDoctrineLogger} executeQuery : SELECT COUNT(*) AS num_results FROM symfony_plugin s
+Aug 07 11:42:18 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/indexSuccess.php"
+Aug 07 11:42:18 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_assets.php"
+Aug 07 11:42:18 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_flashes.php"
+Aug 07 11:42:18 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_header.php"
+Aug 07 11:42:18 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters.php"
+Aug 07 11:42:18 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters_field.php"
+Aug 07 11:42:18 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters_field.php"
+Aug 07 11:42:18 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters_field.php"
+Aug 07 11:42:18 symfony [info] {sfDoctrineLogger} executeQuery : SELECT p.id AS p__id, p.first_name AS p__first_name, p.last_name AS p__last_name, p.email AS p__email, p.sf_guard_user_id AS p__sf_guard_user_id FROM plugin_author p
+Aug 07 11:42:18 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters_field.php"
+Aug 07 11:42:18 symfony [info] {sfDoctrineLogger} executeQuery : SELECT p.id AS p__id, p.name AS p__name, p.description AS p__description, p.slug AS p__slug FROM plugin_category p
+Aug 07 11:42:18 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters_field.php"
+Aug 07 11:42:18 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters_field.php"
+Aug 07 11:42:18 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_filters_field.php"
+Aug 07 11:42:18 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_batch_actions.php"
+Aug 07 11:42:18 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_th_tabular.php"
+Aug 07 11:42:19 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:42:19 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:42:19 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:42:19 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_pagination.php"
+Aug 07 11:42:19 symfony [info] {sfDoctrineLogger} executeQuery : SELECT s.id AS s__id, s.title AS s__title, s.description AS s__description, s.author_id AS s__author_id, s.category_id AS s__category_id, s.active AS s__active, s.slug AS s__slug, s.created_at AS s__created_at, s.updated_at AS s__updated_at FROM symfony_plugin s LIMIT 20
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_tabular.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_td_actions.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoSymfony_plugin/templates/_list_footer.php"
+Aug 07 11:42:19 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/layout.php"
+Aug 07 11:42:19 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/layout.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/_public_menu.php"
+Aug 07 11:42:19 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/_admin_menu.php"
+Aug 07 11:42:19 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 11:42:19 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 11:42:19 symfony [info] {sfWebDebugLogger} Configuration 233.01 ms (11)
+Aug 07 11:42:19 symfony [info] {sfWebDebugLogger} Action "symfony_plugin/index" 74.11 ms (1)
+Aug 07 11:42:19 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.22 ms (4)
+Aug 07 11:42:19 symfony [info] {sfWebDebugLogger} View "Success" for "symfony_plugin/index" 1211.91 ms (1)
+Aug 07 11:42:19 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_assets" 50.23 ms (1)
+Aug 07 11:42:19 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_flashes" 4.15 ms (1)
+Aug 07 11:42:19 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_header" 3.83 ms (1)
+Aug 07 11:42:19 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_filters" 320.59 ms (1)
+Aug 07 11:42:19 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_filters_field" 282.14 ms (7)
+Aug 07 11:42:19 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_batch_actions" 4.25 ms (1)
+Aug 07 11:42:19 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_actions" 5.36 ms (1)
+Aug 07 11:42:19 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list" 760.46 ms (1)
+Aug 07 11:42:19 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_th_tabular" 50.84 ms (1)
+Aug 07 11:42:19 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_pagination" 15.60 ms (1)
+Aug 07 11:42:19 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_td_batch_actions" 83.91 ms (20)
+Aug 07 11:42:19 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_td_tabular" 140.53 ms (20)
+Aug 07 11:42:19 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_td_actions" 211.51 ms (20)
+Aug 07 11:42:19 symfony [info] {sfWebDebugLogger} Partial "symfony_plugin/_list_footer" 3.75 ms (1)
+Aug 07 11:42:19 symfony [info] {sfWebDebugLogger} Partial "global/_public_menu" 6.09 ms (1)
+Aug 07 11:42:19 symfony [info] {sfWebDebugLogger} Partial "global/_admin_menu" 6.31 ms (1)
+Aug 07 11:42:21 symfony [info] {sfWebResponse} Send content (1185760 o)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin" (/symfony_plugin.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_new" (/symfony_plugin/new.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_create" (/symfony_plugin.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_edit" (/symfony_plugin/:id/edit.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_update" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_delete" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_show" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_object" (/symfony_plugin/:id/:action.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_collection" (/symfony_plugin/:action/action.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post" (/post.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_new" (/post/new.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_create" (/post.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_edit" (/post/:id/edit.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_update" (/post/:id.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_delete" (/post/:id.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_show" (/post/:id.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_object" (/post/:id/:action.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_collection" (/post/:action/action.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page" (/page.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_new" (/page/new.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_create" (/page.:sf_format)
+Aug 07 11:42:28 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_edit" (/page/:id/edit.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_update" (/page/:id.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_delete" (/page/:id.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_show" (/page/:id.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_object" (/page/:id/:action.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_collection" (/page/:action/action.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/login)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/logout)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_password" (/request_password)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/login)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/login)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/logout)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_password" (/request_password)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_filter" (/sf_guard_user/filter.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_batch" (/sf_guard_user/batch.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user" (/sf_guard_user.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_new" (/sf_guard_user/new.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_create" (/sf_guard_user.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_edit" (/sf_guard_user/:id/edit.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_update" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_delete" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_show" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_object" (/sf_guard_user/:id/:action.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_collection" (/sf_guard_user/:action/action.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_filter" (/sf_guard_group/filter.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_batch" (/sf_guard_group/batch.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group" (/sf_guard_group.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_new" (/sf_guard_group/new.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_create" (/sf_guard_group.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_edit" (/sf_guard_group/:id/edit.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_update" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_delete" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_show" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_object" (/sf_guard_group/:id/:action.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_collection" (/sf_guard_group/:action/action.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_filter" (/sf_guard_permission/filter.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_batch" (/sf_guard_permission/batch.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission" (/sf_guard_permission.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_new" (/sf_guard_permission/new.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_create" (/sf_guard_permission.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_edit" (/sf_guard_permission/:id/edit.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_update" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_delete" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_show" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_object" (/sf_guard_permission/:id/:action.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_collection" (/sf_guard_permission/:action/action.:sf_format)
+Aug 07 11:42:29 symfony [info] {sfPatternRouting} Match route "comment_csCommentAdmin" (/csCommentAdmin.:sf_format) for /csCommentAdmin with parameters array (  'module' => 'csCommentAdmin',  'action' => 'index',  'sf_format' => 'html',)
+Aug 07 11:42:29 symfony [err] {sfConfigurationException} The module "csCommentAdmin" is not enabled.
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin" (/symfony_plugin.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_new" (/symfony_plugin/new.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_create" (/symfony_plugin.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_edit" (/symfony_plugin/:id/edit.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_update" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_delete" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_show" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_object" (/symfony_plugin/:id/:action.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_collection" (/symfony_plugin/:action/action.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post" (/post.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_new" (/post/new.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_create" (/post.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_edit" (/post/:id/edit.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_update" (/post/:id.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_delete" (/post/:id.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_show" (/post/:id.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_object" (/post/:id/:action.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_collection" (/post/:action/action.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page" (/page.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_new" (/page/new.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_create" (/page.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_edit" (/page/:id/edit.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_update" (/page/:id.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_delete" (/page/:id.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_show" (/page/:id.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_object" (/page/:id/:action.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_collection" (/page/:action/action.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/login)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/logout)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_password" (/request_password)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/login)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/login)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/logout)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_password" (/request_password)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_filter" (/sf_guard_user/filter.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_batch" (/sf_guard_user/batch.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user" (/sf_guard_user.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_new" (/sf_guard_user/new.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_create" (/sf_guard_user.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_edit" (/sf_guard_user/:id/edit.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_update" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_delete" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_show" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_object" (/sf_guard_user/:id/:action.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_collection" (/sf_guard_user/:action/action.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_filter" (/sf_guard_group/filter.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_batch" (/sf_guard_group/batch.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group" (/sf_guard_group.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_new" (/sf_guard_group/new.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_create" (/sf_guard_group.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_edit" (/sf_guard_group/:id/edit.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_update" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_delete" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_show" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_object" (/sf_guard_group/:id/:action.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_collection" (/sf_guard_group/:action/action.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_filter" (/sf_guard_permission/filter.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_batch" (/sf_guard_permission/batch.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission" (/sf_guard_permission.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_new" (/sf_guard_permission/new.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_create" (/sf_guard_permission.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_edit" (/sf_guard_permission/:id/edit.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_update" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_delete" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_show" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_object" (/sf_guard_permission/:id/:action.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_collection" (/sf_guard_permission/:action/action.:sf_format)
+Aug 07 11:42:42 symfony [info] {sfPatternRouting} Match route "comment_csCommentAdmin" (/csCommentAdmin.:sf_format) for /csCommentAdmin with parameters array (  'module' => 'csCommentAdmin',  'action' => 'index',  'sf_format' => 'html',)
+Aug 07 11:42:42 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:42:42 symfony [info] {sfFilterChain} Executing filter "sfGuardBasicSecurityFilter"
+Aug 07 11:42:42 symfony [notice] {sfGuardBasicSecurityFilter} The filter "sfGuardBasicSecurityFilter" is deprecated. Use "sfGuardRememberMeFilter" instead.
+Aug 07 11:42:42 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:42:42 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:42:42 symfony [info] {csCommentAdminActions} Call "csCommentAdminActions->executeIndex()"
+Aug 07 11:42:42 symfony [info] {sfDoctrineLogger} executeQuery : SELECT COUNT(*) AS num_results FROM comment c
+Aug 07 11:42:42 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/indexSuccess.php"
+Aug 07 11:42:42 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_assets.php"
+Aug 07 11:42:42 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_flashes.php"
+Aug 07 11:42:42 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_list_header.php"
+Aug 07 11:42:43 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_filters.php"
+Aug 07 11:42:43 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_filters_field.php"
+Aug 07 11:42:43 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_filters_field.php"
+Aug 07 11:42:43 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.username AS c__username, c.email AS c__email, c.website AS c__website FROM commenter c
+Aug 07 11:42:43 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_filters_field.php"
+Aug 07 11:42:43 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/sfCommentsPlugin/modules/csCommentAdmin/templates/_list.php"
+Aug 07 11:42:43 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_list_th_tabular.php"
+Aug 07 11:42:43 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:42:43 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:42:43 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:42:43 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:42:43 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:42:43 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:42:43 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.body AS c__body, c.approved AS c__approved, c.approved_at AS c__approved_at, c.user_id AS c__user_id, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level, c.created_at AS c__created_at, c.updated_at AS c__updated_at FROM comment c ORDER BY c.created_at desc LIMIT 10
+Aug 07 11:42:43 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_list_td_batch_actions.php"
+Aug 07 11:42:43 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_list_td_tabular.php"
+Aug 07 11:42:43 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_list_field_boolean.php"
+Aug 07 11:42:43 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_list_td_actions.php"
+Aug 07 11:42:43 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/sfCommentsPlugin/modules/csCommentAdmin/templates/_list_batch_actions.php"
+Aug 07 11:42:43 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/sfCommentsPlugin/modules/csCommentAdmin/templates/_list_actions.php"
+Aug 07 11:42:43 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_list_footer.php"
+Aug 07 11:42:43 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/layout.php"
+Aug 07 11:42:43 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/layout.php"
+Aug 07 11:42:43 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/_public_menu.php"
+Aug 07 11:42:43 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/_admin_menu.php"
+Aug 07 11:42:43 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 11:42:43 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 11:42:43 symfony [info] {sfWebDebugLogger} Configuration 112.66 ms (10)
+Aug 07 11:42:43 symfony [info] {sfWebDebugLogger} Action "csCommentAdmin/index" 288.35 ms (1)
+Aug 07 11:42:43 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.17 ms (3)
+Aug 07 11:42:43 symfony [info] {sfWebDebugLogger} View "Success" for "csCommentAdmin/index" 392.45 ms (1)
+Aug 07 11:42:43 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_assets" 4.36 ms (1)
+Aug 07 11:42:43 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_flashes" 3.98 ms (1)
+Aug 07 11:42:43 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_header" 3.90 ms (1)
+Aug 07 11:42:43 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_filters" 92.30 ms (1)
+Aug 07 11:42:43 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_filters_field" 61.31 ms (3)
+Aug 07 11:42:43 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list" 153.92 ms (1)
+Aug 07 11:42:43 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_th_tabular" 31.21 ms (1)
+Aug 07 11:42:43 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_td_batch_actions" 4.35 ms (1)
+Aug 07 11:42:43 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_td_tabular" 29.17 ms (1)
+Aug 07 11:42:43 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_field_boolean" 4.58 ms (1)
+Aug 07 11:42:43 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_td_actions" 29.05 ms (1)
+Aug 07 11:42:43 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_batch_actions" 5.24 ms (1)
+Aug 07 11:42:43 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_actions" 20.41 ms (1)
+Aug 07 11:42:43 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_footer" 3.94 ms (1)
+Aug 07 11:42:43 symfony [info] {sfWebDebugLogger} Partial "global/_public_menu" 6.40 ms (1)
+Aug 07 11:42:43 symfony [info] {sfWebDebugLogger} Partial "global/_admin_menu" 6.60 ms (1)
+Aug 07 11:42:44 symfony [info] {sfWebResponse} Send content (676703 o)
+Aug 07 11:43:22 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:43:22 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:43:22 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:43:22 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:43:22 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:43:22 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:43:22 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:43:22 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:43:22 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:43:22 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:43:22 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:43:22 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:43:22 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:43:22 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin" (/symfony_plugin.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_new" (/symfony_plugin/new.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_create" (/symfony_plugin.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_edit" (/symfony_plugin/:id/edit.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_update" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_delete" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_show" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_object" (/symfony_plugin/:id/:action.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_collection" (/symfony_plugin/:action/action.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post" (/post.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_new" (/post/new.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_create" (/post.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_edit" (/post/:id/edit.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_update" (/post/:id.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_delete" (/post/:id.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_show" (/post/:id.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_object" (/post/:id/:action.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_collection" (/post/:action/action.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page" (/page.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_new" (/page/new.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_create" (/page.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_edit" (/page/:id/edit.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_update" (/page/:id.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_delete" (/page/:id.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_show" (/page/:id.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_object" (/page/:id/:action.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_collection" (/page/:action/action.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/login)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/logout)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_password" (/request_password)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/login)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/login)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/logout)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_password" (/request_password)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_filter" (/sf_guard_user/filter.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_batch" (/sf_guard_user/batch.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user" (/sf_guard_user.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_new" (/sf_guard_user/new.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_create" (/sf_guard_user.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_edit" (/sf_guard_user/:id/edit.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_update" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_delete" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_show" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_object" (/sf_guard_user/:id/:action.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_collection" (/sf_guard_user/:action/action.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_filter" (/sf_guard_group/filter.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_batch" (/sf_guard_group/batch.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group" (/sf_guard_group.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_new" (/sf_guard_group/new.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_create" (/sf_guard_group.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_edit" (/sf_guard_group/:id/edit.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_update" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_delete" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_show" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_object" (/sf_guard_group/:id/:action.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_collection" (/sf_guard_group/:action/action.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_filter" (/sf_guard_permission/filter.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_batch" (/sf_guard_permission/batch.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission" (/sf_guard_permission.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_new" (/sf_guard_permission/new.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_create" (/sf_guard_permission.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_edit" (/sf_guard_permission/:id/edit.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_update" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_delete" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_show" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_object" (/sf_guard_permission/:id/:action.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_collection" (/sf_guard_permission/:action/action.:sf_format)
+Aug 07 11:43:23 symfony [info] {sfPatternRouting} Match route "comment_csCommentAdmin" (/csCommentAdmin.:sf_format) for /csCommentAdmin with parameters array (  'module' => 'csCommentAdmin',  'action' => 'index',  'sf_format' => 'html',)
+Aug 07 11:43:23 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:43:23 symfony [info] {sfFilterChain} Executing filter "sfGuardBasicSecurityFilter"
+Aug 07 11:43:23 symfony [notice] {sfGuardBasicSecurityFilter} The filter "sfGuardBasicSecurityFilter" is deprecated. Use "sfGuardRememberMeFilter" instead.
+Aug 07 11:43:23 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:43:23 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:43:23 symfony [info] {csCommentAdminActions} Call "csCommentAdminActions->executeIndex()"
+Aug 07 11:43:23 symfony [info] {sfDoctrineLogger} executeQuery : SELECT COUNT(*) AS num_results FROM comment c
+Aug 07 11:43:23 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/indexSuccess.php"
+Aug 07 11:43:23 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_assets.php"
+Aug 07 11:43:23 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_flashes.php"
+Aug 07 11:43:23 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_list_header.php"
+Aug 07 11:43:23 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_filters.php"
+Aug 07 11:43:24 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_filters_field.php"
+Aug 07 11:43:24 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_filters_field.php"
+Aug 07 11:43:24 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.username AS c__username, c.email AS c__email, c.website AS c__website FROM commenter c
+Aug 07 11:43:24 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_filters_field.php"
+Aug 07 11:43:24 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/sfCommentsPlugin/modules/csCommentAdmin/templates/_list_batch_actions.php"
+Aug 07 11:43:24 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/sfCommentsPlugin/modules/csCommentAdmin/templates/_list_actions.php"
+Aug 07 11:43:24 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/sfCommentsPlugin/modules/csCommentAdmin/templates/_list.php"
+Aug 07 11:43:24 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_list_th_tabular.php"
+Aug 07 11:43:24 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:43:24 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:43:24 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:43:24 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:43:24 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:43:24 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:43:24 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.body AS c__body, c.approved AS c__approved, c.approved_at AS c__approved_at, c.user_id AS c__user_id, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level, c.created_at AS c__created_at, c.updated_at AS c__updated_at FROM comment c ORDER BY c.created_at desc LIMIT 10
+Aug 07 11:43:24 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_list_td_batch_actions.php"
+Aug 07 11:43:24 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_list_td_tabular.php"
+Aug 07 11:43:24 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_list_field_boolean.php"
+Aug 07 11:43:24 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_list_td_actions.php"
+Aug 07 11:43:24 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_list_footer.php"
+Aug 07 11:43:24 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/layout.php"
+Aug 07 11:43:24 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/layout.php"
+Aug 07 11:43:24 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/_public_menu.php"
+Aug 07 11:43:24 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/_admin_menu.php"
+Aug 07 11:43:24 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 11:43:24 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 11:43:24 symfony [info] {sfWebDebugLogger} Configuration 471.29 ms (11)
+Aug 07 11:43:24 symfony [info] {sfWebDebugLogger} Action "csCommentAdmin/index" 91.49 ms (1)
+Aug 07 11:43:24 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.17 ms (3)
+Aug 07 11:43:24 symfony [info] {sfWebDebugLogger} View "Success" for "csCommentAdmin/index" 345.16 ms (1)
+Aug 07 11:43:24 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_assets" 4.44 ms (1)
+Aug 07 11:43:24 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_flashes" 3.90 ms (1)
+Aug 07 11:43:24 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_header" 3.68 ms (1)
+Aug 07 11:43:24 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_filters" 78.29 ms (1)
+Aug 07 11:43:24 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_filters_field" 49.41 ms (3)
+Aug 07 11:43:24 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_batch_actions" 3.92 ms (1)
+Aug 07 11:43:24 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_actions" 19.52 ms (1)
+Aug 07 11:43:24 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list" 166.82 ms (1)
+Aug 07 11:43:24 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_th_tabular" 66.93 ms (1)
+Aug 07 11:43:24 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_td_batch_actions" 4.34 ms (1)
+Aug 07 11:43:24 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_td_tabular" 26.27 ms (1)
+Aug 07 11:43:24 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_field_boolean" 4.40 ms (1)
+Aug 07 11:43:24 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_td_actions" 29.64 ms (1)
+Aug 07 11:43:24 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_footer" 3.91 ms (1)
+Aug 07 11:43:24 symfony [info] {sfWebDebugLogger} Partial "global/_public_menu" 6.11 ms (1)
+Aug 07 11:43:24 symfony [info] {sfWebDebugLogger} Partial "global/_admin_menu" 6.45 ms (1)
+Aug 07 11:43:25 symfony [info] {sfWebResponse} Send content (677646 o)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin" (/symfony_plugin.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_new" (/symfony_plugin/new.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_create" (/symfony_plugin.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_edit" (/symfony_plugin/:id/edit.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_update" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_delete" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_show" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_object" (/symfony_plugin/:id/:action.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_collection" (/symfony_plugin/:action/action.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post" (/post.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_new" (/post/new.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_create" (/post.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_edit" (/post/:id/edit.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_update" (/post/:id.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_delete" (/post/:id.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_show" (/post/:id.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_object" (/post/:id/:action.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_collection" (/post/:action/action.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page" (/page.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_new" (/page/new.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_create" (/page.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_edit" (/page/:id/edit.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_update" (/page/:id.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_delete" (/page/:id.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_show" (/page/:id.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_object" (/page/:id/:action.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_collection" (/page/:action/action.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/login)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/logout)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_password" (/request_password)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/login)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/login)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/logout)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_password" (/request_password)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_filter" (/sf_guard_user/filter.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_batch" (/sf_guard_user/batch.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user" (/sf_guard_user.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_new" (/sf_guard_user/new.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_create" (/sf_guard_user.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_edit" (/sf_guard_user/:id/edit.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_update" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_delete" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_show" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_object" (/sf_guard_user/:id/:action.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_collection" (/sf_guard_user/:action/action.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_filter" (/sf_guard_group/filter.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_batch" (/sf_guard_group/batch.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group" (/sf_guard_group.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_new" (/sf_guard_group/new.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_create" (/sf_guard_group.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_edit" (/sf_guard_group/:id/edit.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_update" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_delete" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_show" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_object" (/sf_guard_group/:id/:action.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_collection" (/sf_guard_group/:action/action.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_filter" (/sf_guard_permission/filter.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_batch" (/sf_guard_permission/batch.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission" (/sf_guard_permission.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_new" (/sf_guard_permission/new.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_create" (/sf_guard_permission.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_edit" (/sf_guard_permission/:id/edit.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_update" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_delete" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_show" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_object" (/sf_guard_permission/:id/:action.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_collection" (/sf_guard_permission/:action/action.:sf_format)
+Aug 07 11:43:32 symfony [info] {sfPatternRouting} Match route "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format) for /csCommentAdmin/3/ListApprove with parameters array (  'module' => 'csCommentAdmin',  'action' => 'ListApprove',  'sf_format' => 'html',  'id' => '3',)
+Aug 07 11:43:32 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:43:32 symfony [info] {sfFilterChain} Executing filter "sfGuardBasicSecurityFilter"
+Aug 07 11:43:32 symfony [notice] {sfGuardBasicSecurityFilter} The filter "sfGuardBasicSecurityFilter" is deprecated. Use "sfGuardRememberMeFilter" instead.
+Aug 07 11:43:32 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:43:32 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:43:32 symfony [info] {csCommentAdminActions} Call "csCommentAdminActions->executeListApprove()"
+Aug 07 11:43:32 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.body AS c__body, c.approved AS c__approved, c.approved_at AS c__approved_at, c.user_id AS c__user_id, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level, c.created_at AS c__created_at, c.updated_at AS c__updated_at FROM comment c WHERE c.id = ? LIMIT 1 - (3 )
+Aug 07 11:43:32 symfony [info] {sfDoctrineLogger} executeQuery : UPDATE comment SET approved = ?, approved_at = ?, updated_at = ? WHERE id = ? - (1, 2009-08-07, 2009-08-07 11:43:32, 3 )
+Aug 07 11:43:32 symfony [info] {sfFrontWebController} Redirect to "http://localhost/symplist/web/backend_dev.php/csCommentAdmin"
+Aug 07 11:43:32 symfony [info] {sfWebResponse} Send status "HTTP/1.1 302 Found"
+Aug 07 11:43:32 symfony [info] {sfWebResponse} Send header "Location: http://localhost/symplist/web/backend_dev.php/csCommentAdmin"
+Aug 07 11:43:32 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 11:43:32 symfony [info] {sfWebDebugLogger} Configuration 16.60 ms (9)
+Aug 07 11:43:32 symfony [info] {sfWebDebugLogger} Action "csCommentAdmin/ListApprove" 144.15 ms (1)
+Aug 07 11:43:32 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.22 ms (4)
+Aug 07 11:43:32 symfony [info] {sfWebResponse} Send content (131 o)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfRoute "meta_data_edit" (/seo/meta_data/edit)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml_edit" (/seo/sitemap_data/edit)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfRoute "sitemap_xml" (/sitemap.xml)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail" (/jsThumbnail)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfRoute "jsthumbnail_remote" (/jsThumbnail/remote)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_add" (/csComments/comments/add)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_do_add" (/csComments/comments/addComment)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_edit" (/csComments/comments/editComment)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfRoute "cscomments_comments_delete" (/csComments/comments/deleteComment)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin" (/csCommentAdmin.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_new" (/csCommentAdmin/new.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_create" (/csCommentAdmin.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_edit" (/csCommentAdmin/:id/edit.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_update" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_delete" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_show" (/csCommentAdmin/:id.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_object" (/csCommentAdmin/:id/:action.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "comment_csCommentAdmin_collection" (/csCommentAdmin/:action/action.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin" (/symfony_plugin.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_new" (/symfony_plugin/new.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_create" (/symfony_plugin.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_edit" (/symfony_plugin/:id/edit.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_update" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_delete" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_show" (/symfony_plugin/:id.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_object" (/symfony_plugin/:id/:action.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "symfony_plugin_collection" (/symfony_plugin/:action/action.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post" (/post.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_new" (/post/new.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_create" (/post.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_edit" (/post/:id/edit.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_update" (/post/:id.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_delete" (/post/:id.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_show" (/post/:id.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_object" (/post/:id/:action.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "post_post_collection" (/post/:action/action.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page" (/page.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_new" (/page/new.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_create" (/page.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_edit" (/page/:id/edit.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_update" (/page/:id.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_delete" (/page/:id.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_show" (/page/:id.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_object" (/page/:id/:action.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "page_page_collection" (/page/:action/action.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/login)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/logout)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_password" (/request_password)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/login)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/login)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/logout)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_password" (/request_password)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_filter" (/sf_guard_user/filter.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_batch" (/sf_guard_user/batch.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user" (/sf_guard_user.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_new" (/sf_guard_user/new.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_create" (/sf_guard_user.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_edit" (/sf_guard_user/:id/edit.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_update" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_delete" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_show" (/sf_guard_user/:id.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_object" (/sf_guard_user/:id/:action.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_user_collection" (/sf_guard_user/:action/action.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_filter" (/sf_guard_group/filter.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_batch" (/sf_guard_group/batch.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group" (/sf_guard_group.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_new" (/sf_guard_group/new.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_create" (/sf_guard_group.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_edit" (/sf_guard_group/:id/edit.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_update" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_delete" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_show" (/sf_guard_group/:id.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_object" (/sf_guard_group/:id/:action.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_group_collection" (/sf_guard_group/:action/action.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_filter" (/sf_guard_permission/filter.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_batch" (/sf_guard_permission/batch.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission" (/sf_guard_permission.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_new" (/sf_guard_permission/new.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_create" (/sf_guard_permission.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_edit" (/sf_guard_permission/:id/edit.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_update" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_delete" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_show" (/sf_guard_permission/:id.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_object" (/sf_guard_permission/:id/:action.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Connect sfDoctrineRoute "sf_guard_permission_collection" (/sf_guard_permission/:action/action.:sf_format)
+Aug 07 11:43:33 symfony [info] {sfPatternRouting} Match route "comment_csCommentAdmin" (/csCommentAdmin.:sf_format) for /csCommentAdmin with parameters array (  'module' => 'csCommentAdmin',  'action' => 'index',  'sf_format' => 'html',)
+Aug 07 11:43:33 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Aug 07 11:43:33 symfony [info] {sfFilterChain} Executing filter "sfGuardBasicSecurityFilter"
+Aug 07 11:43:33 symfony [notice] {sfGuardBasicSecurityFilter} The filter "sfGuardBasicSecurityFilter" is deprecated. Use "sfGuardRememberMeFilter" instead.
+Aug 07 11:43:33 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Aug 07 11:43:33 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Aug 07 11:43:33 symfony [info] {csCommentAdminActions} Call "csCommentAdminActions->executeIndex()"
+Aug 07 11:43:33 symfony [info] {sfDoctrineLogger} executeQuery : SELECT COUNT(*) AS num_results FROM comment c
+Aug 07 11:43:33 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/indexSuccess.php"
+Aug 07 11:43:33 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_assets.php"
+Aug 07 11:43:33 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_flashes.php"
+Aug 07 11:43:33 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_list_header.php"
+Aug 07 11:43:33 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_filters.php"
+Aug 07 11:43:34 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_filters_field.php"
+Aug 07 11:43:34 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_filters_field.php"
+Aug 07 11:43:34 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.username AS c__username, c.email AS c__email, c.website AS c__website FROM commenter c
+Aug 07 11:43:34 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_filters_field.php"
+Aug 07 11:43:34 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/sfCommentsPlugin/modules/csCommentAdmin/templates/_list_batch_actions.php"
+Aug 07 11:43:34 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/sfCommentsPlugin/modules/csCommentAdmin/templates/_list_actions.php"
+Aug 07 11:43:34 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/plugins/sfCommentsPlugin/modules/csCommentAdmin/templates/_list.php"
+Aug 07 11:43:34 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_list_th_tabular.php"
+Aug 07 11:43:34 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:43:34 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:43:34 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:43:34 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:43:34 symfony [info] {main} Set slot "sf_admin.current_header"
+Aug 07 11:43:34 symfony [info] {main} Get slot "sf_admin.current_header"
+Aug 07 11:43:34 symfony [info] {sfDoctrineLogger} executeQuery : SELECT c.id AS c__id, c.body AS c__body, c.approved AS c__approved, c.approved_at AS c__approved_at, c.user_id AS c__user_id, c.root_id AS c__root_id, c.lft AS c__lft, c.rgt AS c__rgt, c.level AS c__level, c.created_at AS c__created_at, c.updated_at AS c__updated_at FROM comment c ORDER BY c.created_at desc LIMIT 10
+Aug 07 11:43:34 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_list_td_batch_actions.php"
+Aug 07 11:43:34 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_list_td_tabular.php"
+Aug 07 11:43:34 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_list_field_boolean.php"
+Aug 07 11:43:34 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_list_td_actions.php"
+Aug 07 11:43:34 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/cache/backend/dev/modules/autoCsCommentAdmin/templates/_list_footer.php"
+Aug 07 11:43:34 symfony [info] {sfPHPView} Decorate content with "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/layout.php"
+Aug 07 11:43:34 symfony [info] {sfPHPView} Render "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/layout.php"
+Aug 07 11:43:34 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/_public_menu.php"
+Aug 07 11:43:34 symfony [info] {sfPartialView} Render "/Users/bshafs/Sites/localhost/symplist/apps/backend/templates/_admin_menu.php"
+Aug 07 11:43:34 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Aug 07 11:43:34 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Aug 07 11:43:34 symfony [info] {sfWebDebugLogger} Configuration 18.58 ms (10)
+Aug 07 11:43:34 symfony [info] {sfWebDebugLogger} Action "csCommentAdmin/index" 176.41 ms (1)
+Aug 07 11:43:34 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.23 ms (3)
+Aug 07 11:43:34 symfony [info] {sfWebDebugLogger} View "Success" for "csCommentAdmin/index" 425.31 ms (1)
+Aug 07 11:43:34 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_assets" 5.40 ms (1)
+Aug 07 11:43:34 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_flashes" 5.20 ms (1)
+Aug 07 11:43:34 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_header" 3.82 ms (1)
+Aug 07 11:43:34 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_filters" 92.98 ms (1)
+Aug 07 11:43:34 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_filters_field" 61.59 ms (3)
+Aug 07 11:43:34 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_batch_actions" 4.30 ms (1)
+Aug 07 11:43:34 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_actions" 20.76 ms (1)
+Aug 07 11:43:34 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list" 210.66 ms (1)
+Aug 07 11:43:34 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_th_tabular" 104.05 ms (1)
+Aug 07 11:43:34 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_td_batch_actions" 4.28 ms (1)
+Aug 07 11:43:34 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_td_tabular" 32.83 ms (1)
+Aug 07 11:43:34 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_field_boolean" 5.38 ms (1)
+Aug 07 11:43:34 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_td_actions" 28.41 ms (1)
+Aug 07 11:43:34 symfony [info] {sfWebDebugLogger} Partial "csCommentAdmin/_list_footer" 4.09 ms (1)
+Aug 07 11:43:34 symfony [info] {sfWebDebugLogger} Partial "global/_public_menu" 6.38 ms (1)
+Aug 07 11:43:34 symfony [info] {sfWebDebugLogger} Partial "global/_admin_menu" 6.98 ms (1)
+Aug 07 11:43:35 symfony [info] {sfWebResponse} Send content (677702 o)

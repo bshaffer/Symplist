@@ -1,0 +1,21 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           SymfonyPlugin
+    theme:                 csAdmin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          symfony_plugin
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    
+        display:  [title, description]
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~

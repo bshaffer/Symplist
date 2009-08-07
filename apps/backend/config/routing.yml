@@ -1,3 +1,12 @@
+symfony_plugin:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                SymfonyPlugin
+    module:               symfony_plugin
+    prefix_path:          symfony_plugin
+    column:               id
+    with_wildcard_routes: true
+
 post_post:
   class: sfDoctrineRouteCollection
   options:
@@ -19,7 +28,7 @@ page_page:
 # default rules
 homepage:
   url:   /
-  param: { module: default, action: index }
+  param: { module: symfony_plugin, action: index }
   
 sf_guard_signin:
   url:   /login
