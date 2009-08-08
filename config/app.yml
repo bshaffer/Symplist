@@ -1,4 +1,6 @@
 all:
+  comments:
+    nesting:    off
   TinyMce:
     config:
       plugins: 'pagebreak, fullscreen, advimage'

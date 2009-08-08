@@ -16,4 +16,16 @@ class SymfonyPlugin extends BaseSymfonyPlugin
   {
     return '@plugin?title='.$this['title'];
   }
+  
+  public function getRating()
+  {
+    $q = Doctrine::getTable('Comment')->createQuery('c')
+              ->select('AVG(c.rating) as average')
+              ->innerJoin('c.SymfonyPluginComment pc')
+              ->where('c.id = ?', $this['id'])
+              ->groupBy('c.id');
+              
+    $result = $q->fetchOne();
+    return $result['average'];
+  }
 }

@@ -14,9 +14,11 @@
       <?php echo nl2br($comment->getBody()); ?>
     </div>
   
-    <div id="links">
-      <?php echo link_to_add_new_comment('Reply', $record, $comment); ?>
-    </div>
+    <?php if (sfConfig::get('app_comments_nesting')): ?>
+      <div id="links">
+        <?php echo link_to_add_new_comment('Reply', $record, $comment); ?>
+      </div>      
+    <?php endif ?>
 
     <div id="add_new_comment_form_holder_<?php echo $comment->getId(); ?>"></div>
     

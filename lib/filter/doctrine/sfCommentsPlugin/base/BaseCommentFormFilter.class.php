@@ -24,6 +24,7 @@ class BaseCommentFormFilter extends BaseFormFilterDoctrine
       'level'               => new sfWidgetFormFilterInput(),
       'created_at'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
       'updated_at'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
+      'rating'              => new sfWidgetFormFilterInput(),
       'symfony_plugin_list' => new sfWidgetFormDoctrineChoiceMany(array('model' => 'SymfonyPlugin')),
     ));
 
@@ -38,6 +39,7 @@ class BaseCommentFormFilter extends BaseFormFilterDoctrine
       'level'               => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'created_at'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'updated_at'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
+      'rating'              => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'symfony_plugin_list' => new sfValidatorDoctrineChoiceMany(array('model' => 'SymfonyPlugin', 'required' => false)),
     ));
 
@@ -83,6 +85,7 @@ class BaseCommentFormFilter extends BaseFormFilterDoctrine
       'level'               => 'Number',
       'created_at'          => 'Date',
       'updated_at'          => 'Date',
+      'rating'              => 'Number',
       'symfony_plugin_list' => 'ManyKey',
     );
   }

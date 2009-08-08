@@ -1,5 +1,6 @@
 all:
   comments:
+    nesting:                    on
     commenter_class:            Commenter
     AllowAnonymous:             true
     textarea_params:             

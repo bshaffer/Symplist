@@ -38,10 +38,12 @@ abstract class BaseSymfonyPlugin extends sfDoctrineRecord
 
         $sluggable0 = new Doctrine_Template_Sluggable();
         $timestampable0 = new Doctrine_Template_Timestampable();
+        $sflucenedoctrinetemplate0 = new sfLuceneDoctrineTemplate();
         $commentable0 = new Doctrine_Template_Commentable(array(
              ));
         $this->actAs($sluggable0);
         $this->actAs($timestampable0);
+        $this->actAs($sflucenedoctrinetemplate0);
         $this->actAs($commentable0);
     }
 }

@@ -5,7 +5,7 @@ function get_pager_controls($pager)
   if ($pager->getNbResults())
   {
     $template = "<div class='pagination'>
-                    <span>Results <em>%first%-%last%<em> of <em>%total%<em></span>
+                    <span>Results <em>%first%-%last%</em> of <em>%total%</em></span>
                     %pagination%
                  </div>"; 
     $pagination = "";

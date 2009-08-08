@@ -37,7 +37,7 @@ class sfConfigureDatabaseTask extends sfBaseTask
     ));
 
     $this->namespace = 'configure';
-    $this->name = 'database';
+    $this->name = 'database.tmp';
 
     $this->briefDescription = 'Configure database DSN';
 

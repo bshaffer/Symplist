@@ -1,0 +1,14 @@
+SiteSearch:
+  models: 
+    SymfonyPlugin:
+      route:    %route%
+      partial: sfLucene/searchResult
+      fields:
+        id:         unindexed
+        title:
+          boost: 1.5
+          type: text
+        description: text
+        route:       unindexed
+      title:        title
+      description:  description

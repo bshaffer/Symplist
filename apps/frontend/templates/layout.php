@@ -8,7 +8,7 @@
   <body>
     <?php use_helper('Navigation') ?>
     <div id="header">
-      <h1 id="site-title">Symplist</h1>
+      <div id="site-logo">Symplist</div>
       
       <?php include_navigation(array('id' => 'nav')) ?>
     </div>

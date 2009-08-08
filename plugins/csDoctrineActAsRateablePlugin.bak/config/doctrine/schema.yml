@@ -1,0 +1,13 @@
+Rating:
+  actAs:
+    Timestampable: ~  
+  columns:
+    object_id:           
+      type:           integer
+      notnull:        true
+    class:   
+      type:           string(30)
+      notnull:        true
+    rating:      
+      type:           integer
+      notnull:        true

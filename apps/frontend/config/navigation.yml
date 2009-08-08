@@ -1,6 +1,7 @@
 navigation:
   Main:
-    Plugins:      @homepage
+    Home:         @homepage
+    Plugins:      @plugins
     Categories:   @plugin_categories
     Developers:   @authors
   Footer:

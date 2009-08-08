@@ -30,6 +30,8 @@ class pluginActions extends sfActions
     $this->pager->setQuery($q);
 
     $this->pager->setPage($request->getParameter('page', 1));
+    
+    $this->pager->init();
   }
   
   public function executeCategories(sfWebRequest $request)

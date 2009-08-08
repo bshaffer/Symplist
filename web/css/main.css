@@ -24,13 +24,31 @@ body {
 
 #page {
 	background-color: #FFFFFF;
-	padding: 0;
+	padding: 20px 0;
 }
 /*@end*/
 
 /*@group Header*/
+div#site-logo
+{
+  text-indent: -9999px;
+  background: transparent url('../images/logo.png') no-repeat center center;
+  width:223px;
+  height:56px;
+  padding:20px 0px 10px 20px;
+  
+}
+
 div#header {
 	padding: 0 0 2em 0;
+}
+
+ul#nav
+{
+  width:100%;
+  height:20px;
+  padding:15px 0;
+  background:#BBBBBB;
 }
 
 ul#nav li {
@@ -38,6 +56,11 @@ ul#nav li {
 	font-size: 1.2em;
 	list-style: none;
 	margin: 0 15px;
+}
+
+ul#nav li a
+{
+  color: black;
 }
 /*@end*/
 
@@ -63,5 +86,53 @@ ul#footer-nav {
 
 ul#footer-nav li {
 	display: inline;
+}
+/*@end*/
+
+/*@group comments*/
+#add-comment-form th
+{
+  padding: 5px;
+  text-align:left;
+}
+
+.claim
+{
+  font-style: italic;
+}
+
+.comment_thread_header
+{
+  
+}
+
+#add-comment-form h3
+{
+  margin-top:10px;
+  font-size:16px;
+}
+
+/*@end*/
+
+/*@group pagination*/
+
+.pagination {
+  overflow: hidden;
+  margin: 20px 0;
+  clear:left;
+}
+
+.pagination span {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.pagination ul li
+{
+  float:left;
+  list-style-type:none;
+  margin-left:0;
+  margin-right:13px;
+  padding:0;
 }
 /*@end*/
