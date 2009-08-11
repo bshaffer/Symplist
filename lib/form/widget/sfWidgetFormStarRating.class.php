@@ -54,7 +54,7 @@ class sfWidgetFormStarRating extends sfWidgetForm
   {
     $this->addOption('template', <<<EOF
 <div id="%%id%%" class='rate_this'>
-  <ul class="star_rating" class="clearfix">
+  <ul class="star_rating star_rating_editable" class="clearfix">
     <li class="one-star"><a id="1">1</a></li>
     <li class="two-stars"><a id="2">2</a></li>
     <li class="three-stars"><a id="3">3</a></li>

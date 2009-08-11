@@ -43,16 +43,19 @@ ul.star_rating li a {
 	width: 100%;
 	z-index: 10;
 }
-ul.star_rating li a:hover,
+ul.star_rating_editable li a:hover
+{
+  cursor:pointer;
+}
+ul.star_rating_editable li a:hover,
 ul.star_rating li a.selected,
 ul.star_rating li a.selected-half {
 	background: transparent url('../images/alt_star.gif') repeat-x scroll left -25px;
 	position: absolute;
 	left: 0;
-	cursor:pointer;
 	z-index: 1;
 }
-ul.star_rating li.one-star a:hover,
+ul.star_rating_editable li.one-star a:hover,
 ul.star_rating li.one-star a.selected {
 	width: 25px;
 }
@@ -61,7 +64,7 @@ ul.star_rating li.one-star a.selected-half {
 	width: 37px;
 }
 
-ul.star_rating li.two-stars a:hover,
+ul.star_rating_editable li.two-stars a:hover,
 ul.star_rating li.two-stars a.selected {
 	width: 50px;
 }
@@ -71,7 +74,7 @@ ul.star_rating li.two-stars a.selected-half {
 }
 
 
-ul.star_rating li.three-stars a:hover,
+ul.star_rating_editable li.three-stars a:hover,
 ul.star_rating li.three-stars a.selected {
 	width: 75px;
 }
@@ -82,7 +85,7 @@ ul.star_rating li.three-stars a.selected-half {
 
 
 
-ul.star_rating li.four-stars a:hover,
+ul.star_rating_editable li.four-stars a:hover,
 ul.star_rating li.four-stars a.selected {
 	width: 100px;
 }
@@ -91,7 +94,7 @@ ul.star_rating li.four-stars a.selected-half {
 	width: 112px;
 }
 
-ul.star_rating li.five-stars a:hover,
+ul.star_rating_editable li.five-stars a:hover,
 ul.star_rating li.five-stars a.selected {
 	width: 125px;
 }
