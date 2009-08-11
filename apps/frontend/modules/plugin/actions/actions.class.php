@@ -24,7 +24,7 @@ class pluginActions extends sfActions
   
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new NewSymfonyPlugin();
+    $this->form = new SymfonyPluginForm();
     if ($user = $this->getUser()->getGuardUser()) 
     {
       $this->form->setDefault('user_id', $user['id']);
