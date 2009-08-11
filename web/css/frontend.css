@@ -14,3 +14,20 @@
   position: relative;
   bottom: 0;
 }
+#secondary-nav
+{
+  position:absolute;
+  right:10px;
+  top:40px;
+  
+}
+#secondary-nav li
+{
+  float:left;
+  list-style-type:none;
+  color:black;
+}
+#secondary-nav li a
+{
+  color:#333333;
+}

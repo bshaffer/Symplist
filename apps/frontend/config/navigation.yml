@@ -10,7 +10,6 @@ navigation:
     home:         '/'
     about:        @about
     contact:      @contact
-    signin:       @signin
         
 settings:
   database:

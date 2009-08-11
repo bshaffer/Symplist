@@ -1,2 +1,2 @@
-indexSuccess:
+showSuccess:    
   stylesheets:                        [ reset.css, text.css, 960.css, main.css, frontend.css, rateable.css ]  

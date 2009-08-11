@@ -28,7 +28,7 @@ authors:
 
 author:
   url:                                /authors/:username
-  param:                              { module: author, action: index }
+  param:                              { module: author, action: show }
 
 author_new:
   url:                                /author/new
@@ -38,10 +38,6 @@ author_edit:
   url:                                /author/:username/edit
   param:                              { module: author, action: edit }
 
-signin:
-  url:                                /signin
-  param:                              { module: sfGuardAuth, action: signin }
-
 about:
   url:                                /about
   param:                              { module: site, action: about }
@@ -50,7 +46,18 @@ contact:
   url:                                /contact
   param:                              { module: site, action: contact }
 
-  
+signin:
+  url:                                /signin
+  param:                              { module: sfGuardAuth, action: signin }
+
+signout:
+  url:                                /signout
+  param:                              { module: sfGuardAuth, action: signout }
+
+signout_redirect:
+  url:                                /signout/redirect
+  param:                              { module: site, action: signoutRedirect }
+
 # default rules
 homepage:
   url:                                /

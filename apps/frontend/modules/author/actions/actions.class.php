@@ -17,8 +17,36 @@ class authorActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
+    $this->recentlyActive = Doctrine::getTable('sfGuardUser')->createQuery('u')
+                      ->orderBy('u.updated_at DESC')
+                      ->limit(10)
+                      ->execute();
+  }
+  public function executeShow(sfWebRequest $request)
+  {
     $this->user = Doctrine::getTable('sfGuardUser')->findOneByUsername($request->getParameter('username'));
     $this->forward404Unless($this->user);
+  }
+  
+  public function executeEdit(sfWebRequest $request)
+  {
+    $this->user = $this->getUser()->getGuardUser();
+    $this->forward404Unless($this->user['username'] == $request->getParameter('username'));
+    
+    $this->userform = new sfGuardUserAdminForm($this->user);
+    $this->profileform = new PluginAuthorForm($this->user['Author']);
+    
+    if ($request->isMethod('POST'))
+    {
+      $this->userform->bind($request->getParameter('sf_guard_user'));
+      $this->profileform->bind($profile = $request->getParameter('plugin_author'));
+      if ($this->userform->isValid() && $this->profileform->isValid()) 
+      {
+        $this->userform->save();
+        $this->profileform->save();
+        $this->setFlash('notice', 'Your profile has been saved');
+      }
+    }
   }
   
   public function executeJoin(sfWebRequest $request)

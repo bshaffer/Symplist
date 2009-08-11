@@ -25,6 +25,13 @@ class siteActions extends sfActions
     
   }
   
+  public function executeSignoutRedirect(sfWebRequest $request)
+  {
+    $this->getUser()->signOut();
+
+    $this->redirect('@homepage');
+  }
+  
   public function executeContact(sfWebRequest $request)
   {
     $this->form = new ContactForm();
