@@ -16,6 +16,7 @@ class BasePluginAuthorForm extends BaseFormDoctrine
       'first_name'       => new sfWidgetFormInput(),
       'last_name'        => new sfWidgetFormInput(),
       'email'            => new sfWidgetFormInput(),
+      'bio'              => new sfWidgetFormTextarea(),
       'sf_guard_user_id' => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
     ));
 
@@ -24,6 +25,7 @@ class BasePluginAuthorForm extends BaseFormDoctrine
       'first_name'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'last_name'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'email'            => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'bio'              => new sfValidatorString(array('required' => false)),
       'sf_guard_user_id' => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
     ));
 

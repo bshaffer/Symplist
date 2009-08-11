@@ -1,10 +1,11 @@
-rendering:                            ~
-security:                             ~
+rendering: ~
+security:
+  class: sfGuardBasicSecurityFilter
 
 # insert your own filters here
 csNavigation:
   class: csNavigationFilter
 
-cache:                                ~
-common:                               ~
-execution:                            ~
+cache:     ~
+common:    ~
+execution: ~

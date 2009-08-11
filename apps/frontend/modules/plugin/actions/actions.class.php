@@ -17,6 +17,45 @@ class pluginActions extends sfActions
   {
   }
   
+  public function executeList(sfWebRequest $request)
+  {
+    
+  }
+  
+  public function executeNew(sfWebRequest $request)
+  {
+    $this->form = new NewSymfonyPlugin();
+    if ($user = $this->getUser()->getGuardUser()) 
+    {
+      $this->form->setDefault('user_id', $user['id']);
+    }
+  }
+  
+  public function executeRegister(sfWebRequest $request)
+  {
+    $this->plugin = Doctrine::getTable('SymfonyPlugin')->findOneByTitle($request->getParameter('title'));
+    $this->forward404Unless($this->plugin);
+    
+    if (!$this->user = $this->getUser()->getGuardUser()) 
+    {
+      $this->getUser()->setFlash('notice', 'You must sign in first before accessing this function');
+      $this->redirect('@signin');
+    }
+    
+    // Register the Plugin
+    if ($request->isMethod('POST')) 
+    {
+      $this->plugin['User'] = $this->user;
+      $this->plugin->save();
+      return 'Confirm';
+    }
+  }
+  
+  public function executeClaim(sfWebRequest $request)
+  {
+    exit('coming soon');
+  }
+  
   public function executeByCategory(sfWebRequest $request)
   {
     $this->pager = new sfDoctrinePager('SymfonyPlugin', 10);

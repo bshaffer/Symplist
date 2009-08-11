@@ -17,6 +17,7 @@ class BasePluginAuthorFormFilter extends BaseFormFilterDoctrine
       'first_name'       => new sfWidgetFormFilterInput(),
       'last_name'        => new sfWidgetFormFilterInput(),
       'email'            => new sfWidgetFormFilterInput(),
+      'bio'              => new sfWidgetFormFilterInput(),
       'sf_guard_user_id' => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
     ));
 
@@ -24,6 +25,7 @@ class BasePluginAuthorFormFilter extends BaseFormFilterDoctrine
       'first_name'       => new sfValidatorPass(array('required' => false)),
       'last_name'        => new sfValidatorPass(array('required' => false)),
       'email'            => new sfValidatorPass(array('required' => false)),
+      'bio'              => new sfValidatorPass(array('required' => false)),
       'sf_guard_user_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'sfGuardUser', 'column' => 'id')),
     ));
 
@@ -46,6 +48,7 @@ class BasePluginAuthorFormFilter extends BaseFormFilterDoctrine
       'first_name'       => 'Text',
       'last_name'        => 'Text',
       'email'            => 'Text',
+      'bio'              => 'Text',
       'sf_guard_user_id' => 'ForeignKey',
     );
   }

@@ -10,9 +10,17 @@ plugins_by_category:
   url:                                /plugins/categories/:slug
   param:                              { module: plugin, action: byCategory }
 
+plugin_new:
+  url:                                /plugins/new
+  param:                              { module: plugin, action: new }
+
 plugin:
   url:                                /plugins/:title
   param:                              { module: plugin, action: show }
+
+plugin_register:
+  url:                                /plugins/:title/register
+  param:                              { module: plugin, action: register }
 
 authors:
   url:                                /authors
@@ -22,6 +30,27 @@ author:
   url:                                /authors/:username
   param:                              { module: author, action: index }
 
+author_new:
+  url:                                /author/new
+  param:                              { module: author, action: join }
+  
+author_edit:
+  url:                                /author/:username/edit
+  param:                              { module: author, action: edit }
+
+signin:
+  url:                                /signin
+  param:                              { module: sfGuardAuth, action: signin }
+
+about:
+  url:                                /about
+  param:                              { module: site, action: about }
+
+contact:
+  url:                                /contact
+  param:                              { module: site, action: contact }
+
+  
 # default rules
 homepage:
   url:                                /

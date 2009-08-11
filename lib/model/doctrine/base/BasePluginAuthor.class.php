@@ -20,6 +20,9 @@ abstract class BasePluginAuthor extends sfDoctrineRecord
              'type' => 'string',
              'length' => '255',
              ));
+        $this->hasColumn('bio', 'clob', null, array(
+             'type' => 'clob',
+             ));
         $this->hasColumn('sf_guard_user_id', 'integer', 4, array(
              'type' => 'integer',
              'length' => '4',
@@ -31,9 +34,5 @@ abstract class BasePluginAuthor extends sfDoctrineRecord
         $this->hasOne('sfGuardUser as User', array(
              'local' => 'sf_guard_user_id',
              'foreign' => 'id'));
-
-        $this->hasMany('SymfonyPlugin as Plugins', array(
-             'local' => 'id',
-             'foreign' => 'author_id'));
     }
 }

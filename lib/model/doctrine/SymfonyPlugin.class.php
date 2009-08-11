@@ -22,10 +22,15 @@ class SymfonyPlugin extends BaseSymfonyPlugin
     $q = Doctrine::getTable('Comment')->createQuery('c')
               ->select('AVG(c.rating) as average')
               ->innerJoin('c.SymfonyPluginComment pc')
-              ->where('c.id = ?', $this['id'])
-              ->groupBy('c.id');
-              
+              ->where('pc.id = ?', $this['id']);
+
     $result = $q->fetchOne();
+
     return $result['average'];
+  }
+  
+  public function getSymfonyPluginsUrl()
+  {
+    return 'http://www.symfony-project.com/plugins/'.$this['title'];
   }
 }

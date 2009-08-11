@@ -5,5 +5,9 @@
  */
 class sfGuardUser extends PluginsfGuardUser
 {
+  public function getRoute()
+  {
+    return '@author?username='.$this['username'];
+  }
 
 }

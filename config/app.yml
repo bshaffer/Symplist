@@ -1,6 +1,7 @@
 all:
   comments:
     nesting:    off
+    approved_by_default: on
   TinyMce:
     config:
       plugins: 'pagebreak, fullscreen, advimage'

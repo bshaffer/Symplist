@@ -79,6 +79,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'user_id'));
 
+        $this->hasMany('SymfonyPlugin as Plugins', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
         $this->hasOne('PluginAuthor as Author', array(
              'local' => 'id',
              'foreign' => 'sf_guard_user_id'));

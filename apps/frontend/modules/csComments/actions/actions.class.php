@@ -38,6 +38,7 @@ class csCommentsActions extends BasecsCommentsActions
     $comment['body'] = $commentVals['body'];
     $comment['rating'] = $commentVals['rating'];
     $comment['Commenter'] = $commenter;
+    $comment['approved'] = sfConfig::get('app_comments_approved_by_default');
     $comment->save();
     
     $this->comment = $comment;

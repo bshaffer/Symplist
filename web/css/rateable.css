@@ -44,7 +44,8 @@ ul.star_rating li a {
 	z-index: 10;
 }
 ul.star_rating li a:hover,
-ul.star_rating li a.selected {
+ul.star_rating li a.selected,
+ul.star_rating li a.selected-half {
 	background: transparent url('../images/alt_star.gif') repeat-x scroll left -25px;
 	position: absolute;
 	left: 0;
@@ -56,19 +57,38 @@ ul.star_rating li.one-star a.selected {
 	width: 25px;
 }
 
+ul.star_rating li.one-star a.selected-half {
+	width: 37px;
+}
+
 ul.star_rating li.two-stars a:hover,
 ul.star_rating li.two-stars a.selected {
 	width: 50px;
 }
+
+ul.star_rating li.two-stars a.selected-half {
+	width: 63px;
+}
+
 
 ul.star_rating li.three-stars a:hover,
 ul.star_rating li.three-stars a.selected {
 	width: 75px;
 }
 
+ul.star_rating li.three-stars a.selected-half {
+	width: 87px;
+}
+
+
+
 ul.star_rating li.four-stars a:hover,
 ul.star_rating li.four-stars a.selected {
 	width: 100px;
+}
+
+ul.star_rating li.four-stars a.selected-half {
+	width: 112px;
 }
 
 ul.star_rating li.five-stars a:hover,

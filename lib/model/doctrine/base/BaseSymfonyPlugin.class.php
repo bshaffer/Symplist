@@ -15,8 +15,9 @@ abstract class BaseSymfonyPlugin extends sfDoctrineRecord
         $this->hasColumn('description', 'clob', null, array(
              'type' => 'clob',
              ));
-        $this->hasColumn('author_id', 'integer', null, array(
+        $this->hasColumn('user_id', 'integer', 4, array(
              'type' => 'integer',
+             'length' => '4',
              ));
         $this->hasColumn('category_id', 'integer', null, array(
              'type' => 'integer',
@@ -24,12 +25,16 @@ abstract class BaseSymfonyPlugin extends sfDoctrineRecord
         $this->hasColumn('active', 'boolean', null, array(
              'type' => 'boolean',
              ));
+        $this->hasColumn('repository_url', 'string', 255, array(
+             'type' => 'string',
+             'length' => '255',
+             ));
     }
 
     public function setUp()
     {
-        $this->hasOne('PluginAuthor as Author', array(
-             'local' => 'author_id',
+        $this->hasOne('sfGuardUser as User', array(
+             'local' => 'user_id',
              'foreign' => 'id'));
 
         $this->hasOne('PluginCategory as Category', array(

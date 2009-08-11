@@ -11,6 +11,10 @@ a {
 a:hover {
 	text-decoration: underline;
 }
+input, textarea
+{
+  display:block;
+}
 /*@end*/
 
 /*@group Layout*/
@@ -110,6 +114,13 @@ ul#footer-nav li {
 {
   margin-top:10px;
   font-size:16px;
+}
+
+.comment_row
+{
+  list-style-type:none;
+  padding:5px 0;
+  margin-left:5px;
 }
 
 /*@end*/

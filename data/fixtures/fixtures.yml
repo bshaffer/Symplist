@@ -13,6 +13,9 @@ sfGuardGroup:
   sgg_admin:
     name:                             administrator
     description:                      Administrator Group
+  plugin_author_group:
+    name:                             Plugin Author
+    description:                      The Author of a Plugin
 
 sfGuardGroupPermission:
   sggp_admin:
@@ -26,6 +29,14 @@ sfGuardUserGroup:
 
 PluginCategory:
   Uncategorized:
-   name:          Uncategorized
-   slug:          uncategorized
-   description:   Newly imported or unclaimed plugins.
+    name:          Uncategorized
+    description:   Newly imported or unclaimed plugins.
+  Fakes:
+    name:          Fake Plugins
+    description:   These plugins don't actually exist.  They are also still in beta.
+  
+SymfonyPlugin:
+  FakePlugin:
+    title:        csFakePlugin
+    description:  This plugin doesn't actually exist
+    Category:       Fakes

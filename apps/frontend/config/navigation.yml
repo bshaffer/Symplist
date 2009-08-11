@@ -3,11 +3,14 @@ navigation:
     Home:         @homepage
     Plugins:      @plugins
     Categories:   @plugin_categories
-    Developers:   @authors
+    Developers:   
+      ~route:     @authors
+      create:     @author_new
   Footer:
-    home:         /
-    about:        /about
-    contact:      /contact
+    home:         '/'
+    about:        @about
+    contact:      @contact
+    signin:       @signin
         
 settings:
   database:

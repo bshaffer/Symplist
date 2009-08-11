@@ -7,14 +7,15 @@ SymfonyPlugin:
   columns:
     title:                            string(255)
     description:                      clob
-    author_id:                        integer
+    user_id:                          integer(4)
     category_id:                      integer
     active:                           boolean
+    repository_url:                   string(255)
   relations:
-    PluginAuthor:
-      alias:                          Author
+    sfGuardUser:
+      alias:                          User
       foreignAlias:                   Plugins
-      local:                          author_id
+      local:                          user_id
     PluginCategory:
       alias:                          Category
       foreignAlias:                   Plugins
@@ -25,6 +26,7 @@ PluginAuthor:
     first_name:                 string(255)
     last_name:                  string(255)
     email:                      string(255)
+    bio:                        clob
     sf_guard_user_id:           integer(4)
   relations:
     sfGuardUser:

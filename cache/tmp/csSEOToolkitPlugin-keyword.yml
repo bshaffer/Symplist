@@ -1,8 +1,0 @@
-Keyword:
-  columns:
-    name:
-      type: string(255)
-      unique: true
-      notnull: true
-package: csSEOToolkitPlugin.lib.model.doctrine
-package_custom_path: /Library/WebServer/Documents/symplist/plugins/csSEOToolkitPlugin/lib/model/doctrine
