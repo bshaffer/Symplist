@@ -1,0 +1,1 @@
+001281628753001250071827a:1:{s:81:"parse_/sfDoctrineCommentsPlugin/css/comments.css_8190e1fda0afeded7ee5277b8d8cf5a1";a:3:{s:4:"name";s:7:"default";s:7:"pattern";s:18:"/:module/:action/*";s:10:"parameters";a:3:{s:12:"comments.css";b:1;s:6:"module";s:24:"sfDoctrineCommentsPlugin";s:6:"action";s:3:"css";}}}

@@ -8,7 +8,7 @@ class TinyMceConfiguration
   public static function get($config_overrides = array())
   {
     $config_array = array();
-    
+
     //Pull default configuration, merge with custom configs
     $configs = array_merge(sfConfig::get('app_TinyMce_config'), $config_overrides);
     foreach ($configs as $key => $value) 

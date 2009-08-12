@@ -11,7 +11,7 @@ a {
 a:hover {
 	text-decoration: underline;
 }
-input, textarea
+input, textarea, select
 {
   display:block;
 }

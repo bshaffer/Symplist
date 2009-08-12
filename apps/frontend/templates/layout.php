@@ -20,6 +20,7 @@
       
       <?php include_navigation(array('id' => 'nav')) ?>
     </div>
+    <?php include_partial('global/flashes') ?>
 
     <div id="page" class="container_16 clearfix">      
       <div id="content-area" class="grid_16">

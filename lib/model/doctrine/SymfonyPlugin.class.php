@@ -12,25 +12,68 @@
  */
 class SymfonyPlugin extends BaseSymfonyPlugin
 {
+  protected $_rating, $_num_votes;
+  
   public function getRoute()
   {
     return '@plugin?title='.$this['title'];
   }
   
-  public function getRating()
+  public function getRatingInfo()
   {
-    $q = Doctrine::getTable('Comment')->createQuery('c')
-              ->select('AVG(c.rating) as average')
+    $q = Doctrine::getTable('Comment')
+              ->createQuery('c')
+              ->select('AVG(c.rating) as average, COUNT(c.rating) as num_votes')
               ->innerJoin('c.SymfonyPluginComment pc')
               ->where('pc.id = ?', $this['id']);
 
     $result = $q->fetchOne();
 
-    return $result['average'];
+    return $result;
+  }
+  
+  public function setRatingInfo()
+  {
+    $info = $this->getRatingInfo();
+    $this->_rating = $info['average'];
+    $this->_num_votes = $info['num_votes'];
+  }
+  
+  public function getRating()
+  {
+    if (!$this->_rating) 
+    {
+      $this->setRatingInfo();
+    }
+    return $this->_rating;
+  }
+  
+  public function getNumVotes()
+  {
+    if (!$this->_num_votes) 
+    {
+      $this->setRatingInfo();
+    }
+    return $this->_num_votes;
+  }
+  
+  public function preInsert($event)
+  {
+    // Sets default repo url for new plugins
+    
+    if (!$this['repository_url']) 
+    {
+      $this['repository_url'] = $this->getSymfonyRepositoryUrl();
+    }
+  }
+
+  public function getSymfonyRepositoryUrl()
+  {
+    return 'http://svn.symfony-project.com/plugins/'.$this['title'];
   }
   
   public function getSymfonyPluginsUrl()
   {
-    return 'http://www.symfony-project.com/plugins/'.$this['title'];
+    return 'http://www.symfony-project.org/plugins/'.$this['title'];
   }
 }
