@@ -44,7 +44,7 @@ class authorActions extends sfActions
       {
         $this->userform->save();
         $this->profileform->save();
-        $this->setFlash('notice', 'Your profile has been saved');
+        $this->getUser()->setFlash('notice', 'Your profile has been saved');
       }
     }
   }

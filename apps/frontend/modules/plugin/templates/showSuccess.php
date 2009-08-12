@@ -9,9 +9,9 @@
   <?php echo $plugin['description'] ?>
 </p>
 <?php if ($plugin['user_id']): ?>
-  <span class='plugin-author'><?php echo link_to($plugin['User']->getUsername(), $plugin['User']->getRoute()) ?></span>  
+  <span class='plugin-author'>Registered by <?php echo link_to($plugin['User']->getUsername(), $plugin['User']->getRoute(), array('class' => 'author-link')) ?></span>  
 <?php else: ?>
-  <span class='claim'><?php echo link_to('Claim This Plugin', '@plugin_register?title='.$plugin['title']) ?></span>
+  <span class='claim'><?php echo link_to('Claim This Plugin', '@plugin_claim?title='.$plugin['title']) ?></span>
 <?php endif ?>
 
 

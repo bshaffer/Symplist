@@ -22,16 +22,25 @@ class pluginActions extends sfActions
     
   }
   
-  public function executeNew(sfWebRequest $request)
+  public function executeRegister(sfWebRequest $request)
   {
     $this->form = new SymfonyPluginForm();
     if ($user = $this->getUser()->getGuardUser()) 
     {
       $this->form->setDefault('user_id', $user['id']);
     }
+    if ($request->isMethod('POST')) 
+    {
+      $this->form->bind($request->getParameter('symfony_plugin'));
+      if ($this->form->isValid()) 
+      {
+        $this->form->save();
+        $this->redirect('@plugin?title='.$this->form->getValue('title'));
+      }
+    }
   }
   
-  public function executeRegister(sfWebRequest $request)
+  public function executeClaim(sfWebRequest $request)
   {
     $this->plugin = Doctrine::getTable('SymfonyPlugin')->findOneByTitle($request->getParameter('title'));
     $this->forward404Unless($this->plugin);
@@ -49,11 +58,6 @@ class pluginActions extends sfActions
       $this->plugin->save();
       return 'Confirm';
     }
-  }
-  
-  public function executeClaim(sfWebRequest $request)
-  {
-    exit('coming soon');
   }
   
   public function executeByCategory(sfWebRequest $request)
