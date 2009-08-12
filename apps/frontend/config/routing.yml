@@ -10,17 +10,17 @@ plugins_by_category:
   url:                                /plugins/categories/:slug
   param:                              { module: plugin, action: byCategory }
 
-plugin_new:
+plugin_register:
   url:                                /plugins/new
-  param:                              { module: plugin, action: new }
+  param:                              { module: plugin, action: register }
 
 plugin:
   url:                                /plugins/:title
   param:                              { module: plugin, action: show }
 
-plugin_register:
-  url:                                /plugins/:title/register
-  param:                              { module: plugin, action: register }
+plugin_claim:
+  url:                                /plugins/:title/claim
+  param:                              { module: plugin, action: claim }
 
 authors:
   url:                                /authors
