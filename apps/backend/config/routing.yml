@@ -1,3 +1,21 @@
+plugin_category:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                PluginCategory
+    module:               plugin_category
+    prefix_path:          plugin_category
+    column:               id
+    with_wildcard_routes: true
+
+plugin_author:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                PluginAuthor
+    module:               plugin_author
+    prefix_path:          plugin_author
+    column:               id
+    with_wildcard_routes: true
+
 symfony_plugin:
   class: sfDoctrineRouteCollection
   options:

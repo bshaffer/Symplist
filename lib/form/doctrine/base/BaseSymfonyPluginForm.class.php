@@ -37,6 +37,10 @@ class BaseSymfonyPluginForm extends BaseFormDoctrine
       'updated_at'     => new sfValidatorDateTime(array('required' => false)),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'SymfonyPlugin', 'column' => array('title')))
+    );
+
     $this->widgetSchema->setNameFormat('symfony_plugin[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

@@ -8,7 +8,7 @@
  * @author     Your name here
  * @version    SVN: $Id$
  */
-class BasepluginForm extends BaseFormDoctrine
+class BasePluginForm extends BaseFormDoctrine
 {
   public function setup()
   {

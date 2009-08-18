@@ -29,10 +29,11 @@ all:
     escaping_strategy:                false
     escaping_method:                  ESC_SPECIALCHARS
 
-    enabled_modules:                  [ default, csNavigation, csComments, csSEO, sfGuardAuth ]
+    enabled_modules:                  [ default, csNavigation, csComments, csSEO, sfGuardAuth, sfLucene ]
 
     login_module:           sfGuardAuth # To be called when a non-authenticated user
     login_action:           signin    # Tries to access a secure page
     
     secure_module:          sfGuardAuth # To be called when a user doesn't have
     secure_action:          secure    # The credentials required for an action
+    i18n:                   on       # Enable interface translation. Set to off if your application should not be translated.

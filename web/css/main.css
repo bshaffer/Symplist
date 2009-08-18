@@ -147,3 +147,10 @@ ul#footer-nav li {
   padding:0;
 }
 /*@end*/
+
+/*@group plugins*/
+.example-text
+{
+  display:block;
+}
+/*@end*/

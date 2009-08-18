@@ -24,4 +24,9 @@ class pluginComponents extends sfComponents
                                   ->limit($this->limit)
                                   ->execute();
   }
+  
+  public function executeMost_votes(sfWebRequest $request)
+  {
+    $this->plugins = Doctrine::getTable('SymfonyPlugin')->getMostVotes($this->limit);
+  }
 }

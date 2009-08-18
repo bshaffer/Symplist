@@ -3,9 +3,7 @@ navigation:
     Home:         @homepage
     Plugins:      @plugins
     Categories:   @plugin_categories
-    Developers:   
-      ~route:     @authors
-      create:     @author_new
+    Developers:   @authors
   Footer:
     home:         '/'
     about:        @about

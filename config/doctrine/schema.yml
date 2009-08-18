@@ -5,7 +5,9 @@ SymfonyPlugin:
     sfLuceneDoctrineTemplate: ~
     Commentable:  []
   columns:
-    title:                            string(255)
+    title:                            
+      type:                           string(255)
+      unique:                         true
     description:                      clob
     user_id:                          integer(4)
     category_id:                      integer

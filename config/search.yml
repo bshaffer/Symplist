@@ -2,13 +2,21 @@ SiteSearch:
   models: 
     SymfonyPlugin:
       route:    %route%
-      partial: sfLucene/searchResult
+      partial: sfLucene/pluginResult
       fields:
         id:         unindexed
         title:
           boost: 1.5
           type: text
+        indexable_title: 
+          boost: 1.5
+          type: text
+        
         description: text
+        category:    text
+        rating:      unindexed
+        num_votes:      unindexed
         route:       unindexed
+        
       title:        title
       description:  description

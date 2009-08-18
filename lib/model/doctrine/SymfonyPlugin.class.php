@@ -57,6 +57,23 @@ class SymfonyPlugin extends BaseSymfonyPlugin
     return $this->_num_votes;
   }
   
+  public function getIndexableTitle()
+  {
+    // Translate camel-cased word to lowercased and spaced
+    $index = csInflector::indexize($this['title']);
+    
+    // remove plugin prefix
+    // $index = substr($index, strpos($index, ' '));
+    
+    // remove ending "plugin"
+    $index = substr($index, 0, (strlen($index)-6));
+    
+    // trim
+    $index = trim($index);
+    
+    return $index;
+  }
+  
   public function preInsert($event)
   {
     // Sets default repo url for new plugins

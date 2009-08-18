@@ -10,6 +10,7 @@ abstract class BaseSymfonyPlugin extends sfDoctrineRecord
         $this->setTableName('symfony_plugin');
         $this->hasColumn('title', 'string', 255, array(
              'type' => 'string',
+             'unique' => true,
              'length' => '255',
              ));
         $this->hasColumn('description', 'clob', null, array(

@@ -19,6 +19,8 @@
       <div id="site-logo">Symplist</div>
       
       <?php include_navigation(array('id' => 'nav')) ?>
+      
+      <?php include_component('sfLucene', 'search_bar', array()) ?>
     </div>
     <?php include_partial('global/flashes') ?>
 
