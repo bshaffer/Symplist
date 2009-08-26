@@ -15,11 +15,20 @@ class pluginActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
+    $this->plugins = Doctrine::getTable("SymfonyPlugin")->createQuery()->orderBy('title ASC')->execute();
   }
   
   public function executeList(sfWebRequest $request)
   {
+    $this->pager = new sfDoctrinePager('SymfonyPlugin', 10);
+
+    $q = Doctrine::getTable("SymfonyPlugin")->createQuery()->orderBy('title ASC');
+                
+    $this->pager->setQuery($q);
+
+    $this->pager->setPage($request->getParameter('page', 1));
     
+    $this->pager->init();    
   }
   
   public function executeRegister(sfWebRequest $request)

@@ -4,7 +4,7 @@
 
 #header {
   background: #53A9D7 url('../images/frontend/header.jpg') repeat-x center top;
-  height: 136px;
+  height: 126px;
 }
 
 #footer {
@@ -14,20 +14,45 @@
   position: relative;
   bottom: 0;
 }
+
 #secondary-nav
 {
-  position:absolute;
-  right:10px;
-  top:40px;
-  
+  float:right;
+  clear:both;
+  margin-top:-50px;
 }
+
 #secondary-nav li
 {
   float:left;
   list-style-type:none;
   color:black;
+  font-size:11px;
+  padding-right:8px;
 }
+
 #secondary-nav li a
 {
   color:#333333;
 }
+
+.content ul li
+{
+  list-style-type:none;
+  margin:0;
+  padding:0;
+}
+
+.content h3
+{
+  font-size:1.0em;
+  background-color: #DDD;
+  padding:2px 8px;  
+  margin-bottom:5px;
+}
+
+.view-all-plugins
+{
+  font-size:0.5em;
+}
+

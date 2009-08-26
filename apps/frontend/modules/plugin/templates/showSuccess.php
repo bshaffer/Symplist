@@ -1,18 +1,45 @@
 <?php use_helper('Comment') ?>
 
 <h1><?php echo $plugin['title'] ?></h1>
-
-<span class='rating'>
-  <?php include_component('plugin', 'rating', array('rating' => $plugin->getRating())) ?>
-</span>
 <p>
   <?php echo $plugin['description'] ?>
 </p>
-<?php if ($plugin['user_id']): ?>
-  <span class='plugin-author'>Registered by <?php echo link_to($plugin['User']->getUsername(), $plugin['User']->getRoute(), array('class' => 'author-link')) ?></span>  
-<?php else: ?>
-  <span class='claim'><?php echo link_to('Claim This Plugin', '@plugin_claim?title='.$plugin['title']) ?></span>
-<?php endif ?>
 
+<table id='plugin-info'>
+  <tr>
+    <th>Rating</th>
+    <td>
+      <span class='rating'><?php include_component('plugin', 'rating', array('rating' => $plugin->getRating())) ?></span>
+      <span class='num_votes'>(<?php echo $plugin->getNumVotes() . ($plugin->getNumVotes() == 1 ? ' vote' : ' votes') ?>)</span>
+    </td>
+  </tr>
+  <tr>
+    <th>Repository</th>
+    <td><?php echo link_to($plugin->getRepositoryUrl(), $plugin->getRepositoryUrl(), array('style' => 'white-space:nowrap;')) ?></td>
+  </tr>
+  <tr>
+    
+  <tr>
+    <th>More Info</th>
+    <td><?php echo link_to($plugin->getSymfonyPluginsUrl(), $plugin->getSymfonyPluginsUrl(), array('style' => 'white-space:nowrap;')) ?></td>
+  </tr>
+  
+  <tr>
+    <th>Last Updated</th>
+    <td><?php echo date('F jS, Y', strtotime($plugin->getUpdatedAt())) ?></td>
+  </tr>  
+  
+<?php if ($plugin->isRegistered()): ?>
+    <th>Owner</th>
+    <td class='plugin-author'>
+      <?php echo link_to($plugin['User']->getUsername(), $plugin['User']->getRoute(), array('class' => 'author-link')) ?>
+    </td>
+<?php else: ?>
+    <td colspan='2' class='claim'>
+      <?php echo link_to('Claim This Plugin', '@plugin_claim?title='.$plugin['title']) ?>
+    </td>
+<?php endif ?>
+  </tr>
+</table>
 
 <?php echo get_comments($plugin) ?>

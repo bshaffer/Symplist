@@ -17,12 +17,12 @@
   
     <?php if(isset($commentForm)): ?>
         <?php echo $commentForm['Commenter'] ?>
-        <?php echo $commentForm['rating'] ?>
+        <?php //echo $commentForm['rating'] ?>
         <?php echo $commentForm['body'] ?>
     <?php endif ?>  
   
 
-    <?php echo submit_tag('Add'); ?>
+    <?php echo submit_tag('Add', array('class' => 'button')); ?>
   
     <span id='indicator' style='display:none'>Loading...</span>
   </form>

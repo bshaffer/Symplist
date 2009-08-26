@@ -14,6 +14,11 @@ class SymfonyPlugin extends BaseSymfonyPlugin
 {
   protected $_rating, $_num_votes;
   
+  public function isRegistered()
+  {
+    return ($this->user_id != null);
+  }
+  
   public function getRoute()
   {
     return '@plugin?title='.$this['title'];
@@ -83,7 +88,12 @@ class SymfonyPlugin extends BaseSymfonyPlugin
       $this['repository_url'] = $this->getSymfonyRepositoryUrl();
     }
   }
-
+  
+  public function getSummary()
+  {
+    return $this->getDescription();
+  }
+  
   public function getSymfonyRepositoryUrl()
   {
     return 'http://svn.symfony-project.com/plugins/'.$this['title'];

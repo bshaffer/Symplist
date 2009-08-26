@@ -8,25 +8,29 @@
   <body>
     <?php use_helper('Navigation') ?>
     <div id="header">
-      <ul id='secondary-nav'>
-        <?php if ($sf_user->isAuthenticated()): ?>
-          <?php include_partial('author/user_links') ?>
-        <?php else: ?>
-          <li><?php echo link_to('sign in', '@signin') ?></li>
-          <li><?php echo link_to('register', '@author_new') ?></li>          
-        <?php endif ?>
-      </ul>
-      <div id="site-logo">Symplist</div>
-      
-      <?php include_navigation(array('id' => 'nav')) ?>
-      
-      <?php include_component('sfLucene', 'search_bar', array()) ?>
+      <div class='content'>
+        <?php include_component('sfLucene', 'search_bar', array()) ?>
+        <a href='<?php echo url_for('@homepage') ?>'>
+          <span id="site-logo">Symplist</span>
+        </a>
+        <?php include_navigation(array('id' => 'nav')) ?>
+        <ul id='secondary-nav'>
+          <?php if ($sf_user->isAuthenticated()): ?>
+            <?php include_partial('author/user_links') ?>
+          <?php else: ?>
+            <li><?php echo link_to('sign in', '@signin') ?></li>
+            <li><?php echo link_to('register', '@author_new') ?></li>          
+          <?php endif ?>
+        </ul>
+      </div>
     </div>
     <?php include_partial('global/flashes') ?>
 
     <div id="page" class="container_16 clearfix">      
       <div id="content-area" class="grid_16">
-        <?php echo $sf_content ?>
+        <div class='content'>
+          <?php echo $sf_content ?>
+        </div>
       </div>
     </div>
 

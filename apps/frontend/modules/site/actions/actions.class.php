@@ -17,7 +17,7 @@ class siteActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-
+    $this->count = Doctrine::getTable('SymfonyPlugin')->createQuery('p')->where('p.user_id is not null')->andWhere('p.active = ?', true)->count();
   }
   
   public function executeAbout(sfWebRequest $request)

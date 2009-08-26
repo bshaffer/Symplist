@@ -22,49 +22,100 @@ body {
 	background: #FFFFFF;
 	color: #333333;
 	font-size: 12px;
-	font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-family: 'Arial', 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	line-height: 18px;
 }
 
 #page {
 	background-color: #FFFFFF;
 	padding: 20px 0;
+	border-left: 1px solid #BBBBBB;
+	border-right: 1px solid #BBBBBB;
+	min-height:400px;
+}
+
+#page .content
+{
+  padding:10px;
+}
+
+#page h1
+{
+  font-size:1.8em;
 }
 /*@end*/
 
 /*@group Header*/
-div#site-logo
+span#site-logo
 {
   text-indent: -9999px;
   background: transparent url('../images/logo.png') no-repeat center center;
   width:223px;
   height:56px;
   padding:20px 0px 10px 20px;
-  
+  display:block;
 }
 
 div#header {
 	padding: 0 0 2em 0;
 }
 
+#header .content
+{
+  width: 962px;
+  margin:auto;
+}
+
+#header form.search-controls
+{
+  float:right;
+  padding-top:25px;  
+}
+
+.search-controls input, 
+#add-comment-form textarea,
+#add-comment-form input.button,
+#add-comment-form table input {
+  border:1px solid #CCCCCC;
+  padding:2px 5px;
+  display:inline;  
+}
+
+#add-comment-form input.button
+{
+  display:block;
+}
+
+
+#add-comment-form table input.hidden {
+  border:0;
+  padding:0;
+}
+
 ul#nav
 {
   width:100%;
   height:20px;
-  padding:15px 0;
+  padding:10px 0;
   background:#BBBBBB;
 }
 
 ul#nav li {
 	display: inline;
-	font-size: 1.2em;
+	font-size: 1.0em;
 	list-style: none;
-	margin: 0 15px;
+	margin: 0 0 0 20px;
 }
 
 ul#nav li a
 {
+  color: #444444;
+}
+
+ul#nav li a:hover
+{
   color: black;
+  text-decoration: underline;
 }
 /*@end*/
 
@@ -103,6 +154,7 @@ ul#footer-nav li {
 .claim
 {
   font-style: italic;
+  padding-top:10px;
 }
 
 .comment_thread_header
@@ -152,5 +204,76 @@ ul#footer-nav li {
 .example-text
 {
   display:block;
+}
+
+ul.plugins-list li
+{
+  list-style-type:none;
+}
+.plugins-list li 
+{
+  margin:0;
+  padding:0;
+}
+
+.plugins-list li p
+{
+  display:block;
+  clear:both;
+  margin-bottom:10px;
+}
+.plugin-block
+{
+  padding-bottom:30px;
+}
+.plugin-block h3
+{
+  font-size:1.0em;
+  background-color: #DDD;
+  padding:2px 8px;  
+}
+
+.plugin-title
+{
+  font-weight:bold;
+}
+.plugins-list .rating, .plugins-list .plugin-title, .plugins-list .num_votes
+{
+  float: left;
+  padding: 2px 4px;
+}
+
+.plugin-header
+{
+  display:block;
+  clear:both;
+}
+
+table#plugin-info
+{
+  border-collapse: separate;
+  border:1px solid #333;
+  padding:20px;
+  margin:5px;
+  width:400px;
+}
+table#plugin-info .rate_this
+{
+  float:left;
+}
+
+table#plugin-info th
+{
+  text-align:left;
+  padding: 0 15px 0 0;
+  white-space:nowrap;
+}
+.comment_thread_header a
+{
+  display:block;
+}
+.comments_thread
+{
+  margin-top:20px;
 }
 /*@end*/

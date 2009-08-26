@@ -13,5 +13,6 @@ class CommenterForm extends PluginCommenterForm
   public function configure()
   {
     parent::configure();
+    $this->widgetSchema['id'] = new sfWidgetFormInputHidden(array(),array('class' => 'hidden'));
   }
 }

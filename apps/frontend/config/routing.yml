@@ -14,6 +14,10 @@ plugin_register:
   url:                                /plugins/new
   param:                              { module: plugin, action: register }
 
+plugins_view_all:
+  url:                                /plugins/all
+  param:                              { module: plugin, action: index }
+
 plugin:
   url:                                /plugins/:title
   param:                              { module: plugin, action: show }
@@ -61,7 +65,7 @@ signout_redirect:
 # default rules
 homepage:
   url:                                /
-  param:                              { module: plugin, action: index }
+  param:                              { module: site, action: index }
 
 default_index:
   url:                                /:module
