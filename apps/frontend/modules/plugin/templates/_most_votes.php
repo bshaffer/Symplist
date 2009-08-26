@@ -1,4 +1,4 @@
-<h3>Most Votes</h1>
+<h3>Most Votes</h3>
 <ul class='plugins-list'>
 <?php foreach ($plugins as $plugin): ?>
   <li>

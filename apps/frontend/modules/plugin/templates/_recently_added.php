@@ -1,4 +1,4 @@
-<h3>Recently Added</h1>
+<h3>Recently Added</h3>
 <ul class='plugins-list'>
 <?php foreach ($plugins as $plugin): ?>
   <li>
