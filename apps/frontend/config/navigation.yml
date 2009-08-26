@@ -10,6 +10,7 @@ navigation:
     blog:         'http://symplist.lighthouseapp.com/projects/36266-symplist/tickets/new'
     contact:      @contact
     report a bug: 'http://github.com/bshaffer/Symplist/issues'
+
 settings:
   database:
     driven:    on

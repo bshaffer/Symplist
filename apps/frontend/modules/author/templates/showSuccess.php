@@ -4,12 +4,14 @@
 <?php use_helper("Gravatar") ?>
 
 <?php echo gravatar_image_tag($user['Author']['email']) ?>
+<?php if ($user['Author']['first_name']): ?>
 <p>
 <strong>Name:</strong>  
 <span class='author-name'>
   <?php echo mail_to($user['Author']['email'], $user['Author']['first_name'].' '.$user['Author']['last_name']) ?>
 </span>
-</p>
+</p>  
+<?php endif ?>
 
 <?php if (trim($user['Author']['bio'])): ?>
 <strong>Bio:</strong>
