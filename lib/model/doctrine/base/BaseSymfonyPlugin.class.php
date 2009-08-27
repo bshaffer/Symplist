@@ -20,13 +20,29 @@ abstract class BaseSymfonyPlugin extends sfDoctrineRecord
              'type' => 'integer',
              'length' => '4',
              ));
+        $this->hasColumn('symfony_developer', 'string', 255, array(
+             'type' => 'string',
+             'length' => '255',
+             ));
         $this->hasColumn('category_id', 'integer', null, array(
              'type' => 'integer',
              ));
         $this->hasColumn('active', 'boolean', null, array(
              'type' => 'boolean',
              ));
-        $this->hasColumn('repository_url', 'string', 255, array(
+        $this->hasColumn('repository', 'string', 255, array(
+             'type' => 'string',
+             'length' => '255',
+             ));
+        $this->hasColumn('image', 'string', 255, array(
+             'type' => 'string',
+             'length' => '255',
+             ));
+        $this->hasColumn('homepage', 'string', 255, array(
+             'type' => 'string',
+             'length' => '255',
+             ));
+        $this->hasColumn('ticketing', 'string', 255, array(
              'type' => 'string',
              'length' => '255',
              ));

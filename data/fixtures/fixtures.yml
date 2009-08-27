@@ -31,12 +31,12 @@ PluginCategory:
   Uncategorized:
     name:          Uncategorized
     description:   Newly imported or unclaimed plugins.
-  Fakes:
-    name:          Fake Plugins
-    description:   These plugins don't actually exist.  They are also still in beta.
-  
-SymfonyPlugin:
-  FakePlugin:
-    title:        csFakePlugin
-    description:  This plugin doesn't actually exist
-    Category:       Fakes
+#   Fakes:
+#     name:          Fake Plugins
+#     description:   These plugins don't actually exist.  They are also still in beta.
+#   
+# SymfonyPlugin:
+#   FakePlugin:
+#     title:        csFakePlugin
+#     description:  This plugin doesn't actually exist
+#     Category:       Fakes

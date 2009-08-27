@@ -14,7 +14,7 @@ CREATE TABLE sf_guard_user (id INT AUTO_INCREMENT, username VARCHAR(128) NOT NUL
 CREATE TABLE sf_guard_user_group (user_id INT, group_id INT, created_at DATETIME, updated_at DATETIME, PRIMARY KEY(user_id, group_id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_user_permission (user_id INT, permission_id INT, created_at DATETIME, updated_at DATETIME, PRIMARY KEY(user_id, permission_id)) ENGINE = INNODB;
 CREATE TABLE symfony_plugin_comment (id BIGINT, comment_id BIGINT, PRIMARY KEY(id, comment_id)) ENGINE = INNODB;
-CREATE TABLE symfony_plugin (id BIGINT AUTO_INCREMENT, title VARCHAR(255) UNIQUE, description LONGTEXT, user_id INT, category_id BIGINT, active TINYINT(1), repository_url VARCHAR(255), slug VARCHAR(255), created_at DATETIME, updated_at DATETIME, INDEX user_id_idx (user_id), INDEX category_id_idx (category_id), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE symfony_plugin (id BIGINT AUTO_INCREMENT, title VARCHAR(255) UNIQUE, description LONGTEXT, user_id INT, symfony_developer VARCHAR(255), category_id BIGINT, active TINYINT(1), repository VARCHAR(255), image VARCHAR(255), homepage VARCHAR(255), ticketing VARCHAR(255), slug VARCHAR(255), created_at DATETIME, updated_at DATETIME, INDEX user_id_idx (user_id), INDEX category_id_idx (category_id), PRIMARY KEY(id)) ENGINE = INNODB;
 ALTER TABLE cs_navigation_menu ADD FOREIGN KEY (root_id) REFERENCES cs_navigation_item(id);
 ALTER TABLE plugin_author ADD FOREIGN KEY (sf_guard_user_id) REFERENCES sf_guard_user(id);
 ALTER TABLE comment ADD FOREIGN KEY (user_id) REFERENCES commenter(id);

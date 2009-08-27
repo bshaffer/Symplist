@@ -1,5 +1,5 @@
 <?php
-class importSymfonyPluginsTask extends seoBaseTask
+class importSymfonyPluginsTask extends sfBaseTask
 {
   protected $_url = 'http://svn.symfony-project.com/plugins';
   
@@ -32,29 +32,61 @@ EOF;
     $connection = $databaseManager->getDatabase('doctrine')->getConnection();
 
     $output = array();
-
+    
     $this->logSection('import', 'initializing...');
-    // Execute Etilize script
-    exec("svn list ".$this->_url, $output); 
+    
+    $cmd = "curl -u 5beafc386c79e4a705ec84d24e5fab1c:x http://www.symfony-project.org/plugins/api/1.0/profile.xml";
 
+    $plugins = SymfonyPluginApi::getPlugins();
     $count = 0;
-    // return output
-    $uncategorized = Doctrine::getTable("PluginCategory")->findOneByName('Uncategorized');
-    foreach ($output as $line) 
+    foreach ($plugins as $plugin) 
     {
-      $name = $this->cleanValue($line);
-      if (!Doctrine::getTable("SymfonyPlugin")->findOneByTitle($name)) 
+      $new = Doctrine::getTable('SymfonyPlugin')->findOneByTitle($plugin['id']);
+      
+      // if plugin exists update info.  Otherwise, create it
+      if ($new) 
       {
-        $plugin = new SymfonyPlugin();
-        $plugin['title'] = $name;
-        $plugin["Category"] = $uncategorized;
-        $plugin->save();
-        
-		    $this->logSection('import', 'added plugin '.$line);        
-		    $count++;
+
+      }
+      else
+      {
+        $new = new SymfonyPlugin();
+        $new['title'] = (string)$plugin['id'];
+        $new['description'] = (string)$plugin->description;
+        $new['repository'] = (string)$plugin->scm;
+        $new['image'] = (string)$plugin->image;
+        $new['homepage'] = (string)$plugin->homepage;
+        $new['ticketing'] = (string)$plugin->ticketing;
+        $new->save();
+        $this->logSection('import', "added '$new->title'");
+        $count++;
       }
     }
-    $this->logSection('import', "added $count plugins");            
+    
+    $this->logSection('import', "Completed.  Added $count new plugins(s)");
+    
+    // Execute SVN command to list data
+    $xml = CurlRequestHelper::processCurl("5beafc386c79e4a705ec84d24e5fab1c:x@www.symfony-project.org/plugins/api/1.0/profile.xml");
+
+
+    // $count = 0;
+    // // return output
+    // $uncategorized = Doctrine::getTable("PluginCategory")->findOneByName('Uncategorized');
+    // foreach ($output as $line) 
+    // {
+    //   $name = $this->cleanValue($line);
+    //   if (!Doctrine::getTable("SymfonyPlugin")->findOneByTitle($name)) 
+    //   {
+    //     $plugin = new SymfonyPlugin();
+    //     $plugin['title'] = $name;
+    //     $plugin["Category"] = $uncategorized;
+    //     $plugin->save();
+    //     
+    //        $this->logSection('import', 'added plugin '.$line);        
+    //        $count++;
+    //   }
+    // }
+    // $this->logSection('import', "added $count plugins");            
   }
   protected function bootstrapSymfony($app, $env, $debug = true)
   {

@@ -15,7 +15,7 @@
   </tr>
   <tr>
     <th>Repository</th>
-    <td><?php echo link_to($plugin->getRepositoryUrl(), $plugin->getRepositoryUrl(), array('style' => 'white-space:nowrap;')) ?></td>
+    <td><?php echo link_to($plugin->getRepository(), $plugin->getRepository(), array('style' => 'white-space:nowrap;')) ?></td>
   </tr>
   <tr>
     

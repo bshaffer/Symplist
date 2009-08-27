@@ -10,9 +10,13 @@ SymfonyPlugin:
       unique:                         true
     description:                      clob
     user_id:                          integer(4)
+    symfony_developer:                string(255)
     category_id:                      integer
     active:                           boolean
-    repository_url:                   string(255)
+    repository:                       string(255)
+    image:                            string(255)
+    homepage:                         string(255)
+    ticketing:                        string(255)
   relations:
     sfGuardUser:
       alias:                          User

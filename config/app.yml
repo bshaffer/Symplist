@@ -1,4 +1,6 @@
 all:
+  symfony_api:
+    key:        5beafc386c79e4a705ec84d24e5fab1c
   comments:
     nesting:    off
     approved_by_default: on

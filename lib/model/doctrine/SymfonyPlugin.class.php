@@ -78,25 +78,10 @@ class SymfonyPlugin extends BaseSymfonyPlugin
     
     return $index;
   }
-  
-  public function preInsert($event)
-  {
-    // Sets default repo url for new plugins
     
-    if (!$this['repository_url']) 
-    {
-      $this['repository_url'] = $this->getSymfonyRepositoryUrl();
-    }
-  }
-  
   public function getSummary()
   {
-    return $this->getDescription();
-  }
-  
-  public function getSymfonyRepositoryUrl()
-  {
-    return 'http://svn.symfony-project.com/plugins/'.$this['title'];
+    return SeoInflector::summarize($this->getDescription());
   }
   
   public function getSymfonyPluginsUrl()
