@@ -18,8 +18,8 @@ class SeoPurifier
     // set_include_path(sfConfig::get('sf_lib_dir') . '/vendor' . PATH_SEPARATOR . get_include_path());
     require_once dirname(__FILE__).'/../vendor/htmlpurifier/HTMLPurifier.includes.php';
     $this->config = HTMLPurifier_Config::createDefault();
-    $this->config->set('Cache', 'SerializerPath', sfConfig::get('sf_cache_dir'));
-    $this->config->set('HTML', 'Trusted', true);
+    $this->config->set('Cache.SerializerPath', sfConfig::get('sf_cache_dir'));
+    $this->config->set('HTML.Trusted', true);
     $this->purifier = new HTMLPurifier($this->config);
   }
   

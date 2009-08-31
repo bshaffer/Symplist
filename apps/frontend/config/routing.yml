@@ -18,6 +18,10 @@ plugins_view_all:
   url:                                /plugins/all
   param:                              { module: plugin, action: index }
 
+plugin_rate_ajax:
+  url:                                /plugins/rate
+  param:                              { module: plugin, action: rate }  
+
 plugin:
   url:                                /plugins/:title
   param:                              { module: plugin, action: show }
@@ -25,6 +29,11 @@ plugin:
 plugin_claim:
   url:                                /plugins/:title/claim
   param:                              { module: plugin, action: claim }
+
+plugin_rate:
+  url:                                /plugins/:title/rate/:rating
+  param:                              { module: plugin, action: rate }  
+  requirements:                       { rating: \d+ }
 
 authors:
   url:                                /authors

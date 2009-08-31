@@ -60,7 +60,16 @@ EOF;
         $new->save();
         $this->logSection('import', "added '$new->title'");
         $count++;
-      }
+
+        // Run Lucene Task every 50 plugins
+        // if (!($count%50)) 
+        // {
+        //   $this->logSection('import', "running lucene cleanup task");
+        //   $luceneTask = new sfLuceneRebuildTask($this->dispatcher, $this->formatter);
+        //   $luceneTask->run(array('application' => 'frontend'), array());
+        // }
+        
+      }      
     }
     
     $this->logSection('import', "Completed.  Added $count new plugins(s)");

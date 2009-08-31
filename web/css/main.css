@@ -257,6 +257,7 @@ table#plugin-info
   margin:5px;
   width:400px;
 }
+
 table#plugin-info .rate_this
 {
   float:left;
@@ -268,6 +269,22 @@ table#plugin-info th
   padding: 0 15px 0 0;
   white-space:nowrap;
 }
+
+table#plugin-info .messages
+{
+  background:#FFFFCC url(../sfDoctrinePlugin/images/tick.png) no-repeat scroll 10px 4px;
+  border-bottom:1px solid #DDDDDD;
+  border-top:1px solid #DDDDDD;
+  margin:4px 0;
+  padding:4px 4px 4px 30px;
+}
+
+table#plugin-info .notice
+{
+  background-image: url(../sfDoctrinePlugin/images/error.png);
+}
+
+
 .comment_thread_header a
 {
   display:block;
@@ -275,5 +292,10 @@ table#plugin-info th
 .comments_thread
 {
   margin-top:20px;
+}
+
+.comments_thread ul ul
+{
+  margin-left:10px;
 }
 /*@end*/

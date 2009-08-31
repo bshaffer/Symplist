@@ -6,5 +6,7 @@
   
   <div id="add_new_comment_form_holder"></div>
 
-  <?php echo get_partial('csComments/comments', array('comments' => $comments, 'record' => $record)); ?>
+  <ul>
+    <?php echo get_partial('csComments/comments', array('comments' => $comments, 'record' => $record)); ?>
+  </ul>
 </div>

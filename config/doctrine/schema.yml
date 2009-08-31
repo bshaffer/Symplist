@@ -22,11 +22,33 @@ SymfonyPlugin:
       alias:                          User
       foreignAlias:                   Plugins
       local:                          user_id
+    Raters:
+      class:                          sfGuardUser
+      refClass:                       PluginRating
+      foreignAlias:                   RatedPlugins
     PluginCategory:
       alias:                          Category
       foreignAlias:                   Plugins
       local:                          category_id
-      
+
+PluginRating:
+  actAs:    [Timestampable]
+  columns:
+    symfony_plugin_id:  integer
+    sf_guard_user_id:    integer(4)
+    rating:     integer
+  relations:  
+    SymfonyPlugin:
+      alias:        Plugin
+      foreignAlias: Ratings
+      # local:        plugin_id
+      onDelete:     CASCADE
+    sfGuardUser:
+      alias:          User
+      foreignAlias:   Ratings
+      # local:          user_id
+      onDelete:     CASCADE        
+
 PluginAuthor:
   columns:
     first_name:                 string(255)

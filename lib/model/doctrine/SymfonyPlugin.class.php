@@ -24,26 +24,22 @@ class SymfonyPlugin extends BaseSymfonyPlugin
     return '@plugin?title='.$this['title'];
   }
   
-  public function getRatingInfo()
+  public function addRating($rating, $user = null)
   {
-    $q = Doctrine::getTable('Comment')
-              ->createQuery('c')
-              ->select('AVG(c.rating) as average, COUNT(c.rating) as num_votes')
-              ->innerJoin('c.SymfonyPluginComment pc')
-              ->where('pc.id = ?', $this['id']);
-
-    $result = $q->fetchOne();
-
-    return $result;
+    if ((int)$rating > 5 || (int)$rating < 1) 
+    {
+      throw new sfException("Rating must be between 1 and 5.  Rating $rating is invalid");
+    }
+    $plugin_rating = new PluginRating();
+    $plugin_rating['Plugin'] = $this;
+    $plugin_rating['rating'] = (int)$rating;
+    if ($user && $user->isAuthenticated()) 
+    {
+      $plugin_rating['User'] = $user->getGuardUser();
+    }
+    $plugin_rating->save();
   }
-  
-  public function setRatingInfo()
-  {
-    $info = $this->getRatingInfo();
-    $this->_rating = $info['average'];
-    $this->_num_votes = $info['num_votes'];
-  }
-  
+    
   public function getRating()
   {
     if (!$this->_rating) 
@@ -61,6 +57,20 @@ class SymfonyPlugin extends BaseSymfonyPlugin
     }
     return $this->_num_votes;
   }
+  
+  public function setRatingInfo()
+  {
+    $info = $this->getRatingInfo();
+    $this->_rating = $info['average'];
+    $this->_num_votes = $info['num_votes'];
+  }
+
+  /**
+   * Used for lucene plugin indexing
+   *
+   * @return void
+   * @author Brent Shaffer
+   */
   
   public function getIndexableTitle()
   {
@@ -87,5 +97,17 @@ class SymfonyPlugin extends BaseSymfonyPlugin
   public function getSymfonyPluginsUrl()
   {
     return 'http://www.symfony-project.org/plugins/'.$this['title'];
+  }
+
+  public function getRatingInfo()
+  {
+    $q = Doctrine::getTable('PluginRating')
+              ->createQuery('r')
+              ->select('AVG(r.rating) as average, COUNT(r.rating) as num_votes')
+              ->where('r.symfony_plugin_id = ?', $this['id']);
+  
+    $result = $q->fetchOne();
+  
+    return $result;
   }
 }

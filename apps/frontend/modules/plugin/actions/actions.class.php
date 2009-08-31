@@ -49,6 +49,15 @@ class pluginActions extends sfActions
     }
   }
   
+  public function executeRate(sfWebRequest $request)
+  {
+    $this->plugin = Doctrine::getTable('SymfonyPlugin')->findOneByTitle($request->getParameter('title'));
+    $this->forward404Unless($this->plugin);
+    $this->plugin->addRating($request->getParameter('rating'), $this->getUser());
+    $this->plugin->refresh();
+    return $this->renderPartial('plugin/rating_info', array('plugin' => $this->plugin));
+  }
+  
   public function executeClaim(sfWebRequest $request)
   {
     $this->plugin = Doctrine::getTable('SymfonyPlugin')->findOneByTitle($request->getParameter('title'));
@@ -94,5 +103,6 @@ class pluginActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->plugin = Doctrine::getTable("SymfonyPlugin")->findOneByTitle($request->getParameter('title'));
+    $this->forward404Unless($this->plugin);
   }
 }

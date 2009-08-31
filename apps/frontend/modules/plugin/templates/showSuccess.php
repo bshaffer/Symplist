@@ -5,13 +5,9 @@
   <?php echo $plugin['description'] ?>
 </p>
 
-<table id='plugin-info'>
-  <tr>
-    <th>Rating</th>
-    <td>
-      <span class='rating'><?php include_component('plugin', 'rating', array('rating' => $plugin->getRating())) ?></span>
-      <span class='num_votes'>(<?php echo $plugin->getNumVotes() . ($plugin->getNumVotes() == 1 ? ' vote' : ' votes') ?>)</span>
-    </td>
+<table id='plugin-info' class='<?php echo $plugin['title'] ?>'>
+  <tr style='display:none'>
+    <td colspan='2' class='messages'></td>
   </tr>
   <tr>
     <th>Repository</th>
@@ -27,8 +23,17 @@
   <tr>
     <th>Last Updated</th>
     <td><?php echo date('F jS, Y', strtotime($plugin->getUpdatedAt())) ?></td>
-  </tr>  
+  </tr>
   
+  <tr>
+    <th>Rate this Plugin</th>
+    <td id='editable-rating'>
+      <?php include_partial('plugin/rating_info', array('plugin' => $plugin)) ?>
+      <?php include_partial('plugin/rate_javascript', array('plugin' => $plugin)) ?>
+    </td>
+  </tr>      
+  
+  <tr>
 <?php if ($plugin->isRegistered()): ?>
     <th>Owner</th>
     <td class='plugin-author'>
@@ -40,6 +45,7 @@
     </td>
 <?php endif ?>
   </tr>
+  
 </table>
 
 <?php echo get_comments($plugin) ?>

@@ -25,5 +25,5 @@
     <?php echo submit_tag('Add', array('class' => 'button')); ?>
   
     <span id='indicator' style='display:none'>Loading...</span>
-  </form>
-</div>
+  </div>
+</li>

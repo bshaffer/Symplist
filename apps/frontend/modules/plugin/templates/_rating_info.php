@@ -1,0 +1,2 @@
+<span class='rating'><?php include_component('plugin', 'rating', array('rating' => $plugin->getRating(), 'editable' => true)) ?></span>
+<span class='num_votes'>(<?php echo $plugin->getNumVotes() . ($plugin->getNumVotes() == 1 ? ' vote' : ' votes') ?>)</span>

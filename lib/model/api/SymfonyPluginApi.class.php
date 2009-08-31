@@ -1,7 +1,7 @@
 <?php
 
 /**
-* 
+* Loads Symfony Plugins API data into a SimpleXML object
 */
 class SymfonyPluginApi
 {

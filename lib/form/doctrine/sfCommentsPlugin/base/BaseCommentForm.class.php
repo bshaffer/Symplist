@@ -23,7 +23,6 @@ class BaseCommentForm extends BaseFormDoctrine
       'level'               => new sfWidgetFormInput(),
       'created_at'          => new sfWidgetFormDateTime(),
       'updated_at'          => new sfWidgetFormDateTime(),
-      'rating'              => new sfWidgetFormInput(),
       'symfony_plugin_list' => new sfWidgetFormDoctrineChoiceMany(array('model' => 'SymfonyPlugin')),
     ));
 
@@ -39,7 +38,6 @@ class BaseCommentForm extends BaseFormDoctrine
       'level'               => new sfValidatorInteger(array('required' => false)),
       'created_at'          => new sfValidatorDateTime(array('required' => false)),
       'updated_at'          => new sfValidatorDateTime(array('required' => false)),
-      'rating'              => new sfValidatorInteger(array('required' => false)),
       'symfony_plugin_list' => new sfValidatorDoctrineChoiceMany(array('model' => 'SymfonyPlugin', 'required' => false)),
     ));
 

@@ -54,9 +54,18 @@ abstract class BaseSymfonyPlugin extends sfDoctrineRecord
              'local' => 'user_id',
              'foreign' => 'id'));
 
+        $this->hasMany('sfGuardUser as Raters', array(
+             'refClass' => 'PluginRating',
+             'local' => 'symfony_plugin_id',
+             'foreign' => 'sf_guard_user_id'));
+
         $this->hasOne('PluginCategory as Category', array(
              'local' => 'category_id',
              'foreign' => 'id'));
+
+        $this->hasMany('PluginRating as Ratings', array(
+             'local' => 'id',
+             'foreign' => 'symfony_plugin_id'));
 
         $sluggable0 = new Doctrine_Template_Sluggable();
         $timestampable0 = new Doctrine_Template_Timestampable();

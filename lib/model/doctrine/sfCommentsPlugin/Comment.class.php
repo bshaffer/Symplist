@@ -12,12 +12,4 @@
  */
 class Comment extends PluginComment
 {
-  public function setup()
-  {
-    parent::setup();
-    $this->hasColumn('rating', 'integer', 8, array(
-     'type' => 'integer',
-     'default' => null,
-     ));
-  }
 }

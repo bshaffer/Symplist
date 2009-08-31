@@ -26,6 +26,7 @@ class BaseSymfonyPluginForm extends BaseFormDoctrine
       'slug'              => new sfWidgetFormInput(),
       'created_at'        => new sfWidgetFormDateTime(),
       'updated_at'        => new sfWidgetFormDateTime(),
+      'raters_list'       => new sfWidgetFormDoctrineChoiceMany(array('model' => 'sfGuardUser')),
     ));
 
     $this->setValidators(array(
@@ -43,6 +44,7 @@ class BaseSymfonyPluginForm extends BaseFormDoctrine
       'slug'              => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'        => new sfValidatorDateTime(array('required' => false)),
       'updated_at'        => new sfValidatorDateTime(array('required' => false)),
+      'raters_list'       => new sfValidatorDoctrineChoiceMany(array('model' => 'sfGuardUser', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -59,6 +61,62 @@ class BaseSymfonyPluginForm extends BaseFormDoctrine
   public function getModelName()
   {
     return 'SymfonyPlugin';
+  }
+
+  public function updateDefaultsFromObject()
+  {
+    parent::updateDefaultsFromObject();
+
+    if (isset($this->widgetSchema['raters_list']))
+    {
+      $this->setDefault('raters_list', $this->object->Raters->getPrimaryKeys());
+    }
+
+  }
+
+  protected function doSave($con = null)
+  {
+    parent::doSave($con);
+
+    $this->saveRatersList($con);
+  }
+
+  public function saveRatersList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['raters_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (is_null($con))
+    {
+      $con = $this->getConnection();
+    }
+
+    $existing = $this->object->Raters->getPrimaryKeys();
+    $values = $this->getValue('raters_list');
+    if (!is_array($values))
+    {
+      $values = array();
+    }
+
+    $unlink = array_diff($existing, $values);
+    if (count($unlink))
+    {
+      $this->object->unlink('Raters', array_values($unlink));
+    }
+
+    $link = array_diff($values, $existing);
+    if (count($link))
+    {
+      $this->object->link('Raters', array_values($link));
+    }
   }
 
 }
