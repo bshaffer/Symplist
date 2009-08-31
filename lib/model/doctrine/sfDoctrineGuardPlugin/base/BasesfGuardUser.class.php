@@ -79,10 +79,6 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'user_id'));
 
-        $this->hasMany('PluginRating as Ratings', array(
-             'local' => 'id',
-             'foreign' => 'sf_guard_user_id'));
-
         $this->hasMany('SymfonyPlugin as Plugins', array(
              'local' => 'id',
              'foreign' => 'user_id'));
@@ -91,6 +87,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'refClass' => 'PluginRating',
              'local' => 'sf_guard_user_id',
              'foreign' => 'symfony_plugin_id'));
+
+        $this->hasMany('PluginRating as Ratings', array(
+             'local' => 'id',
+             'foreign' => 'sf_guard_user_id'));
 
         $this->hasOne('PluginAuthor as Author', array(
              'local' => 'id',

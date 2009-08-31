@@ -5,8 +5,8 @@
   
   <div id="comment_content">
     <div id="author_and_date">
-		<?php $poster = $comment->hasCommenter() ? $comment->getCommenter() : 'Anonymous' ?>
-		<?php $posted_by = $comment['Commenter']['website'] ? link_to($poster, $comment['Commenter']['website']) : $poster ?>
+		<?php $poster = $comment->getCommenterName() ?>
+		<?php $posted_by = $comment->getCommenterLink() ? link_to($poster, $comment->getCommenterLink()) : $poster ?>
       posted by <?php echo $posted_by ?> <?php echo distance_of_time_in_words(strtotime($comment->getCreatedAt())); ?> ago.
     </div>
   

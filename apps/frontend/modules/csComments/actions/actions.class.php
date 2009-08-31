@@ -30,14 +30,21 @@ class csCommentsActions extends BasecsCommentsActions
         -B.Shaffer
     */
     $commentVals = $commentForm->getValues();
-    $commenter = new Commenter();
-    $commenter->fromArray($commentVals['Commenter']);
-    $commenter->save();
-    
+          
     $comment = new Comment();
     $comment['body'] = $commentVals['body'];
     // $comment['rating'] = $commentVals['rating'];
-    $comment['Commenter'] = $commenter;
+    if ($this->getUser()->isAuthenticated()) 
+    {
+      $comment['AuthenticatedUser'] = $this->getUser()->getGuardUser();
+    }
+    else
+    {
+      $commenter = new Commenter();
+      $commenter->fromArray($commentVals['Commenter']);
+      $commenter->save();
+      $comment['Commenter'] = $commenter;      
+    }
     $comment['approved'] = sfConfig::get('app_comments_approved_by_default');
     $comment->save();
     

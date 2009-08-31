@@ -15,12 +15,21 @@
     <?php echo input_hidden_tag('model', $sf_request->getParameter('model')); ?>
     <?php echo input_hidden_tag('record_id', $sf_request->getParameter('record_id')); ?>
   
-    <?php if(isset($commentForm)): ?>
-        <?php echo $commentForm['Commenter'] ?>
-        <?php //echo $commentForm['rating'] ?>
-        <?php echo $commentForm['body'] ?>
-    <?php endif ?>  
   
+    <?php if(isset($commentForm)): ?>
+      <?php if ($sf_user->isAuthenticated()): ?>
+        <table>
+          <tr>
+            <th><label for="comment_Commenter_username">Username</label></th>
+            <td><em>Signed in as <?php echo $sf_user->getUsername() ?></em></td>
+          </tr>
+        </table>
+      <?php else: ?>
+        <?php echo $commentForm['Commenter'] ?>
+      <?php endif ?>
+      
+      <?php echo $commentForm['body'] ?>
+    <?php endif ?>    
 
     <?php echo submit_tag('Add', array('class' => 'button')); ?>
   
