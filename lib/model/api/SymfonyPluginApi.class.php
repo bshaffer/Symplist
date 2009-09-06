@@ -21,6 +21,25 @@ class SymfonyPluginApi
     return $xml;
   }
   
+  public function getPlugin($plugin)
+  {
+    $xml = self::loadFile("plugins/$plugin.xml");
+    return $xml;
+  }
+  
+  public function getPluginVersion($plugin, $release)
+  {
+    // ex: $plugin = sfFakePlugin, $release = 1.0.0
+    $xml = self::loadFile("plugins/$plugin/releases/$release.xml");
+    return $xml;
+  }
+  
+  public function getDeveloper($developer)
+  {
+    $xml = self::loadFile("developers/$developer.xml");
+    return $xml;
+  }
+  
   static public function loadFile($path)
   {
     $cmd = "curl -u ".self::$_api_key.":".self::$_password." ".self::$_root_url."$path";
