@@ -10,18 +10,6 @@ all:
       persistent:                     true
       pooling:                        true
 
-dev:
-  doctrine:
-    class:                            sfDoctrineDatabase
-    param:
-      classname:                      DoctrinePDO
-      dsn:                            mysql:dbname=symplist_dev;host=localhost
-      username:                       root
-      password:                       
-      encoding:                       utf8
-      persistent:                     true
-      pooling:                        true
-
 test:
   doctrine:
     class:                            sfDoctrineDatabase
@@ -30,18 +18,6 @@ test:
       dsn:                            mysql:dbname=symplist_test;host=localhost
       username:                       root
       password:                       
-      encoding:                       utf8
-      persistent:                     true
-      pooling:                        true
-
-staging:
-  doctrine:
-    class:                            sfDoctrineDatabase
-    param:                            
-      classname:                      DoctrinePDO
-      dsn:                            mysql:dbname=staging_plugintracker;host=localhost
-      username:                       staging
-      password:                       staging9159
       encoding:                       utf8
       persistent:                     true
       pooling:                        true
