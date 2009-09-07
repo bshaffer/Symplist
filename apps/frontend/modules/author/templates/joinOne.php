@@ -1,4 +1,4 @@
-<h1>Create your Developer Login</h1>
+<h1>Step 1: Create your Developer Login</h1>
 
 <?php use_helper('Form') ?>
 <?php echo form_tag('@author_new') ?>

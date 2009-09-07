@@ -40,7 +40,7 @@ class pluginActions extends sfActions
     }
     if ($request->isMethod('POST')) 
     {
-      $this->form->bind($request->getParameter('symfony_plugin'));
+      $this->form->bind($request->getParameter('symfony_plugin'), $request->getFiles('symfony_plugin'));
       if ($this->form->isValid()) 
       {
         $this->form->save();

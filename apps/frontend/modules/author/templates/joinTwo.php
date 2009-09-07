@@ -1,4 +1,4 @@
-<h1>Fill our your Profile</h1>
+<h1>Step 2: Fill our your Profile</h1>
 
 <?php use_helper('Form') ?>
 <?php echo form_tag('@author_new') ?>

@@ -2,11 +2,11 @@
 
 include(dirname(__FILE__).'/../bootstrap/Doctrine.php');
 
-$t = new lime_test(3, new lime_output_color());
+$t = new lime_test(21, new lime_output_color());
 
 $t->comment('initializing test database...');
 
-Doctrine::getTable('SymfonyPlugin')->createQuery('p')->delete()->execute();
+// Doctrine::getTable('SymfonyPlugin')->createQuery('p')->delete()->execute();
 
 
 $t->comment('testing plugin');
@@ -40,3 +40,21 @@ $t->comment('add another rating of 4');
 $p->addRating(4);
 $t->is($p['num_votes'], 4, 'number of votes is now 4');
 $t->is($p['rating'], 4, '3.75 rating rounds up to 4');
+
+$top = Doctrine::getTable('SymfonyPlugin')->getHighestRanking(1);
+$t->is($top[0]['rating'], 5, 'pulled highest ranking plugin');
+
+$top = Doctrine::getTable('SymfonyPlugin')->getHighestRanking(5);
+$t->is($top[0]['rating'], 5, 'pulled highest ranking plugin, ordered by highest');
+
+$top = Doctrine::getTable('SymfonyPlugin')->getHighestRanking(5);
+$t->is($top[1]['id'], $p['id'], 'test plugin is number 2, ordered by highest');
+$t->is($top->count(), 3, 'all rated plugins are included (plugins with rating > 0)');
+
+$top = Doctrine::getTable('SymfonyPlugin')->getHighestRanking(5, 2);
+$t->is($top->count(), 2, 'only plugins with a rating larger than 2 are included');
+
+$most = Doctrine::getTable('SymfonyPlugin')->getMostVotes(5);
+
+$t->is($most[0]['id'], $p['id'], 'pulled most voted plugin, ordered by most votes');
+$t->is($most->count(), 3, 'only plugins with votes are pulled');

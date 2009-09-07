@@ -1,0 +1,11 @@
+PluginAuthor:
+  test_author:
+    first_name:   Test
+    last_name:    User
+    User: test_user
+    
+sfGuardUser:
+  test_user:
+    username:                         test
+    password:                         test
+    is_super_admin:                   true

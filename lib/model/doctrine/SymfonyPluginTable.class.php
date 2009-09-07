@@ -3,7 +3,7 @@
  */
 class SymfonyPluginTable extends Doctrine_Table
 {  
-  public function getHighestRanking($limit = null)
+  public function getHighestRanking($limit = null, $floor = null)
   {
     $q = $this->createQuery('p')
               ->select('p.*, AVG(r.rating) as average')
@@ -15,6 +15,11 @@ class SymfonyPluginTable extends Doctrine_Table
    if ($limit) 
    {
      $q->limit($limit);
+   }
+   
+   if ($floor) 
+   {
+     $q->having('average >= ?', $floor);
    }
 
    return $q->execute();

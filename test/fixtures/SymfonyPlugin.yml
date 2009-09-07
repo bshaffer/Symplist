@@ -1,0 +1,25 @@
+SymfonyPlugin:
+  plugin_1:
+    title:    sfFooPlugin
+  plugin_2:
+    title:    sfBarPlugin
+  plugin_3:
+    title:    sfChunkyPlugin
+  plugin_4:
+    title:    sfBaconPlugin
+  plugin_5:
+    title:    sfBetterThanSexPlugin
+    Ratings:
+      rating1:
+        rating: 5
+      rating2:
+        rating: 5
+  plugin_6:
+    title:    sfTravisBlackPlugin
+    Ratings:
+      rating3:
+        rating: 1
+      rating4:
+        rating: 1
+      rating5:
+        rating: 1

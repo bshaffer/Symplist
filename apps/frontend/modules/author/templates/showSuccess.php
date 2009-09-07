@@ -1,5 +1,11 @@
 
-<h1><?php echo $user->getUsername() ?></h1>
+<h1>
+  <?php echo $user->getUsername() ?>
+  <?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->id == $user->id): ?>
+    <span style='font-size:.7em'><?php echo link_to('[edit]', '@author_edit?username='.$user['username']) ?></span>
+  <?php endif ?>
+</h1>
+
 <?php if ($user['Author']): ?>
 <?php use_helper("Gravatar") ?>
 

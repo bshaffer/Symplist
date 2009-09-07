@@ -62,6 +62,7 @@ class authorActions extends sfActions
           $this->form->save();
           $user = $this->form->getObject();
           $this->form = new PluginAuthorForm();
+          $this->getUser()->signin($user);          
           $this->form->setDefault('sf_guard_user_id', $user['id']);
         }
         else

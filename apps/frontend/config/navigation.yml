@@ -11,8 +11,8 @@ navigation:
     contact:      @contact
 
   Secondary:
-    report a bug: 'http://github.com/bshaffer/Symplist/issues'
-    blog:         'http://symplist.lighthouseapp.com/projects/36266-symplist/tickets/new'
+    report a bug: 'http://symplist.lighthouseapp.com/projects/36266-symplist/tickets/new'
+    suggestions:  'http://symplist.lighthouseapp.com/projects/36266-symplist/tickets/new'
     
 settings:
   database:

@@ -17,10 +17,9 @@
         <?php include_partial('site/secondary_nav', array()) ?>
       </div>
     </div>
-    <?php include_partial('global/flashes') ?>
-
     <div id="page" class="container_16 clearfix">      
       <div id="content-area" class="grid_16">
+        <?php include_partial('global/flashes') ?>
         <div class='content'>
           <?php echo $sf_content ?>
         </div>

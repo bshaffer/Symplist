@@ -270,7 +270,7 @@ table#plugin-info th
   white-space:nowrap;
 }
 
-table#plugin-info .messages
+table#plugin-info .messages, .notice
 {
   background:#FFFFCC url(../sfDoctrinePlugin/images/tick.png) no-repeat scroll 10px 4px;
   border-bottom:1px solid #DDDDDD;
@@ -298,4 +298,16 @@ table#plugin-info .notice
 {
   margin-left:10px;
 }
+/*@end*/
+
+/*@group misc*/
+
+.error_list
+{
+  margin:0;
+  padding:0;
+  color:red;
+  font-weight:bold;
+}
+
 /*@end*/

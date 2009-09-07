@@ -8,6 +8,7 @@ SymfonyPlugin:
     title:                            
       type:                           string(255)
       unique:                         true
+      notnull:                        true
     description:                      clob
     user_id:                          integer(4)
     symfony_developer:                string(255)

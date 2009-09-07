@@ -13,5 +13,6 @@ class PluginAuthorForm extends BasePluginAuthorForm
   public function configure()
   {
     $this->widgetSchema['sf_guard_user_id'] = new sfWidgetFormInputHidden();
+    $this->validatorSchema['email'] = new sfValidatorEmail();
   }
 }

@@ -38,11 +38,12 @@ class SymfonyPlugin extends BaseSymfonyPlugin
       $plugin_rating['User'] = $user->getGuardUser();
     }
     $plugin_rating->save();
+    $this->clearRatingInfo();
   }
     
   public function getRating()
   {
-    if (!$this->_rating) 
+    if ($this->_rating == null)
     {
       $this->setRatingInfo();
     }
@@ -51,7 +52,7 @@ class SymfonyPlugin extends BaseSymfonyPlugin
   
   public function getNumVotes()
   {
-    if (!$this->_num_votes) 
+    if ($this->_num_votes == null)
     {
       $this->setRatingInfo();
     }
@@ -61,8 +62,15 @@ class SymfonyPlugin extends BaseSymfonyPlugin
   public function setRatingInfo()
   {
     $info = $this->getRatingInfo();
-    $this->_rating = $info['average'];
+    $rating = (round($info['average']*2, 0)/2);
+    $this->_rating = $rating;
     $this->_num_votes = $info['num_votes'];
+  }
+  
+  public function clearRatingInfo()
+  {
+    $this->_rating = null;
+    $this->_num_votes = null;
   }
 
   /**
@@ -109,5 +117,18 @@ class SymfonyPlugin extends BaseSymfonyPlugin
     $result = $q->fetchOne();
   
     return $result;
+  }
+  
+  public function getDefaultRepository()
+  {
+    return 'http://svn.symfony-project.com/plugins/'.$this['title'];
+  }
+  
+  public function preInsert($event)
+  {
+    if (!$this['repository']) 
+    {
+      $this['repository'] = $this->getDefaultRepository();
+    }
   }
 }

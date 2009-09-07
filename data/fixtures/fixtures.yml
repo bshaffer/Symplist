@@ -1,7 +1,7 @@
 sfGuardUser:
   sgu_admin:
-    username:                         administrator
-    password:                         client2009
+    username:                         admin
+    password:                         admin
     is_super_admin:                   true
 
 sfGuardPermission:
