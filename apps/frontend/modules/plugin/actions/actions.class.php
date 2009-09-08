@@ -105,4 +105,25 @@ class pluginActions extends sfActions
     $this->plugin = Doctrine::getTable("SymfonyPlugin")->findOneByTitle($request->getParameter('title'));
     $this->forward404Unless($this->plugin);
   }
+  
+  public function executeAutocomplete(sfWebRequest $request)
+  {
+    $q = $request->getParameter('q');
+    
+    $results = Doctrine::getTable('SymfonyPlugin')->createQuery('p')
+                    ->select('p.title')->where('title like ?', "%$q%")
+                    ->setHydrationMode(Doctrine::HYDRATE_ARRAY)->limit(20)->execute();
+
+    return $this->renderPartial('plugin/autocomplete_results', array('results' => $results));
+  }
+  
+  public function executeSearch(sfWebRequest $request)
+  {
+    $plugin = Doctrine::getTable('SymfonyPlugin')->findOneByTitle($request->getParameter('q'));
+    if ($plugin) 
+    {
+      $this->redirect('@plugin?title='.$plugin['title']);
+    }
+    $this->redirect('sfLucene/search?form[query]='.$request->getParameter('q'));
+  }
 }

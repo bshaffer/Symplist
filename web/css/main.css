@@ -72,6 +72,20 @@ div#header {
   padding-top:25px;  
 }
 
+h2
+{
+  color: #3B9BCB;
+  font-size: 1.6em;
+  margin-bottom:10px;
+}
+
+.plugin_search_form input {
+  border:1px solid #CCCCCC;
+  padding:2px 5px;
+  display:inline;  
+
+}
+
 .search-controls input, 
 #add-comment-form textarea,
 #add-comment-form input.button,
@@ -87,7 +101,8 @@ div#header {
 }
 
 
-#add-comment-form table input.hidden {
+#add-comment-form table input.hidden,
+.plugin_search_form input.hidden {
   border:0;
   padding:0;
 }

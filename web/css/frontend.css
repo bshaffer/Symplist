@@ -56,3 +56,11 @@
   font-size:0.5em;
 }
 
+#right_column
+{
+  float: right;
+  width: 250px;
+	border: 1px solid #BBBBBB;
+	padding: 10px;
+	margin-left:20px;
+}

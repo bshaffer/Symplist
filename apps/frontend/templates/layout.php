@@ -5,7 +5,7 @@
     <?php include_title() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
   </head>
-  <body>
+  <body id="module-<?php echo $sf_request->getParameter('module') ?>-action-<?php echo $sf_request->getParameter('action') ?>">
     <?php use_helper('Navigation') ?>
     <div id="header">
       <div class='content'>
@@ -20,8 +20,15 @@
     <div id="page" class="container_16 clearfix">      
       <div id="content-area" class="grid_16">
         <?php include_partial('global/flashes') ?>
+
+          
         <div class='content'>
+          
+        <?php if (has_slot('right_column')): ?>
+          <div id='right_column'><?php include_slot('right_column') ?></div>
+        <?php endif ?>
           <?php echo $sf_content ?>
+          
         </div>
       </div>
     </div>

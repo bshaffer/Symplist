@@ -22,6 +22,12 @@ plugin_rate_ajax:
   url:                                /plugins/rate
   param:                              { module: plugin, action: rate }  
 
+plugin_search:
+  url:                                /plugins/search
+  params:                             { module: plugin, action: search }
+  requirements:
+    sf_method:                        POST
+  
 plugin:
   url:                                /plugins/:title
   param:                              { module: plugin, action: show }
@@ -34,6 +40,10 @@ plugin_rate:
   url:                                /plugins/:title/rate/:rating
   param:                              { module: plugin, action: rate }  
   requirements:                       { rating: \d+ }
+
+plugin_autocomplete:
+  url:                                /plugins/search/auto
+  params:                             { module: plugin, action: autocomplete }
 
 authors:
   url:                                /authors
