@@ -31,7 +31,7 @@ class BaseSymfonyPluginForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'                => new sfValidatorDoctrineChoice(array('model' => 'SymfonyPlugin', 'column' => 'id', 'required' => false)),
-      'title'             => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'title'             => new sfValidatorString(array('max_length' => 255)),
       'description'       => new sfValidatorString(array('required' => false)),
       'user_id'           => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
       'symfony_developer' => new sfValidatorString(array('max_length' => 255, 'required' => false)),

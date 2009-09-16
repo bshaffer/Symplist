@@ -101,11 +101,6 @@ class SymfonyPlugin extends BaseSymfonyPlugin
   {
     return SeoInflector::summarize($this->getDescription());
   }
-  
-  public function getSymfonyPluginsUrl()
-  {
-    return 'http://www.symfony-project.org/plugins/'.$this['title'];
-  }
 
   public function getRatingInfo()
   {
@@ -119,7 +114,12 @@ class SymfonyPlugin extends BaseSymfonyPlugin
     return $result;
   }
   
-  public function getDefaultRepository()
+  public function getSymfonyPluginHomepage()
+  {
+    return 'http://www.symfony-project.org/plugins/'.$this['title'];
+  }
+  
+  public function getSymfonyRepository()
   {
     return 'http://svn.symfony-project.com/plugins/'.$this['title'];
   }
@@ -128,7 +128,11 @@ class SymfonyPlugin extends BaseSymfonyPlugin
   {
     if (!$this['repository']) 
     {
-      $this['repository'] = $this->getDefaultRepository();
+      $this['repository'] = $this->getSymfonyRepository();
+    }
+    if (!$this['homepage']) 
+    {
+      $this['homepage'] = $this->getSymfonyPluginHomepage();
     }
   }
 }

@@ -325,4 +325,9 @@ table#plugin-info .notice
   font-weight:bold;
 }
 
+#homepage-search-results
+{
+  margin-top: 20px;
+}
+
 /*@end*/

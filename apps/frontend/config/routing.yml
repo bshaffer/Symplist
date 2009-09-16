@@ -45,6 +45,10 @@ plugin_autocomplete:
   url:                                /plugins/search/auto
   params:                             { module: plugin, action: autocomplete }
 
+plugin_autocomplete_verbose:
+  url:                                /plugins/search/auto/full
+  params:                             { module: plugin, action: verboseAutocomplete }
+
 authors:
   url:                                /authors
   param:                              { module: author, action: index }
@@ -84,7 +88,7 @@ signout_redirect:
 # default rules
 homepage:
   url:                                /
-  param:                              { module: site, action: index }
+  param:                              { module: site, action: index, homepage: true }
 
 default_index:
   url:                                /:module

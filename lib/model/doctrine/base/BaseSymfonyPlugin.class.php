@@ -11,6 +11,7 @@ abstract class BaseSymfonyPlugin extends sfDoctrineRecord
         $this->hasColumn('title', 'string', 255, array(
              'type' => 'string',
              'unique' => true,
+             'notnull' => true,
              'length' => '255',
              ));
         $this->hasColumn('description', 'clob', null, array(

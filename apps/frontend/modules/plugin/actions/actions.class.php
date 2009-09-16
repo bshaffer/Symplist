@@ -116,6 +116,22 @@ class pluginActions extends sfActions
 
     return $this->renderPartial('plugin/autocomplete_results', array('results' => $results));
   }
+
+  public function executeVerboseAutocomplete(sfWebRequest $request)
+  {
+    $q = $request->getParameter('q');
+    
+    $results = Doctrine::getTable('SymfonyPlugin')->createQuery('p')
+                    ->select('p.title, LEFT(p.description, 200) as description, AVG(r.rating) as rating')
+                    ->leftJoin('p.Ratings r')
+                    ->where('title like ?', "%$q%")
+                    ->setHydrationMode(Doctrine::HYDRATE_ARRAY)
+                    ->limit(20)
+                    ->groupBy('p.id')
+                    ->execute();
+
+    return $this->renderPartial('plugin/verbose_autocomplete_results', array('results' => $results));
+  }
   
   public function executeSearch(sfWebRequest $request)
   {

@@ -17,7 +17,7 @@
     
   <tr>
     <th>More Info</th>
-    <td><?php echo link_to($plugin->getSymfonyPluginsUrl(), $plugin->getSymfonyPluginsUrl(), array('style' => 'white-space:nowrap;')) ?></td>
+    <td><?php echo link_to($plugin->getHomepage(), $plugin->getHomepage(), array('style' => 'white-space:nowrap;')) ?></td>
   </tr>
   
   <tr>

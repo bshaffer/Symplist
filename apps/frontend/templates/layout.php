@@ -9,7 +9,11 @@
     <?php use_helper('Navigation') ?>
     <div id="header">
       <div class='content'>
-        <?php include_component('sfLucene', 'search_bar', array()) ?>
+        <?php if (!$sf_request->getParameter('homepage')): ?>
+          <?php include_partial('plugin/auto_complete_search', array()) ?>
+          <?php //include_component('sfLucene', 'search_bar', array()) ?>          
+        <?php endif ?>
+
         <a href='<?php echo url_for('@homepage') ?>'>
           <span id="site-logo">Symplist</span>
         </a>
