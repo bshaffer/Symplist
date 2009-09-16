@@ -4,7 +4,7 @@ prod:
     logging_enabled:                  off
 
   .actions:
-    error_404_module:                 error404
+    error_404_module:                 errors
     error_404_action:                 error404
 
 dev:
