@@ -64,3 +64,8 @@
 	padding: 10px;
 	margin-left:20px;
 }
+
+.search-results-container h6
+{
+  margin-bottom:5px;
+}

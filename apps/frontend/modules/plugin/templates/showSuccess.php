@@ -1,5 +1,5 @@
 <?php use_helper('Comment') ?>
-
+<?php $sf_response->removeJavascript('/sfProtoculousPlugin/js/prototype.js') ?>
 <h1><?php echo $plugin['title'] ?></h1>
 <p>
   <?php echo $plugin['description'] ?>

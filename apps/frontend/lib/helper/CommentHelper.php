@@ -1,7 +1,7 @@
 <?php
 function link_to_add_new_comment($name, $record, $comment = null)
 {
-  use_helper('Javascript');
+  use_helper('jQuery');
 
   $params = array();
   $params['update'] = ($comment && $comment->getId()) ? 'add_new_comment_form_holder_' . $comment->getId() : 'add_new_comment_form_holder';
@@ -12,9 +12,9 @@ function link_to_add_new_comment($name, $record, $comment = null)
 
   $params['with'] = "'comment_id=".$comment_id."&model=".get_class($record)."&record_id=".$record->getId()."&return_uri=".urlencode(sfContext::getInstance()->getRequest()->getUri())."'";
   
-  $params['complete']  = "setRatingListeners();";
+  // $params['complete']  = "setRatingListeners();";
   
-  return link_to_remote($name, $params);
+  return jq_link_to_remote($name, $params);
 }
 
 function link_to_delete_comment($name, $record, $comment)

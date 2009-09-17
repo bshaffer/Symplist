@@ -126,7 +126,7 @@ class pluginActions extends sfActions
                     ->leftJoin('p.Ratings r')
                     ->where('title like ?', "%$q%")
                     ->setHydrationMode(Doctrine::HYDRATE_ARRAY)
-                    ->limit(20)
+                    ->limit(10)
                     ->groupBy('p.id')
                     ->execute();
 

@@ -1,13 +1,13 @@
 <?php use_helper('Form') ?>
 <div id='add-comment-form'>
   <h3>Add New Comment</h3>
-  <?php use_helper('Javascript') ?>
-  <?php echo form_remote_tag( 
+  <?php use_helper('jQuery') ?>
+  <?php echo jq_form_remote_tag( 
                   array('url'       => '@cscomments_comments_do_add',
                         'update'    => 'add-comment-form',
                         'enctype'   => 'multipart/form-data',
-                        'loading'   => "Element.show('indicator'); Element.hide('btn_submit')",
-                        'complete'  => "Element.hide('indicator'); Element.show('btn_submit');"
+                        'loading'   => "$('#comment-indicator').show();$('#submit-comment-button').hide();",
+                        'complete'  => "$('#comment-indicator').hide();$('#submit-comment-button').show();"
     )) ?>
 
     <?php echo input_hidden_tag('return_uri', $sf_request->getParameter('return_uri')); ?>
@@ -31,8 +31,10 @@
       <?php echo $commentForm['body'] ?>
     <?php endif ?>    
 
-    <?php echo submit_tag('Add', array('class' => 'button')); ?>
+    <?php echo submit_tag('Add', array('class' => 'button', 'id' => 'submit-comment-button')); ?>
   
-    <span id='indicator' style='display:none'>Loading...</span>
+    <span id='comment-indicator' style='display:none'>
+      <?php echo image_tag('ajax-loader.gif', array('alt' => 'Loading...')) ?>
+    </span>
   </div>
 </li>

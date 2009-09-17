@@ -1,7 +1,7 @@
 showSuccess:
   stylesheets:                        [ reset.css, text.css, 960.css, main.css, frontend.css, rateable.css ]
 
-  javascripts:                        [/sfProtoculousPlugin/js/prototype.js, jquery.js, rateable.js]
+  javascripts:                        [jquery.js, jquery.cookie.js]
 
 listSuccess:
   stylesheets:                        [ reset.css, text.css, 960.css, main.css, frontend.css, rateable.css ]

@@ -1,4 +1,3 @@
-<?php $sf_response->addJavascript('jquery') ?>
 <?php $sf_response->addJavascript('jquery.autocomplete.js') ?>
 <?php $sf_response->addStylesheet('jquery.autocomplete.css') ?>
 
