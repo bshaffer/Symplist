@@ -16,7 +16,7 @@ $p->save();
 
 $t->is($p->getIndexableTitle(), 'sf this is a test', 'correct string for Lucene indexing');
 $t->is($p->isRegistered(), false, 'plugin is not registered');
-$t->is($p['symfony_plugins_url'], 'http://www.symfony-project.org/plugins/sfThisIsATestPlugin', 'plugin URL matches Symfony Plugins URL');
+$t->is($p['symfony_plugin_homepage'], 'http://www.symfony-project.org/plugins/sfThisIsATestPlugin', 'plugin URL matches Symfony Plugins URL');
 $t->is($p['repository'], 'http://svn.symfony-project.com/plugins/sfThisIsATestPlugin', 'default repository set');
 $t->is($p['num_votes'], 0, 'no votes');
 $t->is($p['rating'], 0, 'no rating');

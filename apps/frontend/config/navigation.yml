@@ -10,9 +10,9 @@ navigation:
     about:        @about
     contact:      @contact
 
-  Secondary:
+  # Secondary:
     report a bug: 'http://symplist.lighthouseapp.com/projects/36266-symplist/tickets/new'
-    suggestions:  'http://symplist.lighthouseapp.com/projects/36266-symplist/tickets/new'
+    feedback:     'http://symplist.lighthouseapp.com/projects/36266-symplist/tickets/new'
     
 settings:
   database:
