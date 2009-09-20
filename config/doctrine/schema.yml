@@ -2,7 +2,7 @@ SymfonyPlugin:
   actAs:                              
     Sluggable: ~
     Timestampable: ~
-    sfLuceneDoctrineTemplate: ~
+    myLuceneDoctrineTemplate: ~
     Commentable:  []
   columns:
     title:                            
@@ -70,3 +70,27 @@ PluginCategory:
   columns:
     name:                       string(255)
     description:                clob
+
+PluginRelease:
+  columns:
+    plugin_id:              integer
+    version:                string(10)
+    date:   timestamp
+    symfony_version_min:
+      type:                 string(10)
+      # values:               [1.0, 1.1, 1.2, 1.3, 2.0]
+    symfony_version_max:
+      type:                 string(10)
+      # values:               [1.0, 1.1, 1.2, 1.3, 2.0]
+    summary:                clob
+    stability:              string(30)
+    readme:                 clob
+    dependencies:           string(255)
+  relations:
+    SymfonyPlugin:
+      alias:                Plugin
+      foreignAlias:         Releases
+      local:                plugin_id
+      
+      
+      

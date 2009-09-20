@@ -114,6 +114,23 @@ class SymfonyPlugin extends BaseSymfonyPlugin
     return $result;
   }
   
+  public function hasRelease($release)
+  {
+    foreach ($this['Releases'] as $rel) 
+    {
+      if ($rel['version'] == $release) 
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public function isPublished()
+  {
+    return $this['Releases']->count() > 0;
+  }
+  
   public function getSymfonyPluginHomepage()
   {
     return 'http://www.symfony-project.org/plugins/'.$this['title'];

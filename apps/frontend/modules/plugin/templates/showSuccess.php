@@ -5,6 +5,10 @@
   <?php echo $plugin['description'] ?>
 </p>
 
+<?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->id == $plugin->user_id): ?>
+  <?php echo link_to('[edit]', '@plugin_edit?title='.$plugin['title']) ?>
+<?php endif ?>
+
 <table id='plugin-info' class='<?php echo $plugin['title'] ?>'>
   <tr style='display:none'>
     <td colspan='2' class='messages'></td>
@@ -26,12 +30,25 @@
   </tr>
   
   <tr>
+    <th>Releases</th>
+    <td>
+      <?php if ($plugin['Releases']->count()): ?>
+        <?php foreach ($plugin['Releases'] as $release): ?>
+          <?php echo $release['version'] ?>&nbsp;&nbsp;&nbsp;
+        <?php endforeach ?>
+      <?php else: ?>
+        None
+      <?php endif ?>
+    </td>
+  </tr>
+  
+  <tr>
     <th>Rate this Plugin</th>
     <td id='editable-rating'>
       <?php include_partial('plugin/rating_info', array('plugin' => $plugin)) ?>
       <?php include_partial('plugin/rate_javascript', array('plugin' => $plugin)) ?>
     </td>
-  </tr>      
+  </tr>
   
   <tr>
 <?php if ($plugin->isRegistered()): ?>

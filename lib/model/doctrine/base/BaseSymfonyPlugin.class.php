@@ -68,14 +68,18 @@ abstract class BaseSymfonyPlugin extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'symfony_plugin_id'));
 
+        $this->hasMany('PluginRelease as Releases', array(
+             'local' => 'id',
+             'foreign' => 'plugin_id'));
+
         $sluggable0 = new Doctrine_Template_Sluggable();
         $timestampable0 = new Doctrine_Template_Timestampable();
-        $sflucenedoctrinetemplate0 = new sfLuceneDoctrineTemplate();
+        $mylucenedoctrinetemplate0 = new myLuceneDoctrineTemplate();
         $commentable0 = new Doctrine_Template_Commentable(array(
              ));
         $this->actAs($sluggable0);
         $this->actAs($timestampable0);
-        $this->actAs($sflucenedoctrinetemplate0);
+        $this->actAs($mylucenedoctrinetemplate0);
         $this->actAs($commentable0);
     }
 }

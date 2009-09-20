@@ -100,6 +100,22 @@ class pluginActions extends sfActions
     $this->categories = Doctrine::getTable('PluginCategory')->createQuery('c')->orderBy('name ASC')->execute();
   }
   
+  public function executeEdit(sfWebRequest $request)
+  {
+    $this->plugin = Doctrine::getTable("SymfonyPlugin")->findOneByTitle($request->getParameter('title'));
+    $this->forward404Unless($this->plugin);
+    $this->form = new SymfonyPluginForm($this->plugin);
+    if ($request->isMethod('POST')) 
+    {
+      $this->form->bind($request->getParameter('symfony_plugin'), $request->getFiles('symfony_plugin'));
+      if ($this->form->isValid()) 
+      {
+        $this->form->save();
+        $this->getUser()->setFlash('notice', 'Plugin Saved');
+      }
+    }
+  }
+  
   public function executeShow(sfWebRequest $request)
   {
     $this->plugin = Doctrine::getTable("SymfonyPlugin")->findOneByTitle($request->getParameter('title'));
@@ -121,14 +137,21 @@ class pluginActions extends sfActions
   {
     $q = $request->getParameter('q');
     
-    $results = Doctrine::getTable('SymfonyPlugin')->createQuery('p')
+    $query = Doctrine::getTable('SymfonyPlugin')->createQuery('p')
                     ->select('p.title, LEFT(p.description, 200) as description, AVG(r.rating) as rating')
                     ->leftJoin('p.Ratings r')
-                    ->where('title like ?', "%$q%")
+                    ->addWhere('title like ?', "%$q%")
+                    // ->orWhere('description like ?', "%$q%")
                     ->setHydrationMode(Doctrine::HYDRATE_ARRAY)
                     ->limit(10)
-                    ->groupBy('p.id')
-                    ->execute();
+                    ->groupBy('p.id');
+  
+    if ($request->getParameter('published_only') == 'true') 
+    {
+      $query->innerJoin('p.Releases rel');
+    }
+
+    $results = $query->execute();
 
     return $this->renderPartial('plugin/verbose_autocomplete_results', array('results' => $results));
   }

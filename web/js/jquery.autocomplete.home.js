@@ -401,14 +401,36 @@ jQuery.autocomplete = function(input, options) {
 			$.get(makeUrl(q), function(data) {
 				data = parseData(data)
 				addToCache(q, data);
-				findValueCallback(q, data);
+				forceReceiveData(q, data);
+        // findValueCallback(q, data);
 			});
 		} else {
 			// no matches
 			findValueCallback(q, null);
 		}
 	}
+  
+  function forceReceiveData(q, data) {
+		if (data) {
+			$input.removeClass(options.loadingClass);
+			results.innerHTML = "";
 
+			// if the field no longer has focus or if there are no matches, do not display the drop down
+			if( data.length == 0 ) return hideResultsNow();
+
+			if ($.browser.msie) {
+				// we put a styled iframe behind the calendar so HTML SELECT elements don't show through
+				$results.append(document.createElement('iframe'));
+			}
+			results.appendChild(dataToDom(data));
+			// autofill in the complete box w/the first match as long as the user hasn't entered in more data
+			if( options.autoFill && ($input.val().toLowerCase() == q.toLowerCase()) ) autoFill(data[0][0]);
+			showResults();
+		} else {
+			hideResultsNow();
+		}
+	};
+  
 	function findValueCallback(q, data){
 		if (data) $input.removeClass(options.loadingClass);
 
@@ -418,7 +440,7 @@ jQuery.autocomplete = function(input, options) {
 		for (var i=0; i < num; i++) {
 			var row = data[i];
 
-			if( row[0].toLowerCase() == q.toLowerCase() ){
+			if( true || row[0].toLowerCase() == q.toLowerCase() ){
 				li = document.createElement("li");
 				if (options.formatItem) {
 					li.innerHTML = options.formatItem(row, i, num);

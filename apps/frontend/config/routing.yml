@@ -36,6 +36,10 @@ plugin_claim:
   url:                                /plugins/:title/claim
   param:                              { module: plugin, action: claim }
 
+plugin_edit:
+  url:                                /plugins/:title/edit
+  param:                              { module: plugin, action: edit }
+
 plugin_rate:
   url:                                /plugins/:title/rate/:rating
   param:                              { module: plugin, action: rate }  

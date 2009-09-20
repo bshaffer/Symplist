@@ -6,7 +6,7 @@
 class SymfonyPluginApi
 {
   static protected $_root_url = "http://www.symfony-project.org/plugins/api/1.0/",
-                   $_api_key  = "5beafc386c79e4a705ec84d24e5fab1c",
+                   $_api_key  = "e1afc1bd3ccff394d1cb90565c91c5c3",
                    $_password = "x";
   
   static public function getDevelopers()
@@ -27,7 +27,7 @@ class SymfonyPluginApi
     return $xml;
   }
   
-  public function getPluginVersion($plugin, $release)
+  public function getPluginRelease($plugin, $release)
   {
     // ex: $plugin = sfFakePlugin, $release = 1.0.0
     $xml = self::loadFile("plugins/$plugin/releases/$release.xml");

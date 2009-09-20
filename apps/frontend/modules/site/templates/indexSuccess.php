@@ -17,11 +17,13 @@
 			minChars:2,
 			matchSubset:1,
 			matchContains:1,
-			cacheLength:10,
+			cacheLength:1,
 			autoFill:false,
 			appendTo: '#homepage-search-results',
 			noStyles: true,
-			resultsClass: 'search-results-container'
+			resultsClass: 'search-results-container',
+			extraParams: {published_only: true},
+			onFindValue: function(li){alert(li)}
     });
   });
 </script>
@@ -29,7 +31,8 @@
 <?php use_helper('Form') ?>
 <?php echo form_tag('@plugin_search', array('class' => 'search-controls')) ?>
   <?php echo input_tag('q', 'Search Plugins...', array('id' => 'plugin_search_input', 'onblur' => "if(this.value=='') this.value='Search Plugins...';", 'onfocus' => "if(this.value=='Search Plugins...') this.value='';")) ?>
-  <?php echo submit_tag('Go', array('id' => 'plugin_search_button')) ?>
+  <?php //echo submit_tag('Go', array('id' => 'plugin_search_button')) ?>
+  <?php echo checkbox_tag('published_only', null, true, array('onclick' => "$('#plugin_search_input')[0].autocompleter.flushCache();$('#plugin_search_input')[0].autocompleter.setExtraParams({published_only: $(this)[0].checked});$('#plugin_search_input')[0].autocompleter.findValue();")) ?> Published Plugins Only
 <span id='indicator' style='display:none'><?php echo image_tag('ajax-loader.gif') ?></span>
 </form>
 
