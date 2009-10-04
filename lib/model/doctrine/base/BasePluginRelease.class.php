@@ -18,13 +18,15 @@ abstract class BasePluginRelease extends sfDoctrineRecord
         $this->hasColumn('date', 'timestamp', null, array(
              'type' => 'timestamp',
              ));
-        $this->hasColumn('symfony_version_min', 'string', 10, array(
-             'type' => 'string',
-             'length' => '10',
+        $this->hasColumn('symfony_version_min', 'decimal', 5, array(
+             'type' => 'decimal',
+             'length' => '5',
+             'scale' => '1',
              ));
-        $this->hasColumn('symfony_version_max', 'string', 10, array(
-             'type' => 'string',
-             'length' => '10',
+        $this->hasColumn('symfony_version_max', 'decimal', 5, array(
+             'type' => 'decimal',
+             'length' => '5',
+             'scale' => '1',
              ));
         $this->hasColumn('summary', 'clob', null, array(
              'type' => 'clob',

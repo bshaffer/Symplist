@@ -10,8 +10,7 @@
     <div id="header">
       <div class='content'>
         <?php if (!$sf_request->getParameter('homepage')): ?>
-          <?php include_partial('plugin/auto_complete_search', array()) ?>
-          <?php //include_component('sfLucene', 'search_bar', array()) ?>          
+          <?php include_partial('plugin/auto_complete_search', array()) ?>      
         <?php endif ?>
 
         <a href='<?php echo url_for('@homepage') ?>'>

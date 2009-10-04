@@ -1,5 +1,5 @@
 <?php
-class updateSymfonyPluginsTask extends sfBaseTask
+class updateSymfonyPluginsTask extends BaseSymfonyPluginsTask
 {
   protected function configure()
   {
@@ -36,7 +36,6 @@ EOF;
     $plugins = SymfonyPluginApi::getPlugins();
     
     // Rebuild the index before starting
-    $this->runLuceneRebuild();
         
     $count = 0;
     foreach ($plugins as $plugin) 
@@ -74,8 +73,8 @@ EOF;
             $newrel['Plugin'] = $new;
             $newrel['version'] = (string)$release['id'];
             $newrel['stability'] = (string)$release->stability;
-            $newrel['symfony_version_min'] = (string)$release->symfony->min;
-            $newrel['symfony_version_max'] = (string)$release->symfony->max;          
+            $newrel['symfony_version_min'] = $this->parseVersionNumber($release->symfony->min);
+            $newrel['symfony_version_max'] = $this->parseVersionNumber($release->symfony->max);
             $newrel['date'] = (string)$release->date;         
             $newrel['summary'] = (string)$release->summary;
             $newrel->save();
@@ -92,21 +91,13 @@ EOF;
     $this->logSection('import', "Completed.  Added $count new plugins(s)");
   }
   
-  protected function bootstrapSymfony($app, $env, $debug = true)
+  public function parseVersionNumber($version)
   {
-    $configuration = ProjectConfiguration::getApplicationConfiguration($app, $env, $debug);
-
-    sfContext::createInstance($configuration);
+    if (substr_count($version, '.') > 1) 
+    { 
+      return substr($version, 0, strpos($version, '.', 2));
+    }
+    
+    return $version;
   }
-  protected function cleanValue($value)
-  {
-    return str_replace('/', '', $value);
-  }
-  
-  public function runLuceneRebuild()
-  {
-    $this->logSection('import', "running lucene cleanup task");
-    $luceneTask = new sfLuceneRebuildTask($this->dispatcher, $this->formatter);
-    $luceneTask->run(array('application' => 'frontend'), array());
-  } 
 }

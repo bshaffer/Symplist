@@ -96,6 +96,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'sf_guard_user_id'));
 
+        $this->hasMany('CommunityList as CommunityListItems', array(
+             'local' => 'id',
+             'foreign' => 'submitted_by'));
+
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);
     }

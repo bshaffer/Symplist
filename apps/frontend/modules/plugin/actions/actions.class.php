@@ -135,7 +135,7 @@ class pluginActions extends sfActions
 
   public function executeVerboseAutocomplete(sfWebRequest $request)
   {
-    $q = $request->getParameter('q');
+    $q = $request->getParameter('form[query]');
     
     $query = Doctrine::getTable('SymfonyPlugin')->createQuery('p')
                     ->select('p.title, LEFT(p.description, 200) as description, AVG(r.rating) as rating')
@@ -145,10 +145,17 @@ class pluginActions extends sfActions
                     ->setHydrationMode(Doctrine::HYDRATE_ARRAY)
                     ->limit(10)
                     ->groupBy('p.id');
-  
+                    
     if ($request->getParameter('published_only') == 'true') 
     {
       $query->innerJoin('p.Releases rel');
+    }
+    
+    if ($request->hasParameter('version') && $request->getParameter('version') != 'all') 
+    {
+      $v = $request->getParameter('version');
+      $query->innerJoin('p.Releases rel')
+            ->andWhere('rel.symfony_version_min like ? OR rel.symfony_version_max like ?', array("$v%", "$v%"));
     }
 
     $results = $query->execute();
@@ -158,11 +165,11 @@ class pluginActions extends sfActions
   
   public function executeSearch(sfWebRequest $request)
   {
-    $plugin = Doctrine::getTable('SymfonyPlugin')->findOneByTitle($request->getParameter('q'));
+    $plugin = Doctrine::getTable('SymfonyPlugin')->findOneByTitle($request->getParameter('form[query]'));
     if ($plugin) 
     {
       $this->redirect('@plugin?title='.$plugin['title']);
     }
-    $this->redirect('sfLucene/search?form[query]='.$request->getParameter('q'));
+    $this->forward('sfLucene', 'search');
   }
 }

@@ -1,5 +1,5 @@
 <?php
-class importSymfonyPluginsTask extends sfBaseTask
+class importSymfonyPluginsTask extends BaseSymfonyPluginsTask
 {
   protected function configure()
   {
@@ -27,7 +27,7 @@ EOF;
     $connection = $databaseManager->getDatabase('doctrine')->getConnection();
     
     $this->logSection('import', 'initializing...');
-
+    
     $plugins = SymfonyPluginApi::getPlugins();
     $count = 0;
     foreach ($plugins as $plugin) 
@@ -48,31 +48,16 @@ EOF;
         $new['image'] = (string)$plugin->image;
         $new['homepage'] = (string)$plugin->homepage;
         $new['ticketing'] = (string)$plugin->ticketing;
-        $new->save();
+        $new->saveNoIndex();
         $this->logSection('import', "added '$new->title'");
         $count++;
       }      
     }
     
+    $this->logSection('import', "Running Lucene Cleanup");
+    
+    $this->runLuceneRebuild();
+        
     $this->logSection('import', "Completed.  Added $count new plugins(s)");
   }
-
-  protected function bootstrapSymfony($app, $env, $debug = true)
-  {
-    $configuration = ProjectConfiguration::getApplicationConfiguration($app, $env, $debug);
-
-    sfContext::createInstance($configuration);
-  }
-
-  protected function cleanValue($value)
-  {
-    return str_replace('/', '', $value);
-  }
-
-  public function runLuceneRebuild()
-  {
-    $this->logSection('import', "running lucene cleanup task");
-    $luceneTask = new sfLuceneRebuildTask($this->dispatcher, $this->formatter);
-    $luceneTask->run(array('application' => 'frontend'), array());
-  } 
 }

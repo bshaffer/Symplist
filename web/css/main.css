@@ -324,10 +324,16 @@ table#plugin-info .notice
   color:red;
   font-weight:bold;
 }
+/*@end*/
 
+/*@homepage search*/
 #homepage-search-results
 {
   margin-top: 20px;
 }
-
+.search-controls select, .search-controls input
+{
+  float:left;
+  margin-right:5px;
+}
 /*@end*/

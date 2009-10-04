@@ -1,3 +1,5 @@
+# Plugins
+
 plugins:
   url:                                /plugins
   param:                              { module: plugin, action: list }
@@ -52,6 +54,16 @@ plugin_autocomplete:
 plugin_autocomplete_verbose:
   url:                                /plugins/search/auto/full
   params:                             { module: plugin, action: verboseAutocomplete }
+
+# Lists
+
+community_lists:
+  url:                                /lists
+  params:                             { module: list, action: index }
+  
+community_list:
+  url:                                /lists/:slug
+  params:                             { module: list, action: show }
 
 authors:
   url:                                /authors
