@@ -22,6 +22,7 @@ class BaseCommunityListItemFormFilter extends BaseFormFilterDoctrine
       'submitted_by' => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
       'created_at'   => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
       'updated_at'   => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
+      'body_html'    => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -33,6 +34,7 @@ class BaseCommunityListItemFormFilter extends BaseFormFilterDoctrine
       'submitted_by' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'sfGuardUser', 'column' => 'id')),
       'created_at'   => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'updated_at'   => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
+      'body_html'    => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('community_list_item_filters[%s]');
@@ -59,6 +61,7 @@ class BaseCommunityListItemFormFilter extends BaseFormFilterDoctrine
       'submitted_by' => 'ForeignKey',
       'created_at'   => 'Date',
       'updated_at'   => 'Date',
+      'body_html'    => 'Text',
     );
   }
 }

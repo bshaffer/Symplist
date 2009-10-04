@@ -16,7 +16,7 @@ class csNavigationHelper
    * @access public
    * @return void
    */
-  static function init($settings, $navigation)
+  static function init($settings, $navigation, $rebuild = false)
   {
     // Implements Caching for navigation tree
     $cachePath = sfConfig::get('sf_cache_dir').'/navigation_tree.cache';
@@ -26,10 +26,10 @@ class csNavigationHelper
       if(isset($settings['database']['driven']) && $settings['database']['driven'])
       { 
         //Populate Tree from Database
-        if(!Doctrine::getTable('csNavigationItem')->isPopulated())
+        if($rebuild || !Doctrine::getTable('csNavigationItem')->isPopulated())
         {
           //Build Database from Existing navigation.yml file
-          $tree = self::initDatabaseFromYaml($navigation);
+          $tree = self::initDatabaseFromYaml($navigation, $rebuild);
         }
         else
         {
@@ -93,10 +93,16 @@ class csNavigationHelper
     return $menus;
   }
   
-  
-  static function initDatabaseFromYaml($navigation)
+  static function initDatabaseFromYaml($navigation, $rebuild = false)
   {
+    if ($rebuild) self::dropTables();
     return self::getNavigationTreeFromYaml($navigation, true);
+  }
+  
+  static public function dropTables()
+  {
+    Doctrine::getTable('csNavigationMenu')->findAll()->delete();
+    Doctrine::getTable('csNavigationItem')->findAll()->delete();
   }
   
   static function getNavigationTreeFromYaml($arr, $commit = false)

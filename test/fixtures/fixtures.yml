@@ -1,0 +1,95 @@
+SymfonyPlugin:
+  plugin_1:
+    title:    sfFooPlugin
+  plugin_2:
+    title:    sfBarPlugin
+  plugin_3:
+    title:    sfChunkyPlugin
+  plugin_4:
+    title:    sfBaconPlugin
+  plugin_5:
+    title:    sfBetterThanSexPlugin
+    Ratings:
+      rating1:
+        rating: 5
+      rating2:
+        rating: 5
+  plugin_6:
+    title:    sfTravisBlackPlugin
+    Ratings:
+      rating3:
+        rating: 1
+      rating4:
+        rating: 1
+      rating5:
+        rating: 1
+
+CommunityListItem:
+  test:
+    title:      This is an orphaned item
+
+CommunityList:
+  best_practices:
+    title:        Symfony Best Practices
+    description:  |
+      Best practices in software development are all about improving
+      communication between developers through standardization and 
+      enhancing security, maintainability, portability and 
+      interoperability by increasing code quality.
+    User:         sgu_admin
+    Items:
+      bpitem1:
+        title:  Always write "symfony" starting with a small cap
+      bpitem1:
+        title:  Manage the view within the view
+        description: |
+          * Try to avoid the use of the view.yml file
+          * Try to avoid handling the view from the controller (eeeek)
+          or the model (you're fired)
+          * Slots can help (a lot)
+          
+
+PluginAuthor:
+  test_author:
+    first_name:   Test
+    last_name:    User
+    User:         test_user
+    
+    
+sfGuardUser:
+  sgu_admin:
+    username:                         bshaffer
+    password:                         admin
+    is_super_admin:                   true
+  test_user:
+    username:                         test
+    password:                         test
+    is_super_admin:                   true
+
+sfGuardPermission:
+  sgp_admin:
+    name:                             administrator
+    description:                      Administrator Permission
+
+sfGuardGroup:
+  sgg_admin:
+    name:                             administrator
+    description:                      Administrator Group
+  plugin_author_group:
+    name:                             Plugin Author
+    description:                      The Author of a Plugin
+
+sfGuardGroupPermission:
+  sggp_admin:
+    sfGuardGroup:                     sgg_admin
+    sfGuardPermission:                sgp_admin
+
+sfGuardUserGroup:
+  sgug_admin:
+    sfGuardGroup:                     sgg_admin
+    sfGuardUser:                      sgu_admin
+
+PluginCategory:
+  Uncategorized:
+    name:          Uncategorized
+    description:   Newly imported or unclaimed plugins.

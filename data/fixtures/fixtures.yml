@@ -44,9 +44,9 @@ CommunityList:
     Items:
       bpitem1:
         title:  Always write "symfony" starting with a small cap
-      bpitem1:
+      bpitem2:
         title:  Manage the view within the view
-        description: |
+        body: |
           * Try to avoid the use of the view.yml file
           * Try to avoid handling the view from the controller (eeeek)
           or the model (you're fired)

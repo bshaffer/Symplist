@@ -21,6 +21,7 @@ class BaseCommunityListItemForm extends BaseFormDoctrine
       'submitted_by' => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
       'created_at'   => new sfWidgetFormDateTime(),
       'updated_at'   => new sfWidgetFormDateTime(),
+      'body_html'    => new sfWidgetFormTextarea(),
     ));
 
     $this->setValidators(array(
@@ -33,6 +34,7 @@ class BaseCommunityListItemForm extends BaseFormDoctrine
       'submitted_by' => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
       'created_at'   => new sfValidatorDateTime(array('required' => false)),
       'updated_at'   => new sfValidatorDateTime(array('required' => false)),
+      'body_html'    => new sfValidatorString(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('community_list_item[%s]');

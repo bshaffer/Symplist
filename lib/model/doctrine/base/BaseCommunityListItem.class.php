@@ -42,6 +42,13 @@ abstract class BaseCommunityListItem extends sfDoctrineRecord
              'foreign' => 'id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
+        $markdown0 = new Doctrine_Template_Markdown(array(
+             'fields' => 
+             array(
+              0 => 'body',
+             ),
+             ));
         $this->actAs($timestampable0);
+        $this->actAs($markdown0);
     }
 }

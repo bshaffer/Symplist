@@ -159,35 +159,68 @@ ul.star_rating li.five-stars a.selected {
 /*@end*/
 
 /*@group Thumbs Rating*/
-div.rate_this ul#thumbs_rating {
+.thumbs_rating a {
+	list-style: none;
+	display: inline;
+	margin: 0 0 2em;
 	padding: 0;
 }
-div.rate_this ul#thumbs_rating li{
+
+.thumbs_rating {
+	padding: 0;
+}
+.thumbs_rating a{
 	float: left;
+	height: 18px;
+	margin: 0 .2em;
+	padding: 0;
+	width: 18px;
+}
+
+.thumbs_rating a {
+	background-image: url('../images/seo-thumbs.gif');
+	background-repeat: no-repeat;
+	text-indent: -9999px;
+}
+
+.thumbs_rating a.thumbs-up {
+	background-position: 0 0px;
+}
+
+
+
+.thumbs_rating a.thumbs-down {
+	background-position: 0 -92px;
+}
+.thumbs_rating a.thumbs-up:hover {
+	background-position: 0% -46px;
+}
+
+.thumbs_rating a.thumbs-down:hover {
+	background-position: 0 -139px;
+}
+
+/* For Large Thumb Icons*/
+
+.thumbs_rating a.large {
+	background-image: url('../images/seo-thumbs-large.gif');
 	height: 26px;
-	margin: 0 .5em;
-	padding; 0;
 	width: 26px;
 }
 
-div.rate_this ul#thumbs_rating li a {
-	background-image: url('../images/seo-thumbs.gif');
-	background-repeat: no-repeat;
-	display: block;
-	height: 100%;
-	text-indent: -9999px;
-	width: 100%;
+.thumbs_rating a.thumbs-up-large {
+	background-position: 0 -40px;
 }
 
-div.rate_this ul#thumbs_rating li a#thumbs-down {
-	background-position: 0 -132px;
+.thumbs_rating a.thumbs-down-large {
+	background-position: 0 -172px;
 }
-div.rate_this ul#thumbs_rating li a#thumbs-up:hover {
-	background-position: 0% -66px;
+.thumbs_rating a.thumbs-up-large:hover {
+	background-position: 0% -106px;
 }
 
-div.rate_this ul#thumbs_rating li a#thumbs-down:hover {
-	background-position: 0 -198px;
+.thumbs_rating a.thumbs-down-large:hover {
+	background-position: 0 -238px;
 }
 /*@end*/
 

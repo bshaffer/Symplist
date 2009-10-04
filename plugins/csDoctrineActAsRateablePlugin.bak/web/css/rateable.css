@@ -71,10 +71,17 @@ ul#star_rating li a.five-stars:hover {
 /*@end*/
 
 /*@group Thumbs Rating*/
-div#rate-this ul#thumbs_rating {
+ul.thumbs_rating li {
+	list-style: none;
+	display: inline;
+	margin: 0 0 2em;
 	padding: 0;
 }
-div#rate-this ul#thumbs_rating li{
+
+ul.thumbs_rating {
+	padding: 0;
+}
+ul.thumbs_rating li{
 	float: left;
 	height: 26px;
 	margin: 0 .5em;
@@ -82,7 +89,7 @@ div#rate-this ul#thumbs_rating li{
 	width: 26px;
 }
 
-div#rate-this ul#thumbs_rating li a {
+ul.thumbs_rating li a {
 	background-image: url('../images/seo-thumbs.gif');
 	background-repeat: no-repeat;
 	display: block;
@@ -91,14 +98,14 @@ div#rate-this ul#thumbs_rating li a {
 	width: 100%;
 }
 
-div#rate-this ul#thumbs_rating li a#thumbs-down {
+ul.thumbs_rating li a.thumbs-down {
 	background-position: 0 -132px;
 }
-div#rate-this ul#thumbs_rating li a#thumbs-up:hover {
+ul.thumbs_rating li a.thumbs-up:hover {
 	background-position: 0% -66px;
 }
 
-div#rate-this ul#thumbs_rating li a#thumbs-down:hover {
+ul.thumbs_rating li a.thumbs-down:hover {
 	background-position: 0 -198px;
 }
 /*@end*/

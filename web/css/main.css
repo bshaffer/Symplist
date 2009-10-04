@@ -337,3 +337,10 @@ table#plugin-info .notice
   margin-right:5px;
 }
 /*@end*/
+
+/* @community lists*/
+.community-list-items h3 span.thumbs_rating
+{
+  float:right;
+}
+/*@end*/

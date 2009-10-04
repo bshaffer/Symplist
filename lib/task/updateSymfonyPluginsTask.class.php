@@ -6,9 +6,6 @@ class updateSymfonyPluginsTask extends BaseSymfonyPluginsTask
 	  $this->addOptions(array(
       new sfCommandOption('app', null, sfCommandOption::PARAMETER_REQUIRED, 'The application', 'frontend'),
       new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'prod'),
-      new sfCommandOption('id', null, sfCommandOption::PARAMETER_REQUIRED, 'A specific id to rebuild', null),
-      new sfCommandOption('where', null, sfCommandOption::PARAMETER_REQUIRED, 'A where clause (equals signs must be replaced with the word "is")', null),
-      new sfCommandOption('no-confirmation', null, sfCommandOption::PARAMETER_NONE, 'executes task without confirmations'),
     ));
 
     $this->namespace        = 'symfony-plugins';
@@ -43,11 +40,7 @@ EOF;
       $new = Doctrine::getTable('SymfonyPlugin')->findOneByTitle($plugin['id']);
       
       // if plugin exists update info.  Otherwise, create it
-      if ($new) 
-      {
-
-      }
-      else
+      if (!$new) 
       {
         $new = new SymfonyPlugin();
         $new['title'] = (string)$plugin['id'];
@@ -62,7 +55,6 @@ EOF;
       } 
       
       $info = SymfonyPluginApi::getPlugin($plugin['id']);
-      
       if (isset($info->releases->release[0])) 
       {
         foreach ($info->releases->release as $release) 

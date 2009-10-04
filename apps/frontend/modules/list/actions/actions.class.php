@@ -17,7 +17,17 @@ class listActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
+    $this->pager = new sfDoctrinePager('SymfonyPlugin', 10);
 
+    $q = Doctrine::getTable('CommunityList')->getPopularListsQuery();
+                
+    $this->pager->setQuery($q);
+
+    $this->pager->setPage($request->getParameter('page', 1));
+    
+    $this->pager->init();  
+    
+    $this->lists = $this->pager->getResults();  
   }
   
   public function executeShow(sfWebRequest $request)

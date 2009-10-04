@@ -5,5 +5,12 @@
  */
 class CommunityList extends BaseCommunityList
 {
-
+  public function getOrderedItems()
+  {
+    return Doctrine::getTable('CommunityListItem')
+          ->createQuery('i')
+          ->orderBy('i.score, i.created_at')
+          ->where('i.list_id = ?', $this['id'])
+          ->execute();
+  }
 }
