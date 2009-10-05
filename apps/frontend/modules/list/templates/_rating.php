@@ -1,4 +1,3 @@
-<span class='thumbs_rating'>
-    <?php echo link_to('thumbs up', $sf_request->getUri(), array('class' => 'thumbs-up')) ?>
-    <?php echo link_to('thumbs down', $sf_request->getUri(), array('class' => 'thumbs-down')) ?>
-</span>
+    <a href='#' class='thumbs-up'>thumbs up</a>
+    <span class='rating'><?php echo $item['score'] ?></span>
+    <a href='#' class='thumbs-down'>thumbs down</a>

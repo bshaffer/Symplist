@@ -21,9 +21,11 @@ abstract class BaseCommunityListItem extends sfDoctrineRecord
              ));
         $this->hasColumn('score', 'integer', null, array(
              'type' => 'integer',
+             'default' => 0,
              ));
         $this->hasColumn('count', 'integer', null, array(
              'type' => 'integer',
+             'default' => 0,
              ));
         $this->hasColumn('submitted_by', 'integer', 4, array(
              'type' => 'integer',

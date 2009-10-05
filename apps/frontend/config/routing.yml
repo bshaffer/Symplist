@@ -60,6 +60,10 @@ plugin_autocomplete_verbose:
 community_lists:
   url:                                /lists
   params:                             { module: list, action: index }
+
+list_rate_ajax:
+  url:                                /lists/rate
+  param:                              { module: list, action: rate }  
   
 community_list:
   url:                                /lists/:slug

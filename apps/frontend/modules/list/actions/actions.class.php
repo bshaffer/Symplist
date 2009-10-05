@@ -35,4 +35,16 @@ class listActions extends sfActions
     $this->list = Doctrine::getTable('CommunityList')->findOneBySlug($request->getParameter('slug'));
     $this->forward404Unless($this->list);
   }
+  
+  public function executeRate(sfWebRequest $request)
+  {
+    $item = Doctrine::getTable('CommunityListItem')->findOneById($request->getParameter('id'));
+    $this->forward404Unless($item);
+    $item['score'] = (int)$item['score'] + $request->getParameter('rating', 0);
+    $item['count'] = $item['count'] + 1;
+    $item->save();
+    $selected = $request->getParameter('rating') > 0 ? 'thumbs-up-selected' : 'thumbs-down-selected';
+    return $this->renderPartial('list/rating', array('item' => $item, 'selected' => $selected));
+  }
+
 }

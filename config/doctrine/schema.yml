@@ -122,8 +122,12 @@ CommunityListItem:
       notnull:      true
     body:           clob
     list_id:        integer
-    score:          integer
-    count:          integer
+    score:          
+      type:         integer
+      default:      0
+    count:          
+      type:         integer
+      default:      0
     submitted_by:   integer(4)
   relations:
     CommunityList:

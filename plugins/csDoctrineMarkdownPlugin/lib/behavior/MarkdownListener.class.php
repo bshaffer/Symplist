@@ -56,7 +56,7 @@ class Doctrine_Template_Listener_Markdown extends Doctrine_Record_Listener
     $object = $event->getInvoker();
     foreach ($this->_options['fields'] as $parsedField => $markdownField) 
     {
-      if (array_key_exists($object->getModified(), $markdownField))
+      if (array_key_exists($markdownField, $object->getModified()))
       {
         $object[$parsedField] = $parser->transform($object[$markdownField]);
       }
