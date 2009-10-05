@@ -1,4 +1,3 @@
-
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function(){
     $('.list-item-<?php echo $item["id"] ?> a').click(function(){

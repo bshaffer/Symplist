@@ -4,7 +4,10 @@
     <?php include_http_metas() ?>
     <?php include_title() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
-  </head>
+  
+    <?php include_stylesheets() ?>
+    <?php include_javascripts() ?>
+</head>
   <body id="module-<?php echo $sf_request->getParameter('module') ?>-action-<?php echo $sf_request->getParameter('action') ?>">
     <?php use_helper('Navigation') ?>
     <div id="header">

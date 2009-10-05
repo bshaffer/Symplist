@@ -17,4 +17,4 @@ navigation:
     
 settings:
   database:
-    driven:    on
+    driven:    true

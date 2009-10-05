@@ -5,7 +5,10 @@
     <?php include_metas() ?>
     <?php include_title() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
-  </head>
+  
+    <?php include_stylesheets() ?>
+    <?php include_javascripts() ?>
+</head>
   <body>
     <div id="page" class="container_16 clearfix">
       <div id="header" class="grid_16">
