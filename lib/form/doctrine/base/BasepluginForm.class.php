@@ -14,11 +14,11 @@ class BasePluginForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
-      'title'       => new sfWidgetFormInput(),
+      'title'       => new sfWidgetFormInputText(),
       'description' => new sfWidgetFormTextarea(),
       'author_id'   => new sfWidgetFormDoctrineChoice(array('model' => 'PluginAuthor', 'add_empty' => true)),
       'category_id' => new sfWidgetFormDoctrineChoice(array('model' => 'PluginCategory', 'add_empty' => true)),
-      'slug'        => new sfWidgetFormInput(),
+      'slug'        => new sfWidgetFormInputText(),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
     ));

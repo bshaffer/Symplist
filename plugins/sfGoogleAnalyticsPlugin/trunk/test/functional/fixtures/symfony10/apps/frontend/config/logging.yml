@@ -1,16 +1,16 @@
 prod:
-  enabled: off
+  enabled: false
   level:   err
-  rotate:  on
-  purge:   off
+  rotate:  true
+  purge:   false
 
 #all:
-#  enabled: on
+#  enabled: true
 #  level:   debug
-#  rotate:  off
+#  rotate:  false
 #  period:  7
 #  history: 10
-#  purge:   on
+#  purge:   true
 #  loggers:
 #    sf_web_debug:
 #      class: sfWebDebugLogger

@@ -1,6 +1,0 @@
-fields:
-   sf_setting{name}:
-      sfDoctrineUniqueValidator:
-         class:   sfSetting
-         column:  name
-         unique_error: Sorry, a setting with this name already exists.

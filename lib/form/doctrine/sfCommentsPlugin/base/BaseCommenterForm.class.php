@@ -3,9 +3,10 @@
 /**
  * Commenter form base class.
  *
- * @package    form
- * @subpackage commenter
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
+ * @package    plugintracker
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id$
  */
 class BaseCommenterForm extends BaseFormDoctrine
 {
@@ -13,9 +14,9 @@ class BaseCommenterForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'       => new sfWidgetFormInputHidden(),
-      'username' => new sfWidgetFormInput(),
-      'email'    => new sfWidgetFormInput(),
-      'website'  => new sfWidgetFormInput(),
+      'username' => new sfWidgetFormInputText(),
+      'email'    => new sfWidgetFormInputText(),
+      'website'  => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -28,6 +29,8 @@ class BaseCommenterForm extends BaseFormDoctrine
     $this->widgetSchema->setNameFormat('commenter[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }

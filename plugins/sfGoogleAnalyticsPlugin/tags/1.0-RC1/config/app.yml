@@ -1,6 +1,6 @@
 # all:
 #   google_analytics:
-#     enabled:      off
+#     enabled:      false
 #     uacct:        ~       # Profile number
 #     insertion:    bottom  # Where to insert the tracking code (top or bottom)
 #     vars:                 # Custom init variables     - http://www.google.com/support/googleanalytics/bin/answer.py?answer=55585

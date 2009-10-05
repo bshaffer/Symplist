@@ -3,9 +3,10 @@
 /**
  * sfGuardUserGroup form base class.
  *
- * @package    form
- * @subpackage sf_guard_user_group
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
+ * @package    plugintracker
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id$
  */
 class BasesfGuardUserGroupForm extends BaseFormDoctrine
 {
@@ -21,13 +22,15 @@ class BasesfGuardUserGroupForm extends BaseFormDoctrine
     $this->setValidators(array(
       'user_id'    => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUserGroup', 'column' => 'user_id', 'required' => false)),
       'group_id'   => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUserGroup', 'column' => 'group_id', 'required' => false)),
-      'created_at' => new sfValidatorDateTime(array('required' => false)),
-      'updated_at' => new sfValidatorDateTime(array('required' => false)),
+      'created_at' => new sfValidatorDateTime(),
+      'updated_at' => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('sf_guard_user_group[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }

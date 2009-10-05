@@ -3,9 +3,10 @@
 /**
  * PluginRating form base class.
  *
- * @package    form
- * @subpackage plugin_rating
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
+ * @package    plugintracker
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id$
  */
 class BasePluginRatingForm extends BaseFormDoctrine
 {
@@ -15,7 +16,7 @@ class BasePluginRatingForm extends BaseFormDoctrine
       'id'                => new sfWidgetFormInputHidden(),
       'symfony_plugin_id' => new sfWidgetFormDoctrineChoice(array('model' => 'SymfonyPlugin', 'add_empty' => true)),
       'sf_guard_user_id'  => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
-      'rating'            => new sfWidgetFormInput(),
+      'rating'            => new sfWidgetFormInputText(),
       'created_at'        => new sfWidgetFormDateTime(),
       'updated_at'        => new sfWidgetFormDateTime(),
     ));
@@ -25,13 +26,15 @@ class BasePluginRatingForm extends BaseFormDoctrine
       'symfony_plugin_id' => new sfValidatorDoctrineChoice(array('model' => 'SymfonyPlugin', 'required' => false)),
       'sf_guard_user_id'  => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
       'rating'            => new sfValidatorInteger(array('required' => false)),
-      'created_at'        => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'        => new sfValidatorDateTime(array('required' => false)),
+      'created_at'        => new sfValidatorDateTime(),
+      'updated_at'        => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('plugin_rating[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }

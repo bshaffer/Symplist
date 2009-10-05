@@ -1,5 +1,5 @@
 thankYouHtmlSuccess:
-  has_layout: no
+  has_layout: false
   
 thankYouTextSuccess: 
-  has_layout: no
+  has_layout: false

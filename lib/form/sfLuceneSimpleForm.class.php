@@ -25,7 +25,7 @@ class sfLuceneSimpleForm extends sfLuceneSimpleFormBase
   public function setup()
   {
     parent::setup();
-    $this->widgetSchema['query'] = new sfWidgetFormInput(array(), array());
+    $this->widgetSchema['query'] = new sfWidgetFormInputText(array(), array());
     $this->widgetSchema->setDefault('query', 'Search Plugins...');
   }
 }

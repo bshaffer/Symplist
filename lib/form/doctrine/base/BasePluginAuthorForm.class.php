@@ -3,9 +3,10 @@
 /**
  * PluginAuthor form base class.
  *
- * @package    form
- * @subpackage plugin_author
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
+ * @package    plugintracker
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id$
  */
 class BasePluginAuthorForm extends BaseFormDoctrine
 {
@@ -13,9 +14,9 @@ class BasePluginAuthorForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'               => new sfWidgetFormInputHidden(),
-      'first_name'       => new sfWidgetFormInput(),
-      'last_name'        => new sfWidgetFormInput(),
-      'email'            => new sfWidgetFormInput(),
+      'first_name'       => new sfWidgetFormInputText(),
+      'last_name'        => new sfWidgetFormInputText(),
+      'email'            => new sfWidgetFormInputText(),
       'bio'              => new sfWidgetFormTextarea(),
       'sf_guard_user_id' => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
     ));
@@ -32,6 +33,8 @@ class BasePluginAuthorForm extends BaseFormDoctrine
     $this->widgetSchema->setNameFormat('plugin_author[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }

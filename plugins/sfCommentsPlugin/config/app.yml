@@ -1,7 +1,7 @@
 all:
   comments:
-    nesting:                    on
-    approved_by_default:        off
+    nesting:                    true
+    approved_by_default:        false
     commenter_class:            Commenter
     AllowAnonymous:             true
     textarea_params:             

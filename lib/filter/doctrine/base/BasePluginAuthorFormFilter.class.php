@@ -1,13 +1,12 @@
 <?php
 
-require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/BaseFormFilterDoctrine.class.php');
-
 /**
  * PluginAuthor filter form base class.
  *
- * @package    filters
- * @subpackage PluginAuthor *
- * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 11675 2008-09-19 15:21:38Z fabien $
+ * @package    plugintracker
+ * @subpackage filter
+ * @author     Your name here
+ * @version    SVN: $Id$
  */
 class BasePluginAuthorFormFilter extends BaseFormFilterDoctrine
 {
@@ -32,6 +31,8 @@ class BasePluginAuthorFormFilter extends BaseFormFilterDoctrine
     $this->widgetSchema->setNameFormat('plugin_author_filters[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }

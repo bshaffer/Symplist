@@ -3,9 +3,10 @@
 /**
  * sfGuardUser form base class.
  *
- * @package    form
- * @subpackage sf_guard_user
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
+ * @package    plugintracker
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id$
  */
 class BasesfGuardUserForm extends BaseFormDoctrine
 {
@@ -13,34 +14,34 @@ class BasesfGuardUserForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                 => new sfWidgetFormInputHidden(),
-      'username'           => new sfWidgetFormInput(),
-      'algorithm'          => new sfWidgetFormInput(),
-      'salt'               => new sfWidgetFormInput(),
-      'password'           => new sfWidgetFormInput(),
+      'username'           => new sfWidgetFormInputText(),
+      'algorithm'          => new sfWidgetFormInputText(),
+      'salt'               => new sfWidgetFormInputText(),
+      'password'           => new sfWidgetFormInputText(),
       'is_active'          => new sfWidgetFormInputCheckbox(),
       'is_super_admin'     => new sfWidgetFormInputCheckbox(),
       'last_login'         => new sfWidgetFormDateTime(),
       'created_at'         => new sfWidgetFormDateTime(),
       'updated_at'         => new sfWidgetFormDateTime(),
-      'groups_list'        => new sfWidgetFormDoctrineChoiceMany(array('model' => 'sfGuardGroup')),
-      'permissions_list'   => new sfWidgetFormDoctrineChoiceMany(array('model' => 'sfGuardPermission')),
-      'rated_plugins_list' => new sfWidgetFormDoctrineChoiceMany(array('model' => 'SymfonyPlugin')),
+      'groups_list'        => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup')),
+      'permissions_list'   => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission')),
+      'rated_plugins_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'SymfonyPlugin')),
     ));
 
     $this->setValidators(array(
       'id'                 => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'column' => 'id', 'required' => false)),
       'username'           => new sfValidatorString(array('max_length' => 128)),
-      'algorithm'          => new sfValidatorString(array('max_length' => 128)),
+      'algorithm'          => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'salt'               => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'password'           => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'is_active'          => new sfValidatorBoolean(array('required' => false)),
       'is_super_admin'     => new sfValidatorBoolean(array('required' => false)),
       'last_login'         => new sfValidatorDateTime(array('required' => false)),
-      'created_at'         => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'         => new sfValidatorDateTime(array('required' => false)),
-      'groups_list'        => new sfValidatorDoctrineChoiceMany(array('model' => 'sfGuardGroup', 'required' => false)),
-      'permissions_list'   => new sfValidatorDoctrineChoiceMany(array('model' => 'sfGuardPermission', 'required' => false)),
-      'rated_plugins_list' => new sfValidatorDoctrineChoiceMany(array('model' => 'SymfonyPlugin', 'required' => false)),
+      'created_at'         => new sfValidatorDateTime(),
+      'updated_at'         => new sfValidatorDateTime(),
+      'groups_list'        => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup', 'required' => false)),
+      'permissions_list'   => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission', 'required' => false)),
+      'rated_plugins_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'SymfonyPlugin', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -50,6 +51,8 @@ class BasesfGuardUserForm extends BaseFormDoctrine
     $this->widgetSchema->setNameFormat('sf_guard_user[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }
@@ -82,11 +85,11 @@ class BasesfGuardUserForm extends BaseFormDoctrine
 
   protected function doSave($con = null)
   {
-    parent::doSave($con);
-
     $this->savegroupsList($con);
     $this->savepermissionsList($con);
     $this->saveRatedPluginsList($con);
+
+    parent::doSave($con);
   }
 
   public function savegroupsList($con = null)

@@ -1,4 +1,0 @@
-sf_setting_save_all:
-  url:     /sf_setting_save_all
-  param:   { module: sf_setting, action: listSaveSettings }
-  requirements: { sf_method: post }

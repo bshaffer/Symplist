@@ -3,9 +3,10 @@
 /**
  * csNavigationMenu form base class.
  *
- * @package    form
- * @subpackage cs_navigation_menu
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
+ * @package    plugintracker
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id$
  */
 class BasecsNavigationMenuForm extends BaseFormDoctrine
 {
@@ -13,8 +14,8 @@ class BasecsNavigationMenuForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
-      'title'       => new sfWidgetFormInput(),
-      'description' => new sfWidgetFormInput(),
+      'title'       => new sfWidgetFormInputText(),
+      'description' => new sfWidgetFormInputText(),
       'root_id'     => new sfWidgetFormDoctrineChoice(array('model' => 'csNavigationItem', 'add_empty' => true)),
     ));
 
@@ -28,6 +29,8 @@ class BasecsNavigationMenuForm extends BaseFormDoctrine
     $this->widgetSchema->setNameFormat('cs_navigation_menu[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }

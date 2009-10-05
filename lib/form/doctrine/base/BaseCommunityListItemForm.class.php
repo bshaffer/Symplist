@@ -3,9 +3,10 @@
 /**
  * CommunityListItem form base class.
  *
- * @package    form
- * @subpackage community_list_item
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
+ * @package    plugintracker
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id$
  */
 class BaseCommunityListItemForm extends BaseFormDoctrine
 {
@@ -13,11 +14,11 @@ class BaseCommunityListItemForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'           => new sfWidgetFormInputHidden(),
-      'title'        => new sfWidgetFormInput(),
+      'title'        => new sfWidgetFormInputText(),
       'body'         => new sfWidgetFormTextarea(),
       'list_id'      => new sfWidgetFormDoctrineChoice(array('model' => 'CommunityList', 'add_empty' => true)),
-      'score'        => new sfWidgetFormInput(),
-      'count'        => new sfWidgetFormInput(),
+      'score'        => new sfWidgetFormInputText(),
+      'count'        => new sfWidgetFormInputText(),
       'submitted_by' => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
       'created_at'   => new sfWidgetFormDateTime(),
       'updated_at'   => new sfWidgetFormDateTime(),
@@ -32,14 +33,16 @@ class BaseCommunityListItemForm extends BaseFormDoctrine
       'score'        => new sfValidatorInteger(array('required' => false)),
       'count'        => new sfValidatorInteger(array('required' => false)),
       'submitted_by' => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
-      'created_at'   => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'   => new sfValidatorDateTime(array('required' => false)),
+      'created_at'   => new sfValidatorDateTime(),
+      'updated_at'   => new sfValidatorDateTime(),
       'body_html'    => new sfValidatorString(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('community_list_item[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }

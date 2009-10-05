@@ -3,9 +3,10 @@
 /**
  * sfGuardRememberKey form base class.
  *
- * @package    form
- * @subpackage sf_guard_remember_key
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
+ * @package    plugintracker
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id$
  */
 class BasesfGuardRememberKeyForm extends BaseFormDoctrine
 {
@@ -14,7 +15,7 @@ class BasesfGuardRememberKeyForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'           => new sfWidgetFormInputHidden(),
       'user_id'      => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
-      'remember_key' => new sfWidgetFormInput(),
+      'remember_key' => new sfWidgetFormInputText(),
       'ip_address'   => new sfWidgetFormInputHidden(),
       'created_at'   => new sfWidgetFormDateTime(),
       'updated_at'   => new sfWidgetFormDateTime(),
@@ -25,13 +26,15 @@ class BasesfGuardRememberKeyForm extends BaseFormDoctrine
       'user_id'      => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
       'remember_key' => new sfValidatorString(array('max_length' => 32, 'required' => false)),
       'ip_address'   => new sfValidatorDoctrineChoice(array('model' => 'sfGuardRememberKey', 'column' => 'ip_address', 'required' => false)),
-      'created_at'   => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'   => new sfValidatorDateTime(array('required' => false)),
+      'created_at'   => new sfValidatorDateTime(),
+      'updated_at'   => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('sf_guard_remember_key[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }

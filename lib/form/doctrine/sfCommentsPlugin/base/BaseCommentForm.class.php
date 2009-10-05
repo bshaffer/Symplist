@@ -3,9 +3,10 @@
 /**
  * Comment form base class.
  *
- * @package    form
- * @subpackage comment
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
+ * @package    plugintracker
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id$
  */
 class BaseCommentForm extends BaseFormDoctrine
 {
@@ -18,13 +19,12 @@ class BaseCommentForm extends BaseFormDoctrine
       'approved_at'           => new sfWidgetFormDateTime(),
       'user_id'               => new sfWidgetFormDoctrineChoice(array('model' => 'Commenter', 'add_empty' => true)),
       'authenticated_user_id' => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
-      'root_id'               => new sfWidgetFormInput(),
-      'lft'                   => new sfWidgetFormInput(),
-      'rgt'                   => new sfWidgetFormInput(),
-      'level'                 => new sfWidgetFormInput(),
+      'root_id'               => new sfWidgetFormInputText(),
+      'lft'                   => new sfWidgetFormInputText(),
+      'rgt'                   => new sfWidgetFormInputText(),
+      'level'                 => new sfWidgetFormInputText(),
       'created_at'            => new sfWidgetFormDateTime(),
       'updated_at'            => new sfWidgetFormDateTime(),
-      'symfony_plugin_list'   => new sfWidgetFormDoctrineChoiceMany(array('model' => 'SymfonyPlugin')),
     ));
 
     $this->setValidators(array(
@@ -38,14 +38,15 @@ class BaseCommentForm extends BaseFormDoctrine
       'lft'                   => new sfValidatorInteger(array('required' => false)),
       'rgt'                   => new sfValidatorInteger(array('required' => false)),
       'level'                 => new sfValidatorInteger(array('required' => false)),
-      'created_at'            => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'            => new sfValidatorDateTime(array('required' => false)),
-      'symfony_plugin_list'   => new sfValidatorDoctrineChoiceMany(array('model' => 'SymfonyPlugin', 'required' => false)),
+      'created_at'            => new sfValidatorDateTime(),
+      'updated_at'            => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('comment[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }
@@ -53,62 +54,6 @@ class BaseCommentForm extends BaseFormDoctrine
   public function getModelName()
   {
     return 'Comment';
-  }
-
-  public function updateDefaultsFromObject()
-  {
-    parent::updateDefaultsFromObject();
-
-    if (isset($this->widgetSchema['symfony_plugin_list']))
-    {
-      $this->setDefault('symfony_plugin_list', $this->object->SymfonyPlugin->getPrimaryKeys());
-    }
-
-  }
-
-  protected function doSave($con = null)
-  {
-    parent::doSave($con);
-
-    $this->saveSymfonyPluginList($con);
-  }
-
-  public function saveSymfonyPluginList($con = null)
-  {
-    if (!$this->isValid())
-    {
-      throw $this->getErrorSchema();
-    }
-
-    if (!isset($this->widgetSchema['symfony_plugin_list']))
-    {
-      // somebody has unset this widget
-      return;
-    }
-
-    if (is_null($con))
-    {
-      $con = $this->getConnection();
-    }
-
-    $existing = $this->object->SymfonyPlugin->getPrimaryKeys();
-    $values = $this->getValue('symfony_plugin_list');
-    if (!is_array($values))
-    {
-      $values = array();
-    }
-
-    $unlink = array_diff($existing, $values);
-    if (count($unlink))
-    {
-      $this->object->unlink('SymfonyPlugin', array_values($unlink));
-    }
-
-    $link = array_diff($values, $existing);
-    if (count($link))
-    {
-      $this->object->link('SymfonyPlugin', array_values($link));
-    }
   }
 
 }

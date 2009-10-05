@@ -3,9 +3,10 @@
 /**
  * PluginCategory form base class.
  *
- * @package    form
- * @subpackage plugin_category
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
+ * @package    plugintracker
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id$
  */
 class BasePluginCategoryForm extends BaseFormDoctrine
 {
@@ -13,9 +14,9 @@ class BasePluginCategoryForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
-      'name'        => new sfWidgetFormInput(),
+      'name'        => new sfWidgetFormInputText(),
       'description' => new sfWidgetFormTextarea(),
-      'slug'        => new sfWidgetFormInput(),
+      'slug'        => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -28,6 +29,8 @@ class BasePluginCategoryForm extends BaseFormDoctrine
     $this->widgetSchema->setNameFormat('plugin_category[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }

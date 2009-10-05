@@ -31,7 +31,7 @@ abstract class BaseFormDoctrine extends sfFormDoctrine
           break;
         case 'title':
         case 'name':
-          $this->widgetSchema[$key] = new sfWidgetFormInput(array(), array('size' => 100));
+          $this->widgetSchema[$key] = new sfWidgetFormInputText(array(), array('size' => 100));
           break;
         case 'image':
         case 'photo':

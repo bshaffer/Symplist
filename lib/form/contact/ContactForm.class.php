@@ -3,13 +3,13 @@
 /**
 * Contact Form Class
 */
-class ContactForm extends sfForm
+class ContactForm extends BaseForm
 {
   public function configure()
   {
     $this->setWidgets(array(
-      'name'        => new sfWidgetFormInput(),
-      'email'       => new sfWidgetFormInput(),
+      'name'        => new sfWidgetFormInputText(),
+      'email'       => new sfWidgetFormInputText(),
       'message'     => new sfWidgetFormTextarea()
       ));
     

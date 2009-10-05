@@ -1,13 +1,12 @@
 <?php
 
-require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/BaseFormFilterDoctrine.class.php');
-
 /**
  * csNavigationItem filter form base class.
  *
- * @package    filters
- * @subpackage csNavigationItem *
- * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 11675 2008-09-19 15:21:38Z fabien $
+ * @package    plugintracker
+ * @subpackage filter
+ * @author     Your name here
+ * @version    SVN: $Id$
  */
 class BasecsNavigationItemFormFilter extends BaseFormFilterDoctrine
 {
@@ -38,6 +37,8 @@ class BasecsNavigationItemFormFilter extends BaseFormFilterDoctrine
     $this->widgetSchema->setNameFormat('cs_navigation_item_filters[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }

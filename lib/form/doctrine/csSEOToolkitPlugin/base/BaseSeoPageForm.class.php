@@ -3,9 +3,10 @@
 /**
  * SeoPage form base class.
  *
- * @package    form
- * @subpackage seo_page
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
+ * @package    plugintracker
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id$
  */
 class BaseSeoPageForm extends BaseFormDoctrine
 {
@@ -13,11 +14,11 @@ class BaseSeoPageForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                   => new sfWidgetFormInputHidden(),
-      'url'                  => new sfWidgetFormInput(),
-      'title'                => new sfWidgetFormInput(),
+      'url'                  => new sfWidgetFormInputText(),
+      'title'                => new sfWidgetFormInputText(),
       'description'          => new sfWidgetFormTextarea(),
-      'keywords'             => new sfWidgetFormInput(),
-      'priority'             => new sfWidgetFormInput(),
+      'keywords'             => new sfWidgetFormInputText(),
+      'priority'             => new sfWidgetFormInputText(),
       'changeFreq'           => new sfWidgetFormChoice(array('choices' => array('always' => 'always', 'hourly' => 'hourly', 'daily' => 'daily', 'weekly' => 'weekly', 'monthly' => 'monthly', 'yearly' => 'yearly', 'never' => 'never'))),
       'exclude_from_sitemap' => new sfWidgetFormInputCheckbox(),
       'created_at'           => new sfWidgetFormDateTime(),
@@ -33,13 +34,15 @@ class BaseSeoPageForm extends BaseFormDoctrine
       'priority'             => new sfValidatorNumber(array('required' => false)),
       'changeFreq'           => new sfValidatorChoice(array('choices' => array('always' => 'always', 'hourly' => 'hourly', 'daily' => 'daily', 'weekly' => 'weekly', 'monthly' => 'monthly', 'yearly' => 'yearly', 'never' => 'never'), 'required' => false)),
       'exclude_from_sitemap' => new sfValidatorBoolean(array('required' => false)),
-      'created_at'           => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'           => new sfValidatorDateTime(array('required' => false)),
+      'created_at'           => new sfValidatorDateTime(),
+      'updated_at'           => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('seo_page[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }

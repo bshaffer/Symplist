@@ -3,9 +3,10 @@
 /**
  * PluginRelease form base class.
  *
- * @package    form
- * @subpackage plugin_release
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
+ * @package    plugintracker
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id$
  */
 class BasePluginReleaseForm extends BaseFormDoctrine
 {
@@ -14,14 +15,14 @@ class BasePluginReleaseForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'                  => new sfWidgetFormInputHidden(),
       'plugin_id'           => new sfWidgetFormDoctrineChoice(array('model' => 'SymfonyPlugin', 'add_empty' => true)),
-      'version'             => new sfWidgetFormInput(),
+      'version'             => new sfWidgetFormInputText(),
       'date'                => new sfWidgetFormDateTime(),
-      'symfony_version_min' => new sfWidgetFormInput(),
-      'symfony_version_max' => new sfWidgetFormInput(),
+      'symfony_version_min' => new sfWidgetFormInputText(),
+      'symfony_version_max' => new sfWidgetFormInputText(),
       'summary'             => new sfWidgetFormTextarea(),
-      'stability'           => new sfWidgetFormInput(),
+      'stability'           => new sfWidgetFormInputText(),
       'readme'              => new sfWidgetFormTextarea(),
-      'dependencies'        => new sfWidgetFormInput(),
+      'dependencies'        => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -40,6 +41,8 @@ class BasePluginReleaseForm extends BaseFormDoctrine
     $this->widgetSchema->setNameFormat('plugin_release[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }

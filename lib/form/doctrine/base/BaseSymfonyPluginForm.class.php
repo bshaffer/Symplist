@@ -3,9 +3,10 @@
 /**
  * SymfonyPlugin form base class.
  *
- * @package    form
- * @subpackage symfony_plugin
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
+ * @package    plugintracker
+ * @subpackage form
+ * @author     Your name here
+ * @version    SVN: $Id$
  */
 class BaseSymfonyPluginForm extends BaseFormDoctrine
 {
@@ -13,20 +14,20 @@ class BaseSymfonyPluginForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                => new sfWidgetFormInputHidden(),
-      'title'             => new sfWidgetFormInput(),
+      'title'             => new sfWidgetFormInputText(),
       'description'       => new sfWidgetFormTextarea(),
       'user_id'           => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
-      'symfony_developer' => new sfWidgetFormInput(),
+      'symfony_developer' => new sfWidgetFormInputText(),
       'category_id'       => new sfWidgetFormDoctrineChoice(array('model' => 'PluginCategory', 'add_empty' => true)),
       'active'            => new sfWidgetFormInputCheckbox(),
-      'repository'        => new sfWidgetFormInput(),
-      'image'             => new sfWidgetFormInput(),
-      'homepage'          => new sfWidgetFormInput(),
-      'ticketing'         => new sfWidgetFormInput(),
-      'slug'              => new sfWidgetFormInput(),
+      'repository'        => new sfWidgetFormInputText(),
+      'image'             => new sfWidgetFormInputText(),
+      'homepage'          => new sfWidgetFormInputText(),
+      'ticketing'         => new sfWidgetFormInputText(),
+      'slug'              => new sfWidgetFormInputText(),
       'created_at'        => new sfWidgetFormDateTime(),
       'updated_at'        => new sfWidgetFormDateTime(),
-      'raters_list'       => new sfWidgetFormDoctrineChoiceMany(array('model' => 'sfGuardUser')),
+      'raters_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
     ));
 
     $this->setValidators(array(
@@ -42,9 +43,9 @@ class BaseSymfonyPluginForm extends BaseFormDoctrine
       'homepage'          => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'ticketing'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'slug'              => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'created_at'        => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'        => new sfValidatorDateTime(array('required' => false)),
-      'raters_list'       => new sfValidatorDoctrineChoiceMany(array('model' => 'sfGuardUser', 'required' => false)),
+      'created_at'        => new sfValidatorDateTime(),
+      'updated_at'        => new sfValidatorDateTime(),
+      'raters_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -54,6 +55,8 @@ class BaseSymfonyPluginForm extends BaseFormDoctrine
     $this->widgetSchema->setNameFormat('symfony_plugin[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
 
     parent::setup();
   }
@@ -76,9 +79,9 @@ class BaseSymfonyPluginForm extends BaseFormDoctrine
 
   protected function doSave($con = null)
   {
-    parent::doSave($con);
-
     $this->saveRatersList($con);
+
+    parent::doSave($con);
   }
 
   public function saveRatersList($con = null)
