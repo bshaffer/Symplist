@@ -1,0 +1,94 @@
+# Symfony Doctrine Settings Plugin #
+
+This plugin allows the easy use of a basic dynamic settings table. It will
+create sf_settings, and allow the use of an admin generator interface (via the
+sfSettings module) in order to add/edit/delete settings.
+
+Since loading a setting requires a query to the database, performance
+ramifications are best mitigated by using sfSettings:load() to pre-load settings
+in the action for use elsewhere, i.e.:
+
+## Frontend ##
+    [php]
+    <?php
+    sfSettings::load(array('setting1', 'setting2', 'setting3'));
+
+If you have settings that you know you will want loaded by default for every
+action, you can put those in config/defaults.yml.
+
+    [yaml]
+    # /config/filters.yml
+    settings: [ setting_name_1, setting_name_2 ]
+
+
+However you will also need to
+add a filter to the chain so that your settings get loaded, i.e. the following
+lines at the top of appname/config/filters.yml:
+
+    [yaml]
+    # /apps/public/config/filters.yml
+    settings:
+      class: sfSettingsFilter
+
+After the settings have been loaded, they are stored in memory for retrieval by
+sfSettings::get() (returns a string value) or sfSettings::getSetting() (returns
+an sfSetting object)
+
+## Backend ##
+A admin/backend module also exists for managing the settings in the database. you must enable the module in order to access it
+
+    [yaml]
+    # /apps/backend/config/settings.yml
+    all:
+      .settings:
+         enabled_modules:        [default, sfSettings]
+
+The backend can be used to edit the variables as the plugin was originally built with the value for the setting being on the list page and editable from there, or it can behave like a normal admin-generated page.
+To make it behave like a normal admin-generated page with the list page only listing current settings with a link to edit the setting and the value being the second page add a setting to your app's app.yml file
+
+    [yaml]
+    # /apps/backend/config/app.yml
+    all:
+      sfSettingsPlugin:
+        edit_mode: standard_admin
+
+
+## Fields ##
+ * id
+  * Used as the primary key
+ * name
+  * Used as the variable name
+  * Must be unique
+ * type
+  * Used to decide what type of editor is needed in the sfSettings backend
+  * Current Types
+   * checkbox
+   * input
+   * textbox
+   * yesno
+   * select
+   * wysiwyg
+ * options
+   * select
+     * An array of options
+   * wysiwyg
+     * Will be appended to the text_area options after `rich=true `
+ * value
+  * The value of the setting
+
+## Backend Generator Module ##
+To add to backend, first perform the doctrine generate admin command
+
+	./symfony doctrine:generate-admin backend sf_setting
+
+Then add the following code to the top of the generated actions.class.php in sf_setting/actions:
+
+	require_once(dirname(dirname(__FILE__)).'/../../../../plugins/sfDoctrineSettingsPlugin/modules/sf_setting/lib/BaseSf_settingActions.class.php');
+	
+Finally, make sure your new action extends the plugin action
+
+	class sf_settingActions extends BaseSf_settingActions
+	{
+	}
+
+Alternatively, just include the module in your code and use as-is!

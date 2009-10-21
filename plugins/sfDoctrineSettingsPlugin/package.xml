@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.7.2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
+ <name>sfDoctrineSettingsPlugin</name>
+ <channel>pear.symfony-project.com</channel>
+ <summary>Allows for settings to stored in the database and recalled for use in the application.</summary>
+ <description>The sfDoctrineSettingsPlugin is a symfony plugin that provides app wide settings functionality. It automatically generates constant values based on sf_setting table values and make them accessible in every app module.</description>
+ <lead>
+  <name>synace</name>
+  <user>synace</user>
+  <email>symfony@synace.com</email>
+  <active>yes</active>
+ </lead>
+ <lead>
+  <name>Stephen Ostrow</name>
+  <user>Stephen.Ostrow</user>
+  <email>sostrow@sowebdesigns.com</email>
+  <active>yes</active>
+ </lead>
+ <developer>
+  <name>Jonathon Wage</name>
+  <user>Jonathon.Wage</user>
+  <email>jonwage@gmail.com</email>
+  <active>yes</active>
+ </developer>
+ <date>2008-12-09</date>
+ <time>16:48:44</time>
+ <version>
+  <release>1.0.4</release>
+  <api>0.1.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://svn.symfony-project.com/plugins/sfDoctrineSettingsPlugin/branches/1.0/LICENSE">MIT license</license>
+ <notes> * Making the backend work with sfDoctrinePlugin 1.0
+ * Making the wysiwyg editor use the options field for extra options
+ * Updating the README file to be more helpful</notes>
+ <contents>
+  <dir baseinstalldir="/" name="/">
+   <file baseinstalldir="/" md5sum="3bd26fd966ab383ba95b08e88cfb2dad" name="config/config_handlers.yml" role="data" />
+   <file baseinstalldir="/" md5sum="7a41936b88041c13a15f0f23b7ff7f80" name="config/app.yml.sample" role="data" />
+   <file baseinstalldir="/" md5sum="5afdb53c0b530cde38e0fdbe9504b2e8" name="config/defaults.yml.sample" role="data" />
+   <file baseinstalldir="/" md5sum="cacda9d477dd6cb9cc2b1592775b997a" name="config/doctrine/schema.yml" role="data" />
+   <file baseinstalldir="/" md5sum="a60a39bf6a8cc806fa610cb9e94fe96d" name="config/doctrine/schemaConfig.php" role="php" />
+   <file baseinstalldir="/" md5sum="2ddcb051cf072b46a68a5daf9bed5e03" name="data/fixtures/fixtures.yml" role="data" />
+   <file baseinstalldir="/" md5sum="2ddcb051cf072b46a68a5daf9bed5e03" name="data/fixtures/fixtures.yml.sample" role="data" />
+   <file baseinstalldir="/" md5sum="c957a1603e9cbb59c782dcd4ff2d7027" name="lib/BasesfSettings.class.php" role="php" />
+   <file baseinstalldir="/" md5sum="a3a5f819bd898d5979ec3b896e1316ce" name="lib/sfSettings.class.php" role="php" />
+   <file baseinstalldir="/" md5sum="401eb2303b6c620733a37ee9346351d5" name="lib/sfSettingsConfigHandler.php" role="php" />
+   <file baseinstalldir="/" md5sum="b1da2e8b5de3880c7e9d4b3bef3a0b91" name="lib/sfSettingsFilter.class.php" role="php" />
+   <file baseinstalldir="/" md5sum="954d3381b028b18d6fc9075b6ef522e7" name="lib/model/doctrine/PluginsfSetting.class.php" role="php" />
+   <file baseinstalldir="/" md5sum="35887ed70c1c0db593dd935d91085596" name="lib/model/doctrine/PluginsfSettingTable.class.php" role="php" />
+   <file baseinstalldir="/" md5sum="e3b6fc5bb442b90de8e3304b424ba22d" name="modules/sfSettings/actions/actions.class.php" role="php" />
+   <file baseinstalldir="/" md5sum="3c4a5b2ca5cf3e4bd70c78a6ec9c5555" name="modules/sfSettings/config/generator.yml" role="data" />
+   <file baseinstalldir="/" md5sum="6394350b44beaad3c9f34e21c366c1f5" name="modules/sfSettings/lib/BasesfSettingsActions.class.php" role="php" />
+   <file baseinstalldir="/" md5sum="36f53cf7254bbbcf79352e743e5193d5" name="modules/sfSettings/templates/value_elementSuccess.php" role="php" />
+   <file baseinstalldir="/" md5sum="c2ba7fbaf93f2dbd5582420888e3380c" name="modules/sfSettings/templates/_list_footer.php" role="php" />
+   <file baseinstalldir="/" md5sum="d14cb99943507583a8b1e578a69cfa8e" name="modules/sfSettings/templates/_list_header.php" role="php" />
+   <file baseinstalldir="/" md5sum="d3f1d0d4189f625b7d8dcc4335bacf58" name="modules/sfSettings/templates/_multi_value.php" role="php" />
+   <file baseinstalldir="/" md5sum="ba71348d7571b0393a7bddaa168634e3" name="modules/sfSettings/templates/_type.php" role="php" />
+   <file baseinstalldir="/" md5sum="e249be92cdd94364352b0bc35d916f64" name="modules/sfSettings/templates/_value.php" role="php" />
+   <file baseinstalldir="/" md5sum="de44a75c45917c3cf3084af6056f2926" name="modules/sfSettings/templates/_value_element.php" role="php" />
+   <file baseinstalldir="/" md5sum="2c161ecba02989f2294b5e6fc0eab993" name="modules/sfSettings/validate/edit.yml" role="data" />
+   <file baseinstalldir="/" md5sum="95e4b5051725635bb326237dcda6c473" name="LICENSE" role="doc" />
+   <file baseinstalldir="/" md5sum="c2887202645bdd2cc102357ad1856a50" name="README" role="doc" />
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.0a12</min>
+   </pearinstaller>
+   <package>
+    <name>symfony</name>
+    <channel>pear.symfony-project.com</channel>
+    <min>1.0</min>
+    <max>1.1.0</max>
+    <exclude>1.1.0</exclude>
+   </package>
+   <package>
+    <name>sfDoctrinePlugin</name>
+    <channel>pear.symfony-project.com</channel>
+    <min>1.0</min>
+    <max>1.1.0</max>
+    <exclude>1.1.0</exclude>
+   </package>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>0.1.1</version>
+   <date>2008-11-07</date>
+   <license>MIT license</license>
+   <state>beta</state>
+   <notes>Fixing the developers</notes>
+  </release>
+  <release>
+   <version>1.0.0</version>
+   <date>2008-11-07</date>
+   <license>MIT license</license>
+   <state>stable</state>
+   <notes> * Making this the first stable release</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.1</release>
+    <api>0.1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2008-11-08</date>
+   <license uri="http://svn.symfony-project.com/plugins/sfDoctrineSettingsPlugin/branches/1.0/LICENSE">MIT license</license>
+   <notes> * Making the backend work with sfDoctrinePlugin 1.0
+ * Making the wysiwyg editor use the options field for extra options
+ * Updating the README file to be more helpful</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.2</release>
+    <api>0.1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2008-11-18</date>
+   <license uri="http://svn.symfony-project.com/plugins/sfDoctrineSettingsPlugin/branches/1.0/LICENSE">MIT license</license>
+   <notes>Changing my email on this package</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.3</release>
+    <api>0.1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2008-12-02</date>
+   <license uri="http://svn.symfony-project.com/plugins/sfDoctrineSettingsPlugin/branches/1.0/LICENSE">MIT license</license>
+   <notes>Making the generator file look at a app.yml setting to decide whether to have the values editable on the list page or the edit page.</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.4</release>
+    <api>0.1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2008-12-09</date>
+   <license uri="http://svn.symfony-project.com/plugins/sfDoctrineSettingsPlugin/branches/1.0/LICENSE">MIT license</license>
+   <notes> * Fixing a bug where if there are no current settings an undefined array notice is thrown
+* Fixing a bug where when using the non-single page mode the value is not saved. Both modes will now work correctly.</notes>
+  </release>
+ </changelog>
+</package>
