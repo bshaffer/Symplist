@@ -124,7 +124,7 @@ class listActions extends sfActions
     }
     $form = new InlineCommunityListItemForm();
     $form->setDefault('list_id', $request->getParameter('list_id'));
-    $form->setDefault('submitted_by', $this->getUser()->getGuardUser()->getId())
+    $form->setDefault('submitted_by', $this->getUser()->getGuardUser()->getId());
     return $this->renderText($form->__toString());
   }
 
