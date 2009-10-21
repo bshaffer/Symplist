@@ -165,7 +165,9 @@ class pluginActions extends sfActions
   
   public function executeSearch(sfWebRequest $request)
   {
-    $plugin = Doctrine::getTable('SymfonyPlugin')->findOneByTitle($request->getParameter('form[query]'));
+    $q = $request->hasParameter('form[query]') ? $request->getParameter('form[query]') : $request->hasParameter('q');
+    
+    $plugin = $q ? Doctrine::getTable('SymfonyPlugin')->findOneByTitle($q) : null;
     if ($plugin) 
     {
       $this->redirect('@plugin?title='.$plugin['title']);
