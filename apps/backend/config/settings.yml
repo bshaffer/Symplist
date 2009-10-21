@@ -22,6 +22,7 @@ test:
 all:
   .settings:
     # Form security secret (CSRF protection)
+    enabled_modules:        [default, sfGuardGroup, sfGuardUser, sfGuardPermission, sfGuardAuth, csCommentAdmin, sfLucene]    
     csrf_secret:       false     # Unique secret to enable CSRF protection or false to disable
 
     # Output escaping settings

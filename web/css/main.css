@@ -339,8 +339,44 @@ table#plugin-info .notice
 /*@end*/
 
 /* @community lists*/
-.community-list-items h3 span.thumbs_rating
+.community-list-items .list-item-header
+{
+  font-size:1.0em;
+  background-color: #DDD;
+  padding:2px 8px;  
+  display:block;
+}
+.community-list-items .list-item-header span.thumbs_rating
 {
   float:right;
 }
+
+.community-list-items li
+{
+  margin: 0 0 10px 20px;
+}
+
+.slide-open-link
+{
+  cursor:pointer;
+  color:#669999;
+  padding-left:25px;
+}
+.slide-open-link .list-item-title:hover
+{
+  text-decoration:underline;
+}
+.list-item-title
+{
+  color: #669999;
+}
+
+/*.slide-open-link
+{
+  background: transparent url(../images/plus.png) no-repeat left center !important;
+}
+
+.expanded {
+  background: transparent url(../images/minus.png) no-repeat left center !important;
+}*/
 /*@end*/

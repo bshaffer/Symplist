@@ -1,0 +1,20 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           CommunityListItem
+    theme:                 csAdmin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          community_list_item
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    ~
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~

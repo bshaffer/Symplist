@@ -44,8 +44,10 @@ CommunityList:
     Items:
       bpitem1:
         title:  Always write "symfony" starting with a small cap
+        User:     sgu_admin
       bpitem2:
         title:  Manage the view within the view
+        User:     sgu_admin
         body: |
           * Try to avoid the use of the view.yml file
           * Try to avoid handling the view from the controller (eeeek)

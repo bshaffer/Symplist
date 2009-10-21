@@ -45,6 +45,7 @@ abstract class BaseCommunityListItem extends sfDoctrineRecord
              ));
         $this->hasColumn('submitted_by', 'integer', 4, array(
              'type' => 'integer',
+             'notnull' => true,
              'length' => '4',
              ));
     }

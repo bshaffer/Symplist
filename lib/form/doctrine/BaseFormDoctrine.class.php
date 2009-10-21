@@ -41,7 +41,7 @@ abstract class BaseFormDoctrine extends sfFormDoctrine
           $this->widgetSchema[$key] = new sfWidgetFormJQueryDate();
           break;
         case 'updated_at':
-          unset($this->widgetSchema[$key]);
+          unset($this[$key]);
           break;
         case 'slug':
           $this->widgetSchema[$key] = new sfWidgetFormInputHidden();

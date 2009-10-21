@@ -1,3 +1,21 @@
+community_list_item:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CommunityListItem
+    module:               community_list_item
+    prefix_path:          community_list_item
+    column:               id
+    with_wildcard_routes: true
+
+community_list:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CommunityList
+    module:               community_list
+    prefix_path:          community_list
+    column:               id
+    with_wildcard_routes: true
+
 plugin_category:
   class: sfDoctrineRouteCollection
   options:

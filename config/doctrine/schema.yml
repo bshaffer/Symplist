@@ -80,7 +80,6 @@ PluginRelease:
       type:                 decimal(5,1)
     symfony_version_max:
       type:                 decimal(5,1)
-
     summary:                clob
     stability:              string(30)
     readme:                 clob
@@ -104,7 +103,9 @@ CommunityList:
       notnull:      true
     description:    string(255)
     featured:       boolean
-    submitted_by:   integer(4)
+    submitted_by:   
+      type:         integer(4)
+      notnull:      true
   relations:
     User:
       class:            sfGuardUser
@@ -128,7 +129,9 @@ CommunityListItem:
     count:          
       type:         integer
       default:      0
-    submitted_by:   integer(4)
+    submitted_by:   
+      type:         integer(4)
+      notnull:      true
   relations:
     CommunityList:
       alias:            List

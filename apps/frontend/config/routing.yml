@@ -64,10 +64,24 @@ community_lists:
 list_rate_ajax:
   url:                                /lists/rate
   param:                              { module: list, action: rate }  
+
+list_item_add_ajax:
+  url:                                /lists/item/add
+  param:                              { module: list, action: addListItemAjax }
+  
+list_create:                          
+  url:                                /lists/create
+  param:                              { module: list, action: create }
   
 community_list:
   url:                                /lists/:slug
-  params:                             { module: list, action: show }
+  param:                              { module: list, action: show }
+
+community_list_add_item:
+  url:                                /lists/:slug/item/add
+  param:                              { module: list, action: addListItem }
+
+# Profiles
 
 authors:
   url:                                /authors

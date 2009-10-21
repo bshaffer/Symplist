@@ -7,11 +7,12 @@ class CommunityListTable extends Doctrine_Table
   public function getPopularListsQuery()
   {
     $q = $this->createQuery('l')
-             ->select('l.*, i.*, SUM(i.score) as total_score')
+             ->select('l.*, SUM(i.score) as total_score')
              ->innerJoin('l.Items i')
-             ->groupBy('i.id')
-             ->orderBy('l.featured, total_score DESC');
-             
+             ->groupBy('i.list_id')
+             ->orderBy('l.featured, total_score DESC')
+    ;
+
     return $q;
   }
 }
