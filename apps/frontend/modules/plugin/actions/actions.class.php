@@ -165,13 +165,14 @@ class pluginActions extends sfActions
   
   public function executeSearch(sfWebRequest $request)
   {
-    $q = $request->hasParameter('form[query]') ? $request->getParameter('form[query]') : $request->hasParameter('q');
-    
+    $q = $request->hasParameter('form[query]') ? $request->getParameter('form[query]') : $request->getParameter('q');
     $plugin = $q ? Doctrine::getTable('SymfonyPlugin')->findOneByTitle($q) : null;
     if ($plugin) 
     {
       $this->redirect('@plugin?title='.$plugin['title']);
     }
+    $request->setParameter('form', array('query' => $q));
+
     $this->forward('sfLucene', 'search');
   }
 }

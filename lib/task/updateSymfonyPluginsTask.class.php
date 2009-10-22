@@ -6,6 +6,7 @@ class updateSymfonyPluginsTask extends BaseSymfonyPluginsTask
 	  $this->addOptions(array(
       new sfCommandOption('app', null, sfCommandOption::PARAMETER_REQUIRED, 'The application', 'frontend'),
       new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'prod'),
+      new sfCommandOption('plugin', null, sfCommandOption::PARAMETER_REQUIRED, 'A specific plugin to update'),      
     ));
 
     $this->namespace        = 'symfony-plugins';
@@ -30,13 +31,14 @@ EOF;
     
     $this->logSection('update', 'initializing...');
     
-    $plugins = SymfonyPluginApi::getPlugins();
+    $plugins = $options['plugin'] ? array(SymfonyPluginApi::getPlugin($options['plugin'])) : SymfonyPluginApi::getPlugins();
     
     // Rebuild the index before starting
         
     $count = 0;
     foreach ($plugins as $plugin) 
     {
+      $this->logSection('import', $plugin['id']);      
       $new = Doctrine::getTable('SymfonyPlugin')->findOneByTitle($plugin['id']);
       
       // if plugin exists update info.  Otherwise, create it
