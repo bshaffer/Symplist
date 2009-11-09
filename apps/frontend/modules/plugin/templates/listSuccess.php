@@ -1,12 +1,13 @@
 <?php use_helper('Pager') ?>
-<h1>Plugins <span class='view-all-plugins'><?php echo link_to('View All', '@plugins_view_all') ?></span></h1>
+<h2>Plugins</h2>
+<span class='view-all-plugins'><?php echo link_to('View All', '@plugins_view_all') ?></span>
 <?php $results = $pager->getResults()?>
 <?php //echo get_pager_controls($pager) ?>
-<ul start='<?php echo $pager->getFirstIndice() ?>' class='plugins-list'>
+<ol start='<?php echo $pager->getFirstIndice() ?>' class='plugins-list'>
 <?php foreach ($results as $plugin): ?>
   <li>
-    <?php include_partial('plugin/list_item', array('plugin' => $plugin)) ?>
+    <?php include_partial('plugin/plugin', array('plugin' => $plugin)) ?>
   </li>
 <?php endforeach ?>
-</ul>
+</ol>
 <?php echo get_pager_controls($pager) ?>

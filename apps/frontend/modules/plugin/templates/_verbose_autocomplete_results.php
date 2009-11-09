@@ -3,5 +3,5 @@
 <?php endif ?>
 <?php foreach ($results as $result): ?>
   <?php $block = get_partial('plugin/verbose_autocomplete_result', array('plugin' => $result)) ?>
-  <?php echo str_replace("\n", '', $block)."\n" ?>
+  <div class='grid_3'><?php echo str_replace("\n", '', $block)."\n" ?></div>
 <?php endforeach ?>

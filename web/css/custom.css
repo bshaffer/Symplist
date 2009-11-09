@@ -1,0 +1,179 @@
+.clearfix:after {clear:both;content:".";display:block;height:0;visibility:hidden;}
+.clearfix {display:block;}
+/* Hides from IE-mac \*/
+* html .clearfix {height:1%;}
+/*End hide from IE-mac*/
+
+
+
+/*
+* ///////////// General
+*/
+
+body {background:#002051 url(../images/body-bg.jpg) center top no-repeat;color:#fff;font: 12px/1.5 Helvetica,Arial,'Liberation Sans',FreeSans,sans-serif;position: relative;}
+
+/*
+* ///////////// Typography
+*/
+a {color:#00429d;}
+h3 {font-size:16px;margin-bottom:10px;}
+
+/*
+* ///////////// Containers
+*/
+
+#header {background:url(../images/header-bg.png) repeat-x;}
+
+
+
+
+
+/*Messages*/
+.message {padding:12px 12px 12px 30px;-webkit-border-radius:7px;border:1px solid #ccc;font-size:11px;margin:20px 0;}
+  .message p {margin-bottom:0;}
+
+
+.message.info {background:#fff url(../images/message-info.png) 10px 11px no-repeat;padding:12px 12px 12px 30px;}
+.message.important {background:#fed700 url(../images/message-important.png) 10px 11px no-repeat;padding:12px 12px 12px 30px;}
+
+
+
+/*Buttons*/
+
+.button {display:inline-block;padding:7px;-webkit-border-radius:7px;background:#00429d;-webkit-border-radius:7px;border:1px solid #001b3f;clear:both;color:#fff;text-decoration:none;}
+  .button:hover {text-decoration:underline;}
+
+
+
+
+/*
+* ///////////// Search
+*/
+
+form#search {position:relative;}
+  form#search label {position:absolute;top:-10px;left:26px;z-index:5;color:#ccc;font-size:22px;font-family:Helvetica;}
+  form#search input[type="text"] {background:url(../images/home-search-bg.png) no-repeat;display:block;width:368px;padding:30px 30px 40px 35px;border:0;position:relative;top:-40px;margin-bottom:-40px;left:-10px;color:#ccc;font-size:22px;font-family:Helvetica;z-index:1;}
+    #search-results {overflow:hidden;margin-bottom:40px;}
+    #search-featured #search-results .result-block {overflow:hidden;margin-bottom:20px;}
+    
+body.interior form#search {margin-top:20px;}
+body.interior form#search fieldset {float:right;}
+  body.interior form#search label {position:absolute;top:19px;left:auto;right:119px;z-index:5;color:#ccc;font-size:14px;font-family:Helvetica;}
+  body.interior form#search input[type="text"] {background:url(../images/interior-search-bg.png) no-repeat;display:block;width:232px;padding:25px 20px 17px;left:0;top:0;margin:0;font-size:14px;}
+  body.interior form#search input[type="image"] {position:absolute;right:22px;top:22px;z-index:300;}
+
+
+/*
+* ///////////// Navigation
+*/
+
+/*Main Nav*/
+#nav-main {list-style:none;position:relative;float:left;}
+  #nav-main a {color:#fed700;text-decoration:none;line-height:65px;text-shadow:1px 1px 0 #000;-webkit-transition:color linear .3s;}
+    #nav-main a:hover {color:#fff;}
+  #nav-main li {display:inline;font-size:18px;font-weight:bold;margin:0 30px 0 0;}
+    #nav-main li.active a {padding:4px 7px;background:#4fbcfa;color:#001e47;-webkit-border-radius:7px;-moz-border-radius:7px;font-weight:normal;text-shadow:0 1px #aae0ff;}
+    
+/*Utility Nav*/
+#nav-utility {float:right;list-style:none;}
+  #nav-utility a {color:#4fbcfa;line-height:65px;text-decoration:none;font-weight:bold;}
+  #nav-utility li {display:inline;}
+  
+/*
+* ///////////// Header
+*/
+
+#header h1 {height:87px;background:url(../images/logo.png) left center no-repeat;text-indent:-9999px;margin-top:15px;}
+  #header h1 a {display:block;width:100%;height:100%;}
+
+#header p#intro {font-size:16px;margin-top:25px;}
+  #header p#intro a {color:#fed700;text-transform:uppercase;text-decoration:none;font-weight:bold;}
+    #header p#intro a:hover {}
+
+
+/*
+* ///////////// Homepage
+*/ 
+#search-featured {background:#003174;border-top:1px solid #1f477d;border-bottom:1px solid #1f406b;position:relative;margin-top:50px;padding-bottom:40px;margin-bottom:40px;z-index:8;}
+
+/*Featured Items*/
+#search-featured .featured {background:#fff url(../images/featured-item-bg.png) repeat-x;border:1px solid #ccc;-webkit-border-radius:10px;-moz-border-radius:10px;width:218px;position:relative;}
+  #search-featured .featured:hover {z-index:10;}
+  #search-featured .featured h6 {margin-bottom:5px;font-size:12px;padding:10px 10px 0;}
+    #search-featured .featured h6 a {color:#003173;}
+  #search-featured .featured p {color:#333;padding:10px 10px 0;margin-bottom:10px;}
+
+/*Recent Items*/
+.stats {position:relative;}
+  .stats a {color:#fed700;}
+  .stats h6 {font-size:12px;font-weight:normal;margin-bottom:5px;overflow:hidden;}
+    .stats h6 a {float:left;}
+  .stats form.rating {float:left; padding:0 7px 0;}
+  .stats li {list-style:none;margin:0 0 10px 0;}
+  .stats p {padding-right:25px;}
+  .stats .grid_4 {margin-bottom:10px;}
+  
+  #sidebar .grid_4 li {margin-bottom:0;}
+
+
+/*
+* ///////////// Interior Content
+*/
+#content-wrapper {margin-top:20px;overflow:hidden;}
+  
+  #content-main {background:#fff;-webkit-border-radius:20px;-moz-border-radius:20px;color:#000;font-size:14px;}
+    #content-main .inner {padding:20px 30px;}
+    
+  #content-main h2 {color:#666;}
+  
+  .plugin-info {padding:10px;border:1px solid #ccc;background:#eee;-webkit-border-radius:7px;font-size:12px;overflow:hidden;position:relative;}
+    .plugin-info dl {width:100%;margin-bottom:20px;overflow:hidden;}
+    .plugin-info dt {height:20px;line-height:20px;font-weight:bold;color:#333;float:left;clear:left;width:22%;border-bottom:1px solid #ccc;padding-bottom:10px;padding-top:10px;}
+    .plugin-info dd {height:20px;line-height:20px;float:left;clear:right;border-bottom:1px solid #ccc;width:78%;padding-bottom:10px;padding-top:10px;}
+      .plugin-info dd form, .plugin-info dd fieldset {margin:0;padding:0;}
+      
+    /*Comments*/
+    .comments {margin: 20px 0;}
+      .comments h3 a {margin-left:10px;}
+  
+  
+    /*Pagination*/
+
+    .pagination {overflow: hidden;margin: 20px 0;clear:left;}
+      .pagination span {display: block;margin-bottom: 10px;}
+      .pagination ul li {float:left;list-style-type:none;margin-left:0;margin-right:13px;padding:0;}
+
+
+  
+  
+  
+/*Footer*/
+
+#footer {background:url(../images/footer-bg.png) left top repeat-x;padding-top:10px;margin-top:60px;position:relative;margin-bottom:20px;overflow:hidden;}
+
+#footer #nav-secondary li {float:left;margin:0 20px 0 0;list-style:none;}
+  #footer #nav-secondary li a {color:#fff;text-decoration:none;}
+  
+#footer .copyright {text-align:right;right:-20px;position:relative;}
+  #footer .copyright p {margin-bottom:0;}
+  
+  
+  
+  
+  
+/*
+* ///////////// Star Rating
+*/ 
+form.rating {overflow:hidden;padding:0 10px 10px;margin:0;}
+  form.rating fieldset {margin:0;}
+div.rating-cancel,div.star-rating {float:left;width:15px;height:15px;text-indent:-999em;cursor:pointer;display:block;background:transparent;overflow:hidden}
+  div.star-rating,div.star-rating a{background:url(../images/star.png) no-repeat 0 0px}
+  div.rating-cancel a,div.star-rating a{display:block;width:15px;height:100%;background-position:0 0px;border:0}
+  div.star-rating-on a{background-position:0 -16px!important}
+  div.star-rating-hover a{background-position:0 -32px}
+  /* Read Only CSS */
+  div.star-rating-readonly a{cursor:default !important}
+  /* Partial Star CSS */
+  div.star-rating{background:transparent!important;overflow:hidden!important}
+  /* END jQuery.Rating Plugin CSS */
+    div.rating-cancel, div.rating-cancel a {display:none !important;}

@@ -9,9 +9,9 @@ default:
     #language:                        en
     #robots:                          index, follow
 
-  stylesheets:                        [ reset.css, text.css, 960.css, main.css, frontend.css, rateable.css ]
+  stylesheets:                        [ reset.css, text.css, 960.css, custom.css, jquery.autocomplete.css ]
 
-  javascripts:                        [jquery]
+  javascripts:                        ['http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js', jquery.infieldlabel.min.js, jquery.rating.pack.js, jquery.autocomplete.js, theme.js]
 
   has_layout:                         true
   layout:                             layout

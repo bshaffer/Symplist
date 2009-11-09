@@ -1,4 +1,5 @@
-<h1><?php echo $list['title'] ?></h1>
+<h2><?php echo $list['title'] ?></h2>
+
 <?php if ($list['submitted_by']): ?>
   <span class='list-submitted-by'>Submitted By <?php echo link_to($list['User']['username'], '@author?username='.$list['User']['username']) ?></span>  
 <?php endif ?>

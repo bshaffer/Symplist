@@ -1,5 +1,5 @@
 <?php use_helper('Form') ?>
-<h1>Editing <?php echo $plugin['title'] ?></h1>
+<h2>Editing <?php echo $plugin['title'] ?></h2>
 <?php echo form_tag('@plugin_edit?title='.$plugin['title']) ?>
   <?php echo $form ?>
   <?php echo submit_tag('Submit') ?>

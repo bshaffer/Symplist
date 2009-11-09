@@ -1,4 +1,4 @@
-<h1>Contact Us</h1>
+<h2>Contact Us</h2>
 
 <?php use_helper('Form') ?>
 <?php echo form_tag('@contact') ?>

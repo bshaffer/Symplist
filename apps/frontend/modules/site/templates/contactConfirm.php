@@ -1,4 +1,4 @@
-<h1>Contact Us</h1>
+<h2>Contact Us</h2>
 <p>
   Thank you for your feedback!  We will respond shortly.
 </p>

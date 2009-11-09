@@ -1,5 +1,5 @@
 <?php use_helper('Pager') ?>
-<h1>Community Lists</h1>
+<h2>Community Lists</h2>
 
 <?php if ($sf_user->isAuthenticated()): ?>
   <?php echo link_to('Create a list', '@list_create') ?>  

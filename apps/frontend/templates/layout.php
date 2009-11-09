@@ -8,41 +8,53 @@
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
 </head>
-  <body id="module-<?php echo $sf_request->getParameter('module') ?>-action-<?php echo $sf_request->getParameter('action') ?>">
-    <?php use_helper('Navigation') ?>
-    <div id="header">
-      <div class='content'>
-        <?php if (!$sf_request->getParameter('homepage')): ?>
-          <?php // include_partial('plugin/auto_complete_search', array()) ?>      
-        <?php endif ?>
+  <body class="interior" id="module-<?php echo $sf_request->getParameter('module') ?>-action-<?php echo $sf_request->getParameter('action') ?>">
+  <?php use_helper('Navigation') ?>
 
-        <a href='<?php echo url_for('@homepage') ?>'>
-          <span id="site-logo">Symplist</span>
-        </a>
-        <?php include_navigation(array('id' => 'nav')) ?>
-        <?php include_partial('site/secondary_nav', array()) ?>
-      </div>
-    </div>
-    <div id="page" class="container_16 clearfix">      
-      <div id="content-area" class="grid_16">
-        <?php include_partial('global/flashes') ?>
+<!-- Begin Header -->
+<div id="header" class="clearfix">
+  <div class="container_12">
 
-          
-        <div class='content'>
-          
-        <?php if (has_slot('right_column')): ?>
-          <div id='right_column'><?php include_slot('right_column') ?></div>
-        <?php endif ?>
-          <?php echo $sf_content ?>
-          
-        </div>
-      </div>
-    </div>
+    <!-- Begin Navigation -->
+    <?php include_navigation(array('id' => 'nav-main')) ?>
+    <?php include_partial('site/secondary_nav', array()) ?>
+    <!-- End Navigation -->
 
-    <div id="footer">
-      <ul id="footer-nav">
-        <?php include_navigation(array('menu' => 'Footer')) ?>
-      </ul>
+    <h1 class="grid_6"><?php echo link_to('sympLIST', '@homepage') ?></h1>
+
+    <?php include_partial('plugin/auto_complete_search', array()) ?>  
+
+  </div>
+</div>
+    
+<div id="content-wrapper" class="container_12">   
+   
+  <div id="content-main" class="grid_8">
+    <div class="inner">
+
+    <?php include_partial('global/flashes') ?>
+
+
+    <?php echo $sf_content ?>
+      
     </div>
-  </body>
+  </div>
+
+  <?php if (has_slot('right_column')): ?>  
+   <!-- Sidebar -->
+  <div id="sidebar" class="stats grid_4 omega">
+    <?php include_slot('right_column') ?>
+  </div>
+  <!-- End Sidebar -->
+  <?php endif ?>
+</div>
+
+<div id="footer" class="container_12">
+  <?php include_navigation(array('menu' => 'Footer', 'id' => 'nav-secondary', 'class' => 'grid_6 alpha')) ?>
+  <div class="copyright grid_6 omega">
+    <p>©2009 Brent Shaffer. Design by <a href="#">The Black Elephant</a></p>
+  </div>
+</div>
+
+</body>
 </html>

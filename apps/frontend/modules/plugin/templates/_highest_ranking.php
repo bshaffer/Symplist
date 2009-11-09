@@ -1,8 +1,8 @@
 <h3>Highest Ranking</h3>
-<ul class='plugins-list'>
+<ul>
 <?php foreach ($plugins as $plugin): ?>
   <li>
-    <?php include_partial('plugin/list_item', array('plugin' => $plugin)) ?>
+    <?php include_partial('plugin/plugin', array('plugin' => $plugin)) ?>
   </li>
 <?php endforeach ?>
 </ul>

@@ -1,4 +1,5 @@
-<h1>Developers</h1>
+<h2>Developers</h2>
+
 <h3>Recently Active</h3>
 <ul class='recently-active'>
 <?php foreach ($recentlyActive as $user): ?>

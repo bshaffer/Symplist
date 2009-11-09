@@ -1,4 +1,4 @@
-<h1>Register a Plugin</h1>
+<h2>Register a Plugin</h2>
 
 <?php use_helper('Form') ?>
 <?php echo form_tag('@plugin_register') ?>

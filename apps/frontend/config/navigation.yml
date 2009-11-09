@@ -1,19 +1,17 @@
 navigation:
   Main:
-    Home:         @homepage
-    Plugins:      @plugins
-    Categories:   @plugin_categories
-    Developers:   @authors
+    Home:             @homepage
+    Browse Plugins:      @plugins
+    Submit A Plugin:         @plugin_categories
+    Browse Developers:   @authors
     Lists:        @community_lists
 
   Footer:
-    home:         '/'
-    about:        @about
-    contact:      @contact
+    Home:                 '/'
+    About SympLIST:        @about
+    Feedback:              @contact
+    Contact:              'http://symplist.lighthouseapp.com/projects/36266-symplist/tickets/new'
 
-  # Secondary:
-    report a bug: 'http://symplist.lighthouseapp.com/projects/36266-symplist/tickets/new'
-    feedback:     'http://symplist.lighthouseapp.com/projects/36266-symplist/tickets/new'
     
 settings:
   database:

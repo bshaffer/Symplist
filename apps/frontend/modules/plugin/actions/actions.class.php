@@ -146,12 +146,12 @@ class pluginActions extends sfActions
                     ->limit(10)
                     ->groupBy('p.id');
                     
-    if ($request->getParameter('published_only') == 'true') 
+    if (false && $request->getParameter('published_only') == 'true') 
     {
       $query->innerJoin('p.Releases rel');
     }
     
-    if ($request->hasParameter('version') && $request->getParameter('version') != 'all') 
+    if (false && $request->hasParameter('version') && $request->getParameter('version') != 'all') 
     {
       $v = $request->getParameter('version');
       $query->innerJoin('p.Releases rel')

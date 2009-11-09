@@ -1,4 +1,4 @@
-<h1>About Symplist</h1>
+<h2>About Symplist</h2>
 
 <span class='site-name'>Symplist</span> is an open source project by a group of avid Symfony users and 
 supporters who strongly agreed that the Symfony community was in dire need of a better forum for registering,

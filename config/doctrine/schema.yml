@@ -18,6 +18,7 @@ SymfonyPlugin:
     image:                            string(255)
     homepage:                         string(255)
     ticketing:                        string(255)
+    featured:                         boolean
   relations:
     sfGuardUser:
       alias:                          User

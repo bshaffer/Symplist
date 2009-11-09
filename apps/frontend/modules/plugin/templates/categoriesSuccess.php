@@ -1,4 +1,4 @@
-<h1>Plugin Categories</h1>
+<h2>Plugin Categories</h2>
 <ul id='categories-list' class='object-list'>
 <?php foreach ($categories as $cat): ?>
   <li>

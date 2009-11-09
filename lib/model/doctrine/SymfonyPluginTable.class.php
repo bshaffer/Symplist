@@ -41,4 +41,19 @@ class SymfonyPluginTable extends Doctrine_Table
 
    return $q->execute();
   }
+  
+  public function getFeatured($limit = null)
+  {
+    $q = $this->createQuery('p')
+              ->where('p.featured = ?', true);
+
+   if ($limit) 
+   {
+     $q->limit($limit);
+   }
+   
+   return $q->execute();
+              
+    
+  }
 }

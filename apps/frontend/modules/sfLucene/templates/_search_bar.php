@@ -3,5 +3,5 @@
 <div class='form_query'>
   <?php echo $form['query'] ?>
 </div>
-<?php //echo submit_tag('Search') ?>
+<?php echo submit_tag('go') ?>
 </form>

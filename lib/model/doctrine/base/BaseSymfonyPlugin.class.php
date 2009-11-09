@@ -15,6 +15,7 @@
  * @property string $image
  * @property string $homepage
  * @property string $ticketing
+ * @property boolean $featured
  * @property sfGuardUser $User
  * @property Doctrine_Collection $Raters
  * @property PluginCategory $Category
@@ -69,6 +70,9 @@ abstract class BaseSymfonyPlugin extends sfDoctrineRecord
         $this->hasColumn('ticketing', 'string', 255, array(
              'type' => 'string',
              'length' => '255',
+             ));
+        $this->hasColumn('featured', 'boolean', null, array(
+             'type' => 'boolean',
              ));
     }
 

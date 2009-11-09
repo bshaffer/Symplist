@@ -6,7 +6,8 @@ class updateSymfonyPluginsTask extends BaseSymfonyPluginsTask
 	  $this->addOptions(array(
       new sfCommandOption('app', null, sfCommandOption::PARAMETER_REQUIRED, 'The application', 'frontend'),
       new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'prod'),
-      new sfCommandOption('plugin', null, sfCommandOption::PARAMETER_REQUIRED, 'A specific plugin to update'),      
+      new sfCommandOption('plugin', null, sfCommandOption::PARAMETER_REQUIRED, 'A specific plugin to update'),
+      new sfCommandOption('startAt', null, sfCommandOption::PARAMETER_REQUIRED, 'A specific plugin to start at'),
     ));
 
     $this->namespace        = 'symfony-plugins';
@@ -22,6 +23,8 @@ EOF;
     $app     = $options['app'];
     $env     = $options['env'];
 
+    $errors = array();
+    
 		$this->bootstrapSymfony($app, $env, true);
     // initialize the database connection
     $databaseManager = new sfDatabaseManager($this->configuration);
@@ -34,47 +37,71 @@ EOF;
     $plugins = $options['plugin'] ? array(SymfonyPluginApi::getPlugin($options['plugin'])) : SymfonyPluginApi::getPlugins();
     
     // Rebuild the index before starting
-        
+    
     $count = 0;
     foreach ($plugins as $plugin) 
     {
-      $this->logSection('import', $plugin['id']);      
-      $new = Doctrine::getTable('SymfonyPlugin')->findOneByTitle($plugin['id']);
-      
-      // if plugin exists update info.  Otherwise, create it
-      if (!$new) 
+      if ($options['startAt']) 
       {
-        $new = new SymfonyPlugin();
-        $new['title'] = (string)$plugin['id'];
-        $new['description'] = (string)$plugin->description;
-        $new['repository'] = (string)$plugin->scm;
-        $new['image'] = (string)$plugin->image;
-        $new['homepage'] = (string)$plugin->homepage;
-        $new['ticketing'] = (string)$plugin->ticketing;
-        $new->saveNoIndex();
-        $this->logSection('import', "added '$new->title'");
-        $count++;
-      } 
-      
-      $info = SymfonyPluginApi::getPlugin($plugin['id']);
-      if (isset($info->releases->release[0])) 
-      {
-        foreach ($info->releases->release as $release) 
+        if ( $plugin['id'] == $options['startAt'] )
         {
-          if (!$new->hasRelease($release['id'])) 
+          $this->logSection('update', $options['startAt'].' Found');
+          $options['startAt'] = false;
+        }
+        else
+        {
+          continue;
+        }
+      }
+      
+      $name = $plugin['id'];
+      
+      try 
+      {
+        
+        $this->logSection('import', $plugin['id']);      
+        $new = Doctrine::getTable('SymfonyPlugin')->findOneByTitle($plugin['id']);
+      
+        // if plugin exists update info.  Otherwise, create it
+        if (!$new) 
+        {
+          $new = new SymfonyPlugin();
+          $new['title'] = (string)$plugin['id'];
+          $new['description'] = (string)$plugin->description;
+          $new['repository'] = (string)$plugin->scm;
+          $new['image'] = (string)$plugin->image;
+          $new['homepage'] = (string)$plugin->homepage;
+          $new['ticketing'] = (string)$plugin->ticketing;
+          $new->saveNoIndex();
+          $this->logSection('import', "added '$new->title'");
+          $count++;
+        } 
+      
+        $info = SymfonyPluginApi::getPlugin($plugin['id']);
+        if (isset($info->releases->release[0])) 
+        {
+          foreach ($info->releases->release as $release) 
           {
-            $newrel = new PluginRelease();
-            $newrel['Plugin'] = $new;
-            $newrel['version'] = (string)$release['id'];
-            $newrel['stability'] = (string)$release->stability;
-            $newrel['symfony_version_min'] = $this->parseVersionNumber($release->symfony->min);
-            $newrel['symfony_version_max'] = $this->parseVersionNumber($release->symfony->max);
-            $newrel['date'] = (string)$release->date;         
-            $newrel['summary'] = (string)$release->summary;
-            $newrel->save();
-            $this->logSection('update', "New release ($release[id]) found for $new[title]");
+            if (!$new->hasRelease($release['id'])) 
+            {
+              $newrel = new PluginRelease();
+              $newrel['Plugin'] = $new;
+              $newrel['version'] = (string)$release['id'];
+              $newrel['stability'] = (string)$release->stability;
+              $newrel['symfony_version_min'] = $this->parseVersionNumber($release->symfony->min);
+              $newrel['symfony_version_max'] = $this->parseVersionNumber($release->symfony->max);
+              $newrel['date'] = (string)$release->date;         
+              $newrel['summary'] = (string)$release->summary;
+              $newrel->save();
+              $this->logSection('update', "New release ($release[id]) found for $new[title]");
+            }
           }
         }
+      } 
+      catch (Exception $e) 
+      {
+        $this->logSection('error', $e->getMessage());     
+        $errors[$name] = $e->getMessage();
       }
     }
 
@@ -83,6 +110,13 @@ EOF;
     $this->runLuceneRebuild();
     
     $this->logSection('import', "Completed.  Added $count new plugins(s)");
+    if ($errors) 
+    {
+      foreach ($errors as $key => $value) 
+      {
+        $this->logSection('errors', "$key: $value" );
+      }
+    }
   }
   
   public function parseVersionNumber($version)
