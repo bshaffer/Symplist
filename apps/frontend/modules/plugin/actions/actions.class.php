@@ -55,7 +55,7 @@ class pluginActions extends sfActions
     $this->forward404Unless($this->plugin);
     $this->plugin->addRating($request->getParameter('rating'), $this->getUser());
     $this->plugin->refresh();
-    return $this->renderPartial('plugin/rating_info', array('plugin' => $this->plugin));
+    return $this->renderPartial('plugin/rating', array('rating' => $this->plugin->getRating()));
   }
   
   public function executeClaim(sfWebRequest $request)
@@ -119,6 +119,7 @@ class pluginActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->plugin = Doctrine::getTable("SymfonyPlugin")->findOneByTitle($request->getParameter('title'));
+    $this->rating = $this->plugin->getRating();
     $this->forward404Unless($this->plugin);
   }
   
@@ -135,32 +136,36 @@ class pluginActions extends sfActions
 
   public function executeVerboseAutocomplete(sfWebRequest $request)
   {
-    $q = $request->getParameter('form[query]');
+    $q = str_replace(' ', '%', $request->getParameter('q'));
+    if ($q == '') 
+    {
+      return $this->renderText('');
+    }
     
     $query = Doctrine::getTable('SymfonyPlugin')->createQuery('p')
-                    ->select('p.title, LEFT(p.description, 200) as description, AVG(r.rating) as rating')
+                    ->select('p.title, LEFT(p.description, 200) as summary, AVG(r.rating) as rating')
                     ->leftJoin('p.Ratings r')
                     ->addWhere('title like ?', "%$q%")
-                    // ->orWhere('description like ?', "%$q%")
+                    ->orWhere('description like ?', "%$q%")
                     ->setHydrationMode(Doctrine::HYDRATE_ARRAY)
-                    ->limit(10)
+                    ->limit(12)
                     ->groupBy('p.id');
                     
-    if (false && $request->getParameter('published_only') == 'true') 
-    {
-      $query->innerJoin('p.Releases rel');
-    }
+    // if (false && $request->getParameter('published_only') == 'true') 
+    // {
+      // $query->innerJoin('p.Releases rel');
+    // }
     
-    if (false && $request->hasParameter('version') && $request->getParameter('version') != 'all') 
-    {
-      $v = $request->getParameter('version');
-      $query->innerJoin('p.Releases rel')
-            ->andWhere('rel.symfony_version_min like ? OR rel.symfony_version_max like ?', array("$v%", "$v%"));
-    }
+    // if (false && $request->hasParameter('version') && $request->getParameter('version') != 'all') 
+    // {
+      // $v = $request->getParameter('version');
+      // $query->innerJoin('p.Releases rel')
+            // ->andWhere('rel.symfony_version_min like ? OR rel.symfony_version_max like ?', array("$v%", "$v%"));
+    // }
 
     $results = $query->execute();
-
-    return $this->renderPartial('plugin/verbose_autocomplete_results', array('results' => $results));
+    
+    return $this->renderPartial('plugin/verbose_autocomplete_results', array('results' => $results, 'classes' => array('alpha','','','omega')));
   }
   
   public function executeSearch(sfWebRequest $request)

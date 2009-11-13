@@ -1,0 +1,2 @@
+showSuccess:
+  javascripts: [jquery.cookie.js]

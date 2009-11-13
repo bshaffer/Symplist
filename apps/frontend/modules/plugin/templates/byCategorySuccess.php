@@ -5,7 +5,7 @@
   <ol start='<?php echo $pager->getFirstIndice() ?>'>
   <?php foreach ($results as $plugin): ?>
     <li>
-      <?php include_partial('plugin/list_item', array('plugin' => $plugin)) ?>
+      <?php include_partial('plugin/plugin', array('plugin' => $plugin)) ?>
     </li>
   <?php endforeach ?>
   </ol>

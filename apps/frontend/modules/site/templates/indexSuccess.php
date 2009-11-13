@@ -9,16 +9,37 @@
 <?php slot('bottom_row') ?>
 
 <div class="grid_4 alpha">
-  <?php include_component('plugin', 'highest_ranking', array('limit' => 5)) ?>
+  <h3>Recently Added</h3>
+  <ul>
+  <?php foreach ($recent as $plugin): ?>
+    <li>
+      <?php include_partial('plugin/plugin', array('plugin' => $plugin)) ?>
+    </li>
+  <?php endforeach ?>
+  </ul>
 </div>
 
 <div class="grid_4 alpha">
-  <?php include_component('plugin', 'recently_added', array('limit' => 5)) ?>
+  <h3>Highest Ranking</h3>
+  <ul>
+  <?php foreach ($highest as $plugin): ?>
+    <li>
+      <?php include_partial('plugin/plugin', array('plugin' => $plugin)) ?>
+    </li>
+  <?php endforeach ?>
+  </ul>
 </div>
 
 
 <div class="grid_4 alpha">
-  <?php include_component('plugin', 'most_votes', array('limit' => 5)) ?>
+  <h3>Most Votes</h3>
+  <ul>
+  <?php foreach ($votes as $plugin): ?>
+    <li>
+      <?php include_partial('plugin/plugin', array('plugin' => $plugin)) ?>
+    </li>
+  <?php endforeach ?>
+  </ul>
 </div>
 
 <?php end_slot() ?>

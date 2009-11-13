@@ -37,7 +37,7 @@
 <div id="search-featured" class="clearfix">
   <div class="container_12">
   
-    <?php include_partial('site/homepage.js') ?>
+    <?php //include_partial('site/homepage.js') ?>
 
 
     <?php echo form_tag('@plugin_search', array('id' => 'search')) ?>
@@ -47,6 +47,14 @@
         <span id='indicator' style='display:none'><?php echo image_tag('ajax-loader.gif') ?></span>
       </fieldset>
     </form>
+    
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        $('#search-field').keyup(function(){
+          $('#search-results').load("<?php echo url_for('@plugin_autocomplete_verbose') ?>", { q: this.value }, function() { $('.rating input[type=radio]').rating()});
+        })
+      });
+    </script>
   
     <!-- Search Results -->
     <div id="search-results" class="grid_12">

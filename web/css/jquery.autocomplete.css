@@ -1,8 +1,10 @@
 .ac_results {
 	padding: 0px;
-	border: 1px solid WindowFrame;
-	background-color: Window;
+/*  border: 1px solid WindowFrame;*/
+	background-color: #666666;
 	overflow: hidden;
+	margin-left:20px;
+	-webkit-border-radius:7px;-moz-border-radius:7px;
 }
 
 .ac_results ul {
@@ -41,6 +43,6 @@
 }
 
 .ac_over {
-	background-color: Highlight;
-	color: HighlightText;
+/*  background-color: Highlight;*/
+	color: #4FBCFA;
 }

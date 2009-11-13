@@ -2,6 +2,8 @@
 
 <?php use_helper('Form') ?>
 <?php echo form_tag('@author_new') ?>
-  <?php echo $form ?>
+  <table>
+    <?php echo $form ?>
+  </table>
   <?php echo submit_tag('Submit') ?>
 </form>

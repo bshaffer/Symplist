@@ -34,9 +34,32 @@
 
     <dt>Rate this Plugin</dt>
     <dd>
-      <?php include_partial('plugin/rating_info', array('plugin' => $plugin)) ?>
-      <?php include_partial('plugin/rate_javascript', array('plugin' => $plugin)) ?>
+      <form class="rating" method='post' action="<?php echo url_for('@plugin_rate_ajax?title='.$plugin['title']) ?>">
+      <?php for($i = 1; $i <= 5; $i++): ?>
+        <input value="<?php echo $i ?>" name="rating" type="radio" class="star-rating" <?php echo ($rating == $i)?'checked':'' ?> /> 
+      <?php endfor ?>
+      (<?php echo $plugin->getNumVotes() . ($plugin->getNumVotes() == 1 ? ' vote' : ' votes') ?>)</span>
+      </form>
+
     </dd>
+
+<script type='text/javascript'>
+  $(document).ready(function(){
+    $('.rating input[type=radio]').rating({
+      callback: function(value, link){ 
+        if ($.cookie("<?php echo $plugin['title'] ?>.rating")) { 
+          $('.plugin-info').before("<div class='message important'>You have already rated this plugin</div>");
+          return false;
+        };
+        $('form.rating').load(this.form.action, { 'rating': value }, function() { 
+            $('.plugin-info').before("<div class='message info'>Thank you for rating this plugin</div>");
+            $('.rating input[type=radio]').rating(); // Set Rating Styles
+            $.cookie("<?php echo $plugin['title'] ?>.rating", value);
+        }); 
+      }
+    });    
+  });
+</script>
 
 <?php if ($plugin->isRegistered()): ?>
     <dt>Owner</dt>

@@ -2,7 +2,7 @@ navigation:
   Main:
     Home:             @homepage
     Browse Plugins:      @plugins
-    Submit A Plugin:         @plugin_categories
+    Categories:         @plugin_categories
     Browse Developers:   @authors
     Lists:        @community_lists
 

@@ -23,8 +23,7 @@ h3 {font-size:16px;margin-bottom:10px;}
 */
 
 #header {background:url(../images/header-bg.png) repeat-x;}
-ul{list-style-type:none;}
-ul li{margin-left:0;}
+
 
 
 
@@ -126,6 +125,7 @@ body.interior form#search fieldset {float:right;}
     #content-main .inner {padding:20px 30px;}
     
   #content-main h2 {color:#666;}
+  
   .plugin-info {padding:10px;border:1px solid #ccc;background:#eee;-webkit-border-radius:7px;font-size:12px;overflow:hidden;position:relative;}
     .plugin-info dl {width:100%;margin-bottom:20px;overflow:hidden;}
     .plugin-info dt {height:20px;line-height:20px;font-weight:bold;color:#333;float:left;clear:left;width:22%;border-bottom:1px solid #ccc;padding-bottom:10px;padding-top:10px;}
@@ -137,13 +137,7 @@ body.interior form#search fieldset {float:right;}
       .comments h3 a {margin-left:10px;}
   
   
-    /*Pagination*/
-
-    .pagination {overflow: hidden;margin: 20px 0;clear:left;}
-      .pagination span {display: block;margin-bottom: 10px;}
-      .pagination ul li {float:left;list-style-type:none;margin-left:0;margin-right:13px;padding:0;}
-
-
+  
   
   
   
@@ -177,78 +171,3 @@ div.rating-cancel,div.star-rating {float:left;width:15px;height:15px;text-indent
   div.star-rating{background:transparent!important;overflow:hidden!important}
   /* END jQuery.Rating Plugin CSS */
     div.rating-cancel, div.rating-cancel a {display:none !important;}
-    
-    
-/*Brent's Awful Styles*/
-form th {
-  text-align:left;
-  padding: 5px;
-  width: 100px;
-  font-weight: normal;
-}
-.result-block p {
-  text-align: justify;
-}
-
-.add-comment-form label{
-  padding:20px;
-}
-#comment_body {
-  display:block;
-  clear:both;
-  margin-bottom:10px;
-}
-.error_list {
-  margin-bottom:10px;
-  border:1px solid #F6F6F6;
-  list-style-type:none;
-  background:#fed700 url(../images/message-important.png) 10px 6px no-repeat;
-  padding:5px 5px 5px 10px;
-}
-
-.thumbs_rating .rating {
-  float:left;
-}
-
-.thumbs_rating a {
-	list-style: none;
-	display: inline;
-	margin: 0 0 2em;
-	padding: 0;
-}
-
-.thumbs_rating {
-	padding: 0;
-	float:left;
-	margin-right:20px;
-}
-.thumbs_rating a{
-	float: left;
-	height: 18px;
-	margin: 0 .2em;
-	padding: 0;
-	width: 18px;
-}
-
-.thumbs_rating a {
-	background-image: url('../images/seo-thumbs.gif');
-	background-repeat: no-repeat;
-	text-indent: -9999px;
-}
-
-.thumbs_rating a.thumbs-up {
-	background-position: 0 0px;
-}
-
-
-
-.thumbs_rating a.thumbs-down {
-	background-position: 0 -92px;
-}
-.thumbs_rating a.thumbs-up:hover {
-	background-position: 0% -46px;
-}
-
-.thumbs_rating a.thumbs-down:hover {
-	background-position: 0 -139px;
-}

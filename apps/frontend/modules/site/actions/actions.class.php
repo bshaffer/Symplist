@@ -20,7 +20,14 @@ class siteActions extends sfActions
     $this->setLayout('home');
     $this->featured = Doctrine::getTable('SymfonyPlugin')->getFeatured(4);
 
-    $this->count = Doctrine::getTable('SymfonyPlugin')->createQuery('p')->where('p.user_id is not null')->andWhere('p.active = ?', true)->count();
+    $this->highest = Doctrine::getTable('SymfonyPlugin')->getHighestRanking(3);
+    $this->recent = Doctrine::getTable('SymfonyPlugin')
+                                  ->createQuery('p')
+                                  ->orderBy('p.created_at DESC')
+                                  ->limit(3)
+                                  ->execute();
+                                  
+    $this->votes = Doctrine::getTable('SymfonyPlugin')->getMostVotes(3);
   }
   
   public function executeAbout(sfWebRequest $request)
