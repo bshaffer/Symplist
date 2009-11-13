@@ -17,7 +17,7 @@ require_once(dirname(__FILE__).'/sfDoctrineBaseTask.class.php');
  * @package    sfDoctrinePlugin
  * @subpackage task
  * @author     Kris Wallsmith <kris.wallsmith@symfony-project.com>
- * @version    SVN: $Id: sfDoctrineBuildTask.class.php 21403 2009-08-24 17:45:19Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineBuildTask.class.php 23156 2009-10-17 13:08:16Z Kris.Wallsmith $
  */
 class sfDoctrineBuildTask extends sfDoctrineBaseTask
 {
@@ -32,7 +32,7 @@ class sfDoctrineBuildTask extends sfDoctrineBaseTask
     OPTION_FORMS       = 3,  // model, forms
     OPTION_FILTERS     = 5,  // model, filters
     OPTION_SQL         = 9,  // model, sql
-    OPTION_DB          = 16,
+    OPTION_DB          = 25, // model, sql, db
     OPTION_ALL_CLASSES = 7,  // model, forms, filters
     OPTION_ALL         = 31; // model, forms, filters, sql, db
 
@@ -233,8 +233,8 @@ EOF;
 
       if (count($options['and-load']))
       {
-        $ret = $task->run(array(), array(
-          'dir' => in_array(array(), $options['and-load'], true) ? null : $options['and-load'],
+        $ret = $task->run(array(
+          'dir_or_file' => in_array(array(), $options['and-load'], true) ? null : $options['and-load'],
         ));
 
         if ($ret)
@@ -245,8 +245,9 @@ EOF;
 
       if (count($options['and-append']))
       {
-        $ret = $task->run(array(), array(
-          'dir'    => in_array(array(), $options['and-append'], true) ? null : $options['and-append'],
+        $ret = $task->run(array(
+          'dir_or_file' => in_array(array(), $options['and-append'], true) ? null : $options['and-append'],
+        ), array(
           'append' => true,
         ));
 

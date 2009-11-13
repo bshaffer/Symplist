@@ -16,7 +16,7 @@ require_once(dirname(__FILE__).'/sfPropelBaseTask.class.php');
  * @package    symfony
  * @subpackage propel
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfPropelBuildAllLoadTask.class.php 20940 2009-08-08 14:03:30Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfPropelBuildAllLoadTask.class.php 23076 2009-10-15 06:43:20Z fabien $
  */
 class sfPropelBuildAllLoadTask extends sfPropelBaseTask
 {
@@ -86,8 +86,7 @@ EOF;
       $loadData = new sfPropelDataLoadTask($this->dispatcher, $this->formatter);
       $loadData->setCommandApplication($this->commandApplication);
       $loadData->setConfiguration($this->configuration);
-      $loadData->run(array(), array(
-        'dir'    => $options['dir'],
+      $loadData->run($options['dir'], array(
         'append' => $options['append'],
       ));
     }

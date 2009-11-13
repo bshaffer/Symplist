@@ -18,7 +18,7 @@ require_once(dirname(__FILE__).'/sfDoctrineBaseTask.class.php');
  * @subpackage doctrine
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Jonathan H. Wage <jonwage@gmail.com>
- * @version    SVN: $Id: sfDoctrineDqlTask.class.php 20002 2009-07-07 23:25:04Z Jonathan.Wage $
+ * @version    SVN: $Id: sfDoctrineDqlTask.class.php 22987 2009-10-13 08:02:48Z FabianLange $
  */
 class sfDoctrineDqlTask extends sfDoctrineBaseTask
 {
@@ -93,7 +93,7 @@ EOF;
       }
       else
       {
-        $results = $q->execute(array(), Doctrine::HYDRATE_SCALAR);
+        $results = $q->execute(array(), Doctrine_Core::HYDRATE_SCALAR);
 
         $headers  = array();
         // calculate lengths

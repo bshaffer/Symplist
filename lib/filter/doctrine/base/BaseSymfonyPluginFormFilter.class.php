@@ -15,9 +15,9 @@ class BaseSymfonyPluginFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'title'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'description'       => new sfWidgetFormFilterInput(),
-      'user_id'           => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
+      'user_id'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
       'symfony_developer' => new sfWidgetFormFilterInput(),
-      'category_id'       => new sfWidgetFormDoctrineChoice(array('model' => 'PluginCategory', 'add_empty' => true)),
+      'category_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Category'), 'add_empty' => true)),
       'active'            => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'repository'        => new sfWidgetFormFilterInput(),
       'image'             => new sfWidgetFormFilterInput(),
@@ -33,9 +33,9 @@ class BaseSymfonyPluginFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'title'             => new sfValidatorPass(array('required' => false)),
       'description'       => new sfValidatorPass(array('required' => false)),
-      'user_id'           => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'sfGuardUser', 'column' => 'id')),
+      'user_id'           => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('User'), 'column' => 'id')),
       'symfony_developer' => new sfValidatorPass(array('required' => false)),
-      'category_id'       => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'PluginCategory', 'column' => 'id')),
+      'category_id'       => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Category'), 'column' => 'id')),
       'active'            => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'repository'        => new sfValidatorPass(array('required' => false)),
       'image'             => new sfValidatorPass(array('required' => false)),

@@ -35,6 +35,8 @@
  */
 abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
 {
+    protected $_tables = array();
+
     /**
      * Gets the custom field used for indexing for the specified component alias.
      *
@@ -94,19 +96,19 @@ abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
 
         $event = new Doctrine_Event(null, Doctrine_Event::HYDRATE, null);
 
-        if ($this->_hydrationMode == Doctrine::HYDRATE_ON_DEMAND) {
+        if ($this->_hydrationMode == Doctrine_Core::HYDRATE_ON_DEMAND) {
             if ( ! is_null($this->_priorRow)) {
                 $data = $this->_priorRow;
                 $this->_priorRow = null;
             } else {
-                $data = $stmt->fetch(Doctrine::FETCH_ASSOC);
+                $data = $stmt->fetch(Doctrine_Core::FETCH_ASSOC);
                 if ( ! $data) {
                     return $result;
                 }
             }
             $activeRootIdentifier = null;
         } else { 
-            $data = $stmt->fetch(Doctrine::FETCH_ASSOC); 
+            $data = $stmt->fetch(Doctrine_Core::FETCH_ASSOC); 
             if ( ! $data) { 
                 return $result; 
             }
@@ -117,7 +119,7 @@ abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
             $nonemptyComponents = array();
             $rowData = $this->_gatherRowData($data, $cache, $id, $nonemptyComponents);
 
-            if ($this->_hydrationMode == Doctrine::HYDRATE_ON_DEMAND)  { 
+            if ($this->_hydrationMode == Doctrine_Core::HYDRATE_ON_DEMAND)  { 
                 if (is_null($activeRootIdentifier)) { 
                     // first row for this record 
                     $activeRootIdentifier = $id[$rootAlias]; 
@@ -252,7 +254,7 @@ abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
                     $this->setLastElement($prev, $coll, $index, $dqlAlias, $oneToOne);
                 }
             }
-        } while ($data = $stmt->fetch(Doctrine::FETCH_ASSOC));
+        } while ($data = $stmt->fetch(Doctrine_Core::FETCH_ASSOC));
 
         $stmt->closeCursor();
         $this->flush();
@@ -355,5 +357,64 @@ abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
     public function flush()
     {
 
+    }
+
+    /**
+     * Get the classname to return. Most often this is just the options['name']
+     *
+     * Check the subclasses option and the inheritanceMap for each subclass to see
+     * if all the maps in a subclass is met. If this is the case return that
+     * subclass name. If no subclasses match or if there are no subclasses defined
+     * return the name of the class for this tables record.
+     *
+     * @todo this function could use reflection to check the first time it runs
+     * if the subclassing option is not set.
+     *
+     * @return string The name of the class to create
+     *
+     */
+    protected function _getClassnameToReturn(array &$data, $component)
+    {
+        if ( ! isset($this->_tables[$component])) {
+            $this->_tables[$component] = Doctrine_Core::getTable($component);
+        }
+        
+        if ( ! ($subclasses = $this->_tables[$component]->getOption('subclasses'))) {
+            return $component;
+        }
+        
+        $matchedComponents = array($component);
+        foreach ($subclasses as $subclass) {
+            $table = Doctrine_Core::getTable($subclass);
+            $inheritanceMap = $table->getOption('inheritanceMap');
+            if (count($inheritanceMap) > 1) {
+                $needMatches = count($inheritanceMap);
+                foreach ($inheritanceMap as $key => $value) {
+                    $key = $this->_tables[$component]->getFieldName($key);
+                    if ( isset($data[$key]) && $data[$key] == $value) {
+                        --$needMatches;
+                    }
+                }
+                if ($needMatches == 0) {
+                    $matchedComponents[] = $table->getComponentName();
+                }
+            } else {
+                list($key, $value) = each($inheritanceMap);
+                $key = $this->_tables[$component]->getFieldName($key);
+                if ( ! isset($data[$key]) || $data[$key] != $value) {
+                    continue;
+                } else {
+                    $matchedComponents[] = $table->getComponentName();
+                }
+            }
+        }
+        
+        $matchedComponent = $matchedComponents[count($matchedComponents)-1];
+        
+        if ( ! isset($this->_tables[$matchedComponent])) {
+            $this->_tables[$matchedComponent] = Doctrine_Core::getTable($matchedComponent);
+        }
+        
+        return $matchedComponent;
     }
 }

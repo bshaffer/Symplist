@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage form
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfFormFieldSchema.class.php 21908 2009-09-11 12:06:21Z fabien $
+ * @version    SVN: $Id: sfFormFieldSchema.class.php 23214 2009-10-20 18:11:23Z Kris.Wallsmith $
  */
 class sfFormFieldSchema extends sfFormField implements ArrayAccess, Iterator, Countable
 {
@@ -37,6 +37,51 @@ class sfFormFieldSchema extends sfFormField implements ArrayAccess, Iterator, Co
     parent::__construct($widget, $parent, $name, $value, $error);
 
     $this->fieldNames = $widget->getPositions();
+  }
+
+  /**
+   * Renders hidden form fields.
+   *
+   * @param boolean $recursive False will prevent hidden fields from embedded forms from rendering
+   *
+   * @return string
+   */
+  public function renderHiddenFields($recursive = true)
+  {
+    $output = '';
+
+    foreach ($this->getHiddenFields($recursive) as $field)
+    {
+      $output .= $field->render();
+    }
+
+    return $output;
+  }
+
+  /**
+   * Returns an array of hidden fields from the current schema.
+   *
+   * @param boolean $recursive Whether to recur through embedded schemas
+   *
+   * @return array
+   */
+  public function getHiddenFields($recursive = true)
+  {
+    $fields = array();
+
+    foreach ($this as $name => $field)
+    {
+      if ($field instanceof sfFormFieldSchema && $recursive)
+      {
+        $fields = array_merge($fields, $field->getHiddenFields($recursive));
+      }
+      else if ($field->isHidden())
+      {
+        $fields[] = $field;
+      }
+    }
+
+    return $fields;
   }
 
   /**

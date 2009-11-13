@@ -11,7 +11,7 @@
 /**
  * The current symfony version.
  */
-define('SYMFONY_VERSION', '1.3.0-ALPHA1');
+define('SYMFONY_VERSION', '1.3.0-BETA2');
 
 /**
  * sfCoreAutoload class.
@@ -22,7 +22,7 @@ define('SYMFONY_VERSION', '1.3.0-ALPHA1');
  * @package    symfony
  * @subpackage autoload
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfCoreAutoload.class.php 22465 2009-09-26 14:04:03Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfCoreAutoload.class.php 23749 2009-11-10 06:02:13Z Kris.Wallsmith $
  */
 class sfCoreAutoload
 {
@@ -407,7 +407,9 @@ class sfCoreAutoload
     'sfupgradeto13task' => 'task/project/sfUpgradeTo13Task.class.php',
     'sfassetsupgrade' => 'task/project/upgrade1.3/sfAssetsUpgrade.class.php',
     'sfformsupgrade' => 'task/project/upgrade1.3/sfFormsUpgrade.class.php',
+    'sfpropelupgrade' => 'task/project/upgrade1.3/sfPropelUpgrade.class.php',
     'sftasksupgrade' => 'task/project/upgrade1.3/sfTasksUpgrade.class.php',
+    'sftestsupgrade' => 'task/project/upgrade1.3/sfTestsUpgrade.class.php',
     'sfupgrade' => 'task/project/upgrade1.3/sfUpgrade.class.php',
     'sfyamlupgrade' => 'task/project/upgrade1.3/sfYamlUpgrade.class.php',
     'sfbasetask' => 'task/sfBaseTask.class.php',
@@ -416,6 +418,7 @@ class sfCoreAutoload
     'sftask' => 'task/sfTask.class.php',
     'lime_symfony' => 'task/symfony/lime_symfony.php',
     'sfsymfonytesttask' => 'task/symfony/sfSymfonyTestTask.class.php',
+    'sflimeharness' => 'task/test/sfLimeHarness.class.php',
     'sftestalltask' => 'task/test/sfTestAllTask.class.php',
     'sftestbasetask' => 'task/test/sfTestBaseTask.class.php',
     'sftestcoveragetask' => 'task/test/sfTestCoverageTask.class.php',

@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Compiler.php 5920 2009-06-22 20:29:29Z jwage $
+ *  $Id: Compiler.php 6718 2009-11-12 19:54:30Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -29,7 +29,7 @@
  * @license     http://www.opensource.org/licenses/lgpllicense.php LGPL
  * @link        www.phpdoctrine.
  * @since       1.0
- * @version     $Revision: 5920 $
+ * @version     $Revision: 6718 $
  */
 class Doctrine_Compiler
 {
@@ -61,8 +61,8 @@ class Doctrine_Compiler
             $excludedDrivers = array_diff($drivers, $includedDrivers);
         }
         
-        $path = Doctrine::getPath();
-        $it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path), RecursiveIteratorIterator::LEAVES_ONLY);
+        $path = Doctrine_Core::getPath();
+        $it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path . '/Doctrine'), RecursiveIteratorIterator::LEAVES_ONLY);
 
         foreach ($it as $file) {
             $e = explode('.', $file->getFileName());

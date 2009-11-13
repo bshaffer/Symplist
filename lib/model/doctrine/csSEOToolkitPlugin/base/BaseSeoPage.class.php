@@ -13,10 +13,25 @@
  * @property enum $changeFreq
  * @property boolean $exclude_from_sitemap
  * 
+ * @method string  getUrl()                  Returns the current record's "url" value
+ * @method string  getTitle()                Returns the current record's "title" value
+ * @method clob    getDescription()          Returns the current record's "description" value
+ * @method string  getKeywords()             Returns the current record's "keywords" value
+ * @method decimal getPriority()             Returns the current record's "priority" value
+ * @method enum    getChangeFreq()           Returns the current record's "changeFreq" value
+ * @method boolean getExcludeFromSitemap()   Returns the current record's "exclude_from_sitemap" value
+ * @method SeoPage setUrl()                  Sets the current record's "url" value
+ * @method SeoPage setTitle()                Sets the current record's "title" value
+ * @method SeoPage setDescription()          Sets the current record's "description" value
+ * @method SeoPage setKeywords()             Sets the current record's "keywords" value
+ * @method SeoPage setPriority()             Sets the current record's "priority" value
+ * @method SeoPage setChangeFreq()           Sets the current record's "changeFreq" value
+ * @method SeoPage setExcludeFromSitemap()   Sets the current record's "exclude_from_sitemap" value
+ * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
  * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6365 2009-09-15 18:22:38Z jwage $
+ * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
  */
 abstract class BaseSeoPage extends sfDoctrineRecord
 {
@@ -41,7 +56,7 @@ abstract class BaseSeoPage extends sfDoctrineRecord
         $this->hasColumn('priority', 'decimal', null, array(
              'type' => 'decimal',
              'default' => 0.5,
-             'scale' => '1',
+             'scale' => 1,
              ));
         $this->hasColumn('changeFreq', 'enum', null, array(
              'type' => 'enum',
@@ -66,7 +81,7 @@ abstract class BaseSeoPage extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-    $timestampable0 = new Doctrine_Template_Timestampable();
+        $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);
     }
 }

@@ -6,7 +6,7 @@
  * @package    ##PROJECT_NAME##
  * @subpackage <?php echo $this->getModuleName()."\n" ?>
  * @author     ##AUTHOR_NAME##
- * @version    SVN: $Id: configuration.php 17582 2009-04-24 14:10:55Z hartym $
+ * @version    SVN: $Id: configuration.php 22914 2009-10-10 12:24:29Z Kris.Wallsmith $
  */
 class Base<?php echo ucfirst($this->getModuleName()) ?>GeneratorConfiguration extends sfModelGeneratorConfiguration
 {
@@ -40,8 +40,6 @@ class Base<?php echo ucfirst($this->getModuleName()) ?>GeneratorConfiguration ex
     return '<?php echo isset($this->config['filter']['class']) && !in_array($this->config['filter']['class'], array(null, true, false), true) ? $this->config['filter']['class'] : $this->getModelClass().'FormFilter' ?>';
 <?php unset($this->config['filter']['class']) ?>
   }
-
-<?php include dirname(__FILE__).'/filtersConfiguration.php' ?>
 
 <?php include dirname(__FILE__).'/paginationConfiguration.php' ?>
 

@@ -14,10 +14,27 @@
  * @property CommunityList $List
  * @property sfGuardUser $User
  * 
+ * @method string            getTitle()        Returns the current record's "title" value
+ * @method clob              getBody()         Returns the current record's "body" value
+ * @method integer           getListId()       Returns the current record's "list_id" value
+ * @method integer           getScore()        Returns the current record's "score" value
+ * @method integer           getCount()        Returns the current record's "count" value
+ * @method integer           getSubmittedBy()  Returns the current record's "submitted_by" value
+ * @method CommunityList     getList()         Returns the current record's "List" value
+ * @method sfGuardUser       getUser()         Returns the current record's "User" value
+ * @method CommunityListItem setTitle()        Sets the current record's "title" value
+ * @method CommunityListItem setBody()         Sets the current record's "body" value
+ * @method CommunityListItem setListId()       Sets the current record's "list_id" value
+ * @method CommunityListItem setScore()        Sets the current record's "score" value
+ * @method CommunityListItem setCount()        Sets the current record's "count" value
+ * @method CommunityListItem setSubmittedBy()  Sets the current record's "submitted_by" value
+ * @method CommunityListItem setList()         Sets the current record's "List" value
+ * @method CommunityListItem setUser()         Sets the current record's "User" value
+ * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
  * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6365 2009-09-15 18:22:38Z jwage $
+ * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
  */
 abstract class BaseCommunityListItem extends sfDoctrineRecord
 {
@@ -53,7 +70,7 @@ abstract class BaseCommunityListItem extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-    $this->hasOne('CommunityList as List', array(
+        $this->hasOne('CommunityList as List', array(
              'local' => 'list_id',
              'foreign' => 'id'));
 

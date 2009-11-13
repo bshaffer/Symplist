@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Pgsql.php 6376 2009-09-17 19:52:40Z jwage $
+ *  $Id: Pgsql.php 6484 2009-10-12 17:40:41Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -26,7 +26,7 @@
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  * @author      Paul Cooper <pgc@ucecom.com>
  * @author      Lukas Smith <smith@pooteeweet.org> (PEAR MDB2 library)
- * @version     $Revision: 6376 $
+ * @version     $Revision: 6484 $
  * @link        www.phpdoctrine.org
  * @since       1.0
  */
@@ -423,7 +423,7 @@ class Doctrine_DataDict_Pgsql extends Doctrine_DataDict
                 return 'FLOAT';
             case 'decimal':
                 $length = !empty($field['length']) ? $field['length'] : 18;
-                $scale = !empty($field['scale']) ? $field['scale'] : $this->conn->getAttribute(Doctrine::ATTR_DECIMAL_PLACES);
+                $scale = !empty($field['scale']) ? $field['scale'] : $this->conn->getAttribute(Doctrine_Core::ATTR_DECIMAL_PLACES);
                 return 'NUMERIC('.$length.','.$scale.')';
         }
         return $field['type'] . (isset($field['length']) ? '('.$field['length'].')':null);

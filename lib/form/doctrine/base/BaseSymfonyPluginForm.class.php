@@ -3,6 +3,8 @@
 /**
  * SymfonyPlugin form base class.
  *
+ * @method SymfonyPlugin getObject() Returns the current form's model object
+ *
  * @package    plugintracker
  * @subpackage form
  * @author     Your name here
@@ -16,9 +18,9 @@ class BaseSymfonyPluginForm extends BaseFormDoctrine
       'id'                => new sfWidgetFormInputHidden(),
       'title'             => new sfWidgetFormInputText(),
       'description'       => new sfWidgetFormTextarea(),
-      'user_id'           => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
+      'user_id'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
       'symfony_developer' => new sfWidgetFormInputText(),
-      'category_id'       => new sfWidgetFormDoctrineChoice(array('model' => 'PluginCategory', 'add_empty' => true)),
+      'category_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Category'), 'add_empty' => true)),
       'active'            => new sfWidgetFormInputCheckbox(),
       'repository'        => new sfWidgetFormInputText(),
       'image'             => new sfWidgetFormInputText(),
@@ -32,12 +34,12 @@ class BaseSymfonyPluginForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'id'                => new sfValidatorDoctrineChoice(array('model' => 'SymfonyPlugin', 'column' => 'id', 'required' => false)),
+      'id'                => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
       'title'             => new sfValidatorString(array('max_length' => 255)),
       'description'       => new sfValidatorString(array('required' => false)),
-      'user_id'           => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
+      'user_id'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'required' => false)),
       'symfony_developer' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'category_id'       => new sfValidatorDoctrineChoice(array('model' => 'PluginCategory', 'required' => false)),
+      'category_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Category'), 'required' => false)),
       'active'            => new sfValidatorBoolean(array('required' => false)),
       'repository'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'image'             => new sfValidatorString(array('max_length' => 255, 'required' => false)),

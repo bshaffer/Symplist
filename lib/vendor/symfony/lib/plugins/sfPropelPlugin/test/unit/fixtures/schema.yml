@@ -1,5 +1,10 @@
 propel:
   _attributes:      { defaultIdMethod: none, package: lib.model }
+  _propel_behaviors:
+    timestampable:
+      boolean: true
+      create_column: create_date
+
   ab_group:
     _attributes:    { phpName: Group, package: foo.bar.lib.model }
     id:
@@ -49,6 +54,9 @@ propel:
     _uniques:
       my_other_index: [created_at(10)]
     _behaviors:
+      paranoid: { column: deleted_at }
+      act_as_nested_set:
+    _propel_behaviors:
       paranoid: { column: deleted_at }
       act_as_nested_set:
 

@@ -16,7 +16,7 @@
  * @subpackage doctrine
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Jonathan H. Wage <jonwage@gmail.com>
- * @version    SVN: $Id: sfDoctrineDatabase.class.php 21908 2009-09-11 12:06:21Z fabien $
+ * @version    SVN: $Id: sfDoctrineDatabase.class.php 22987 2009-10-13 08:02:48Z FabianLange $
  */
 class sfDoctrineDatabase extends sfDatabase
 {
@@ -66,19 +66,26 @@ class sfDoctrineDatabase extends sfDatabase
     }
 
     // Make the Doctrine connection for $dsn and $name
-    $this->_doctrineConnection = Doctrine_Manager::connection($dsn, $name);
+    $configuration = sfProjectConfiguration::getActive();
+    $dispatcher = $configuration->getEventDispatcher();
+    $manager = Doctrine_Manager::getInstance();
+
+    $this->_doctrineConnection = $manager->openConnection($dsn, $name);
+
     $attributes = $this->getParameter('attributes', array());
     foreach ($attributes as $name => $value)
     {
       if (is_string($name))
       {
         $stringName = $name;
-        $name = constant('Doctrine::ATTR_'.strtoupper($name));
+        $name = constant('Doctrine_Core::ATTR_'.strtoupper($name));
       }
+
       if (is_string($value))
       {
-        $value = constant('Doctrine::'.strtoupper($stringName).'_'.strtoupper($value));
+        $value = constant('Doctrine_Core::'.strtoupper($stringName).'_'.strtoupper($value));
       }
+
       $this->_doctrineConnection->setAttribute($name, $value);
     }
 
@@ -86,18 +93,16 @@ class sfDoctrineDatabase extends sfDatabase
     $eventListener = new sfDoctrineConnectionListener($this->_doctrineConnection, $encoding);
     $this->_doctrineConnection->addListener($eventListener);
 
-    $configuration = sfProjectConfiguration::getActive();
-
     // Load Query Profiler
     if ($this->getParameter('profiler', sfConfig::get('sf_debug')))
     {
-      $this->profiler = new sfDoctrineConnectionProfiler($configuration->getEventDispatcher(), array(
+      $this->profiler = new sfDoctrineConnectionProfiler($dispatcher, array(
         'logging' => $this->getParameter('logging', sfConfig::get('sf_logging_enabled')),
       ));
       $this->_doctrineConnection->addListener($this->profiler);
     }
 
-    // Invoke the configuration methods for the connection if they exist
+    // Invoke the configuration methods for the connection if they exist (deprecated in favor of the "doctrine.configure_connection" event)
     $method = sprintf('configureDoctrineConnection%s', ucwords($this->_doctrineConnection->getName()));
 
     if (method_exists($configuration, 'configureDoctrineConnection') && ! method_exists($configuration, $method))
@@ -109,6 +114,8 @@ class sfDoctrineDatabase extends sfDatabase
     {
       $configuration->$method($this->_doctrineConnection);
     }
+
+    $dispatcher->notify(new sfEvent($manager, 'doctrine.configure_connection', array('connection' => $this->_doctrineConnection, 'database' => $this)));
   }
 
   /**

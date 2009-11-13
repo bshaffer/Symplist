@@ -9,10 +9,17 @@
  * @property clob $description
  * @property Doctrine_Collection $Plugins
  * 
+ * @method string              getName()        Returns the current record's "name" value
+ * @method clob                getDescription() Returns the current record's "description" value
+ * @method Doctrine_Collection getPlugins()     Returns the current record's "Plugins" collection
+ * @method PluginCategory      setName()        Sets the current record's "name" value
+ * @method PluginCategory      setDescription() Sets the current record's "description" value
+ * @method PluginCategory      setPlugins()     Sets the current record's "Plugins" collection
+ * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
  * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6365 2009-09-15 18:22:38Z jwage $
+ * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
  */
 abstract class BasePluginCategory extends sfDoctrineRecord
 {
@@ -31,7 +38,7 @@ abstract class BasePluginCategory extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-    $this->hasMany('SymfonyPlugin as Plugins', array(
+        $this->hasMany('SymfonyPlugin as Plugins', array(
              'local' => 'id',
              'foreign' => 'category_id'));
 

@@ -35,6 +35,7 @@
 class Doctrine_Migration
 {
     protected $_migrationTableName = 'migration_version',
+              $_migrationTableCreated = false,
               $_connection,
               $_migrationClassesDirectory = array(),
               $_migrationClasses = array(),
@@ -74,14 +75,17 @@ class Doctrine_Migration
             $this->_migrationClassesDirectory = $directory;
 
             $this->loadMigrationClassesFromDirectory();
-
-            $this->_createMigrationTable();
         }
     }
 
     public function getConnection()
     {
         return $this->_connection;
+    }
+
+    public function setConnection(Doctrine_Connection $conn)
+    {
+        $this->_connection = $conn;
     }
 
     /**
@@ -127,16 +131,17 @@ class Doctrine_Migration
     {
         $directory = $directory ? $directory:$this->_migrationClassesDirectory;
 
-        if (isset(self::$_migrationClassesForDirectories[$directory])) {
-            $migrationClasses = (array) self::$_migrationClassesForDirectories[$directory];
-            $this->_migrationClasses = array_merge($migrationClasses, $this->_migrationClasses);
-        }
-
         $classesToLoad = array();
         $classes = get_declared_classes();
         foreach ((array) $directory as $dir) {
             $it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir),
                 RecursiveIteratorIterator::LEAVES_ONLY);
+
+            if (isset(self::$_migrationClassesForDirectories[$dir])) {
+                foreach (self::$_migrationClassesForDirectories[$dir] as $num => $className) {
+                    $this->_migrationClasses[$num] = $className;
+                }
+            }
 
             foreach ($it as $file) {
                 $info = pathinfo($file->getFileName());
@@ -234,6 +239,8 @@ class Doctrine_Migration
      */
     public function getCurrentVersion()
     {
+        $this->_createMigrationTable();
+
         $result = $this->_connection->fetchColumn("SELECT version FROM " . $this->_migrationTableName);
 
         return isset($result[0]) ? $result[0]:0;
@@ -246,6 +253,8 @@ class Doctrine_Migration
      */
     public function hasMigrated()
     {
+        $this->_createMigrationTable();
+
         $result = $this->_connection->fetchColumn("SELECT version FROM " . $this->_migrationTableName);
 
         return isset($result[0]) ? true:false;
@@ -454,6 +463,8 @@ class Doctrine_Migration
      */
     protected function _doMigrate($to)
     {
+        $this->_createMigrationTable();
+
         $from = $this->getCurrentVersion();
 
         if ($from == $to) {
@@ -499,6 +510,9 @@ class Doctrine_Migration
 
             if ($migration->getNumChanges() > 0) {
                 $changes = $migration->getChanges();
+                if ($direction == 'down' && method_exists($migration, 'migrate')) {
+                    $changes = array_reverse($changes);
+                }
                 foreach ($changes as $value) {
                     list($type, $change) = $value;
                     $funcName = 'process' . Doctrine_Inflector::classify($type);
@@ -530,6 +544,12 @@ class Doctrine_Migration
      */
     protected function _createMigrationTable()
     {
+        if ($this->_migrationTableCreated) {
+            return true;
+        }
+
+        $this->_migrationTableCreated = true;
+
         try {
             $this->_connection->export->createTable($this->_migrationTableName, array('version' => array('type' => 'integer', 'size' => 11)));
 

@@ -3,6 +3,8 @@
 /**
  * PluginRating form base class.
  *
+ * @method PluginRating getObject() Returns the current form's model object
+ *
  * @package    plugintracker
  * @subpackage form
  * @author     Your name here
@@ -14,17 +16,17 @@ class BasePluginRatingForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                => new sfWidgetFormInputHidden(),
-      'symfony_plugin_id' => new sfWidgetFormDoctrineChoice(array('model' => 'SymfonyPlugin', 'add_empty' => true)),
-      'sf_guard_user_id'  => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
+      'symfony_plugin_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Plugin'), 'add_empty' => true)),
+      'sf_guard_user_id'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
       'rating'            => new sfWidgetFormInputText(),
       'created_at'        => new sfWidgetFormDateTime(),
       'updated_at'        => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
-      'id'                => new sfValidatorDoctrineChoice(array('model' => 'PluginRating', 'column' => 'id', 'required' => false)),
-      'symfony_plugin_id' => new sfValidatorDoctrineChoice(array('model' => 'SymfonyPlugin', 'required' => false)),
-      'sf_guard_user_id'  => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
+      'id'                => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
+      'symfony_plugin_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Plugin'), 'required' => false)),
+      'sf_guard_user_id'  => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'required' => false)),
       'rating'            => new sfValidatorInteger(array('required' => false)),
       'created_at'        => new sfValidatorDateTime(),
       'updated_at'        => new sfValidatorDateTime(),

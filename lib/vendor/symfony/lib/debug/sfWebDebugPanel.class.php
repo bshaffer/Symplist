@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage debug
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfWebDebugPanel.class.php 22181 2009-09-19 18:49:11Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfWebDebugPanel.class.php 22955 2009-10-12 16:44:07Z Kris.Wallsmith $
  */
 abstract class sfWebDebugPanel
 {
@@ -25,7 +25,7 @@ abstract class sfWebDebugPanel
   /**
    * Constructor.
    *
-   * @param sfWebDebug $webDebug The web debut toolbar instance
+   * @param sfWebDebug $webDebug The web debug toolbar instance
    */
   public function __construct(sfWebDebug $webDebug)
   {

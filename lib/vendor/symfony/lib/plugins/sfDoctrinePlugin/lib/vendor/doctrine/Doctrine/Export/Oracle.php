@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Oracle.php 6373 2009-09-17 18:51:22Z jwage $
+ *  $Id: Oracle.php 6720 2009-11-12 20:18:24Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -29,7 +29,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 6373 $
+ * @version     $Revision: 6720 $
  */
 class Doctrine_Export_Oracle extends Doctrine_Export
 {
@@ -42,7 +42,7 @@ class Doctrine_Export_Oracle extends Doctrine_Export
      */
     public function createDatabase($name)
     {
-        if ($this->conn->getAttribute(Doctrine::ATTR_EMULATE_DATABASE)) {
+        if ($this->conn->getAttribute(Doctrine_Core::ATTR_EMULATE_DATABASE)) {
             $username   = $name;
             $password   = $this->conn->dsn['password'] ? $this->conn->dsn['password'] : $name;
 
@@ -77,12 +77,12 @@ BEGIN
   -- user_tables contains also materialized views
   FOR I IN (SELECT table_name FROM user_tables WHERE table_name NOT IN (SELECT mview_name FROM user_mviews))
   LOOP 
-    EXECUTE IMMEDIATE 'DROP TABLE "'||I.table_name||'" CASCADE CONSTRAINTS';
+    EXECUTE IMMEDIATE 'DROP TABLE \"'||I.table_name||'\" CASCADE CONSTRAINTS';
   END LOOP;
   
   FOR I IN (SELECT SEQUENCE_NAME FROM USER_SEQUENCES)
   LOOP
-    EXECUTE IMMEDIATE 'DROP SEQUENCE "'||I.SEQUENCE_NAME||'"';
+    EXECUTE IMMEDIATE 'DROP SEQUENCE \"'||I.SEQUENCE_OWNER||'\".\"'||I.SEQUENCE_NAME||'\"';
   END LOOP;
 END;
 
@@ -90,7 +90,7 @@ SQL;
 
         $this->conn->exec($sql);
 
-        if ($this->conn->getAttribute(Doctrine::ATTR_EMULATE_DATABASE)) {
+        if ($this->conn->getAttribute(Doctrine_Core::ATTR_EMULATE_DATABASE)) {
             $username = $name;
             $this->conn->exec('DROP USER ' . $username . ' CASCADE');
         }
@@ -109,7 +109,7 @@ SQL;
     {
         $sql   = array();
 
-        if ( ! $this->conn->getAttribute(Doctrine::ATTR_QUOTE_IDENTIFIER)) {
+        if ( ! $this->conn->getAttribute(Doctrine_Core::ATTR_QUOTE_IDENTIFIER)) {
         	$table = strtoupper($table);
         }
         $indexName  = $table . '_AI_PK';

@@ -13,10 +13,25 @@
  * @property Doctrine_Collection $sfGuardGroupPermission
  * @property Doctrine_Collection $sfGuardUserGroup
  * 
+ * @method integer             getId()                     Returns the current record's "id" value
+ * @method string              getName()                   Returns the current record's "name" value
+ * @method string              getDescription()            Returns the current record's "description" value
+ * @method Doctrine_Collection getUsers()                  Returns the current record's "users" collection
+ * @method Doctrine_Collection getPermissions()            Returns the current record's "permissions" collection
+ * @method Doctrine_Collection getSfGuardGroupPermission() Returns the current record's "sfGuardGroupPermission" collection
+ * @method Doctrine_Collection getSfGuardUserGroup()       Returns the current record's "sfGuardUserGroup" collection
+ * @method sfGuardGroup        setId()                     Sets the current record's "id" value
+ * @method sfGuardGroup        setName()                   Sets the current record's "name" value
+ * @method sfGuardGroup        setDescription()            Sets the current record's "description" value
+ * @method sfGuardGroup        setUsers()                  Sets the current record's "users" collection
+ * @method sfGuardGroup        setPermissions()            Sets the current record's "permissions" collection
+ * @method sfGuardGroup        setSfGuardGroupPermission() Sets the current record's "sfGuardGroupPermission" collection
+ * @method sfGuardGroup        setSfGuardUserGroup()       Sets the current record's "sfGuardUserGroup" collection
+ * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
  * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6365 2009-09-15 18:22:38Z jwage $
+ * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
  */
 abstract class BasesfGuardGroup extends sfDoctrineRecord
 {
@@ -43,7 +58,7 @@ abstract class BasesfGuardGroup extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-    $this->hasMany('sfGuardUser as users', array(
+        $this->hasMany('sfGuardUser as users', array(
              'refClass' => 'sfGuardUserGroup',
              'local' => 'group_id',
              'foreign' => 'user_id'));

@@ -16,7 +16,7 @@
  * @subpackage helper
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     David Heinemeier Hansson
- * @version    SVN: $Id: FormHelper.php 18926 2009-06-04 14:24:35Z FabianLange $
+ * @version    SVN: $Id: FormHelper.php 23515 2009-11-02 13:12:42Z Kris.Wallsmith $
  */
 
 /**
@@ -510,7 +510,11 @@ function textarea_tag($name, $content = null, $options = array())
 
     $editorClass = 'sfRichTextEditor'.$rich;
 
-    if (!class_exists($editorClass))
+    if (!class_exists($editorClass, false) && file_exists($file = dirname(__FILE__).'/'.$editorClass.'.class.php'))
+    {
+      require_once $file;
+    }
+    else if (!class_exists($editorClass))
     {
       throw new sfConfigurationException(sprintf('The rich text editor "%s" does not exist.', $editorClass));
     }

@@ -18,6 +18,15 @@ Article:
     Author:
       foreignAlias: Articles
 
+BlogArticle:
+  inheritance:
+    extends: Article
+    type: column_aggregation
+  relations:
+    Author:
+      class: BlogAuthor
+      foreignAlias: Articles
+
 CamelCase:
   columns:
     article_id: integer
@@ -34,6 +43,17 @@ AuthorInheritance:
   inheritance:
     extends: Author
     type: column_aggregation
+
+BlogAuthor:
+  inheritance:
+    extends: Author
+    type: column_aggregation
+
+AuthorInheritanceConcrete:
+  inheritance:
+    extends: Author
+  columns:
+    additional: string(255)
 
 Subscription:
   connection: doctrine2

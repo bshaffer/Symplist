@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage widget
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfWidget.class.php 22446 2009-09-26 07:55:47Z fabien $
+ * @version    SVN: $Id: sfWidget.class.php 22933 2009-10-11 22:42:56Z Kris.Wallsmith $
  */
 abstract class sfWidget
 {
@@ -361,9 +361,7 @@ abstract class sfWidget
    */
   static public function escapeOnce($value)
   {
-    $value = is_object($value) ? $value->__toString() : (string) $value;
-
-    return self::fixDoubleEscape(htmlspecialchars($value, ENT_QUOTES, self::getCharset()));
+    return self::fixDoubleEscape(htmlspecialchars((string) $value, ENT_QUOTES, self::getCharset()));
   }
 
   /**

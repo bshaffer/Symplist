@@ -69,10 +69,17 @@ class Doctrine_Search extends Doctrine_Record_Generator
         }
 
         $this->_options['analyzer'] = new $this->_options['analyzer']($this->_options['analyzer_options']);
+    }
+
+    public function buildTable()
+    {
+        $result = parent::buildTable();
 
         if ( ! isset($this->_options['connection'])) {
-            $this->_options['connection'] = Doctrine_Manager::connection();
+            $this->_options['connection'] = $this->_options['table']->getConnection();
         }
+
+        return $result;
     }
 
     /**
@@ -130,7 +137,7 @@ class Doctrine_Search extends Doctrine_Record_Generator
         $conn   = $this->getOption('table')->getConnection();
         $identifier = $this->_options['table']->getIdentifier();
 
-        $q = Doctrine_Query::create()->delete()
+        $q = Doctrine_Query::create($conn)->delete()
                                      ->from($class);
         foreach ((array) $identifier as $id) {
             $q->addWhere($id . ' = ?', array($data[$id]));
@@ -163,6 +170,7 @@ class Doctrine_Search extends Doctrine_Record_Generator
                     }
 
                     $index->save();
+                    $index->free(true);
                 }
             }
         }
@@ -258,6 +266,7 @@ class Doctrine_Search extends Doctrine_Record_Generator
                         }
     
                         $index->save();
+                        $index->free(true);
                     }
                 }
                 $conn->commit();

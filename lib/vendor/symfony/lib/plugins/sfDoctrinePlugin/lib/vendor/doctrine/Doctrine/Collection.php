@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Collection.php 5934 2009-06-24 18:48:27Z jwage $
+ *  $Id: Collection.php 6589 2009-10-30 17:03:29Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -28,7 +28,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 5934 $
+ * @version     $Revision: 6589 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 class Doctrine_Collection extends Doctrine_Access implements Countable, IteratorAggregate, Serializable
@@ -81,7 +81,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     public function __construct($table, $keyColumn = null)
     {
         if ( ! ($table instanceof Doctrine_Table)) {
-            $table = Doctrine::getTable($table);
+            $table = Doctrine_Core::getTable($table);
         }
 
         $this->_table = $table;
@@ -91,7 +91,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
         }
 
         if ($keyColumn === null) {
-        	$keyColumn = $table->getAttribute(Doctrine::ATTR_COLL_KEY);
+        	$keyColumn = $table->getAttribute(Doctrine_Core::ATTR_COLL_KEY);
         }
 
         if ($keyColumn !== null) {
@@ -113,9 +113,9 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     {
         if (is_null($class)) {
             if ( ! $table instanceof Doctrine_Table) {
-                $table = Doctrine::getTable($table);
+                $table = Doctrine_Core::getTable($table);
             }
-            $class = $table->getAttribute(Doctrine::ATTR_COLLECTION_CLASS);
+            $class = $table->getAttribute(Doctrine_Core::ATTR_COLLECTION_CLASS);
         }
 
         return new $class($table, $keyColumn);
@@ -539,6 +539,9 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
             }
             $query->from($this->_table->getComponentName());
             $query->where($this->_table->getComponentName() . '.id IN (' . substr(str_repeat("?, ", count($list)),0,-2) . ')');
+            if ( ! $list) {
+                $query->where($this->_table->getComponentName() . '.id IN (' . substr(str_repeat("?, ", count($list)),0,-2) . ')', $list);
+            }
 
             return $query;
         }
@@ -556,6 +559,10 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
                     $list[] = $value;
                 }
             }
+        }
+
+        if ( ! $list) {
+            return;
         }
 
         $dql     = $rel->getRelationDql(count($list), 'collection');
@@ -684,7 +691,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     }
 
     /**
-     * Mimics the result of a $query->execute(array(), Doctrine::HYDRATE_ARRAY);
+     * Mimics the result of a $query->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
      *
      * @param boolean $deep
      */
@@ -715,6 +722,51 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
             $result[$record->$key] = $record->$value;
         }
         return $result;
+    }
+
+    public function toHierarchy()
+    {
+        $collection = $this;
+        $table = $collection->getTable();
+
+        if ( ! $table->hasTemplate('NestedSet')) {
+            throw new Doctrine_Exception('Cannot hydrate model that does not have the NestedSet behavior enabled');
+        }
+
+        // Trees mapped
+        $trees = new Doctrine_Collection($table);
+        $l = 0;
+
+        if (count($collection) > 0) {
+            // Node Stack. Used to help building the hierarchy
+            $stack = new Doctrine_Collection($table);
+
+            foreach ($collection as $child) {
+                $item = $child;
+
+                $item->mapValue('__children', new Doctrine_Collection($table));
+
+                // Number of stack items
+                $l = count($stack);
+
+                // Stack is empty (we are inspecting the root)
+                if ($l == 0) {
+                    // Assigning the root child
+                    $i = count($trees);
+                    $trees[$i] = $item;
+                    $stack[] = $trees[$i];
+                } else {
+                    // Add child to parent
+                    $i = count($stack[$l - 1]['__children']);
+                    $children = $stack[$l - 1]['__children'];
+                    $children[$i] = $item;
+                    $stack[$l - 1]['__children'] = $children;
+                    $stack[] = $children[$i];
+                }
+            }
+        }
+
+        return $trees;
     }
 
     /**

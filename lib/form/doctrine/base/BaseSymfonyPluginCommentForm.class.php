@@ -3,6 +3,8 @@
 /**
  * SymfonyPluginComment form base class.
  *
+ * @method SymfonyPluginComment getObject() Returns the current form's model object
+ *
  * @package    plugintracker
  * @subpackage form
  * @author     Your name here
@@ -18,8 +20,8 @@ class BaseSymfonyPluginCommentForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'id'         => new sfValidatorDoctrineChoice(array('model' => 'SymfonyPluginComment', 'column' => 'id', 'required' => false)),
-      'comment_id' => new sfValidatorDoctrineChoice(array('model' => 'SymfonyPluginComment', 'column' => 'comment_id', 'required' => false)),
+      'id'         => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
+      'comment_id' => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'comment_id', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('symfony_plugin_comment[%s]');

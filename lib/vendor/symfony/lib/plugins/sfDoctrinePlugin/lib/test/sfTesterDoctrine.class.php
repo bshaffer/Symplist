@@ -45,18 +45,18 @@ class sfTesterDoctrine extends sfTester
   {
     if (null === $query)
     {
-      $query = Doctrine::getTable($model)
+      $query = Doctrine_Core::getTable($model)
         ->createQuery('a');
     }
 
     if (is_array($query))
     {
       $conditions = $query;
-      $query = $query = Doctrine::getTable($model)
+      $query = $query = Doctrine_Core::getTable($model)
         ->createQuery('a');
       foreach ($conditions as $column => $condition)
       {
-        $column = Doctrine::getTable($model)->getFieldName($column);
+        $column = Doctrine_Core::getTable($model)->getFieldName($column);
 
         if (null === $condition)
         {
@@ -168,7 +168,7 @@ class sfTesterDoctrine extends sfTester
         echo $event->getQuery()."\n";
         echo '  Parameters: '.sfYaml::dump(sfDoctrineConnectionProfiler::fixParams($event->getParams()), 0)."\n";
         echo '  Connection: '.$conn->getName()."\n";
-        echo '  Time:       '.number_format($event->getElapsedSecs(), 2)."s\n";
+        echo '  Time:       '.number_format($event->getElapsedSecs(), 2)."s\n\n";
       }
     }
 

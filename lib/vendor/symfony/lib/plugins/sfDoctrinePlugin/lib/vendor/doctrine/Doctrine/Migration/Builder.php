@@ -271,9 +271,9 @@ END;
     {
         $directory = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'tmp_doctrine_models';
 
-        Doctrine::generateModelsFromDb($directory);
+        Doctrine_Core::generateModelsFromDb($directory);
 
-        $result = $this->generateMigrationsFromModels($directory, Doctrine::MODEL_LOADING_CONSERVATIVE);
+        $result = $this->generateMigrationsFromModels($directory, Doctrine_Core::MODEL_LOADING_CONSERVATIVE);
 
         Doctrine_Lib::removeDirectories($directory);
 
@@ -290,17 +290,17 @@ END;
     public function generateMigrationsFromModels($modelsPath = null, $modelLoading = null)
     {
         if ($modelsPath !== null) {
-            $models = Doctrine::filterInvalidModels(Doctrine::loadModels($modelsPath, $modelLoading));
+            $models = Doctrine_Core::filterInvalidModels(Doctrine_Core::loadModels($modelsPath, $modelLoading));
         } else {
-            $models = Doctrine::getLoadedModels();
+            $models = Doctrine_Core::getLoadedModels();
         }
 
-        $models = Doctrine::initializeModels($models);
+        $models = Doctrine_Core::initializeModels($models);
 
         $foreignKeys = array();
 
         foreach ($models as $model) {
-            $table = Doctrine::getTable($model);
+            $table = Doctrine_Core::getTable($model);
             if ($table->getTableName() !== $this->migration->getTableName()) {
                 $export = $table->getExportableFormat();
 
@@ -444,7 +444,7 @@ END;
         $length = $column['length'];
         $type = $column['type'];
         unset($column['length'], $column['type']);
-        return "        \$this->changeColumn('" . $tableName . "', '" . $columnName. "', '" . $length . "', '" . $type . "', " . $this->varExport($column) . ");";
+        return "        \$this->changeColumn('" . $tableName . "', '" . $columnName. "', '" . $type . "', '" . $length . "', " . $this->varExport($column) . ");";
     }
 
     /**

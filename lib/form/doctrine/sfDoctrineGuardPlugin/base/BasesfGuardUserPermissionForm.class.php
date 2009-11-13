@@ -3,6 +3,8 @@
 /**
  * sfGuardUserPermission form base class.
  *
+ * @method sfGuardUserPermission getObject() Returns the current form's model object
+ *
  * @package    plugintracker
  * @subpackage form
  * @author     Your name here
@@ -20,8 +22,8 @@ class BasesfGuardUserPermissionForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'user_id'       => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUserPermission', 'column' => 'user_id', 'required' => false)),
-      'permission_id' => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUserPermission', 'column' => 'permission_id', 'required' => false)),
+      'user_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'user_id', 'required' => false)),
+      'permission_id' => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'permission_id', 'required' => false)),
       'created_at'    => new sfValidatorDateTime(),
       'updated_at'    => new sfValidatorDateTime(),
     ));

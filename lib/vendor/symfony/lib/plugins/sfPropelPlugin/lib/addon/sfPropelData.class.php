@@ -15,7 +15,7 @@
  * @package    symfony
  * @subpackage propel
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfPropelData.class.php 21908 2009-09-11 12:06:21Z fabien $
+ * @version    SVN: $Id: sfPropelData.class.php 22881 2009-10-08 16:50:37Z Kris.Wallsmith $
  */
 class sfPropelData extends sfData
 {
@@ -269,18 +269,15 @@ class sfPropelData extends sfData
    */
   protected function loadMapBuilders()
   {
-    $files = sfFinder::type('file')->name('*MapBuilder.php')->in(sfProjectConfiguration::getActive()->getModelDirs());
+    $dbMap = Propel::getDatabaseMap();
+    $files = sfFinder::type('file')->name('*TableMap.php')->in(sfProjectConfiguration::getActive()->getModelDirs());
     foreach ($files as $file)
     {
-      $omClass = basename($file, 'MapBuilder.php');
+      $omClass = basename($file, 'TableMap.php');
       if (class_exists($omClass) && is_subclass_of($omClass, 'BaseObject'))
       {
-        $mapBuilderClass = basename($file, '.php');
-        $map = new $mapBuilderClass();
-        if (!$map->isBuilt())
-        {
-          $map->doBuild();
-        }
+        $tableMapClass = basename($file, '.php');
+        $dbMap->addTableFromMapClass($tableMapClass);
       }
     }
   }

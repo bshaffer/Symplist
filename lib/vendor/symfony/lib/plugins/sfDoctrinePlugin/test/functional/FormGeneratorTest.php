@@ -12,7 +12,7 @@ $app = 'backend';
 $fixtures = 'fixtures';
 require_once(dirname(__FILE__).'/../bootstrap/functional.php');
 
-$t = new lime_test(22);
+$t = new lime_test(32);
 
 $t->diag("Test that these models don't generate forms or filters classes");
 $noFormsOrFilters = array('UserGroup', 'UserPermission', 'GroupPermission');
@@ -38,9 +38,33 @@ $t->is(file_exists(sfConfig::get('sf_lib_dir').'/form/doctrine/base/BaseFormGene
 $t->is(file_exists(sfConfig::get('sf_lib_dir').'/filter/doctrine/FormGeneratorTest2FormFilter.class.php'), true);
 $t->is(file_exists(sfConfig::get('sf_lib_dir').'/filter/doctrine/base/BaseFormGeneratorTest2FormFilter.class.php'), true);
 
-$t->diag('Check form genreator generates forms with correct inheritance');
+$t->diag('Check form generator generates forms with correct inheritance');
 $test = new AuthorInheritanceForm();
 $t->is(is_subclass_of($test, 'AuthorForm'), true);
 
 $test = new AuthorInheritanceFormFilter();
 $t->is(is_subclass_of($test, 'AuthorFormFilter'), true);
+
+$t->diag('Check form generator adds columns to concrete inheritance forms');
+$test = new AuthorForm();
+$t->ok(!isset($test['additional']));
+
+$test = new AuthorInheritanceConcreteForm();
+$t->ok(isset($test['additional']));
+
+$test = new AuthorFormFilter();
+$t->ok(!isset($test['additional']));
+$t->ok(!array_key_exists('additional', $test->getFields()));
+
+$test = new AuthorInheritanceConcreteFormFilter();
+$t->ok(isset($test['additional']));
+$t->ok(array_key_exists('additional', $test->getFields()));
+
+$t->diag('Check form generator respects relations tweaked by inheritance');
+$test = new BlogArticleForm();
+$t->is($test->getWidget('author_id')->getOption('model'), 'BlogAuthor');
+$t->is($test->getValidator('author_id')->getOption('model'), 'BlogAuthor');
+
+$test = new BlogArticleFormFilter();
+$t->is($test->getWidget('author_id')->getOption('model'), 'BlogAuthor');
+$t->is($test->getValidator('author_id')->getOption('model'), 'BlogAuthor');

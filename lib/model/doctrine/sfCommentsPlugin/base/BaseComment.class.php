@@ -12,10 +12,23 @@
  * @property integer $user_id
  * @property Commenter $Commenter
  * 
+ * @method integer   getId()          Returns the current record's "id" value
+ * @method clob      getBody()        Returns the current record's "body" value
+ * @method boolean   getApproved()    Returns the current record's "approved" value
+ * @method timestamp getApprovedAt()  Returns the current record's "approved_at" value
+ * @method integer   getUserId()      Returns the current record's "user_id" value
+ * @method Commenter getCommenter()   Returns the current record's "Commenter" value
+ * @method Comment   setId()          Sets the current record's "id" value
+ * @method Comment   setBody()        Sets the current record's "body" value
+ * @method Comment   setApproved()    Sets the current record's "approved" value
+ * @method Comment   setApprovedAt()  Sets the current record's "approved_at" value
+ * @method Comment   setUserId()      Sets the current record's "user_id" value
+ * @method Comment   setCommenter()   Sets the current record's "Commenter" value
+ * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
  * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6365 2009-09-15 18:22:38Z jwage $
+ * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
  */
 abstract class BaseComment extends sfDoctrineRecord
 {
@@ -45,7 +58,7 @@ abstract class BaseComment extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-    $this->hasOne('Commenter', array(
+        $this->hasOne('Commenter', array(
              'local' => 'user_id',
              'foreign' => 'id'));
 

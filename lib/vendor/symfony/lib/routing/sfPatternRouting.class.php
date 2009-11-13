@@ -16,7 +16,7 @@
  * @package    symfony
  * @subpackage routing
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfPatternRouting.class.php 21908 2009-09-11 12:06:21Z fabien $
+ * @version    SVN: $Id: sfPatternRouting.class.php 23430 2009-10-29 13:55:10Z FabianLange $
  */
 class sfPatternRouting extends sfRouting
 {
@@ -76,7 +76,7 @@ class sfPatternRouting extends sfRouting
    */
   public function loadConfiguration()
   {
-    if ($this->options['load_configuration'] && $config = sfContext::getInstance()->getConfigCache()->checkConfig('config/routing.yml', true))
+    if ($this->options['load_configuration'] && $config = $this->getConfigFilename())
     {
       foreach (include($config) as $name => $route)
       {
@@ -85,6 +85,11 @@ class sfPatternRouting extends sfRouting
     }
 
     parent::loadConfiguration();
+  }
+
+  protected function getConfigFileName()
+  {
+    return sfContext::getInstance()->getConfigCache()->checkConfig('config/routing.yml', true);
   }
 
   /**
@@ -409,7 +414,7 @@ class sfPatternRouting extends sfRouting
    * Returned array contains:
    *
    *  - name:       name or alias of the route that matched
-   *  - route:      the actual matching route object
+   *  - pattern:    the compiled pattern of the route that matched
    *  - parameters: array containing key value pairs of the request parameters including defaults
    *
    * @param  string $url     URL to be parsed

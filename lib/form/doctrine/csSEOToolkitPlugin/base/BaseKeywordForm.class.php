@@ -3,6 +3,8 @@
 /**
  * Keyword form base class.
  *
+ * @method Keyword getObject() Returns the current form's model object
+ *
  * @package    plugintracker
  * @subpackage form
  * @author     Your name here
@@ -18,7 +20,7 @@ class BaseKeywordForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'id'   => new sfValidatorDoctrineChoice(array('model' => 'Keyword', 'column' => 'id', 'required' => false)),
+      'id'   => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
       'name' => new sfValidatorString(array('max_length' => 255)),
     ));
 

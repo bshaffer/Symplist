@@ -18,7 +18,7 @@ require_once(dirname(__FILE__).'/sfDoctrineBaseTask.class.php');
  * @subpackage doctrine
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Jonathan H. Wage <jonwage@gmail.com>
- * @version    SVN: $Id: sfDoctrineRebuildDbTask.class.php 21087 2009-08-12 07:51:04Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineRebuildDbTask.class.php 23020 2009-10-13 22:48:42Z Kris.Wallsmith $
  *
  * @deprecated Use doctrine:build instead
  */
@@ -46,7 +46,7 @@ The [doctrine:rebuild-db|INFO] task creates the database:
 
   [./symfony doctrine:rebuild-db|INFO]
 
-The task read connection information in [config/doctrine/databases.yml|COMMENT]:
+The task read connection information in [config/databases.yml|COMMENT]:
 
 Include the [--migrate|COMMENT] option if you would like to run your application's
 migrations rather than inserting the Doctrine SQL.

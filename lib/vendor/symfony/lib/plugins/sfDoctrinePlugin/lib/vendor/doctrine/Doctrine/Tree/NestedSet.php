@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: NestedSet.php 5901 2009-06-22 15:44:45Z jwage $
+ *  $Id: NestedSet.php 6692 2009-11-10 17:01:33Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,7 +27,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 5901 $
+ * @version     $Revision: 6692 $
  * @author      Joe Simms <joe.simms@websites4.com>
  * @author      Roman Borschel <roman@code-factory.org>
  */
@@ -66,7 +66,11 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
 
         $this->table->setColumn('lft', 'integer', 4);
         $this->table->setColumn('rgt', 'integer', 4);
-        $this->table->setColumn('level', 'integer', 2);
+        if ($level = $this->getAttribute('levelColumnName')) {
+            $this->table->setColumn($level . ' AS level', 'integer', 2);
+        } else {
+            $this->table->setColumn('level', 'integer', 2);
+        }
     }
 
     /**
@@ -148,7 +152,7 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
      * Fetches a tree.
      *
      * @param array $options  Options
-     * @param integer $fetchmode  One of the Doctrine::HYDRATE_* constants.
+     * @param integer $fetchmode  One of the Doctrine_Core::HYDRATE_* constants.
      * @return mixed          The tree or FALSE if the tree could not be found.
      */
     public function fetchTree($options = array(), $hydrationMode = null)
@@ -189,7 +193,7 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
      *
      * @param mixed $pk              primary key as used by table::find() to locate node to traverse tree from
      * @param array $options         Options.
-     * @param integer $fetchmode  One of the Doctrine::HYDRATE_* constants.
+     * @param integer $fetchmode  One of the Doctrine_Core::HYDRATE_* constants.
      * @return mixed                 The branch or FALSE if the branch could not be found.
      * @todo Only fetch the lft and rgt values of the initial record. more is not needed.
      */

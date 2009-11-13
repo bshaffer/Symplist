@@ -15,7 +15,7 @@
  * @package    sfPropelPlugin
  * @subpackage addon
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfPropelPager.class.php 21925 2009-09-11 15:14:45Z fabien $
+ * @version    SVN: $Id: sfPropelPager.class.php 23745 2009-11-10 01:05:26Z Kris.Wallsmith $
  */
 class sfPropelPager extends sfPager
 {
@@ -26,7 +26,7 @@ class sfPropelPager extends sfPager
 
   /**
    * Constructor.
-   * 
+   *
    * @see sfPager
    */
   public function __construct($class, $maxPerPage = 10)
@@ -42,6 +42,8 @@ class sfPropelPager extends sfPager
    */
   public function init()
   {
+    $this->results = null;
+
     $hasMaxRecordLimit = ($this->getMaxRecordLimit() !== false);
     $maxRecordLimit = $this->getMaxRecordLimit();
 
@@ -117,7 +119,7 @@ class sfPropelPager extends sfPager
 
   /**
    * Returns the peer method name.
-   * 
+   *
    * @return string
    */
   public function getPeerMethod()
@@ -127,7 +129,7 @@ class sfPropelPager extends sfPager
 
   /**
    * Sets the peer method name.
-   * 
+   *
    * @param string $method A method on the current peer class
    */
   public function setPeerMethod($peer_method_name)
@@ -137,7 +139,7 @@ class sfPropelPager extends sfPager
 
   /**
    * Returns the peer count method name.
-   * 
+   *
    * @return string
    */
   public function getPeerCountMethod()
@@ -147,7 +149,7 @@ class sfPropelPager extends sfPager
 
   /**
    * Sets the peer count method name.
-   * 
+   *
    * @param string $peer_count_method_name
    */
   public function setPeerCountMethod($peer_count_method_name)
@@ -157,7 +159,7 @@ class sfPropelPager extends sfPager
 
   /**
    * Returns the name of the current model class' peer class.
-   * 
+   *
    * @return string
    */
   public function getClassPeer()
@@ -167,7 +169,7 @@ class sfPropelPager extends sfPager
 
   /**
    * Returns the current Criteria.
-   * 
+   *
    * @return Criteria
    */
   public function getCriteria()
@@ -177,7 +179,7 @@ class sfPropelPager extends sfPager
 
   /**
    * Sets the Criteria for the current pager.
-   * 
+   *
    * @param Criteria $criteria
    */
   public function setCriteria($criteria)

@@ -3,6 +3,8 @@
 /**
  * PluginCategory form base class.
  *
+ * @method PluginCategory getObject() Returns the current form's model object
+ *
  * @package    plugintracker
  * @subpackage form
  * @author     Your name here
@@ -20,7 +22,7 @@ class BasePluginCategoryForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'id'          => new sfValidatorDoctrineChoice(array('model' => 'PluginCategory', 'column' => 'id', 'required' => false)),
+      'id'          => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
       'name'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'description' => new sfValidatorString(array('required' => false)),
       'slug'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),

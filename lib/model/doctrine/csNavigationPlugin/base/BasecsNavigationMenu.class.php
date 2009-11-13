@@ -10,10 +10,19 @@
  * @property integer $root_id
  * @property csNavigationItem $NavigationRoot
  * 
+ * @method string           getTitle()          Returns the current record's "title" value
+ * @method string           getDescription()    Returns the current record's "description" value
+ * @method integer          getRootId()         Returns the current record's "root_id" value
+ * @method csNavigationItem getNavigationRoot() Returns the current record's "NavigationRoot" value
+ * @method csNavigationMenu setTitle()          Sets the current record's "title" value
+ * @method csNavigationMenu setDescription()    Sets the current record's "description" value
+ * @method csNavigationMenu setRootId()         Sets the current record's "root_id" value
+ * @method csNavigationMenu setNavigationRoot() Sets the current record's "NavigationRoot" value
+ * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
  * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6365 2009-09-15 18:22:38Z jwage $
+ * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
  */
 abstract class BasecsNavigationMenu extends sfDoctrineRecord
 {
@@ -36,7 +45,7 @@ abstract class BasecsNavigationMenu extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-    $this->hasOne('csNavigationItem as NavigationRoot', array(
+        $this->hasOne('csNavigationItem as NavigationRoot', array(
              'local' => 'root_id',
              'foreign' => 'id'));
     }

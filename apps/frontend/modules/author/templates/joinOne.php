@@ -5,5 +5,5 @@
   <table>
     <?php echo $form ?>
   </table>
-  <?php echo submit_tag('Submit') ?>
+  <?php echo submit_tag('Submit', array('class' => 'button')) ?>
 </form>

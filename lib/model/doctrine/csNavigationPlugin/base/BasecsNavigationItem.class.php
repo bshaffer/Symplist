@@ -11,10 +11,21 @@
  * @property boolean $locked
  * @property Doctrine_Collection $NavigationMenu
  * 
+ * @method string              getName()           Returns the current record's "name" value
+ * @method string              getRoute()          Returns the current record's "route" value
+ * @method boolean             getProtected()      Returns the current record's "protected" value
+ * @method boolean             getLocked()         Returns the current record's "locked" value
+ * @method Doctrine_Collection getNavigationMenu() Returns the current record's "NavigationMenu" collection
+ * @method csNavigationItem    setName()           Sets the current record's "name" value
+ * @method csNavigationItem    setRoute()          Sets the current record's "route" value
+ * @method csNavigationItem    setProtected()      Sets the current record's "protected" value
+ * @method csNavigationItem    setLocked()         Sets the current record's "locked" value
+ * @method csNavigationItem    setNavigationMenu() Sets the current record's "NavigationMenu" collection
+ * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
  * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6365 2009-09-15 18:22:38Z jwage $
+ * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
  */
 abstract class BasecsNavigationItem extends sfDoctrineRecord
 {
@@ -42,7 +53,7 @@ abstract class BasecsNavigationItem extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-    $this->hasMany('csNavigationMenu as NavigationMenu', array(
+        $this->hasMany('csNavigationMenu as NavigationMenu', array(
              'local' => 'id',
              'foreign' => 'root_id'));
 

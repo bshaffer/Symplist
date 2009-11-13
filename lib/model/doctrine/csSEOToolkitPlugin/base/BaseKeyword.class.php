@@ -7,10 +7,13 @@
  * 
  * @property string $name
  * 
+ * @method string  getName() Returns the current record's "name" value
+ * @method Keyword setName() Sets the current record's "name" value
+ * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
  * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6365 2009-09-15 18:22:38Z jwage $
+ * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
  */
 abstract class BaseKeyword extends sfDoctrineRecord
 {
@@ -28,6 +31,6 @@ abstract class BaseKeyword extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-    
+        
     }
 }

@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage task
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfProjectDeployTask.class.php 22427 2009-09-25 17:39:37Z fabien $
+ * @version    SVN: $Id: sfProjectDeployTask.class.php 23718 2009-11-09 10:51:36Z fabien $
  */
 class sfProjectDeployTask extends sfBaseTask
 {
@@ -80,10 +80,10 @@ you can pass a [rsync-dir|COMMENT] option:
 
   [./symfony project:deploy --go --rsync-dir=config/production production|INFO]
 
-Last, you can specify the options passed to the rsync executable, using the 
-[rsync-options|INFO] option (defaults are [-azC|INFO]):
+Last, you can specify the options passed to the rsync executable, using the
+[rsync-options|INFO] option (defaults are [-azC --force --delete --progress|INFO]):
 
-  [./symfony project:deploy --go --rsync-options=avz|INFO]
+  [./symfony project:deploy --go --rsync-options=-avz|INFO]
 EOF;
   }
 
@@ -167,7 +167,7 @@ EOF;
     $this->clearBuffers();
   }
 
-  public function logOutput($output, $color = null)
+  public function logOutput($output)
   {
     if (false !== $pos = strpos($output, "\n"))
     {

@@ -16,7 +16,7 @@ require_once(dirname(__FILE__).'/sfPropelBaseTask.class.php');
  * @package    symfony
  * @subpackage propel
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfPropelGenerateModuleForRouteTask.class.php 20859 2009-08-06 16:23:38Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfPropelGenerateModuleForRouteTask.class.php 23194 2009-10-19 16:37:13Z fabien $
  */
 class sfPropelGenerateModuleForRouteTask extends sfPropelBaseTask
 {
@@ -36,6 +36,7 @@ class sfPropelGenerateModuleForRouteTask extends sfPropelBaseTask
       new sfCommandOption('singular', null, sfCommandOption::PARAMETER_REQUIRED, 'The singular name', null),
       new sfCommandOption('plural', null, sfCommandOption::PARAMETER_REQUIRED, 'The plural name', null),
       new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'dev'),
+      new sfCommandOption('actions-base-class', null, sfCommandOption::PARAMETER_REQUIRED, 'The base class for the actions', 'sfActions'),
     ));
 
     $this->namespace = 'propel';
@@ -91,6 +92,7 @@ EOF;
       'non-verbose-templates' => $options['non-verbose-templates'],
       'singular'              => $options['singular'],
       'plural'                => $options['plural'],
+      'actions-base-class'    => $options['actions-base-class'],
     ));
   }
 }

@@ -18,7 +18,7 @@
  * @subpackage exception
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Sean Kerr <sean@code-box.org>
- * @version    SVN: $Id: sfException.class.php 22272 2009-09-23 06:59:45Z fabien $
+ * @version    SVN: $Id: sfException.class.php 23612 2009-11-04 13:22:20Z fabien $
  */
 class sfException extends Exception
 {
@@ -120,6 +120,7 @@ class sfException extends Exception
     $code   = '500';
     $text   = 'Internal Server Error';
 
+    $response = null;
     if (class_exists('sfContext', false) && sfContext::hasInstance() && is_object($request = sfContext::getInstance()->getRequest()) && is_object($response = sfContext::getInstance()->getResponse()))
     {
       $dispatcher = sfContext::getInstance()->getEventDispatcher();
@@ -205,6 +206,11 @@ class sfException extends Exception
       $responseTable = self::formatArrayAsHtml(sfDebug::responseAsArray($context->getResponse()));
       $userTable     = self::formatArrayAsHtml(sfDebug::userAsArray($context->getUser()));
       $globalsTable  = self::formatArrayAsHtml(sfDebug::globalsAsArray());
+    }
+
+    if (isset($response) && $response)
+    {
+      $response->sendHttpHeaders();
     }
 
     if ($template = self::getTemplatePathForError($format, true))

@@ -16,7 +16,7 @@ require_once(dirname(__FILE__).'/sfGeneratorBaseTask.class.php');
  * @package    symfony
  * @subpackage task
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfGenerateProjectTask.class.php 21899 2009-09-11 10:03:08Z fabien $
+ * @version    SVN: $Id: sfGenerateProjectTask.class.php 23322 2009-10-25 13:11:48Z Kris.Wallsmith $
  */
 class sfGenerateProjectTask extends sfGeneratorBaseTask
 {
@@ -37,6 +37,7 @@ class sfGenerateProjectTask extends sfGeneratorBaseTask
   {
     $this->addArguments(array(
       new sfCommandArgument('name', sfCommandArgument::REQUIRED, 'The project name'),
+      new sfCommandArgument('author', sfCommandArgument::OPTIONAL, 'The project author', 'Your name here'),
     ));
 
     $this->addOptions(array(
@@ -60,18 +61,23 @@ If the current directory already contains a symfony project,
 it throws a [sfCommandException|COMMENT].
 
 By default, the task configures Doctrine as the ORM. If you want to use
-Propel, use the [--orm|INFO] option:
+Propel, use the [--orm|COMMENT] option:
 
   [./symfony generate:project blog --orm=Propel|INFO]
 
-If you don't want to use an ORM, pass [none|INFO] to [--orm|INFO] option:
+If you don't want to use an ORM, pass [none|COMMENT] to [--orm|COMMENT] option:
 
   [./symfony generate:project blog --orm=none|INFO]
 
-You can also pass the [--installer|INFO] option to further customize the
+You can also pass the [--installer|COMMENT] option to further customize the
 project:
 
   [./symfony generate:project blog --installer=./installer.php|INFO]
+
+You can optionally include a second [author|COMMENT] argument to specify what name to
+use as author when symfony generates new classes:
+
+  [./symfony generate:project blog "Jack Doe"|INFO]
 EOF;
   }
 
@@ -85,7 +91,7 @@ EOF;
       throw new sfCommandException(sprintf('A symfony project already exists in this directory (%s).', getcwd()));
     }
 
-    if (!in_array($options['orm'], array('Propel', 'Doctrine', 'none'), false))
+    if (!in_array(strtolower($options['orm']), array('propel', 'doctrine', 'none')))
     {
       throw new InvalidArgumentException(sprintf('Invalid ORM name "%s".', $options['orm']));
     }
@@ -94,6 +100,9 @@ EOF;
     {
       throw new InvalidArgumentException(sprintf('The installer "%s" does not exist.', $options['installer']));
     }
+
+    // clean orm option
+    $options['orm'] = ucfirst(strtolower($options['orm']));
 
     $this->arguments = $arguments;
     $this->options = $options;
@@ -111,15 +120,16 @@ EOF;
     $this->tokens = array(
       'ORM'          => $this->options['orm'],
       'PROJECT_NAME' => $this->arguments['name'],
+      'AUTHOR_NAME'  => $this->arguments['author'],
       'PROJECT_DIR'  => sfConfig::get('sf_root_dir'),
     );
 
     $this->replaceTokens();
 
     // execute the choosen ORM installer script
-    if ('none' !== $options['orm'])
+    if (in_array($options['orm'], array('Doctrine', 'Propel')))
     {
-      include dirname(__FILE__).'/../../plugins/sf'.ucfirst(strtolower($options['orm'])).'Plugin/config/installer.php';
+      include dirname(__FILE__).'/../../plugins/sf'.$options['orm'].'Plugin/config/installer.php';
     }
 
     // execute a custom installer

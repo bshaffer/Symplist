@@ -23,7 +23,7 @@
  * @package    symfony
  * @subpackage form
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfForm.class.php 22455 2009-09-26 12:53:33Z fabien $
+ * @version    SVN: $Id: sfForm.class.php 23214 2009-10-20 18:11:23Z Kris.Wallsmith $
  */
 class sfForm implements ArrayAccess, Iterator, Countable
 {
@@ -151,20 +151,15 @@ class sfForm implements ArrayAccess, Iterator, Countable
   /**
    * Renders hidden form fields.
    *
+   * @param boolean $recursive False will prevent hidden fields from embedded forms from rendering
+   *
    * @return string
+   * 
+   * @see sfFormFieldSchema
    */
-  public function renderHiddenFields()
+  public function renderHiddenFields($recursive = true)
   {
-    $output = '';
-    foreach ($this->getFormFieldSchema() as $name => $field)
-    {
-      if ($field->isHidden())
-      {
-        $output .= $field->render();
-      }
-    }
-
-    return $output;
+    return $this->getFormFieldSchema()->renderHiddenFields($recursive);
   }
 
   /**
@@ -460,6 +455,25 @@ class sfForm implements ArrayAccess, Iterator, Countable
   public function getEmbeddedForms()
   {
     return $this->embeddedForms;
+  }
+
+  /**
+   * Returns an embedded form.
+   *
+   * @param  string $name The name used to embed the form
+   *
+   * @return sfForm
+   * 
+   * @throws InvalidArgumentException If there is no form embedded with the supplied name
+   */
+  public function getEmbeddedForm($name)
+  {
+    if (!isset($this->embeddedForms[$name]))
+    {
+      throw new InvalidArgumentException(sprintf('There is no embedded "%s" form.', $name));
+    }
+
+    return $this->embeddedForms[$name];
   }
 
   /**

@@ -3,6 +3,8 @@
 /**
  * sfSetting form base class.
  *
+ * @method sfSetting getObject() Returns the current form's model object
+ *
  * @package    plugintracker
  * @subpackage form
  * @author     Your name here
@@ -21,7 +23,7 @@ class BasesfSettingForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'id'      => new sfValidatorDoctrineChoice(array('model' => 'sfSetting', 'column' => 'id', 'required' => false)),
+      'id'      => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
       'name'    => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'type'    => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'options' => new sfValidatorString(array('required' => false)),

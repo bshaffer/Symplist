@@ -15,7 +15,7 @@
  * @package    sfDoctrinePlugin
  * @subpackage pager
  * @author     Jonathan H. Wage <jonwage@gmail.com>
- * @version    SVN: $Id: sfDoctrinePager.class.php 21910 2009-09-11 12:33:49Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrinePager.class.php 23745 2009-11-10 01:05:26Z Kris.Wallsmith $
  */
 class sfDoctrinePager extends sfPager implements Serializable
 {
@@ -37,7 +37,7 @@ class sfDoctrinePager extends sfPager implements Serializable
   /**
    * Set the name of the table method used to retrieve the query object for the pager
    *
-   * @param string $tableMethodName 
+   * @param string $tableMethodName
    * @return void
    */
   public function setTableMethod($tableMethodName)
@@ -60,7 +60,7 @@ class sfDoctrinePager extends sfPager implements Serializable
   /**
    * Unserialize a pager object
    *
-   * @param string $serialized 
+   * @param string $serialized
    */
   public function unserialize($serialized)
   {
@@ -74,7 +74,7 @@ class sfDoctrinePager extends sfPager implements Serializable
 
   /**
    * Returns a query for counting the total results.
-   * 
+   *
    * @return Doctrine_Query
    */
   public function getCountQuery()
@@ -93,6 +93,8 @@ class sfDoctrinePager extends sfPager implements Serializable
    */
   public function init()
   {
+    $this->results = null;
+
     $countQuery = $this->getCountQuery();
     $count = $countQuery->count();
 
@@ -131,12 +133,12 @@ class sfDoctrinePager extends sfPager implements Serializable
     if (!$this->tableMethodCalled && $this->tableMethodName)
     {
       $method = $this->tableMethodName;
-      $this->query = Doctrine::getTable($this->getClass())->$method($this->query);
+      $this->query = Doctrine_Core::getTable($this->getClass())->$method($this->query);
       $this->tableMethodCalled = true;
     }
     else if (!$this->query)
     {
-      $this->query = Doctrine::getTable($this->getClass())->createQuery();
+      $this->query = Doctrine_Core::getTable($this->getClass())->createQuery();
     }
 
     return $this->query;
@@ -175,11 +177,11 @@ class sfDoctrinePager extends sfPager implements Serializable
   /**
    * Get all the results for the pager instance
    *
-   * @param integer $hydrationMode Doctrine::HYDRATE_* constants
+   * @param mixed $hydrationMode A hydration mode identifier
    *
    * @return Doctrine_Collection|array
    */
-  public function getResults($hydrationMode = Doctrine::HYDRATE_RECORD)
+  public function getResults($hydrationMode = null)
   {
     return $this->getQuery()->execute(array(), $hydrationMode);
   }

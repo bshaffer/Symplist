@@ -11,10 +11,21 @@
  * @property string $options
  * @property clob $value
  * 
+ * @method integer   getId()      Returns the current record's "id" value
+ * @method string    getName()    Returns the current record's "name" value
+ * @method string    getType()    Returns the current record's "type" value
+ * @method string    getOptions() Returns the current record's "options" value
+ * @method clob      getValue()   Returns the current record's "value" value
+ * @method sfSetting setId()      Sets the current record's "id" value
+ * @method sfSetting setName()    Sets the current record's "name" value
+ * @method sfSetting setType()    Sets the current record's "type" value
+ * @method sfSetting setOptions() Sets the current record's "options" value
+ * @method sfSetting setValue()   Sets the current record's "value" value
+ * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
  * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6365 2009-09-15 18:22:38Z jwage $
+ * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
  */
 abstract class BasesfSetting extends sfDoctrineRecord
 {
@@ -47,6 +58,6 @@ abstract class BasesfSetting extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-    
+        
     }
 }

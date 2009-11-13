@@ -13,7 +13,7 @@
  * {@link http://prado.sourceforge.net/}
  *
  * @author     Wei Zhuo <weizhuo[at]gmail[dot]com>
- * @version    $Id: sfCultureInfo.class.php 21908 2009-09-11 12:06:21Z fabien $
+ * @version    $Id: sfCultureInfo.class.php 22878 2009-10-08 16:24:36Z fabien $
  * @package    symfony
  * @subpackage i18n
  */
@@ -764,7 +764,6 @@ class sfCultureInfo
       $allCurrencies = array_intersect_key($allCurrencies, array_flip($currencies));
     }
 
-    $this->sortArray($allCurrencies);
     if (!$full)
     {
       foreach ($allCurrencies as $key => $value)
@@ -772,6 +771,8 @@ class sfCultureInfo
         $allCurrencies[$key] = $value[1];
       }
     }
+
+    $this->sortArray($allCurrencies);
 
     return $allCurrencies;
   }

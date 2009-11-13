@@ -10,10 +10,19 @@
  * @property sfGuardUser $sfGuardUser
  * @property sfGuardGroup $sfGuardGroup
  * 
+ * @method integer          getUserId()       Returns the current record's "user_id" value
+ * @method integer          getGroupId()      Returns the current record's "group_id" value
+ * @method sfGuardUser      getSfGuardUser()  Returns the current record's "sfGuardUser" value
+ * @method sfGuardGroup     getSfGuardGroup() Returns the current record's "sfGuardGroup" value
+ * @method sfGuardUserGroup setUserId()       Sets the current record's "user_id" value
+ * @method sfGuardUserGroup setGroupId()      Sets the current record's "group_id" value
+ * @method sfGuardUserGroup setSfGuardUser()  Sets the current record's "sfGuardUser" value
+ * @method sfGuardUserGroup setSfGuardGroup() Sets the current record's "sfGuardGroup" value
+ * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
  * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6365 2009-09-15 18:22:38Z jwage $
+ * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
  */
 abstract class BasesfGuardUserGroup extends sfDoctrineRecord
 {
@@ -35,7 +44,7 @@ abstract class BasesfGuardUserGroup extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-    $this->hasOne('sfGuardUser', array(
+        $this->hasOne('sfGuardUser', array(
              'local' => 'user_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));

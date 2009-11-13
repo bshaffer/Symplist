@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage config
  * @author     Kris Wallsmith <kris.wallsmith@symfony-project.com>
- * @version    SVN: $Id: sfPluginConfiguration.class.php 21908 2009-09-11 12:06:21Z fabien $
+ * @version    SVN: $Id: sfPluginConfiguration.class.php 23360 2009-10-26 18:10:48Z Kris.Wallsmith $
  */
 abstract class sfPluginConfiguration
 {
@@ -113,14 +113,7 @@ abstract class sfPluginConfiguration
     if (is_readable($file = $this->rootDir.'/config/autoload.yml'))
     {
       $this->configuration->getEventDispatcher()->connect('autoload.filter_config', array($this, 'filterAutoloadConfig'));
-
-      $config = new sfAutoloadConfigHandler();
-      $mappings = $config->evaluate(array($file));
-
-      foreach ($mappings as $class => $file)
-      {
-        $autoload->setClassPath($class, $file);
-      }
+      $autoload->loadConfiguration(array($file));
     }
     else
     {
@@ -212,7 +205,7 @@ abstract class sfPluginConfiguration
       $files = array_merge($files, $finder->in($directory.'/'.dirname($name)));
     }
 
-    return $files;
+    return array_unique($files);
   }
 
   /**

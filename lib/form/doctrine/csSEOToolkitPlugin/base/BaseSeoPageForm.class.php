@@ -3,6 +3,8 @@
 /**
  * SeoPage form base class.
  *
+ * @method SeoPage getObject() Returns the current form's model object
+ *
  * @package    plugintracker
  * @subpackage form
  * @author     Your name here
@@ -26,7 +28,7 @@ class BaseSeoPageForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'id'                   => new sfValidatorDoctrineChoice(array('model' => 'SeoPage', 'column' => 'id', 'required' => false)),
+      'id'                   => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
       'url'                  => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'title'                => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'description'          => new sfValidatorString(array('required' => false)),

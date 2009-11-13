@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage command
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfCommandApplication.class.php 21908 2009-09-11 12:06:21Z fabien $
+ * @version    SVN: $Id: sfCommandApplication.class.php 23218 2009-10-20 20:59:02Z FabianLange $
  */
 abstract class sfCommandApplication
 {
@@ -307,7 +307,11 @@ abstract class sfCommandApplication
 
     foreach ($this->commandManager->getOptionSet()->getOptions() as $option)
     {
-      $messages[] = sprintf('  %-24s %s  %s', $this->formatter->format('--'.$option->getName(), 'INFO'), $this->formatter->format('-'.$option->getShortcut(), 'INFO'), $option->getHelp());
+      $messages[] = sprintf('  %-24s %s  %s',
+        $this->formatter->format('--'.$option->getName(), 'INFO'),
+        $option->getShortcut() ? $this->formatter->format('-'.$option->getShortcut(), 'INFO') : '  ',
+        $option->getHelp()
+      );
     }
 
     $this->dispatcher->notify(new sfEvent($this, 'command.log', $messages));
@@ -613,7 +617,7 @@ abstract class sfCommandApplication
    *
    * Colorization is disabled if not supported by the stream:
    *
-   *  -  windows
+   *  -  windows without ansicon
    *  -  non tty consoles
    *
    * @param  mixed  $stream  A stream
@@ -622,7 +626,14 @@ abstract class sfCommandApplication
    */
   protected function isStreamSupportsColors($stream)
   {
-    return DIRECTORY_SEPARATOR != '\\' && function_exists('posix_isatty') && @posix_isatty($stream);
+    if (DIRECTORY_SEPARATOR == '\\')
+    {
+      return false !== getenv('ANSICON');
+    }
+    else
+    {
+      return function_exists('posix_isatty') && @posix_isatty($stream);
+    }
   }
 
   /**

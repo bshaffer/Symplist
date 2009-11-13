@@ -1,6 +1,10 @@
 connection:           propel
 defaultIdMethod:      none
 package:              lib.model
+propel_behaviors:
+  timestampable:
+    boolean:       true
+    create_column: create_date
 
 classes:
   Group:
@@ -62,6 +66,9 @@ classes:
     uniques:
       my_other_index: [created_at(10)]
     behaviors:
+      paranoid: { column: deleted_at }
+      act_as_nested_set:
+    propel_behaviors:
       paranoid: { column: deleted_at }
       act_as_nested_set:
 

@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Mssql.php 5876 2009-06-10 18:43:12Z piccoloprincipe $
+ *  $Id: Mssql.php 6484 2009-10-12 17:40:41Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,7 +27,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  * @author      Lukas Smith <smith@pooteeweet.org> (PEAR MDB2 library)
- * @version     $Revision: 5876 $
+ * @version     $Revision: 6484 $
  * @link        www.phpdoctrine.org
  * @since       1.0
  */
@@ -81,7 +81,7 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
      */
     public function quoteIdentifier($identifier, $checkOption = false)
     {
-        if ($checkOption && ! $this->getAttribute(Doctrine::ATTR_QUOTE_IDENTIFIER)) {
+        if ($checkOption && ! $this->getAttribute(Doctrine_Core::ATTR_QUOTE_IDENTIFIER)) {
             return $identifier;
         }
         
@@ -267,7 +267,7 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
         try {
             $this->exec($query);
         } catch(Doctrine_Connection_Exception $e) {
-            if ($e->getPortableCode() == Doctrine::ERR_NOSUCHTABLE) {
+            if ($e->getPortableCode() == Doctrine_Core::ERR_NOSUCHTABLE) {
                 return false;
             }
 

@@ -118,6 +118,12 @@ abstract class Doctrine_Query_Abstract
      * @var Doctrine_Cache_Interface  The cache driver used for caching result sets.
      */
     protected $_resultCache;
+
+    /**
+     * @var string  Key to use for result cache entry in the cache driver
+     */
+    protected $_resultCacheHash;
+
     /**
      * @var boolean $_expireResultCache  A boolean value that indicates whether or not
      *                                   expire the result cache.
@@ -235,7 +241,7 @@ abstract class Doctrine_Query_Abstract
      * @var array $_options                 an array of options
      */
     protected $_options    = array(
-        'hydrationMode'      => Doctrine::HYDRATE_RECORD
+        'hydrationMode'      => Doctrine_Core::HYDRATE_RECORD
     );
 
     /**
@@ -271,8 +277,8 @@ abstract class Doctrine_Query_Abstract
         $this->_conn = $connection;
         $this->_hydrator = $hydrator;
         $this->_tokenizer = new Doctrine_Query_Tokenizer();
-        $this->_resultCacheTTL = $this->_conn->getAttribute(Doctrine::ATTR_RESULT_CACHE_LIFESPAN);
-        $this->_queryCacheTTL = $this->_conn->getAttribute(Doctrine::ATTR_QUERY_CACHE_LIFESPAN);
+        $this->_resultCacheTTL = $this->_conn->getAttribute(Doctrine_Core::ATTR_RESULT_CACHE_LIFESPAN);
+        $this->_queryCacheTTL = $this->_conn->getAttribute(Doctrine_Core::ATTR_QUERY_CACHE_LIFESPAN);
     }
 
     /**
@@ -843,7 +849,7 @@ abstract class Doctrine_Query_Abstract
     public function calculateQueryCacheHash()
     {
         $dql = $this->getDql();
-        $hash = md5($dql . 'DOCTRINE_QUERY_CACHE_SALT');
+        $hash = md5($dql . var_export($this->_pendingJoinConditions, true) . 'DOCTRINE_QUERY_CACHE_SALT');
         return $hash;
     }
 
@@ -859,8 +865,24 @@ abstract class Doctrine_Query_Abstract
         $dql = $this->getDql();
         $conn = $this->getConnection();
         $params = $this->getFlattenedParams($params);
-        $hash = md5($this->_hydrator->getHydrationMode() . $conn->getName() . $conn->getOption('dsn') . $dql . var_export($params, true));
+        $hash = md5($this->_hydrator->getHydrationMode() . $conn->getName() . $conn->getOption('dsn') . $dql . var_export($this->_pendingJoinConditions, true) . var_export($params, true));
         return $hash;
+    }
+
+    /**
+     * Get the result cache hash/key. Returns key set with useResultCache()
+     * or generates a unique key from the query automatically.
+     *
+     * @param array $params
+     * @return string $hash
+     */
+    public function getResultCacheHash($params = array())
+    {
+      if ($this->_resultCacheHash) {
+          return $this->_resultCacheHash;
+      } else {
+          return $this->calculateResultCacheHash($params);
+      }
     }
 
     /**
@@ -882,7 +904,7 @@ abstract class Doctrine_Query_Abstract
 
         // Check if we're not using a Doctrine_View
         if ( ! $this->_view) {
-            if ($this->_queryCache !== false && ($this->_queryCache || $this->_conn->getAttribute(Doctrine::ATTR_QUERY_CACHE))) {
+            if ($this->_queryCache !== false && ($this->_queryCache || $this->_conn->getAttribute(Doctrine_Core::ATTR_QUERY_CACHE))) {
                 $queryCacheDriver = $this->getQueryCacheDriver();
                 $hash = $this->calculateQueryCacheHash();
                 $cached = $queryCacheDriver->fetch($hash);
@@ -906,7 +928,7 @@ abstract class Doctrine_Query_Abstract
 
                     // Check again because getSqlQuery() above could have flipped the _queryCache flag
                     // if this query contains the limit sub query algorithm we don't need to cache it
-                    if ($this->_queryCache !== false && ($this->_queryCache || $this->_conn->getAttribute(Doctrine::ATTR_QUERY_CACHE))) {
+                    if ($this->_queryCache !== false && ($this->_queryCache || $this->_conn->getAttribute(Doctrine_Core::ATTR_QUERY_CACHE))) {
                         // Convert query into a serialized form
                         $serializedQuery = $this->getCachedForm($query);
 
@@ -925,7 +947,7 @@ abstract class Doctrine_Query_Abstract
         $params = $this->getInternalParams();
 
         if ($this->isLimitSubqueryUsed() &&
-                $this->_conn->getAttribute(Doctrine::ATTR_DRIVER_NAME) !== 'mysql') {
+                $this->_conn->getAttribute(Doctrine_Core::ATTR_DRIVER_NAME) !== 'mysql') {
             $params = array_merge((array) $params, (array) $params);
         }
 
@@ -947,7 +969,7 @@ abstract class Doctrine_Query_Abstract
      * @param array $params
      * @return Doctrine_Collection            the root collection
      */
-    public function execute($params = array(), $hydrationMode = null, $hydrationPolicy = null)
+    public function execute($params = array(), $hydrationMode = null)
     {
         // Clean any possible processed params
         $this->_execParams = array();
@@ -964,15 +986,11 @@ abstract class Doctrine_Query_Abstract
             $this->_hydrator->setHydrationMode($hydrationMode);
         }
 
-        if ($hydrationPolicy !== null) {
-            $this->_hydrator->setHydrationPolicy($hydrationPolicy);
-        }
-
         $hydrationMode = $this->_hydrator->getHydrationMode();
 
         if ($this->_resultCache && $this->_type == self::SELECT) {
             $cacheDriver = $this->getResultCacheDriver();
-            $hash = $this->calculateResultCacheHash($params);
+            $hash = $this->getResultCacheHash($params);
             $cached = ($this->_expireResultCache) ? false : $cacheDriver->fetch($hash);
 
             if ($cached === false) {
@@ -993,15 +1011,15 @@ abstract class Doctrine_Query_Abstract
                 $result = $stmt;
             } else {
                 $this->_hydrator->setQueryComponents($this->_queryComponents);
-                if ($this->_type == self::SELECT && $hydrationMode == Doctrine::HYDRATE_ON_DEMAND) {
-                    $hydrationDriver = $this->_hydrator->getHydratorDriver($stmt, $this->_tableAliasMap);
+                if ($this->_type == self::SELECT && $hydrationMode == Doctrine_Core::HYDRATE_ON_DEMAND) {
+                    $hydrationDriver = $this->_hydrator->getHydratorDriver($hydrationMode, $this->_tableAliasMap);
                     $result = new Doctrine_Collection_OnDemand($stmt, $hydrationDriver, $this->_tableAliasMap); 
                 } else {
                     $result = $this->_hydrator->hydrateResultSet($stmt, $this->_tableAliasMap);
                 }
             }
         }
-        if ($this->getConnection()->getAttribute(Doctrine::ATTR_AUTO_FREE_QUERY_OBJECTS)) {
+        if ($this->getConnection()->getAttribute(Doctrine_Core::ATTR_AUTO_FREE_QUERY_OBJECTS)) {
             $this->free();
         }
 
@@ -1057,7 +1075,7 @@ abstract class Doctrine_Query_Abstract
      */
     protected function _preQuery($params = array())
     {
-        if ( ! $this->_preQueried && $this->getConnection()->getAttribute(Doctrine::ATTR_USE_DQL_CALLBACKS)) {
+        if ( ! $this->_preQueried && $this->getConnection()->getAttribute(Doctrine_Core::ATTR_USE_DQL_CALLBACKS)) {
             $this->_preQueried = true;
 
             $callback = $this->_getDqlCallback();
@@ -1761,12 +1779,6 @@ abstract class Doctrine_Query_Abstract
         return $this;
     }
 
-    public function setHydrationPolicy($hydrationPolicy)
-    {
-        $this->_hydrator->setHydrationPolicy($hydrationPolicy);
-        return $this;
-    }
-
     /**
      * Gets the components of this query.
      */
@@ -1809,19 +1821,47 @@ abstract class Doctrine_Query_Abstract
      *
      * @param Doctrine_Cache_Interface|bool $driver      cache driver
      * @param integer $timeToLive                        how long the cache entry is valid
+     * @param string $resultCacheHash                     The key to use for storing the queries result cache entry
      * @return Doctrine_Hydrate         this object
      */
-    public function useResultCache($driver = true, $timeToLive = null)
+    public function useResultCache($driver = true, $timeToLive = null, $resultCacheHash = null)
     {
         if ($driver !== null && $driver !== true && ! ($driver instanceOf Doctrine_Cache_Interface)) {
             $msg = 'First argument should be instance of Doctrine_Cache_Interface or null.';
             throw new Doctrine_Query_Exception($msg);
         }
         $this->_resultCache = $driver;
+        $this->_resultCacheHash = $resultCacheHash;
 
         if ($timeToLive !== null) {
             $this->setResultCacheLifeSpan($timeToLive);
         }
+        return $this;
+    }
+
+    /**
+     * Set the result cache hash to be used for storing the results in the cache driver
+     *
+     * @param string $resultCacheHash
+     * @return void
+     */
+    public function setResultCacheHash($resultCacheHash)
+    {
+        $this->_resultCacheHash = $resultCacheHash;
+
+        return $this;
+    }
+
+    /**
+     * Clear the result cache entry for this query
+     *
+     * @return void
+     */
+    public function clearResultCache()
+    {
+        $this->getResultCacheDriver()
+            ->delete($this->getResultCacheHash());
+
         return $this;
     }
 
@@ -2046,7 +2086,7 @@ abstract class Doctrine_Query_Abstract
         if ( ! isset($this->_parsers[$name])) {
             $class = 'Doctrine_Query_' . ucwords(strtolower($name));
 
-            Doctrine::autoload($class);
+            Doctrine_Core::autoload($class);
 
             if ( ! class_exists($class)) {
                 throw new Doctrine_Query_Exception('Unknown parser ' . $name);

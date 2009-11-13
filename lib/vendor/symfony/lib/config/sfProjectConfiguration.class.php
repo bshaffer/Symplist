@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage config
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfProjectConfiguration.class.php 22227 2009-09-21 18:41:15Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfProjectConfiguration.class.php 23336 2009-10-25 22:04:08Z FabianLange $
  */
 class sfProjectConfiguration
 {
@@ -129,7 +129,6 @@ class sfProjectConfiguration
       'sf_data_dir'    => $rootDir.DIRECTORY_SEPARATOR.'data',
       'sf_config_dir'  => $rootDir.DIRECTORY_SEPARATOR.'config',
       'sf_test_dir'    => $rootDir.DIRECTORY_SEPARATOR.'test',
-      'sf_doc_dir'     => $rootDir.DIRECTORY_SEPARATOR.'doc',
       'sf_plugins_dir' => $rootDir.DIRECTORY_SEPARATOR.'plugins',
     ));
 
@@ -480,7 +479,9 @@ class sfProjectConfiguration
   {
     $pluginPaths = array();
 
-    $finder = sfFinder::type('dir')->maxdepth(0)->follow_link()->name('*Plugin');
+    // search for *Plugin directories representing plugins
+    // follow links and do not recurse. No need to exclude VC because they do not end with *Plugin
+    $finder = sfFinder::type('dir')->maxdepth(0)->ignore_version_control(false)->follow_link()->name('*Plugin');
     $dirs = array(
       sfConfig::get('sf_symfony_lib_dir').'/plugins',
       sfConfig::get('sf_plugins_dir'),

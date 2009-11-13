@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage propel
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfPropelBaseTask.class.php 21908 2009-09-11 12:06:21Z fabien $
+ * @version    SVN: $Id: sfPropelBaseTask.class.php 23739 2009-11-09 23:32:46Z Kris.Wallsmith $
  */
 abstract class sfPropelBaseTask extends sfBaseTask
 {
@@ -196,7 +196,7 @@ abstract class sfPropelBaseTask extends sfBaseTask
   {
     if (null === $this->commandApplication || !$this->commandApplication->withTrace())
     {
-      $finder = sfFinder::type('file')->name('/^generated-.*schema(-transformed)?.xml$/');
+      $finder = sfFinder::type('file')->name('generated-*schema.xml')->name('*schema-transformed.xml');
       $this->getFilesystem()->remove($finder->in(array('config', 'plugins')));
     }
   }
@@ -211,8 +211,8 @@ abstract class sfPropelBaseTask extends sfBaseTask
 
     // Call phing targets
     sfToolkit::addIncludePath(array(
-      sfConfig::get('sf_root_dir'),
-      realpath(dirname(__FILE__).'/../vendor/propel-generator/classes'),
+      sfConfig::get('sf_symfony_lib_dir'),
+      sfConfig::get('sf_propel_generator_path', realpath(dirname(__FILE__).'/../vendor/propel-generator/classes')),
     ));
 
     $args = array();
@@ -256,6 +256,9 @@ abstract class sfPropelBaseTask extends sfBaseTask
 
     $args[] = $taskName;
 
+    // filter arguments through the event dispatcher
+    $args = $this->dispatcher->filter(new sfEvent($this, 'propel.filter_phing_args'), $args)->getReturnValue();
+
     require_once dirname(__FILE__).'/sfPhing.class.php';
 
     // enable output buffering
@@ -289,15 +292,18 @@ abstract class sfPropelBaseTask extends sfBaseTask
 
       foreach (sfPhingListener::getExceptions() as $exception)
       {
-        $messages[] = '  '.preg_replace('/^.*build\-propel\.xml/', 'build-propel.xml', $exception->getMessage());
+        $messages[] = '';
+        $messages[] = preg_replace('/^.*build\-propel\.xml/', 'build-propel.xml', $exception->getMessage());
+        $messages[] = '';
       }
 
       if (count(sfPhingListener::getErrors()))
       {
-        $messages[] = '  If the exception message is not clear enough, read the output of the task for more information';
+        $messages[] = 'If the exception message is not clear enough, read the output of the task for';
+        $messages[] = 'more information';
       }
 
-      $this->logBlock($messages, 'ERROR');
+      $this->logBlock($messages, 'ERROR_LARGE');
 
       $ret = false;
     }

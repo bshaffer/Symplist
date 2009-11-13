@@ -3,6 +3,8 @@
 /**
  * sfGuardUser form base class.
  *
+ * @method sfGuardUser getObject() Returns the current form's model object
+ *
  * @package    plugintracker
  * @subpackage form
  * @author     Your name here
@@ -29,7 +31,7 @@ class BasesfGuardUserForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'id'                 => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'column' => 'id', 'required' => false)),
+      'id'                 => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
       'username'           => new sfValidatorString(array('max_length' => 128)),
       'algorithm'          => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'salt'               => new sfValidatorString(array('max_length' => 128, 'required' => false)),

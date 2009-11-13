@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Sqlite.php 5901 2009-06-22 15:44:45Z jwage $
+ *  $Id: Sqlite.php 6497 2009-10-13 04:44:19Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,7 +27,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 5901 $
+ * @version     $Revision: 6497 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 class Doctrine_Expression_Sqlite extends Doctrine_Expression_Driver
@@ -98,6 +98,10 @@ class Doctrine_Expression_Sqlite extends Doctrine_Expression_Driver
     public static function trimImpl($str)
     {
         return trim($str);
+    }
+    public static function nowImpl()
+    {
+        return date('Y-m-d h:i:s');
     }
 
     /**

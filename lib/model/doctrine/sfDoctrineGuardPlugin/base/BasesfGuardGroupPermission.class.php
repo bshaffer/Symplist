@@ -10,10 +10,19 @@
  * @property sfGuardGroup $sfGuardGroup
  * @property sfGuardPermission $sfGuardPermission
  * 
+ * @method integer                getGroupId()           Returns the current record's "group_id" value
+ * @method integer                getPermissionId()      Returns the current record's "permission_id" value
+ * @method sfGuardGroup           getSfGuardGroup()      Returns the current record's "sfGuardGroup" value
+ * @method sfGuardPermission      getSfGuardPermission() Returns the current record's "sfGuardPermission" value
+ * @method sfGuardGroupPermission setGroupId()           Sets the current record's "group_id" value
+ * @method sfGuardGroupPermission setPermissionId()      Sets the current record's "permission_id" value
+ * @method sfGuardGroupPermission setSfGuardGroup()      Sets the current record's "sfGuardGroup" value
+ * @method sfGuardGroupPermission setSfGuardPermission() Sets the current record's "sfGuardPermission" value
+ * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
  * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6365 2009-09-15 18:22:38Z jwage $
+ * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
  */
 abstract class BasesfGuardGroupPermission extends sfDoctrineRecord
 {
@@ -35,7 +44,7 @@ abstract class BasesfGuardGroupPermission extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-    $this->hasOne('sfGuardGroup', array(
+        $this->hasOne('sfGuardGroup', array(
              'local' => 'group_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));

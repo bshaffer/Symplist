@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Sqlite.php 6372 2009-09-17 18:34:04Z jwage $
+ *  $Id: Sqlite.php 6497 2009-10-13 04:44:19Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,7 +27,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  * @author      Lukas Smith <smith@pooteeweet.org> (PEAR MDB2 library)
- * @version     $Revision: 6372 $
+ * @version     $Revision: 6497 $
  * @link        www.phpdoctrine.org
  * @since       1.0
  */
@@ -71,7 +71,7 @@ class Doctrine_Connection_Sqlite extends Doctrine_Connection_Common
             $this->dbh->sqliteCreateFunction('mod',    array('Doctrine_Expression_Sqlite', 'modImpl'), 2);
             $this->dbh->sqliteCreateFunction('concat', array('Doctrine_Expression_Sqlite', 'concatImpl'));
             $this->dbh->sqliteCreateFunction('md5', 'md5', 1);
-            $this->dbh->sqliteCreateFunction('now', 'time', 0);
+            $this->dbh->sqliteCreateFunction('now', array('Doctrine_Expression_Sqlite', 'nowImpl'), 0);
         }
     }
 
@@ -92,7 +92,7 @@ class Doctrine_Connection_Sqlite extends Doctrine_Connection_Common
         $this->dbh->sqliteCreateFunction('mod',    array('Doctrine_Expression_Sqlite', 'modImpl'), 2);
         $this->dbh->sqliteCreateFunction('concat', array('Doctrine_Expression_Sqlite', 'concatImpl'));
         $this->dbh->sqliteCreateFunction('md5', 'md5', 1);
-        $this->dbh->sqliteCreateFunction('now', 'time', 0);
+        $this->dbh->sqliteCreateFunction('now', array('Doctrine_Expression_Sqlite', 'nowImpl'), 0);
     }
 
     /**

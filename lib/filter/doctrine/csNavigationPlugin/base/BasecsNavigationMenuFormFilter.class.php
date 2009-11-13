@@ -15,13 +15,13 @@ class BasecsNavigationMenuFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'title'       => new sfWidgetFormFilterInput(),
       'description' => new sfWidgetFormFilterInput(),
-      'root_id'     => new sfWidgetFormDoctrineChoice(array('model' => 'csNavigationItem', 'add_empty' => true)),
+      'root_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('NavigationRoot'), 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
       'title'       => new sfValidatorPass(array('required' => false)),
       'description' => new sfValidatorPass(array('required' => false)),
-      'root_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'csNavigationItem', 'column' => 'id')),
+      'root_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('NavigationRoot'), 'column' => 'id')),
     ));
 
     $this->widgetSchema->setNameFormat('cs_navigation_menu_filters[%s]');

@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage debug
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfWebDebugPanelTimer.class.php 21908 2009-09-11 12:06:21Z fabien $
+ * @version    SVN: $Id: sfWebDebugPanelTimer.class.php 22955 2009-10-12 16:44:07Z Kris.Wallsmith $
  */
 class sfWebDebugPanelTimer extends sfWebDebugPanel
 {
@@ -24,7 +24,7 @@ class sfWebDebugPanelTimer extends sfWebDebugPanel
   /**
    * Constructor.
    *
-   * @param sfWebDebug $webDebug The web debut toolbar instance
+   * @param sfWebDebug $webDebug The web debug toolbar instance
    */
   public function __construct(sfWebDebug $webDebug)
   {

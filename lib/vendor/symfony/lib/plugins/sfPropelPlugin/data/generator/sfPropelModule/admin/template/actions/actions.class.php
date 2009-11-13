@@ -9,9 +9,10 @@ require_once(dirname(__FILE__).'/../lib/Base<?php echo ucfirst($this->moduleName
  * @package    ##PROJECT_NAME##
  * @subpackage <?php echo $this->getModuleName()."\n" ?>
  * @author     ##AUTHOR_NAME##
- * @version    SVN: $Id: actions.class.php 20546 2009-07-28 07:13:31Z fabien $
+ * @version    SVN: $Id: actions.class.php 23194 2009-10-19 16:37:13Z fabien $
  */
-class <?php echo $this->getGeneratedModuleName() ?>Actions extends sfActions
+class <?php echo $this->getGeneratedModuleName() ?>Actions extends <?php echo $this->getActionsBaseClass() ?>
+
 {
   public function preExecute()
   {

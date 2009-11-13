@@ -11,10 +11,21 @@
  * @property string $ip_address
  * @property sfGuardUser $sfGuardUser
  * 
+ * @method integer            getId()           Returns the current record's "id" value
+ * @method integer            getUserId()       Returns the current record's "user_id" value
+ * @method string             getRememberKey()  Returns the current record's "remember_key" value
+ * @method string             getIpAddress()    Returns the current record's "ip_address" value
+ * @method sfGuardUser        getSfGuardUser()  Returns the current record's "sfGuardUser" value
+ * @method sfGuardRememberKey setId()           Sets the current record's "id" value
+ * @method sfGuardRememberKey setUserId()       Sets the current record's "user_id" value
+ * @method sfGuardRememberKey setRememberKey()  Sets the current record's "remember_key" value
+ * @method sfGuardRememberKey setIpAddress()    Sets the current record's "ip_address" value
+ * @method sfGuardRememberKey setSfGuardUser()  Sets the current record's "sfGuardUser" value
+ * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
  * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6365 2009-09-15 18:22:38Z jwage $
+ * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
  */
 abstract class BasesfGuardRememberKey extends sfDoctrineRecord
 {
@@ -45,7 +56,7 @@ abstract class BasesfGuardRememberKey extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-    $this->hasOne('sfGuardUser', array(
+        $this->hasOne('sfGuardUser', array(
              'local' => 'user_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));

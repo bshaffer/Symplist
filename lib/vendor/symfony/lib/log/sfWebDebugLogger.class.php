@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage log
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfWebDebugLogger.class.php 21954 2009-09-12 06:38:22Z fabien $
+ * @version    SVN: $Id: sfWebDebugLogger.class.php 22853 2009-10-07 12:11:15Z fabien $
  */
 class sfWebDebugLogger extends sfVarLogger
 {
@@ -109,7 +109,7 @@ class sfWebDebugLogger extends sfVarLogger
    */
   public function listenForLoadFactories(sfEvent $event)
   {
-    $path = sprintf('%s%s/images', $event->getSubject()->getRequest()->getRelativeUrlRoot(), sfConfig::get('sf_web_debug_web_dir'));
+    $path = sprintf('%s/%s/images', $event->getSubject()->getRequest()->getRelativeUrlRoot(), sfConfig::get('sf_web_debug_web_dir'));
     $path = str_replace('//', '/', $path);
 
     $this->webDebug = new $this->webDebugClass($this->dispatcher, $this, array(

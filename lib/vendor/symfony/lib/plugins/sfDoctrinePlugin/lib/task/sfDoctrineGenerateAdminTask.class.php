@@ -36,6 +36,7 @@ class sfDoctrineGenerateAdminTask extends sfDoctrineBaseTask
       new sfCommandOption('singular', null, sfCommandOption::PARAMETER_REQUIRED, 'The singular name', null),
       new sfCommandOption('plural', null, sfCommandOption::PARAMETER_REQUIRED, 'The plural name', null),
       new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'dev'),
+      new sfCommandOption('actions-base-class', null, sfCommandOption::PARAMETER_REQUIRED, 'The base class for the actions', 'sfActions'),
     ));
 
     $this->namespace = 'doctrine';
@@ -60,13 +61,13 @@ The task creates a module in the [%frontend%|COMMENT] application for the
 [%article%|COMMENT] route definition found in [routing.yml|COMMENT].
 
 For the filters and batch actions to work properly, you need to add
-the [wildcard|COMMENT] option to the route:
+the [with_wildcard_routes|COMMENT] option to the route:
 
   article:
     class: sfDoctrineRouteCollection
     options:
-      model:              Article
-      with_wildcard_routes:   true
+      model:                Article
+      with_wildcard_routes: true
 EOF;
   }
 
@@ -99,7 +100,6 @@ EOF;
     // create a route
     $model = $arguments['route_or_model'];
     $name = strtolower(preg_replace(array('/([A-Z]+)([A-Z][a-z])/', '/([a-z\d])([A-Z])/'), '\\1_\\2', $model));
-    $name = $options['module'] ? $name . '_' . $options['module'] : $name;
 
     $routing = sfConfig::get('sf_app_config_dir').'/routing.yml';
     $content = file_get_contents($routing);
@@ -108,7 +108,7 @@ EOF;
     if (!isset($routesArray[$name]))
     {
       $databaseManager = new sfDatabaseManager($this->configuration);
-      $primaryKey = Doctrine::getTable($model)->getIdentifier();
+      $primaryKey = Doctrine_Core::getTable($model)->getIdentifier();
       $module = $options['module'] ? $options['module'] : $name;
       $content = sprintf(<<<EOF
 %s:
@@ -116,14 +116,15 @@ EOF;
   options:
     model:                %s
     module:               %s
-    prefix_path:          %s
+    prefix_path:          /%s
     column:               %s
     with_wildcard_routes: true
 
 
 EOF
-      , $name, $model, $module, $module, $primaryKey).$content;
+      , $name, $model, $module, isset($options['plural']) ? $options['plural'] : $module, $primaryKey).$content;
 
+      $this->logSection('file+', $routing);
       file_put_contents($routing, $content);
     }
 
@@ -160,6 +161,7 @@ EOF
       'non-verbose-templates' => true,
       'singular'              => $options['singular'],
       'plural'                => $options['plural'],
+      'actions-base-class'    => $options['actions-base-class'],
     ));
   }
 

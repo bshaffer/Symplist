@@ -13,7 +13,7 @@ class BasePluginReleaseFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'plugin_id'           => new sfWidgetFormDoctrineChoice(array('model' => 'SymfonyPlugin', 'add_empty' => true)),
+      'plugin_id'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Plugin'), 'add_empty' => true)),
       'version'             => new sfWidgetFormFilterInput(),
       'date'                => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'symfony_version_min' => new sfWidgetFormFilterInput(),
@@ -25,7 +25,7 @@ class BasePluginReleaseFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'plugin_id'           => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'SymfonyPlugin', 'column' => 'id')),
+      'plugin_id'           => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Plugin'), 'column' => 'id')),
       'version'             => new sfValidatorPass(array('required' => false)),
       'date'                => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'symfony_version_min' => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),

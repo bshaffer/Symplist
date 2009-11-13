@@ -59,9 +59,9 @@ class sfDoctrineFormFilterGenerator extends sfDoctrineFormGenerator
     $file = sfConfig::get('sf_lib_dir').'/filter/doctrine/BaseFormFilterDoctrine.class.php';
     if (!file_exists($file))
     {
-      if (!is_dir(sfConfig::get('sf_lib_dir').'/filter/doctrine/base'))
+      if (!is_dir($directory = dirname($file)))
       {
-        mkdir(sfConfig::get('sf_lib_dir').'/filter/doctrine/base', 0777, true);
+        mkdir($directory, 0777, true);
       }
 
       file_put_contents($file, $this->evalTemplate('sfDoctrineFormFilterBaseTemplate.php'));
@@ -72,7 +72,7 @@ class sfDoctrineFormFilterGenerator extends sfDoctrineFormGenerator
     // create a form class for every Doctrine class
     foreach ($models as $model)
     {
-      $this->table = Doctrine::getTable($model);
+      $this->table = Doctrine_Core::getTable($model);
       $this->modelName = $model;
 
       $baseDir = sfConfig::get('sf_lib_dir') . '/filter/doctrine';
@@ -182,7 +182,7 @@ class sfDoctrineFormFilterGenerator extends sfDoctrineFormGenerator
 
     if ($column->isForeignKey())
     {
-      $options[] = sprintf('\'model\' => \'%s\', \'add_empty\' => true', $column->getForeignTable()->getOption('name'));
+      $options[] = sprintf('\'model\' => $this->getRelatedModelName(\'%s\'), \'add_empty\' => true', $column->getRelationKey('alias'));
     }
 
     return count($options) ? sprintf('array(%s)', implode(', ', $options)) : '';
@@ -249,7 +249,7 @@ class sfDoctrineFormFilterGenerator extends sfDoctrineFormGenerator
         }
       }
 
-      $options[] = sprintf('\'model\' => \'%s\', \'column\' => \'%s\'', $column->getForeignTable()->getOption('name'), $column->getForeignTable()->getFieldName($name));
+      $options[] = sprintf('\'model\' => $this->getRelatedModelName(\'%s\'), \'column\' => \'%s\'', $column->getRelationKey('alias'), $column->getForeignTable()->getFieldName($name));
     }
     else if ($column->isPrimaryKey())
     {
@@ -282,6 +282,7 @@ class sfDoctrineFormFilterGenerator extends sfDoctrineFormGenerator
   public function getValidatorForColumn($column)
   {
     $format = 'new %s(%s)';
+
     if (in_array($class = $this->getValidatorClassForColumn($column), array('sfValidatorInteger', 'sfValidatorNumber')))
     {
       $format = 'new sfValidatorSchemaFilter(\'text\', new %s(%s))';
@@ -341,7 +342,7 @@ class sfDoctrineFormFilterGenerator extends sfDoctrineFormGenerator
   {
     foreach ($models as $key => $model)
     {
-      $table = Doctrine::getTable($model);
+      $table = Doctrine_Core::getTable($model);
       $symfonyOptions = $table->getOption('symfony');
 
       if (isset($symfonyOptions['filter']) && !$symfonyOptions['filter'])

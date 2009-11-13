@@ -3,6 +3,8 @@
 /**
  * Comment form base class.
  *
+ * @method Comment getObject() Returns the current form's model object
+ *
  * @package    plugintracker
  * @subpackage form
  * @author     Your name here
@@ -17,8 +19,8 @@ class BaseCommentForm extends BaseFormDoctrine
       'body'                  => new sfWidgetFormTextarea(),
       'approved'              => new sfWidgetFormInputCheckbox(),
       'approved_at'           => new sfWidgetFormDateTime(),
-      'user_id'               => new sfWidgetFormDoctrineChoice(array('model' => 'Commenter', 'add_empty' => true)),
-      'authenticated_user_id' => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
+      'user_id'               => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Commenter'), 'add_empty' => true)),
+      'authenticated_user_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AuthenticatedUser'), 'add_empty' => true)),
       'root_id'               => new sfWidgetFormInputText(),
       'lft'                   => new sfWidgetFormInputText(),
       'rgt'                   => new sfWidgetFormInputText(),
@@ -28,12 +30,12 @@ class BaseCommentForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'id'                    => new sfValidatorDoctrineChoice(array('model' => 'Comment', 'column' => 'id', 'required' => false)),
+      'id'                    => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
       'body'                  => new sfValidatorString(array('required' => false)),
       'approved'              => new sfValidatorBoolean(array('required' => false)),
       'approved_at'           => new sfValidatorDateTime(array('required' => false)),
-      'user_id'               => new sfValidatorDoctrineChoice(array('model' => 'Commenter', 'required' => false)),
-      'authenticated_user_id' => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
+      'user_id'               => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Commenter'), 'required' => false)),
+      'authenticated_user_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('AuthenticatedUser'), 'required' => false)),
       'root_id'               => new sfValidatorInteger(array('required' => false)),
       'lft'                   => new sfValidatorInteger(array('required' => false)),
       'rgt'                   => new sfValidatorInteger(array('required' => false)),

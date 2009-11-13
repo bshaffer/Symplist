@@ -12,10 +12,23 @@
  * @property sfGuardUser $User
  * @property Doctrine_Collection $Items
  * 
+ * @method string              getTitle()        Returns the current record's "title" value
+ * @method string              getDescription()  Returns the current record's "description" value
+ * @method boolean             getFeatured()     Returns the current record's "featured" value
+ * @method integer             getSubmittedBy()  Returns the current record's "submitted_by" value
+ * @method sfGuardUser         getUser()         Returns the current record's "User" value
+ * @method Doctrine_Collection getItems()        Returns the current record's "Items" collection
+ * @method CommunityList       setTitle()        Sets the current record's "title" value
+ * @method CommunityList       setDescription()  Sets the current record's "description" value
+ * @method CommunityList       setFeatured()     Sets the current record's "featured" value
+ * @method CommunityList       setSubmittedBy()  Sets the current record's "submitted_by" value
+ * @method CommunityList       setUser()         Sets the current record's "User" value
+ * @method CommunityList       setItems()        Sets the current record's "Items" collection
+ * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
  * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6365 2009-09-15 18:22:38Z jwage $
+ * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
  */
 abstract class BaseCommunityList extends sfDoctrineRecord
 {
@@ -44,7 +57,7 @@ abstract class BaseCommunityList extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-    $this->hasOne('sfGuardUser as User', array(
+        $this->hasOne('sfGuardUser as User', array(
              'local' => 'submitted_by',
              'foreign' => 'id'));
 

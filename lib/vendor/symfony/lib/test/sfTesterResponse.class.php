@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage test
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfTesterResponse.class.php 21908 2009-09-11 12:06:21Z fabien $
+ * @version    SVN: $Id: sfTesterResponse.class.php 23568 2009-11-03 13:31:13Z Kris.Wallsmith $
  */
 class sfTesterResponse extends sfTester
 {
@@ -41,7 +41,7 @@ class sfTesterResponse extends sfTester
     $this->domCssSelector = null;
     if (preg_match('/(x|ht)ml/i', $this->response->getContentType(), $matches))
     {
-      $this->dom = new DomDocument('1.0', $this->response->getCharset());
+      $this->dom = new DOMDocument('1.0', $this->response->getCharset());
       $this->dom->validateOnParse = true;
       if ('x' == $matches[1])
       {
@@ -156,6 +156,92 @@ class sfTesterResponse extends sfTester
           $this->tester->ok(false !== $pos, sprintf('response includes "%s" form "%s" field - "%s %s[name=%s]"', get_class($form), $field, $selector, $element->tagName, $element->getAttribute('name')));
         }
       }
+    }
+
+    return $this->getObjectToReturn();
+  }
+
+  /**
+   * Validates the response.
+   *
+   * @param mixed $checkDTD Either true to validate against the response DTD or
+   *                        provide the path to a *.xsd, *.rng or *.rnc schema
+   *
+   * @return sfTestFunctionalBase|sfTester
+   *
+   * @throws LogicException If the response is neither XML nor (X)HTML
+   */
+  public function isValid($checkDTD = false)
+  {
+    if (preg_match('/(x|ht)ml/i', $this->response->getContentType()))
+    {
+      $revert = libxml_use_internal_errors(true);
+
+      $dom = new DOMDocument('1.0', $this->response->getCharset());
+      $content = $this->response->getContent();
+
+      if (true === $checkDTD)
+      {
+        $cache = sfConfig::get('sf_cache_dir').'/sf_tester_response/w3';
+        $local = 'file://'.str_replace(DIRECTORY_SEPARATOR, '/', $cache);
+
+        if (!file_exists($cache.'/TR/xhtml11/DTD/xhtml11.dtd'))
+        {
+          $filesystem = new sfFilesystem();
+
+          $finder = sfFinder::type('any')->discard('.sf');
+          $filesystem->mirror(dirname(__FILE__).'/w3', $cache, $finder);
+
+          $finder = sfFinder::type('file');
+          $filesystem->replaceTokens($finder->in($cache), '##', '##', array('LOCAL_W3' => $local));
+        }
+
+        $content = preg_replace('#(<!DOCTYPE[^>]+")http://www.w3.org(.*")#i', '\\1'.$local.'\\2', $content);
+        $dom->validateOnParse = $checkDTD;
+      }
+
+      $dom->loadXML($content);
+
+      switch (pathinfo($checkDTD, PATHINFO_EXTENSION))
+      {
+        case 'xsd':
+          $dom->schemaValidate($checkDTD);
+          $message = sprintf('response validates per XSD schema "%s"', basename($checkDTD));
+          break;
+        case 'rng':
+        case 'rnc':
+          $dom->relaxNGValidate($checkDTD);
+          $message = sprintf('response validates per relaxNG schema "%s"', basename($checkDTD));
+          break;
+        default:
+          $message = $dom->validateOnParse ? sprintf('response validates as "%s"', $dom->doctype->name) : 'response is well-formed "xml"';
+      }
+
+      if (count($errors = libxml_get_errors()))
+      {
+        $lines = explode(PHP_EOL, $this->response->getContent());
+
+        $this->tester->fail($message);
+        foreach ($errors as $error)
+        {
+          $this->tester->diag('    '.trim($error->message));
+          if (preg_match('/line (\d+)/', $error->message, $match) && $error->line != $match[1])
+          {
+            $this->tester->diag('      '.str_pad($match[1].':', 6).trim($lines[$match[1] - 1]));
+          }
+          $this->tester->diag('      '.str_pad($error->line.':', 6).trim($lines[$error->line - 1]));
+        }
+      }
+      else
+      {
+        $this->tester->pass($message);
+      }
+
+      libxml_use_internal_errors($revert);
+    }
+    else
+    {
+      throw new LogicException(sprintf('Unable to validate responses of content type "%s"', $this->response->getContentType()));
     }
 
     return $this->getObjectToReturn();

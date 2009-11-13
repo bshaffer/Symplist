@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage task
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfTestFunctionalTask.class.php 19721 2009-06-30 17:09:06Z fabien $
+ * @version    SVN: $Id: sfTestFunctionalTask.class.php 23740 2009-11-09 23:48:16Z FabianLange $
  */
 class sfTestFunctionalTask extends sfTestBaseTask
 {
@@ -83,16 +83,24 @@ EOF;
         $files = array_merge($files, $finder->in(sfConfig::get('sf_test_dir').'/functional/'.$app.'/'.dirname($controller)));
       }
 
-      foreach ($this->filterTestFiles($files, $arguments, $options) as $file)
+      if($allFiles = $this->filterTestFiles($files, $arguments, $options))
       {
-        include($file);
+        foreach ($allFiles as $file)
+        {
+          include($file);
+        }
+      }
+      else
+      {
+        $this->logSection('functional', 'no controller found', null, 'ERROR');
       }
     }
     else
     {
-      require_once(sfConfig::get('sf_symfony_lib_dir').'/vendor/lime/lime.php');
+      require_once dirname(__FILE__).'/sfLimeHarness.class.php';
 
-      $h = new lime_harness(array('force_colors' => $options['color'], 'verbose' => $options['trace']));
+      $h = new sfLimeHarness(array('force_colors' => $options['color'], 'verbose' => $options['trace']));
+      $h->addPlugins(array_map(array($this->configuration, 'getPluginConfiguration'), $this->configuration->getPlugins()));
       $h->base_dir = sfConfig::get('sf_test_dir').'/functional/'.$app;
 
       // filter and register functional tests

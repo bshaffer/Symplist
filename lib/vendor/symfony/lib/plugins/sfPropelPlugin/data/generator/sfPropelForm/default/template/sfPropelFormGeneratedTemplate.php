@@ -3,10 +3,12 @@
 /**
  * <?php echo $this->table->getClassname() ?> form base class.
  *
+ * @method <?php echo $this->table->getClassname() ?> getObject() Returns the current form's model object
+ *
  * @package    ##PROJECT_NAME##
  * @subpackage form
  * @author     ##AUTHOR_NAME##
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 22262 2009-09-23 05:50:25Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 23064 2009-10-14 21:00:23Z Kris.Wallsmith $
  */
 class Base<?php echo $this->table->getClassname() ?>Form extends BaseFormPropel
 {

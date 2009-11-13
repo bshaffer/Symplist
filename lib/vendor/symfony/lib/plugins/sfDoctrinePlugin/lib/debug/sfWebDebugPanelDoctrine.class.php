@@ -52,16 +52,14 @@ class sfWebDebugPanelDoctrine extends sfWebDebugPanel
   {
     return '
       <div id="sfWebDebugDatabaseLogs">
+        <h3>Doctrine Version: '.Doctrine_Core::VERSION.'</h3>
         <ol>'.implode("\n", $this->getSqlLogs()).'</ol>
       </div>
     ';
   }
 
   /**
-   * Hook to allow the loading of the Doctrine webdebug toolbar with the rest of the panels
-   *
-   * @param sfEvent $event 
-   * @return void
+   * Listens to debug.web.load_panels and adds this panel.
    */
   static public function listenToAddPanelEvent(sfEvent $event)
   {
@@ -115,7 +113,7 @@ class sfWebDebugPanelDoctrine extends sfWebDebugPanel
       // interpolate parameters
       foreach ($params as $param)
       {
-        $query = join(var_export($param, true), explode('?', $query, 2));
+        $query = join(var_export(is_scalar($param) ? $param : (string) $param, true), explode('?', $query, 2));
       }
 
       // slow query

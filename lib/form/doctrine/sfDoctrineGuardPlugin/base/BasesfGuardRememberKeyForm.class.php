@@ -3,6 +3,8 @@
 /**
  * sfGuardRememberKey form base class.
  *
+ * @method sfGuardRememberKey getObject() Returns the current form's model object
+ *
  * @package    plugintracker
  * @subpackage form
  * @author     Your name here
@@ -14,7 +16,7 @@ class BasesfGuardRememberKeyForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'           => new sfWidgetFormInputHidden(),
-      'user_id'      => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
+      'user_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'add_empty' => true)),
       'remember_key' => new sfWidgetFormInputText(),
       'ip_address'   => new sfWidgetFormInputHidden(),
       'created_at'   => new sfWidgetFormDateTime(),
@@ -22,10 +24,10 @@ class BasesfGuardRememberKeyForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'id'           => new sfValidatorDoctrineChoice(array('model' => 'sfGuardRememberKey', 'column' => 'id', 'required' => false)),
-      'user_id'      => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
+      'id'           => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
+      'user_id'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'required' => false)),
       'remember_key' => new sfValidatorString(array('max_length' => 32, 'required' => false)),
-      'ip_address'   => new sfValidatorDoctrineChoice(array('model' => 'sfGuardRememberKey', 'column' => 'ip_address', 'required' => false)),
+      'ip_address'   => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'ip_address', 'required' => false)),
       'created_at'   => new sfValidatorDateTime(),
       'updated_at'   => new sfValidatorDateTime(),
     ));

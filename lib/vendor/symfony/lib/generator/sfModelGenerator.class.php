@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage generator
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfModelGenerator.class.php 21908 2009-09-11 12:06:21Z fabien $
+ * @version    SVN: $Id: sfModelGenerator.class.php 23194 2009-10-19 16:37:13Z fabien $
  */
 abstract class sfModelGenerator extends sfGenerator
 {
@@ -67,6 +67,16 @@ abstract class sfModelGenerator extends sfGenerator
     }
 
     return "require_once(sfConfig::get('sf_module_cache_dir').'/".$this->generatedModuleName."/actions/actions.class.php');";
+  }
+
+  /**
+   * Gets the actions base class for the generated module.
+   *
+   * @return string The actions base class
+   */
+  public function getActionsBaseClass()
+  {
+    return isset($this->params['actions_base_class']) ? $this->params['actions_base_class'] : 'sfActions';
   }
 
   /**

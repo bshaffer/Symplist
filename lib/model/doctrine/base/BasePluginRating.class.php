@@ -11,10 +11,21 @@
  * @property SymfonyPlugin $Plugin
  * @property sfGuardUser $User
  * 
+ * @method integer       getSymfonyPluginId()   Returns the current record's "symfony_plugin_id" value
+ * @method integer       getSfGuardUserId()     Returns the current record's "sf_guard_user_id" value
+ * @method integer       getRating()            Returns the current record's "rating" value
+ * @method SymfonyPlugin getPlugin()            Returns the current record's "Plugin" value
+ * @method sfGuardUser   getUser()              Returns the current record's "User" value
+ * @method PluginRating  setSymfonyPluginId()   Sets the current record's "symfony_plugin_id" value
+ * @method PluginRating  setSfGuardUserId()     Sets the current record's "sf_guard_user_id" value
+ * @method PluginRating  setRating()            Sets the current record's "rating" value
+ * @method PluginRating  setPlugin()            Sets the current record's "Plugin" value
+ * @method PluginRating  setUser()              Sets the current record's "User" value
+ * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
  * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6365 2009-09-15 18:22:38Z jwage $
+ * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
  */
 abstract class BasePluginRating extends sfDoctrineRecord
 {
@@ -36,7 +47,7 @@ abstract class BasePluginRating extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-    $this->hasOne('SymfonyPlugin as Plugin', array(
+        $this->hasOne('SymfonyPlugin as Plugin', array(
              'local' => 'symfony_plugin_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));

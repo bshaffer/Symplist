@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage validator
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfValidatorFile.class.php 22017 2009-09-14 16:50:05Z fabien $
+ * @version    SVN: $Id: sfValidatorFile.class.php 23073 2009-10-15 06:28:28Z fabien $
  */
 class sfValidatorFile extends sfValidatorBase
 {
@@ -52,6 +52,11 @@ class sfValidatorFile extends sfValidatorBase
    */
   protected function configure($options = array(), $messages = array())
   {
+    if (!ini_get('file_uploads'))
+    {
+      throw new LogicException(sprintf('Unable to use a file validator as "file_uploads" is disabled in your php.ini file (%s)', get_cfg_var('cfg_file_path')));
+    }
+
     $this->addOption('max_size');
     $this->addOption('mime_types');
     $this->addOption('mime_type_guessers', array(

@@ -18,7 +18,7 @@ require_once(dirname(__FILE__).'/sfDoctrineBaseTask.class.php');
  * @subpackage doctrine
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Jonathan H. Wage <jonwage@gmail.com>
- * @version    SVN: $Id: sfDoctrineDropDbTask.class.php 19998 2009-07-07 22:54:47Z Jonathan.Wage $
+ * @version    SVN: $Id: sfDoctrineDropDbTask.class.php 23020 2009-10-13 22:48:42Z Kris.Wallsmith $
  */
 class sfDoctrineDropDbTask extends sfDoctrineBaseTask
 {
@@ -43,7 +43,7 @@ The [doctrine:drop-db|INFO] task drops the database:
 
   [./symfony doctrine:drop-db|INFO]
 
-The task read connection information in [config/doctrine/databases.yml|COMMENT]:
+The task read connection information in [config/databases.yml|COMMENT]:
 EOF;
   }
 

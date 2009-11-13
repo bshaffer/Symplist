@@ -16,7 +16,7 @@
  * @subpackage action
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Sean Kerr <sean@code-box.org>
- * @version    SVN: $Id: sfAction.class.php 22404 2009-09-25 07:07:58Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfAction.class.php 23544 2009-11-03 08:48:31Z fabien $
  */
 abstract class sfAction extends sfComponent
 {
@@ -555,16 +555,6 @@ abstract class sfAction extends sfComponent
   public function getRoute()
   {
     return $this->getRequest()->getAttribute('sf_route');
-  }
-
-  /**
-   * Gets the current mailer instance.
-   *
-   * @return sfMailer A sfMailer instance
-   */
-  public function getMailer()
-  {
-    return $this->getContext()->getMailer();
   }
 
   /**

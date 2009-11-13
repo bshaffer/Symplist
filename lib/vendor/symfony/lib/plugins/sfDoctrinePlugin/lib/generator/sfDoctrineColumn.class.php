@@ -177,6 +177,24 @@ class sfDoctrineColumn implements ArrayAccess
   }
 
   /**
+   * Returns a value from the current column's relation.
+   * 
+   * @param string $key
+   * 
+   * @return mixed|null
+   */
+  public function getRelationKey($key)
+  {
+    foreach ($this->table->getRelations() as $relation)
+    {
+      if (strtolower($relation['local']) == strtolower($this->name))
+      {
+        return $relation[$key];
+      }
+    }
+  }
+
+  /**
    * Returns true of the column is not null and false if it is null
    *
    * @return boolean
@@ -260,7 +278,7 @@ class sfDoctrineColumn implements ArrayAccess
   {
     if ($this->isForeignKey())
     {
-      return Doctrine::getTable($this->foreignClassName);
+      return Doctrine_Core::getTable($this->foreignClassName);
     } else {
       return false;
     }

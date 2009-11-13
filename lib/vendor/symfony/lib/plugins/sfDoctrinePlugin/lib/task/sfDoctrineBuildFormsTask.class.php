@@ -41,13 +41,11 @@ The [doctrine:build-forms|INFO] task creates form classes from the schema:
 
   [./symfony doctrine:build-forms|INFO]
 
-The task read the schema information in [config/*schema.xml|COMMENT] and/or
-[config/*schema.yml|COMMENT] from the project and all installed plugins.
+This task creates form classes based on the model. The classes are created
+in [lib/doctrine/form|COMMENT].
 
-The model form classes files are created in [lib/form|COMMENT].
-
-This task never overrides custom classes in [lib/form|COMMENT].
-It only replaces base classes generated in [lib/form/base|COMMENT].
+This task never overrides custom classes in [lib/doctrine/form|COMMENT].
+It only replaces base classes generated in [lib/doctrine/form/base|COMMENT].
 EOF;
   }
 
@@ -74,6 +72,14 @@ EOF;
     // customize php and yml files
     $finder = sfFinder::type('file')->name('*.php');
     $this->getFilesystem()->replaceTokens($finder->in(sfConfig::get('sf_lib_dir').'/form/'), '##', '##', $constants);
+
+    // check for base form class
+    if (!class_exists('BaseForm'))
+    {
+      $file = sfConfig::get('sf_lib_dir').'/'.$options['form-dir-name'].'/BaseForm.class.php';
+      $this->getFilesystem()->copy(sfConfig::get('sf_symfony_lib_dir').'/task/generator/skeleton/project/lib/form/BaseForm.class.php', $file);
+      $this->getFilesystem()->replaceTokens($file, '##', '##', $constants);
+    }
 
     $this->reloadAutoload();
   }

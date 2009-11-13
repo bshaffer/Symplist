@@ -3,6 +3,8 @@
 /**
  * PluginRelease form base class.
  *
+ * @method PluginRelease getObject() Returns the current form's model object
+ *
  * @package    plugintracker
  * @subpackage form
  * @author     Your name here
@@ -14,7 +16,7 @@ class BasePluginReleaseForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                  => new sfWidgetFormInputHidden(),
-      'plugin_id'           => new sfWidgetFormDoctrineChoice(array('model' => 'SymfonyPlugin', 'add_empty' => true)),
+      'plugin_id'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Plugin'), 'add_empty' => true)),
       'version'             => new sfWidgetFormInputText(),
       'date'                => new sfWidgetFormDateTime(),
       'symfony_version_min' => new sfWidgetFormInputText(),
@@ -26,8 +28,8 @@ class BasePluginReleaseForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'id'                  => new sfValidatorDoctrineChoice(array('model' => 'PluginRelease', 'column' => 'id', 'required' => false)),
-      'plugin_id'           => new sfValidatorDoctrineChoice(array('model' => 'SymfonyPlugin', 'required' => false)),
+      'id'                  => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
+      'plugin_id'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Plugin'), 'required' => false)),
       'version'             => new sfValidatorString(array('max_length' => 10, 'required' => false)),
       'date'                => new sfValidatorDateTime(array('required' => false)),
       'symfony_version_min' => new sfValidatorNumber(array('required' => false)),

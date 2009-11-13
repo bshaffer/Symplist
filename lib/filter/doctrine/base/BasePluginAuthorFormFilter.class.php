@@ -17,7 +17,7 @@ class BasePluginAuthorFormFilter extends BaseFormFilterDoctrine
       'last_name'        => new sfWidgetFormFilterInput(),
       'email'            => new sfWidgetFormFilterInput(),
       'bio'              => new sfWidgetFormFilterInput(),
-      'sf_guard_user_id' => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
+      'sf_guard_user_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
@@ -25,7 +25,7 @@ class BasePluginAuthorFormFilter extends BaseFormFilterDoctrine
       'last_name'        => new sfValidatorPass(array('required' => false)),
       'email'            => new sfValidatorPass(array('required' => false)),
       'bio'              => new sfValidatorPass(array('required' => false)),
-      'sf_guard_user_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'sfGuardUser', 'column' => 'id')),
+      'sf_guard_user_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('User'), 'column' => 'id')),
     ));
 
     $this->widgetSchema->setNameFormat('plugin_author_filters[%s]');

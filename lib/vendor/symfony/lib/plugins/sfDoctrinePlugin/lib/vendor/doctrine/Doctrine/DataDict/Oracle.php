@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Oracle.php 6376 2009-09-17 19:52:40Z jwage $
+ *  $Id: Oracle.php 6484 2009-10-12 17:40:41Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -24,7 +24,7 @@
  * @subpackage  DataDict
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @version     $Revision: 6376 $
+ * @version     $Revision: 6484 $
  * @link        www.phpdoctrine.org
  * @since       1.0
  */
@@ -109,7 +109,7 @@ class Doctrine_DataDict_Oracle extends Doctrine_DataDict
             case 'double':
                 return 'NUMBER';
             case 'decimal':
-                $scale = !empty($field['scale']) ? $field['scale'] : $this->conn->getAttribute(Doctrine::ATTR_DECIMAL_PLACES);
+                $scale = !empty($field['scale']) ? $field['scale'] : $this->conn->getAttribute(Doctrine_Core::ATTR_DECIMAL_PLACES);
                 return 'NUMBER(*,'.$scale.')';
             default:
         }

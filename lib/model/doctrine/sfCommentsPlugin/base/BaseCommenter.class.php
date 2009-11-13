@@ -10,10 +10,19 @@
  * @property string $website
  * @property Comment $Comment
  * 
+ * @method string    getUsername() Returns the current record's "username" value
+ * @method string    getEmail()    Returns the current record's "email" value
+ * @method string    getWebsite()  Returns the current record's "website" value
+ * @method Comment   getComment()  Returns the current record's "Comment" value
+ * @method Commenter setUsername() Sets the current record's "username" value
+ * @method Commenter setEmail()    Sets the current record's "email" value
+ * @method Commenter setWebsite()  Sets the current record's "website" value
+ * @method Commenter setComment()  Sets the current record's "Comment" value
+ * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
  * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6365 2009-09-15 18:22:38Z jwage $
+ * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
  */
 abstract class BaseCommenter extends sfDoctrineRecord
 {
@@ -37,7 +46,7 @@ abstract class BaseCommenter extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-    $this->hasOne('Comment', array(
+        $this->hasOne('Comment', array(
              'local' => 'id',
              'foreign' => 'user_id'));
     }

@@ -17,7 +17,7 @@
  * @package    symfony
  * @subpackage autoload
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfSimpleAutoload.class.php 21908 2009-09-11 12:06:21Z fabien $
+ * @version    SVN: $Id: sfSimpleAutoload.class.php 23205 2009-10-20 13:20:17Z Kris.Wallsmith $
  */
 class sfSimpleAutoload
 {
@@ -31,7 +31,8 @@ class sfSimpleAutoload
     $cacheChanged = false,
     $dirs         = array(),
     $files        = array(),
-    $classes      = array();
+    $classes      = array(),
+    $overriden    = array();
 
   protected function __construct($cacheFile = null)
   {
@@ -186,6 +187,11 @@ class sfSimpleAutoload
       $this->addFile($file);
     }
 
+    foreach ($this->overriden as $class => $path)
+    {
+      $this->classes[$class] = $path;
+    }
+
     $this->cacheLoaded = true;
     $this->cacheChanged = true;
   }
@@ -208,11 +214,11 @@ class sfSimpleAutoload
   {
     $finder = sfFinder::type('file')->follow_link()->name('*'.$ext);
 
-    if($dirs = glob($dir))
+    if ($dirs = glob($dir))
     {
       foreach ($dirs as $dir)
       {
-        if (false !== ($key = array_search($dir, $this->dirs)))
+        if (false !== $key = array_search($dir, $this->dirs))
         {
           unset($this->dirs[$key]);
           $this->dirs[] = $dir;
@@ -287,6 +293,12 @@ class sfSimpleAutoload
     }
   }
 
+  /**
+   * Sets the path for a particular class.
+   *
+   * @param string $class A PHP class name
+   * @param string $path  An absolute path
+   */
   public function setClassPath($class, $path)
   {
     $class = strtolower($class);
@@ -294,5 +306,35 @@ class sfSimpleAutoload
     $this->overriden[$class] = $path;
 
     $this->classes[$class] = $path;
+  }
+
+  /**
+   * Returns the path where a particular class can be found.
+   *
+   * @param string $class A PHP class name
+   *
+   * @return string|null An absolute path
+   */
+  public function getClassPath($class)
+  {
+    $class = strtolower($class);
+
+    return isset($this->classes[$class]) ? $this->classes[$class] : null;
+  }
+
+  /**
+   * Loads configuration from the supplied files.
+   *
+   * @param array $files An array of autoload.yml files
+   * 
+   * @see sfAutoloadConfigHandler
+   */
+  public function loadConfiguration(array $files)
+  {
+    $config = new sfAutoloadConfigHandler();
+    foreach ($config->evaluate($files) as $class => $file)
+    {
+      $this->setClassPath($class, $file);
+    }
   }
 }

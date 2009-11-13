@@ -3,6 +3,8 @@
 /**
  * CommunityList form base class.
  *
+ * @method CommunityList getObject() Returns the current form's model object
+ *
  * @package    plugintracker
  * @subpackage form
  * @author     Your name here
@@ -17,7 +19,7 @@ class BaseCommunityListForm extends BaseFormDoctrine
       'title'            => new sfWidgetFormInputText(),
       'description'      => new sfWidgetFormInputText(),
       'featured'         => new sfWidgetFormInputCheckbox(),
-      'submitted_by'     => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => false)),
+      'submitted_by'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => false)),
       'created_at'       => new sfWidgetFormDateTime(),
       'updated_at'       => new sfWidgetFormDateTime(),
       'slug'             => new sfWidgetFormInputText(),
@@ -25,11 +27,11 @@ class BaseCommunityListForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'id'               => new sfValidatorDoctrineChoice(array('model' => 'CommunityList', 'column' => 'id', 'required' => false)),
+      'id'               => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
       'title'            => new sfValidatorString(array('max_length' => 255)),
       'description'      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'featured'         => new sfValidatorBoolean(array('required' => false)),
-      'submitted_by'     => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser')),
+      'submitted_by'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('User'))),
       'created_at'       => new sfValidatorDateTime(),
       'updated_at'       => new sfValidatorDateTime(),
       'slug'             => new sfValidatorString(array('max_length' => 255, 'required' => false)),

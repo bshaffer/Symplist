@@ -3,6 +3,8 @@
 /**
  * csNavigationItem form base class.
  *
+ * @method csNavigationItem getObject() Returns the current form's model object
+ *
  * @package    plugintracker
  * @subpackage form
  * @author     Your name here
@@ -25,7 +27,7 @@ class BasecsNavigationItemForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'id'        => new sfValidatorDoctrineChoice(array('model' => 'csNavigationItem', 'column' => 'id', 'required' => false)),
+      'id'        => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
       'name'      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'route'     => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'protected' => new sfValidatorBoolean(array('required' => false)),

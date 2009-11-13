@@ -4,7 +4,8 @@ include(dirname(__FILE__).'/../bootstrap/Doctrine.php');
 
 $t = new lime_test(21, new lime_output_color());
 
-Doctrine::loadData(sfConfig::get('sf_test_dir').'/fixtures');
+include(dirname(__FILE__).'/../fixtures/fixtures.php');
+// Doctrine::loadData(sfConfig::get('sf_test_dir').'/fixtures');
 
 $t->comment('testing plugin');
 $p = new SymfonyPlugin();

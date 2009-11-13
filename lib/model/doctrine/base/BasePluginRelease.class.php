@@ -16,10 +16,31 @@
  * @property string $dependencies
  * @property SymfonyPlugin $Plugin
  * 
+ * @method integer       getPluginId()            Returns the current record's "plugin_id" value
+ * @method string        getVersion()             Returns the current record's "version" value
+ * @method timestamp     getDate()                Returns the current record's "date" value
+ * @method decimal       getSymfonyVersionMin()   Returns the current record's "symfony_version_min" value
+ * @method decimal       getSymfonyVersionMax()   Returns the current record's "symfony_version_max" value
+ * @method clob          getSummary()             Returns the current record's "summary" value
+ * @method string        getStability()           Returns the current record's "stability" value
+ * @method clob          getReadme()              Returns the current record's "readme" value
+ * @method string        getDependencies()        Returns the current record's "dependencies" value
+ * @method SymfonyPlugin getPlugin()              Returns the current record's "Plugin" value
+ * @method PluginRelease setPluginId()            Sets the current record's "plugin_id" value
+ * @method PluginRelease setVersion()             Sets the current record's "version" value
+ * @method PluginRelease setDate()                Sets the current record's "date" value
+ * @method PluginRelease setSymfonyVersionMin()   Sets the current record's "symfony_version_min" value
+ * @method PluginRelease setSymfonyVersionMax()   Sets the current record's "symfony_version_max" value
+ * @method PluginRelease setSummary()             Sets the current record's "summary" value
+ * @method PluginRelease setStability()           Sets the current record's "stability" value
+ * @method PluginRelease setReadme()              Sets the current record's "readme" value
+ * @method PluginRelease setDependencies()        Sets the current record's "dependencies" value
+ * @method PluginRelease setPlugin()              Sets the current record's "Plugin" value
+ * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
  * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6365 2009-09-15 18:22:38Z jwage $
+ * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
  */
 abstract class BasePluginRelease extends sfDoctrineRecord
 {
@@ -65,7 +86,7 @@ abstract class BasePluginRelease extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-    $this->hasOne('SymfonyPlugin as Plugin', array(
+        $this->hasOne('SymfonyPlugin as Plugin', array(
              'local' => 'plugin_id',
              'foreign' => 'id'));
     }

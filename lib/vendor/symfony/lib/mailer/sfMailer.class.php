@@ -65,7 +65,8 @@ class sfMailer extends Swift_Mailer
        ),
     ), $options);
 
-    $this->strategy = @constant('sfMailer::'.strtoupper($options['delivery_strategy']));
+    $constantName = 'sfMailer::'.strtoupper($options['delivery_strategy']);
+    $this->strategy = defined($constantName) ? constant($constantName) : false;
     if (!$this->strategy)
     {
       throw new InvalidArgumentException(sprintf('Unknown mail delivery strategy "%s" (should be one of realtime, spool, single_address, or none)', $options['delivery_strategy']));
@@ -282,6 +283,11 @@ class sfMailer extends Swift_Mailer
     {
       $this->force = false;
 
+      if (!$this->realtimeTransport->isStarted())
+      {
+        $this->realtimeTransport->start();
+      }
+
       return $this->realtimeTransport->send($message, $failedRecipients);
     }
 
@@ -301,7 +307,7 @@ class sfMailer extends Swift_Mailer
   {
     if (self::SPOOL != $this->strategy)
     {
-      throw new LogicException(sprintf('You cannot only send message in the spools if the delivery strategy is "spool" (%s is the current strategy).', $this->strategy));
+      throw new LogicException(sprintf('You can only send messages in the spool if the delivery strategy is "spool" (%s is the current strategy).', $this->strategy));
     }
 
     return $this->spool->flushQueue($this->realtimeTransport, $failedRecipients);

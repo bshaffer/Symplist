@@ -24,10 +24,47 @@
  * @property PluginAuthor $Author
  * @property Doctrine_Collection $CommunityListItems
  * 
+ * @method integer             getId()                    Returns the current record's "id" value
+ * @method string              getUsername()              Returns the current record's "username" value
+ * @method string              getAlgorithm()             Returns the current record's "algorithm" value
+ * @method string              getSalt()                  Returns the current record's "salt" value
+ * @method string              getPassword()              Returns the current record's "password" value
+ * @method boolean             getIsActive()              Returns the current record's "is_active" value
+ * @method boolean             getIsSuperAdmin()          Returns the current record's "is_super_admin" value
+ * @method timestamp           getLastLogin()             Returns the current record's "last_login" value
+ * @method Doctrine_Collection getGroups()                Returns the current record's "groups" collection
+ * @method Doctrine_Collection getPermissions()           Returns the current record's "permissions" collection
+ * @method Doctrine_Collection getSfGuardUserPermission() Returns the current record's "sfGuardUserPermission" collection
+ * @method Doctrine_Collection getSfGuardUserGroup()      Returns the current record's "sfGuardUserGroup" collection
+ * @method sfGuardRememberKey  getRememberKeys()          Returns the current record's "RememberKeys" value
+ * @method Doctrine_Collection getPlugins()               Returns the current record's "Plugins" collection
+ * @method Doctrine_Collection getRatedPlugins()          Returns the current record's "RatedPlugins" collection
+ * @method Doctrine_Collection getRatings()               Returns the current record's "Ratings" collection
+ * @method PluginAuthor        getAuthor()                Returns the current record's "Author" value
+ * @method Doctrine_Collection getCommunityListItems()    Returns the current record's "CommunityListItems" collection
+ * @method sfGuardUser         setId()                    Sets the current record's "id" value
+ * @method sfGuardUser         setUsername()              Sets the current record's "username" value
+ * @method sfGuardUser         setAlgorithm()             Sets the current record's "algorithm" value
+ * @method sfGuardUser         setSalt()                  Sets the current record's "salt" value
+ * @method sfGuardUser         setPassword()              Sets the current record's "password" value
+ * @method sfGuardUser         setIsActive()              Sets the current record's "is_active" value
+ * @method sfGuardUser         setIsSuperAdmin()          Sets the current record's "is_super_admin" value
+ * @method sfGuardUser         setLastLogin()             Sets the current record's "last_login" value
+ * @method sfGuardUser         setGroups()                Sets the current record's "groups" collection
+ * @method sfGuardUser         setPermissions()           Sets the current record's "permissions" collection
+ * @method sfGuardUser         setSfGuardUserPermission() Sets the current record's "sfGuardUserPermission" collection
+ * @method sfGuardUser         setSfGuardUserGroup()      Sets the current record's "sfGuardUserGroup" collection
+ * @method sfGuardUser         setRememberKeys()          Sets the current record's "RememberKeys" value
+ * @method sfGuardUser         setPlugins()               Sets the current record's "Plugins" collection
+ * @method sfGuardUser         setRatedPlugins()          Sets the current record's "RatedPlugins" collection
+ * @method sfGuardUser         setRatings()               Sets the current record's "Ratings" collection
+ * @method sfGuardUser         setAuthor()                Sets the current record's "Author" value
+ * @method sfGuardUser         setCommunityListItems()    Sets the current record's "CommunityListItems" collection
+ * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
  * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6365 2009-09-15 18:22:38Z jwage $
+ * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
  */
 abstract class BasesfGuardUser extends sfDoctrineRecord
 {
@@ -62,7 +99,7 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              ));
         $this->hasColumn('is_active', 'boolean', null, array(
              'type' => 'boolean',
-             'default' => '1',
+             'default' => 1,
              ));
         $this->hasColumn('is_super_admin', 'boolean', null, array(
              'type' => 'boolean',
@@ -84,7 +121,7 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-    $this->hasMany('sfGuardGroup as groups', array(
+        $this->hasMany('sfGuardGroup as groups', array(
              'refClass' => 'sfGuardUserGroup',
              'local' => 'user_id',
              'foreign' => 'group_id'));

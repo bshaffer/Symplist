@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage task
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfTask.class.php 21908 2009-09-11 12:06:21Z fabien $
+ * @version    SVN: $Id: sfTask.class.php 23437 2009-10-29 16:12:53Z fabien $
  */
 abstract class sfTask
 {
@@ -150,7 +150,7 @@ abstract class sfTask
     {
       if (is_string($name))
       {
-        if (false === $value || null === $value || ($indexedOptions[$name]->isArray() && !$value))
+        if (false === $value || null === $value || (isset($indexedOptions[$name]) && $indexedOptions[$name]->isArray() && !$value))
         {
           unset($options[$name]);
           continue;
@@ -545,7 +545,7 @@ abstract class sfTask
         $this->logBlock($error->getMessage(), 'ERROR');
       }
 
-      $value = $this->ask($question, null, $options['style']);
+      $value = $this->ask($question, $options['style'], null);
 
       try
       {

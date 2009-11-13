@@ -16,7 +16,7 @@ require_once(dirname(__FILE__).'/../vendor/lime/lime.php');
  * @package    symfony
  * @subpackage test
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfTestFunctionalBase.class.php 21908 2009-09-11 12:06:21Z fabien $
+ * @version    SVN: $Id: sfTestFunctionalBase.class.php 22945 2009-10-12 12:55:22Z Kris.Wallsmith $
  */
 abstract class sfTestFunctionalBase
 {
@@ -287,7 +287,21 @@ abstract class sfTestFunctionalBase
    */
   public function click($name, $arguments = array(), $options = array())
   {
-    list($uri, $method, $parameters) = $this->browser->doClick($name, $arguments, $options);
+    if ($name instanceof DOMElement)
+    {
+      list($uri, $method, $parameters) = $this->doClickElement($name, $arguments, $options);
+    }
+    else
+    {
+      try
+      {
+        list($uri, $method, $parameters) = $this->doClick($name, $arguments, $options);
+      }
+      catch (InvalidArgumentException $e)
+      {
+        list($uri, $method, $parameters) = $this->doClickCssSelector($name, $arguments, $options);
+      }
+    }
 
     return $this->call($uri, $method, $parameters);
   }

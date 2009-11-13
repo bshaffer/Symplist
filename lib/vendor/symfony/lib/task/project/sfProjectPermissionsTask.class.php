@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage task
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfProjectPermissionsTask.class.php 18633 2009-05-26 03:59:10Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfProjectPermissionsTask.class.php 22820 2009-10-06 12:09:34Z Kris.Wallsmith $
  */
 class sfProjectPermissionsTask extends sfBaseTask
 {
@@ -71,12 +71,10 @@ EOF;
     // note those files that failed
     if (count($this->failed))
     {
-      $this->log($this->formatter->format('Permissions on the following file(s) could not be fixed:', 'ERROR'));
-
-      foreach ($this->failed as $failed)
-      {
-        $this->log($this->formatter->format(sprintf(' - %s', $failed), 'ERROR'));
-      }
+      $this->logBlock(array_merge(
+        array('Permissions on the following file(s) could not be fixed:', ''),
+        array_map(create_function('$f', 'return \' - \'.sfDebug::shortenFilePath($f);'), $this->failed)
+      ), 'ERROR_LARGE');
     }
   }
 

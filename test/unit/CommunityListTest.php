@@ -4,7 +4,7 @@ include(dirname(__FILE__).'/../bootstrap/Doctrine.php');
 
 $t = new lime_test(1, new lime_output_color());
 
-Doctrine::loadData(sfConfig::get('sf_test_dir').'/fixtures');
+// Doctrine::loadData(sfConfig::get('sf_test_dir').'/fixtures');
 
 $list = new CommunityList();
 $list['title'] = "This is a test list that will be last";

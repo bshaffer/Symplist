@@ -22,10 +22,43 @@
  * @property Doctrine_Collection $Ratings
  * @property Doctrine_Collection $Releases
  * 
+ * @method string              getTitle()             Returns the current record's "title" value
+ * @method clob                getDescription()       Returns the current record's "description" value
+ * @method integer             getUserId()            Returns the current record's "user_id" value
+ * @method string              getSymfonyDeveloper()  Returns the current record's "symfony_developer" value
+ * @method integer             getCategoryId()        Returns the current record's "category_id" value
+ * @method boolean             getActive()            Returns the current record's "active" value
+ * @method string              getRepository()        Returns the current record's "repository" value
+ * @method string              getImage()             Returns the current record's "image" value
+ * @method string              getHomepage()          Returns the current record's "homepage" value
+ * @method string              getTicketing()         Returns the current record's "ticketing" value
+ * @method boolean             getFeatured()          Returns the current record's "featured" value
+ * @method sfGuardUser         getUser()              Returns the current record's "User" value
+ * @method Doctrine_Collection getRaters()            Returns the current record's "Raters" collection
+ * @method PluginCategory      getCategory()          Returns the current record's "Category" value
+ * @method Doctrine_Collection getRatings()           Returns the current record's "Ratings" collection
+ * @method Doctrine_Collection getReleases()          Returns the current record's "Releases" collection
+ * @method SymfonyPlugin       setTitle()             Sets the current record's "title" value
+ * @method SymfonyPlugin       setDescription()       Sets the current record's "description" value
+ * @method SymfonyPlugin       setUserId()            Sets the current record's "user_id" value
+ * @method SymfonyPlugin       setSymfonyDeveloper()  Sets the current record's "symfony_developer" value
+ * @method SymfonyPlugin       setCategoryId()        Sets the current record's "category_id" value
+ * @method SymfonyPlugin       setActive()            Sets the current record's "active" value
+ * @method SymfonyPlugin       setRepository()        Sets the current record's "repository" value
+ * @method SymfonyPlugin       setImage()             Sets the current record's "image" value
+ * @method SymfonyPlugin       setHomepage()          Sets the current record's "homepage" value
+ * @method SymfonyPlugin       setTicketing()         Sets the current record's "ticketing" value
+ * @method SymfonyPlugin       setFeatured()          Sets the current record's "featured" value
+ * @method SymfonyPlugin       setUser()              Sets the current record's "User" value
+ * @method SymfonyPlugin       setRaters()            Sets the current record's "Raters" collection
+ * @method SymfonyPlugin       setCategory()          Sets the current record's "Category" value
+ * @method SymfonyPlugin       setRatings()           Sets the current record's "Ratings" collection
+ * @method SymfonyPlugin       setReleases()          Sets the current record's "Releases" collection
+ * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
  * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6365 2009-09-15 18:22:38Z jwage $
+ * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
  */
 abstract class BaseSymfonyPlugin extends sfDoctrineRecord
 {
@@ -79,7 +112,7 @@ abstract class BaseSymfonyPlugin extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-    $this->hasOne('sfGuardUser as User', array(
+        $this->hasOne('sfGuardUser as User', array(
              'local' => 'user_id',
              'foreign' => 'id'));
 
