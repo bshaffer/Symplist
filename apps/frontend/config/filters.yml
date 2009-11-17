@@ -5,6 +5,9 @@ security:
 # insert your own filters here
 csNavigation:
   class: csNavigationFilter
+  
+sf_google_analytics_plugin:
+  class: sfGoogleAnalyticsFilter
 
 cache:     ~
 
