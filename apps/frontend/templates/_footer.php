@@ -2,6 +2,6 @@
   <?php include_navigation(array('menu' => 'Footer', 'class' => 'grid_6 alpha', 'id' => 'nav-secondary')) ?>
 
   <div class="copyright grid_6 omega">
-    <p>©2009 Brent Shaffer. Design by <a href="#">The Black Elephant</a></p>
+    <p>©2009 Brent Shaffer. Design by <a href="http://www.theblackelephant.com">The Black Elephant</a></p>
   </div>
 </div>
