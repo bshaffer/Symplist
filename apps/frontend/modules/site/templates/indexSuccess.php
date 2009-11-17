@@ -32,7 +32,7 @@
 
 
 <div class="grid_4 alpha">
-  <h3>Most Votes</h3>
+  <h3>Most Votes</h3> 
   <ul>
   <?php foreach ($votes as $plugin): ?>
     <li>
