@@ -9,8 +9,8 @@ navigation:
   Footer:
     Home:                 '/'
     About SympLIST:        @about
-    Feedback:              @contact
-    Contact:              'http://symplist.lighthouseapp.com/projects/36266-symplist/tickets/new'
+    Contact:              @contact
+    Feedback:              'http://symplist.lighthouseapp.com/projects/36266-symplist/tickets/new'
 
     
 settings:
