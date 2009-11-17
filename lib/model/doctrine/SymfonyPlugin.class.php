@@ -63,6 +63,7 @@ class SymfonyPlugin extends BaseSymfonyPlugin
   {
     $info = $this->getRatingInfo();
     $rating = (round($info['average']*2, 0)/2);
+    $rating = floor($rating); // for the time being, round up, until we can get split stars
     $this->_rating = $rating;
     $this->_num_votes = $info['num_votes'];
   }

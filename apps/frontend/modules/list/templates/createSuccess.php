@@ -12,6 +12,6 @@
                 'url' => 'list_item_add_ajax',
                 'position' => 'bottom',
     )) ?>
-  <?php echo submit_tag('Save') ?>
+  <?php echo submit_tag('Save', array('class' => 'button')) ?>
 </form>
 

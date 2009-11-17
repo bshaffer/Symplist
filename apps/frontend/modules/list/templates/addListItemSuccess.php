@@ -3,5 +3,5 @@
 
 <?php echo form_tag('@community_list_add_item?slug='.$list['slug']) ?>
   <?php echo $form ?>
-<?php echo submit_tag('Add') ?>
+<?php echo submit_tag('Add', array('class' => 'button')) ?>
 </form>
