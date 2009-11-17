@@ -78,7 +78,7 @@ body.interior form#search fieldset {float:right;}
 /*Utility Nav*/
 #nav-utility {float:right;list-style:none;}
   #nav-utility a {color:#4fbcfa;line-height:65px;text-decoration:none;font-weight:bold;}
-  #nav-utility li {display:inline;}
+  #nav-utility li {display:inline; margin-left:10px;}
   
 /*
 * ///////////// Header
