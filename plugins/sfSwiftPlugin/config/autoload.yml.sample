@@ -1,5 +1,0 @@
-autoload:
-  swift_mailer_classes:
-    name: SWIFT Mailer classes
-    path: %SF_PLUGINS_DIR%/sfSwiftPlugin/lib/swift/lib
-    recursive:      on

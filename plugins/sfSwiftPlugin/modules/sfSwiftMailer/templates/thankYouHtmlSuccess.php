@@ -1,1 +1,0 @@
-<b>Thank you!</b>

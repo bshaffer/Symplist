@@ -1,5 +1,7 @@
 <?php
 
+// require_once sfConfig::get('sf_lib_dir').'/vendor/swift/swift_init.php'; 
+
 /**
 *  Swift Mailer Helper Class
 */
@@ -12,13 +14,14 @@ class EmailHelper
     try
     {
       // Create the Mail Object
-      $mailer = new Swift(new Swift_Connection_NativeMail());
-      $message = new Swift_Message($params['subject'], $params['body'], 'text/html');
+      $transport = new Swift_SendmailTransport();
+      $mailer = Swift_Mailer::newInstance($transport);
+      $message = Swift_Message::newInstance($params['subject'], $params['body'], 'text/html')
+                ->setTo($params['to'])
+                ->setFrom($params['from']);
 
       // Send
-      $mailer->send($message, $mailTo, $mailFrom);
-      $mailer->disconnect();
-      // echo 'Email Sent';
+      return $mailer->send($message);
     }
     catch(Exception $e)
     {

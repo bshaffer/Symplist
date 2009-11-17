@@ -53,6 +53,7 @@ class siteActions extends sfActions
         EmailHelper::sendEmail(array(
           'to'      => 'bshafs@gmail.com',
           'from'    => $this->form->getValue('email'),
+          'subject' => 'Symplist Contact Form',
           'body'    => $this->form->getValue('message')
           ));
           
