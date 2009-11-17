@@ -1,4 +1,6 @@
 # default values
 all:
-  fake:
-    setting:  0
+  sf_google_analytics_plugin:
+    enabled:      on
+    profile_id:   UA-11590669-1
+    tracker:      google
