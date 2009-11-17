@@ -14,7 +14,7 @@ require_once 'propel/engine/builder/om/php5/PHP5PeerBuilder.php';
  * @package    symfony
  * @subpackage propel
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: SfPeerBuilder.php 23357 2009-10-26 17:29:41Z Kris.Wallsmith $
+ * @version    SVN: $Id: SfPeerBuilder.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  * 
  * @deprecated since symfony 1.3
  */

@@ -18,7 +18,7 @@
  * @subpackage form
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Jonathan H. Wage <jonwage@gmail.com>
- * @version    SVN: $Id: sfFormDoctrine.class.php 7845 2008-03-12 22:36:14Z fabien $
+ * @version    SVN: $Id: sfFormDoctrine.class.php 24068 2009-11-17 06:39:35Z Kris.Wallsmith $
  */
 abstract class sfFormDoctrine extends sfFormObject
 {
@@ -81,7 +81,11 @@ abstract class sfFormDoctrine extends sfFormObject
     {
       $i18nObject = $this->getObject()->Translation[$culture];
       $i18n = new $class($i18nObject);
-      unset($i18n['id'], $i18n['lang']);
+
+      if (false === $i18nObject->exists())
+      {
+        unset($i18n['id'], $i18n['lang']);
+      }
 
       $this->embedForm($culture, $i18n, $decorator);
     }
@@ -262,7 +266,9 @@ abstract class sfFormDoctrine extends sfFormObject
 
     if (!$values[$field])
     {
-      return $this->getObject()->$field;
+      $oldValues = $this->getObject()->getModified(true, false);
+
+      return isset($oldValues[$field]) ? $oldValues[$field] : '';
     }
 
     // we need the base directory
@@ -315,14 +321,23 @@ abstract class sfFormDoctrine extends sfFormObject
       $file = $this->getValue($field);
     }
 
-    $method = sprintf('generate%sFilename', $field);
+    $method = sprintf('generate%sFilename', $this->camelize($field));
 
     if (null !== $filename)
     {
       return $file->save($filename);
     }
+    else if (method_exists($this, $method))
+    {
+      return $file->save($this->$method($file));
+    }
     else if (method_exists($this->getObject(), $method))
     {
+      return $file->save($this->getObject()->$method($file));
+    }
+    else if (method_exists($this->getObject(), $method = sprintf('generate%sFilename', $field)))
+    {
+      // this non-camelized method name has been deprecated
       return $file->save($this->getObject()->$method($file));
     }
     else

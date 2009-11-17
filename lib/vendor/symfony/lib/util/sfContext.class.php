@@ -18,7 +18,7 @@
  * @subpackage util
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Sean Kerr <sean@code-box.org>
- * @version    SVN: $Id: sfContext.class.php 22811 2009-10-05 20:31:46Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfContext.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class sfContext implements ArrayAccess
 {

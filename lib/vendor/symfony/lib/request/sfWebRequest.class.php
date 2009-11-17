@@ -18,7 +18,7 @@
  * @subpackage request
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Sean Kerr <sean@code-box.org>
- * @version    SVN: $Id: sfWebRequest.class.php 22453 2009-09-26 12:48:05Z fabien $
+ * @version    SVN: $Id: sfWebRequest.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class sfWebRequest extends sfRequest
 {

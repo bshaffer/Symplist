@@ -14,7 +14,7 @@ require_once 'propel/engine/builder/om/php5/PHP5ObjectBuilder.php';
  * @package    symfony
  * @subpackage propel
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: SfObjectBuilder.php 23357 2009-10-26 17:29:41Z Kris.Wallsmith $
+ * @version    SVN: $Id: SfObjectBuilder.php 23909 2009-11-14 14:10:33Z FabianLange $
  * 
  * @deprecated since symfony 1.3
  */
@@ -172,7 +172,7 @@ $script .= '
 
     if (!isset($this->current_i18n[$culture]))
     {
-      $obj = '.$className.'Peer::retrieveByPK($this->get'.$pk.'(), $culture);
+      $obj = $this->isNew() ? null : '.$className.'Peer::retrieveByPK($this->get'.$pk.'(), $culture);
       if ($obj)
       {
         $this->set'.$className.'ForCulture($obj, $culture);

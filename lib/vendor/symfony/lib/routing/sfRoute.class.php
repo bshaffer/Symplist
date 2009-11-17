@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage routing
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfRoute.class.php 22273 2009-09-23 07:15:50Z fabien $
+ * @version    SVN: $Id: sfRoute.class.php 24050 2009-11-16 19:23:33Z FabianLange $
  */
 class sfRoute implements Serializable
 {
@@ -28,6 +28,7 @@ class sfRoute implements Serializable
     $compiled          = false,
     $options           = array(),
     $pattern           = null,
+    $staticPrefix      = null,
     $regex             = null,
     $variables         = array(),
     $defaults          = array(),
@@ -97,6 +98,11 @@ class sfRoute implements Serializable
       $this->compile();
     }
 
+    // check the static prefix uf the URL first. Only use the more expensive preg_match when it matches
+    if ('' !== $this->staticPrefix  && 0 !== strpos($url, $this->staticPrefix))
+    {
+      return false;
+    }
     if (!preg_match($this->regex, $url, $matches))
     {
       return false;
@@ -450,7 +456,7 @@ class sfRoute implements Serializable
       $separator = 'separator' == $lastToken[0] ? $lastToken[2] : '';
     }
 
-    $this->regex = "#^\n".implode("\n", $this->segments)."\n".preg_quote($separator, '#')."$#x";
+    $this->regex = "#^".implode("", $this->segments)."".preg_quote($separator, '#')."$#x";
   }
 
   /**
@@ -476,6 +482,26 @@ class sfRoute implements Serializable
     {
       $this->segments[$i] = (0 == $i ? '/?' : '').str_repeat(' ', $i - $this->firstOptional).'(?:'.$this->segments[$i];
       $this->segments[] = str_repeat(' ', $max - $i - 1).')?';
+    }
+
+    $this->staticPrefix = '';
+    foreach ($this->tokens as $token)
+    {
+      switch ($token[0])
+      {
+        case 'separator':
+          break;
+        case 'text':
+          if ($token[2] !== '*')
+          {
+            // non-star text is static
+            $this->staticPrefix .= $token[1].$token[2];
+            break;
+          }
+        default:
+          // everything else indicates variable parts. break switch and for loop
+          break 2;
+      }
     }
   }
 
@@ -774,7 +800,7 @@ class sfRoute implements Serializable
     else if (preg_match('#\.(?:'.$this->options['variable_prefix_regex'].$this->options['variable_regex'].'|'.$this->options['variable_content_regex'].')$#i', $this->pattern))
     {
       // specific suffix for this route
-      // a . with a variable after or some cars without any separators
+      // a . with a variable after or some chars without any separators
       $this->suffix = '';
     }
     else
@@ -783,62 +809,17 @@ class sfRoute implements Serializable
     }
   }
 
-  /**
-   * Sets the data representing this compiled route.
-   *
-   * @param array $data An array of data representing the compiled route
-   */
-  public function setCompiledData($data)
-  {
-    $this->tokens = $data['tokens'];
-    $this->defaultParameters = $data['default_parameters'];
-    $this->defaultOptions = $data['default_options'];
-    $this->options = $data['options'];
-    $this->pattern = $data['pattern'];
-    $this->regex = $data['regex'];
-    $this->variables = $data['variables'];
-    $this->defaults = $data['defaults'];
-    $this->requirements = $data['requirements'];
-
-    $this->compiled = true;
-  }
-
-  /**
-   * Returns the data representing this compiled route.
-   *
-   * @return array An array of data representing the compiled route
-   */
-  public function getCompiledData()
-  {
-    if (!$this->compiled)
-    {
-      $this->compile();
-    }
-
-    return array(
-      'tokens'             => $this->tokens,
-      'default_parameters' => $this->defaultParameters,
-      'default_options'    => $this->defaultOptions,
-      'options'            => $this->options,
-      'pattern'            => $this->pattern,
-      'regex'              => $this->regex,
-      'variables'          => $this->variables,
-      'defaults'           => $this->defaults,
-      'requirements'       => $this->requirements,
-      'suffix'             => $this->suffix,
-    );
-  }
-
   public function serialize()
   {
     // always serialize compiled routes
     $this->compile();
-
-    return serialize(array($this->tokens, $this->defaultParameters, $this->defaultOptions, $this->compiled, $this->options, $this->pattern, $this->regex, $this->variables, $this->defaults, $this->requirements, $this->suffix));
+    // sfPatternRouting will always re-set defaultParameters, so no need to serialize them
+    return serialize(array($this->tokens, $this->defaultOptions, $this->options, $this->pattern, $this->staticPrefix, $this->regex, $this->variables, $this->defaults, $this->requirements, $this->suffix));
   }
 
   public function unserialize($data)
   {
-    list($this->tokens, $this->defaultParameters, $this->defaultOptions, $this->compiled, $this->options, $this->pattern, $this->regex, $this->variables, $this->defaults, $this->requirements, $this->suffix) = unserialize($data);
+    list($this->tokens, $this->defaultOptions, $this->options, $this->pattern, $this->staticPrefix, $this->regex, $this->variables, $this->defaults, $this->requirements, $this->suffix) = unserialize($data);
+    $this->compiled = true;
   }
 }

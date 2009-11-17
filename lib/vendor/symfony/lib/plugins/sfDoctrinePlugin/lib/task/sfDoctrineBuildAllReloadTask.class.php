@@ -18,7 +18,7 @@ require_once(dirname(__FILE__).'/sfDoctrineBaseTask.class.php');
  * @subpackage doctrine
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Jonathan H. Wage <jonwage@gmail.com>
- * @version    SVN: $Id: sfDoctrineBuildAllReloadTask.class.php 21087 2009-08-12 07:51:04Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineBuildAllReloadTask.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  *
  * @deprecated Use doctrine:build instead
  */

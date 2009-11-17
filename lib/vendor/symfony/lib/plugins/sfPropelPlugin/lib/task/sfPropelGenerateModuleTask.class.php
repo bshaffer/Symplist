@@ -16,7 +16,7 @@ require_once(dirname(__FILE__).'/sfPropelBaseTask.class.php');
  * @package    symfony
  * @subpackage propel
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfPropelGenerateModuleTask.class.php 23194 2009-10-19 16:37:13Z fabien $
+ * @version    SVN: $Id: sfPropelGenerateModuleTask.class.php 23930 2009-11-14 16:18:20Z FabianLange $
  */
 class sfPropelGenerateModuleTask extends sfPropelBaseTask
 {
@@ -95,6 +95,10 @@ EOF;
     );
 
     $method = $options['generate-in-cache'] ? 'executeInit' : 'executeGenerate';
+
+    // for backwarads compatibility symfony uses the model name as singular and plural form if none specified (#5640)
+    $options['singular']  = $options['singular'] ? $options['singular'] : $arguments['model'];
+    $options['plural']  = $options['plural'] ? $options['plural'] : $arguments['model'].'s';
 
     $this->$method($arguments, $options);
   }

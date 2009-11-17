@@ -17,7 +17,7 @@
  * @subpackage doctrine
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Jonathan H. Wage <jonwage@gmail.com>
- * @version    SVN: $Id: sfDoctrineDataRetriever.class.php 22987 2009-10-13 08:02:48Z FabianLange $
+ * @version    SVN: $Id: sfDoctrineDataRetriever.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class sfDoctrineDataRetriever
 {

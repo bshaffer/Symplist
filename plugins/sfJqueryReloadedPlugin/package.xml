@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.7.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+ <name>sfJqueryReloadedPlugin</name>
+ <channel>pear.symfony-project.com</channel>
+ <summary>sfJqueryReloadedPlugin offers helpers that integrate the jQuery Javascript framework.</summary>
+ <description>Easy integration of jQuery</description>
+ <lead>
+  <name>Fourat ZOUARI</name>
+  <user>fourat</user>
+  <email>fourat@gmail.com</email>
+  <active>yes</active>
+ </lead>
+ <lead>
+  <name>Yannick Gauthier</name>
+  <user>ygauthier</user>
+  <email>yannick.gauthier@gmail.com</email>
+  <active>yes</active>
+ </lead>
+ <lead>
+  <name>Tom Boutell</name>
+  <user>boutell</user>
+  <email>tom@punkave.com</email>
+  <active>yes</active>
+ </lead>
+ <date>2009-04-15</date>
+ <time>16:00:00</time>
+ <version>
+  <release>1.2.4</release>
+  <api>1.2.4</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.symfony-project.com/license">MIT license</license>
+ <notes>-</notes>
+ <contents>
+  <dir name="/">
+   <dir name="config">
+    <file role="data" name="settings.yml" />
+   </dir>
+   <dir name="lib">
+    <dir name="helper">
+     <file role="data" name="jQueryHelper.php" />
+    </dir>
+   </dir>
+   <file role="data" name="LICENSE" />
+   <file role="data" name="README" />
+   <dir name="web">
+    <dir name="css">
+    </dir>
+    <dir name="images">
+    </dir>
+    <dir name="js">
+     <file role="data" name="jquery-1.3.1.js" />
+     <file role="data" name="jquery-1.3.1.min.js" />
+     <dir name="plugins">
+      <file role="data" name="jquery-ui-sortable-1.6rc6.js" />
+      <file role="data" name="jquery-ui-sortable-1.6rc6.min.js" />
+      <file role="data" name="jquery.autocomplete-1.0.2.min.js" />
+      <file role="data" name="jquery.autocomplete-1.0.2.js" />
+     </dir>
+    </dir>
+   </dir>
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.2.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.1</min>
+   </pearinstaller>
+   <package>
+    <name>symfony</name>
+    <channel>pear.symfony-project.com</channel>
+    <min>1.2.0</min>
+    <max>1.3.0</max>
+    <exclude>1.3.0</exclude>
+   </package>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>1.2.4</release>
+    <api>1.2.4</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2009-04-15</date>
+   <notes> 
+    * b_adele: implemented jq_inputauto_complete_tag
+    * boutell: fixed more bugs in sf_jquery_web_dir handling, made it consistent with everybody else's packages once and for all, documented it
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.2.3</release>
+    <api>1.2.3</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2009-03-10</date>
+   <notes> * boutell: upgraded to jQuery 1.3.x
+ * boutell: ui.sortable for jq_sortable_element
+ * boutell: fixed bugs in directory handling options in settings.yml
+ * boutell: fixed bug in plugin loader
+ * boutell: implemented jq_sortable element
+ * boutell: fixed incorrect and undesired quoting of 'with' parameter to jq_remote_function (thanks to JoeZ99)
+</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.2.1</release>
+    <api>1.2.1</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2008-10-20</date>
+   <notes>* yannick:  Added BaseJavascriptHelper.php function wrapper
+* yannick:  Added jq_button_to_remote function
+* yannick:  Added jq_submit_image_to_remote function
+* yannick:  Added jq_visual_effect function.
+	   * yannick:  Added jquery javascript in web
+	   * yannick:  Replaced app_sfJQueryPlugin_library_path by sf_jquery_path in setting.yml
+* Yannick : Fixed incorrect data parsing with &quot;with&quot; parameter in jq_remote_function.
+* Added web folder and default jquery script.</notes>
+  </release>
+ </changelog>
+</package>

@@ -59,7 +59,7 @@ $ symfony $ symfony plugin:install sfJqueryReloadedPlugin
 {{{
     all:
      .settings:
-        jquery_sortable: jquery-ui-sortable-1.6rc2.min.js
+        jquery_sortable: jquery-ui-sortable-1.6rc6.min.js
         jquery_autocomplete: jquery.autocomplete-1.0.2.min.js
 }}}
 
@@ -82,9 +82,26 @@ and rename it to {{{sfJqueryReloadedPlugin}}}.
 standard_helpers:       [..., jQuery]
 }}}
 
+When you use functions that require jQuery plugins, specifically
+`jq_sortable_element` and `jq_input_auto_complete_tag`, the appropriate
+JavaScript files are automatically added. However, if you are attempting
+to do this from your `layout.php` (including via a component or
+partial referenced by `layout.php` rather than an action template),
+it will not work because `get_javascripts()` has already been invoked.
+To resolve this issue, call:
+
+{{{
+<?php jq_add_plugins_by_name(array('sortable', 'autocomplete')) ?>
+}}}
+
+At the top of your `layout.php` file, or just add the js files for the
+plugins you need directly to your project's `view.yml` file. The first
+solution is more maintainable because it means you don't have to pay
+close attention when we update to a newer release of a plugin.
+
 === Using Jquery methods ===
 
-To use Jquery methods, refer to ''Chapter 11'' [http://www.symfony-project.com/book/1_0/11-Ajax-Integration Ajax Integration], all helper functions described on the chapter can be used with the '''jq_''' prefix.
+To use Jquery methods, refer to ''Chapter 11'' [http://www.symfony-project.com/book/1_0/11-Ajax-Integration Ajax Integration], all helper functions described on the chapter can be used with the '''jq_''' prefix. Note that jQuery and Prototype select elements differently. In cases where selecting just one element is the only thing that makes sense, the helper functions automatically prepend a '''#''' so that the selector behaves as it would in Prototype.
 
 == jQuery Helpers documentation ==
 
@@ -98,9 +115,9 @@ Below are complete syntax for ready to use methods in the jQuery Helpers.
  * `jq_submit_to_remote($name, $value, $options = array(), $options_html = array())`
  * `jq_javascript_tag($content)`
  * `jq_visual_effect($effect, $element_id = false, $js_options = array())` 
- * `jq_add_plugin($options = array()`  
+ * `jq_add_plugins_by_name($options = array())`  
  * `jq_sortable_element($selector, $options)` (tom@punkave.com)
- 
+ * `jq_input_auto_complete_tag($name, $value, $url, $tag_options = array(), $completion_options = array()) (bruno.adele@jesuislibre.org) 
  
 These are the methods reconverted into jQuery functions till the `sfJqueryPlugin` last version. Future changes will integrate more functions.
 
@@ -119,13 +136,22 @@ http://trac.symfony-project.com/wiki/AjaxAndJSON#jsonwithoutheader and:
  * Use `sprintf` for string manipulation
  * Implement the rest of the Javascript Helper:
 
-    * sortable_element
     * draggable_element
     * drop_receiving_element
-    * input_auto_complete_tag
     * input_in_place_editor_tag
 
 == Changelog ==
+
+=== 2009-05-05 1.2.5 ===
+
+ * boutell: deprecated jq_add_plugin, added jq_add_plugins_by_name
+ * boutell: fixed bug that prevented settings.yml from being consulted for the sortable plugin
+ * boutell: some minor documentation improvements
+
+=== 2009-05-05 1.2.4 ===
+
+ * boutell: fixed bugs in settings.yml handling
+ * boutell: jq_input_auto_complete_tag contributed by Bruno Adele
 
 === 2009-03-10 1.2.3 ===
 

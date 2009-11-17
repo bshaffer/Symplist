@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Record.php 6696 2009-11-10 17:48:03Z jwage $
+ *  $Id: Record.php 6730 2009-11-16 18:02:43Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -29,7 +29,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 6696 $
+ * @version     $Revision: 6730 $
  */
 abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Countable, IteratorAggregate, Serializable
 {
@@ -1393,6 +1393,17 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     public function mapValue($name, $value = null)
     {
         $this->_values[$name] = $value;
+    }
+
+    /**
+     * Tests whether a mapped value exists
+     *
+     * @param string $name  the name of the property
+     * @return boolean
+     */
+    public function hasMappedValue($name)
+    {
+        return array_key_exists($name, $this->_values);
     }
 
     /**

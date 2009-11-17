@@ -14,10 +14,13 @@
  * @package    symfony
  * @subpackage widget
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfWidgetForm.class.php 22446 2009-09-26 07:55:47Z fabien $
+ * @version    SVN: $Id: sfWidgetForm.class.php 24017 2009-11-16 14:03:46Z Kris.Wallsmith $
  */
 abstract class sfWidgetForm extends sfWidget
 {
+  protected
+    $parent   = null;
+
   /**
    * Constructor.
    *
@@ -246,7 +249,7 @@ abstract class sfWidgetForm extends sfWidget
 
     return $name;
   }
-  
+
   /**
    * Generates a two chars range
    *
@@ -257,10 +260,87 @@ abstract class sfWidgetForm extends sfWidget
   static protected function generateTwoCharsRange($start, $stop)
   {
     $results = array();
-    for ($i = $start; $i <= $stop; $i++) 
+    for ($i = $start; $i <= $stop; $i++)
     {
       $results[$i] = sprintf('%02d', $i);
     }
     return $results;
+  }
+
+  /**
+   * Sets the parent widget schema.
+   *
+   * @param  sfWidgetFormSchema|null $widgetSchema
+   *
+   * @return sfWidgetForm The current widget instance
+   */
+  public function setParent(sfWidgetFormSchema $widgetSchema = null)
+  {
+    $this->parent = $widgetSchema;
+
+    return $this;
+  }
+
+  /**
+   * Returns the parent widget schema.
+   *
+   * If no schema has been set with setWidgetSchema(), NULL is returned.
+   *
+   * @return sfWidgetFormSchema|null
+   */
+  public function getParent()
+  {
+    return $this->parent;
+  }
+
+  /**
+   * Translates the given text.
+   *
+   * @param  string $text       The text with optional placeholders
+   * @param  array $parameters  The values to replace the placeholders
+   *
+   * @return string             The translated text
+   *
+   * @see sfWidgetFormSchemaFormatter::translate()
+   */
+  protected function translate($text, array $parameters = array())
+  {
+    if (null === $this->parent)
+    {
+      return $text;
+    }
+    else
+    {
+      return $this->parent->getFormFormatter()->translate($text, $parameters);
+    }
+  }
+
+  /**
+   * Translates all values of the given array.
+   *
+   * @param  array $texts       The texts with optional placeholders
+   * @param  array $parameters  The values to replace the placeholders
+   *
+   * @return array              The translated texts
+   * 
+   * @see sfWidgetFormSchemaFormatter::translate()
+   */
+  protected function translateAll(array $texts, array $parameters = array())
+  {
+    if (null === $this->parent)
+    {
+      return $texts;
+    }
+    else
+    {
+      $result = array();
+
+      foreach ($texts as $key => $text)
+      {
+        $result[$key] = $this->parent->getFormFormatter()->translate($text, $parameters);
+      }
+
+      return $result;
+    }
   }
 }

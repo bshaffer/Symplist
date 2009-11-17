@@ -16,7 +16,7 @@ require_once(dirname(__FILE__).'/sfPropelBaseTask.class.php');
  * @package    symfony
  * @subpackage propel
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfPropelBuildAllLoadTask.class.php 23076 2009-10-15 06:43:20Z fabien $
+ * @version    SVN: $Id: sfPropelBuildAllLoadTask.class.php 23849 2009-11-13 13:11:06Z Kris.Wallsmith $
  */
 class sfPropelBuildAllLoadTask extends sfPropelBaseTask
 {
@@ -68,8 +68,6 @@ EOF;
   {
     // load Propel configuration before Phing
     $databaseManager = new sfDatabaseManager($this->configuration);
-
-    require_once dirname(__FILE__) . '/../addon/sfPropelAutoload.php';
 
     $buildAll = new sfPropelBuildAllTask($this->dispatcher, $this->formatter);
     $buildAll->setCommandApplication($this->commandApplication);

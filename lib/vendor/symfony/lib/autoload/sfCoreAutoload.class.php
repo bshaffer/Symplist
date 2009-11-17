@@ -11,7 +11,7 @@
 /**
  * The current symfony version.
  */
-define('SYMFONY_VERSION', '1.3.0-BETA2');
+define('SYMFONY_VERSION', '1.3.0-DEV');
 
 /**
  * sfCoreAutoload class.
@@ -22,7 +22,7 @@ define('SYMFONY_VERSION', '1.3.0-BETA2');
  * @package    symfony
  * @subpackage autoload
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfCoreAutoload.class.php 23749 2009-11-10 06:02:13Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfCoreAutoload.class.php 23994 2009-11-15 22:55:24Z bschussek $
  */
 class sfCoreAutoload
 {
@@ -106,9 +106,9 @@ class sfCoreAutoload
 
   /**
    * Returns the filename of the supplied class.
-   * 
+   *
    * @param  string $class The class name (case insensitive)
-   * 
+   *
    * @return string|null An absolute path or null
    */
   public function getClassPath($class)
@@ -498,6 +498,7 @@ class sfCoreAutoload
     'sfwidget' => 'widget/sfWidget.class.php',
     'sfwidgetform' => 'widget/sfWidgetForm.class.php',
     'sfwidgetformchoice' => 'widget/sfWidgetFormChoice.class.php',
+    'sfwidgetformchoicebase' => 'widget/sfWidgetFormChoiceBase.class.php',
     'sfwidgetformchoicemany' => 'widget/sfWidgetFormChoiceMany.class.php',
     'sfwidgetformdate' => 'widget/sfWidgetFormDate.class.php',
     'sfwidgetformdaterange' => 'widget/sfWidgetFormDateRange.class.php',

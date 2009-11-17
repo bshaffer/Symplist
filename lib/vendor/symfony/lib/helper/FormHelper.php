@@ -16,7 +16,7 @@
  * @subpackage helper
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     David Heinemeier Hansson
- * @version    SVN: $Id: FormHelper.php 23515 2009-11-02 13:12:42Z Kris.Wallsmith $
+ * @version    SVN: $Id: FormHelper.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 
 /**

@@ -12,7 +12,7 @@
  * @package    symfony
  * @subpackage controller
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfConsoleController.class.php 20740 2009-08-03 23:27:01Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfConsoleController.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class sfConsoleController extends sfController
 {

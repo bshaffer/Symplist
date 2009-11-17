@@ -16,7 +16,7 @@
  * @subpackage util
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Sean Kerr <sean@code-box.org>
- * @version    SVN: $Id: sfToolkit.class.php 21127 2009-08-13 07:42:33Z fabien $
+ * @version    SVN: $Id: sfToolkit.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class sfToolkit
 {

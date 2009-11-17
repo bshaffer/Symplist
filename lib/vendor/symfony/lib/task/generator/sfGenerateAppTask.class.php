@@ -16,29 +16,17 @@ require_once(dirname(__FILE__).'/sfGeneratorBaseTask.class.php');
  * @package    symfony
  * @subpackage task
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfGenerateAppTask.class.php 23203 2009-10-20 11:36:31Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfGenerateAppTask.class.php 24018 2009-11-16 15:13:01Z Kris.Wallsmith $
  */
 class sfGenerateAppTask extends sfGeneratorBaseTask
 {
   /**
    * @see sfTask
    */
-  protected function doRun(sfCommandManager $commandManager, $options)
-  {
-    $this->process($commandManager, $options);
-
-    $this->checkProjectExists();
-
-    return $this->execute($commandManager->getArgumentValues(), $commandManager->getOptionValues());
-  }
-
-  /**
-   * @see sfTask
-   */
   protected function configure()
   {
     $this->addArguments(array(
-      new sfCommandArgument('application', sfCommandArgument::REQUIRED, 'The application name'),
+      new sfCommandArgument('app', sfCommandArgument::REQUIRED, 'The application name'),
     ));
 
     $this->addOptions(array(
@@ -93,7 +81,7 @@ EOF;
    */
   protected function execute($arguments = array(), $options = array())
   {
-    $app = $arguments['application'];
+    $app = $arguments['app'];
 
     // Validate the application name
     if (!preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/', $app))
