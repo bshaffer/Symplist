@@ -179,7 +179,7 @@ div.rating-cancel,div.star-rating {float:left;width:15px;height:15px;text-indent
     div.rating-cancel, div.rating-cancel a {display:none !important;}
     
     
-/*Brent's Awful Styles*/
+/* @Awful Styles Via B. Shaffer */
 form th {
   text-align:left;
   padding: 5px;
@@ -193,11 +193,13 @@ form th {
 .add-comment-form label{
   padding:20px;
 }
+
 #comment_body {
   display:block;
   clear:both;
   margin-bottom:10px;
 }
+
 .error_list {
   margin-bottom:10px;
   border:1px solid #F6F6F6;
@@ -206,49 +208,12 @@ form th {
   padding:5px 5px 5px 10px;
 }
 
-.thumbs_rating .rating {
-  float:left;
-}
+.community-list-items li { min-height:50px;}
+  .community-list-items .list-item-header { width:444px; }
+  .community-list-items .submitted-by {clear:both;display:block;font-size:11px;color:#666}
+.expandable .expandable-content{ display:block; clear:both;border:1px solid #CCC; background-color:#EEE;;font-size:.9em;padding:20px 20px 5px;}
+.thumbs {float:right;font-size:20px;text-align:center;height:25px;padding:2px 7px;-webkit-border-radius:7px;-moz-border-radius:7px;border:1px solid #ccc;margin:0 0 0 10px;background-color:#EEEEEE;}
+  .thumbs input{padding:2px 0 0;cursor:pointer;}
+  
+/* @end */
 
-.thumbs_rating a {
-	list-style: none;
-	display: inline;
-	margin: 0 0 2em;
-	padding: 0;
-}
-
-.thumbs_rating {
-	padding: 0;
-	float:left;
-	margin-right:20px;
-}
-.thumbs_rating a{
-	float: left;
-	height: 18px;
-	margin: 0 .2em;
-	padding: 0;
-	width: 18px;
-}
-
-.thumbs_rating a {
-	background-image: url('../images/seo-thumbs.gif');
-	background-repeat: no-repeat;
-	text-indent: -9999px;
-}
-
-.thumbs_rating a.thumbs-up {
-	background-position: 0 0px;
-}
-
-
-
-.thumbs_rating a.thumbs-down {
-	background-position: 0 -92px;
-}
-.thumbs_rating a.thumbs-up:hover {
-	background-position: 0% -46px;
-}
-
-.thumbs_rating a.thumbs-down:hover {
-	background-position: 0 -139px;
-}
