@@ -51,9 +51,9 @@ plugin_autocomplete:
   url:                                /plugins/search/auto
   params:                             { module: plugin, action: autocomplete }
 
-plugin_autocomplete_verbose:
+plugin_autocomplete_home:
   url:                                /plugins/search/auto/full
-  params:                             { module: plugin, action: verboseAutocomplete }
+  params:                             { module: plugin, action: homeAutocomplete }
 
 # Lists
 
@@ -74,8 +74,16 @@ list_create:
   param:                              { module: list, action: create }
   
 community_list:
+  class:                              sfDoctrineRoute
   url:                                /lists/:slug
   param:                              { module: list, action: show }
+  options:                            { type: object, model: CommunityList }
+
+community_list_edit:
+  class:                              sfDoctrineRoute
+  url:                                /lists/:slug/edit
+  param:                              { module: list, action: edit }
+  options:                            { type: object, model: CommunityList }
 
 community_list_add_item:
   url:                                /lists/:slug/item/add
