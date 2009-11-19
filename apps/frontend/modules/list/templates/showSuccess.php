@@ -8,16 +8,22 @@
 <ol class='community-list-items'>
 <?php foreach ($list->getOrderedItems() as $item): ?>
   <li class='list-item-<?php echo $item['id'] ?>'>
-    <div class='list-item-header slide-open-link'>
-      <span class='list-item-title'><?php echo $item['title'] ?></span>
-      <span class='thumbs_rating'>
-        <?php include_partial('list/rating', array('item' => $item)) ?>
-      </span>
+    
+    <div class='thumbs' value="<?php echo $item['id'] ?>"><?php include_partial('list/rating', array('item' => $item)) ?></div>
 
-      <span class='list-item-submitted-by'>Submitted By <?php echo link_to($item['User']['username'], '@author?username='.$item['User']['username']) ?></span>  
+    <div class='list-item-header'>
+      <span><?php echo $item['title'] ?></span>
+    </div>
 
-      <?php echo $item['body_html'] ?>
-    </div>      
+
+    <?php if ($item['body']): ?>
+      <div class='expandable'>
+        <span class='submitted-by'>Submitted By <?php echo link_to($item['User']['username'], '@author?username='.$item['User']['username']) ?></span>          
+        <div class='expandable-content'>
+          <?php echo $item['body_html'] ?>
+        </div>
+      </div>
+    <?php endif ?>
   </li>
 <?php endforeach ?>
 </ol>
@@ -28,6 +34,25 @@
 
 <script type='text/javascript'>
   $(document).ready(function(){
-    $('.community-list-items li').expander();
-  })
+    $('.expandable').expander({
+      slicePoint: 0, 
+      expandEffect: 'show', 
+      userCollapseText: 'hide',
+      expandPrefix: '',
+      expandText: '[more]'
+    });
+    
+    $('.thumbs input').click(function(){
+      var listid = $(this).parents('.thumbs').attr('value');
+      if ($.cookie("list-item-"+listid+".rating")) { 
+          $('.community-list-items').before("<div class='message important'>You have already rated this item</div>");
+          return false;
+        } else {
+          $(this).parent().load("<?php echo url_for('@list_rate_ajax?id='.$list['id']) ?>", { id: listid, rating: $(this).attr('value') }, function() { 
+            $.cookie("list-item-"+listid+".rating", $(this).parents('.thumbs').attr('value'));
+            $('.community-list-items').before("<div class='message info'>Thank you for rating this item</div>");
+          });
+        }; 
+    });
+  });
 </script>

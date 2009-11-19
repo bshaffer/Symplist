@@ -1,2 +1,2 @@
 showSuccess:
-  javascripts:                        [jquery.expander.js]
+  javascripts:                        [jquery.expander.js, jquery.cookie.js]

@@ -32,8 +32,23 @@ class listActions extends sfActions
   
   public function executeShow(sfWebRequest $request)
   {
-    $this->list = Doctrine::getTable('CommunityList')->findOneBySlug($request->getParameter('slug'));
-    $this->forward404Unless($this->list);
+    $this->list = $this->getRoute()->getObject();
+  }
+  
+  public function executeEdit(sfWebRequest $request)
+  {
+    $this->list = $this->getRoute()->getObject();
+    $this->form = new CommunityListForm($this->list);
+    if ($request->isMethod('POST')) 
+    {
+      $this->form->bind($request->getParameter('community_list'));
+      if ($this->form->isValid()) 
+      {
+        $list = $this->form->save();
+        $this->getUser()->setFlash('notice', 'Community List Updated!');
+        $this->redirect('@community_list?slug='.$list['slug']);
+      }
+    }
   }
   
   public function executeRate(sfWebRequest $request)
@@ -44,7 +59,7 @@ class listActions extends sfActions
     $item['count'] = $item['count'] + 1;
     $item->save();
     $selected = $request->getParameter('rating') > 0 ? 'thumbs-up-selected' : 'thumbs-down-selected';
-    return $this->renderPartial('list/rating', array('item' => $item, 'selected' => $selected));
+    return $this->renderPartial('list/rating', array('item' => $item));
   }
   
   public function executeCreate(sfWebRequest $request)
@@ -56,7 +71,6 @@ class listActions extends sfActions
     
     if ($request->isMethod('POST')) 
     {
-      // exit(print_r($request->getParameter('community_list')));
       $this->form->bind($request->getParameter('community_list'));
       
       if ($this->form->isValid()) 
