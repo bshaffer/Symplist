@@ -36,14 +36,10 @@
 <!-- Begin Homepage Search and Featured -->
 <div id="search-featured" class="clearfix">
   <div class="container_12">
-  
-    <?php //include_partial('site/homepage.js') ?>
-
-
     <?php echo form_tag('@plugin_search', array('id' => 'search')) ?>
       <fieldset>
         <label for="search-field">Type &amp; search for a plugin...</label>
-        <?php echo input_tag('q', '', array('id' => 'search-field')) ?>
+        <?php echo input_tag('q', '', array('id' => 'search-field', 'autocomplete' => 'off')) ?>
         <span id='indicator' style='display:none'><?php echo image_tag('ajax-loader.gif') ?></span>
       </fieldset>
     </form>
@@ -51,7 +47,7 @@
     <script type='text/javascript'>
       $(document).ready(function(){
         $('#search-field').keyup(function(){
-          $('#search-results').load("<?php echo url_for('@plugin_autocomplete_verbose') ?>", { q: this.value }, function() { $('.rating input[type=radio]').rating()});
+          $('#search-results').load("<?php echo url_for('@plugin_autocomplete_home') ?>", { q: this.value }, function() { $('.rating input[type=radio]').rating()});
         })
       });
     </script>
