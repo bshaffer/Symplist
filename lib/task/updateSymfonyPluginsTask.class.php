@@ -26,39 +26,32 @@ EOF;
     $errors = array();
     
 		$this->bootstrapSymfony($app, $env, true);
+		
     // initialize the database connection
     $databaseManager = new sfDatabaseManager($this->configuration);
     $connection = $databaseManager->getDatabase('doctrine')->getConnection();
 
-    sfConfig::set('symfony_import', true);
-    
     $this->logSection('update', 'initializing...');
-    
     $plugins = $options['plugin'] ? array(SymfonyPluginApi::getPlugin($options['plugin'])) : SymfonyPluginApi::getPlugins();
-    
-    // Rebuild the index before starting
-    
+
     $count = 0;
     foreach ($plugins as $plugin) 
     {
+      $name = $plugin['id'];
+
+      // Specifies a plugin name to start at
       if ($options['startAt']) 
-      {
-        if ( $plugin['id'] == $options['startAt'] )
-        {
-          $this->logSection('update', $options['startAt'].' Found');
-          $options['startAt'] = false;
-        }
-        else
+      {        
+        if ($name != $options['startAt']) 
         {
           continue;
         }
+        $this->logSection('update', $options['startAt'].' Found');
+        $options['startAt'] = false;
       }
-      
-      $name = $plugin['id'];
       
       try 
       {
-        
         $this->logSection('import', $plugin['id']);      
         $new = Doctrine::getTable('SymfonyPlugin')->findOneByTitle($plugin['id']);
       
@@ -77,6 +70,7 @@ EOF;
           $count++;
         } 
       
+        // Add Release Information
         $info = SymfonyPluginApi::getPlugin($plugin['id']);
         if (isset($info->releases->release[0])) 
         {
@@ -106,10 +100,9 @@ EOF;
     }
 
     $this->logSection('import', "Running Lucene Cleanup");
-    
     $this->runLuceneRebuild();
-    
     $this->logSection('import', "Completed.  Added $count new plugins(s)");
+    
     if ($errors) 
     {
       foreach ($errors as $key => $value) 

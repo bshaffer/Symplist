@@ -1,8 +1,8 @@
 <h2>All Plugins</h2>
-<ul class='plugins-list'>
+<ol class='plugins-list'>
 <?php foreach ($plugins as $plugin): ?>
   <li>
-    <?php include_partial('plugin/list_item', array('plugin' => $plugin)) ?>
+    <?php echo link_to($plugin['title'], '@plugin?title='.$plugin['title']) ?>
   </li>
 <?php endforeach ?>
-</ul>
+</ol>

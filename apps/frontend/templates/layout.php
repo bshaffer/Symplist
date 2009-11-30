@@ -22,7 +22,7 @@
 
     <h1 class="grid_6"><?php echo link_to('sympLIST', '@homepage') ?></h1>
 
-    <?php include_partial('plugin/auto_complete_search', array()) ?>  
+    <?php include_partial('global/search', array()) ?>  
 
   </div>
 </div>

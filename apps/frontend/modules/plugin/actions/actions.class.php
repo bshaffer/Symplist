@@ -130,12 +130,15 @@ class pluginActions extends sfActions
     $results = Doctrine::getTable('SymfonyPlugin')->createQuery('p')
                     ->select('p.title')->where('title like ?', "%$q%")
                     ->setHydrationMode(Doctrine::HYDRATE_ARRAY)->limit(20)->execute();
-
-    return $this->renderPartial('plugin/autocomplete_results', array('results' => $results));
+    
+    $ret = $results->count() ? '' : 'No Results';
+    foreach ($results as $result) 
+      $ret .= $result['title']."\n";
+    return $this->renderText($ret);
   }
 
-  public function executeVerboseAutocomplete(sfWebRequest $request)
-  {
+  public function executeHomeAutocomplete(sfWebRequest $request)
+  {    
     $q = str_replace(' ', '%', $request->getParameter('q'));
     if ($q == '') 
     {
@@ -148,24 +151,13 @@ class pluginActions extends sfActions
                     ->addWhere('title like ?', "%$q%")
                     ->orWhere('description like ?', "%$q%")
                     ->setHydrationMode(Doctrine::HYDRATE_ARRAY)
-                    ->limit(12)
+                    ->limit(8)
                     ->groupBy('p.id');
-                    
-    // if (false && $request->getParameter('published_only') == 'true') 
-    // {
-      // $query->innerJoin('p.Releases rel');
-    // }
-    
-    // if (false && $request->hasParameter('version') && $request->getParameter('version') != 'all') 
-    // {
-      // $v = $request->getParameter('version');
-      // $query->innerJoin('p.Releases rel')
-            // ->andWhere('rel.symfony_version_min like ? OR rel.symfony_version_max like ?', array("$v%", "$v%"));
-    // }
 
+    // $query->innerJoin('p.Releases rel');
     $results = $query->execute();
-    
-    return $this->renderPartial('plugin/verbose_autocomplete_results', array('results' => $results, 'classes' => array('alpha','','','omega')));
+
+    return $this->renderPartial('plugin/home_autocomplete_results', array('results' => $results, 'classes' => array('alpha','','','omega')));
   }
   
   public function executeSearch(sfWebRequest $request)
