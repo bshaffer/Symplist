@@ -2,6 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <?php include_http_metas() ?>
+    <meta name="description" content="sympLIST is a community-oriented site for finding high quality Symfony plugins and developers for your web apps." />
+    <meta name="keywords" content="symfony, plugins, developers, nashville, brent shaffer" />
+
     <?php include_title() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
   

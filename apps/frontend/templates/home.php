@@ -2,12 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <?php include_http_metas() ?>
-    
+    <meta name="description" content="sympLIST is a community-oriented site for finding high quality Symfony plugins and developers for your web apps." />
+    <meta name="keywords" content="symfony, plugins, developers, nashville, brent shaffer" />
+
     <title>sympLIST - Symfony Plugin Directory</title>
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  
+    
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
   </head>
