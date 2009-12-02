@@ -1,6 +1,7 @@
 <?php
 
 include(dirname(__FILE__).'/../bootstrap/Doctrine.php');
+include(dirname(__FILE__).'/../fixtures/fixtures.php');
 
 $t = new lime_test(21, new lime_output_color());
 
@@ -32,7 +33,7 @@ $t->is($p['rating'], 4, 'rating is now 4');
 $t->comment('add another rating of 3');
 $p->addRating(3);
 $t->is($p['num_votes'], 3, 'number of votes is now 3');
-$t->is($p['rating'], 3.5, '3.667 rating rounds down to 3.5');
+$t->is($p['rating'], 3, '3.667 rating rounds down to 3');
 
 $t->comment('add another rating of 4');
 $p->addRating(4);

@@ -8,9 +8,9 @@
  * @package    plugintracker
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id$
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BasesfGuardPermissionForm extends BaseFormDoctrine
+abstract class BasesfGuardPermissionForm extends BaseFormDoctrine
 {
   public function setup()
   {
@@ -89,7 +89,7 @@ class BasesfGuardPermissionForm extends BaseFormDoctrine
       return;
     }
 
-    if (is_null($con))
+    if (null === $con)
     {
       $con = $this->getConnection();
     }
@@ -127,7 +127,7 @@ class BasesfGuardPermissionForm extends BaseFormDoctrine
       return;
     }
 
-    if (is_null($con))
+    if (null === $con)
     {
       $con = $this->getConnection();
     }

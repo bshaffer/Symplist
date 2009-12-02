@@ -8,9 +8,9 @@
  * @package    plugintracker
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id$
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseCommunityListItemForm extends BaseFormDoctrine
+abstract class BaseCommunityListItemForm extends BaseFormDoctrine
 {
   public function setup()
   {

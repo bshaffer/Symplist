@@ -51,6 +51,18 @@ class listActions extends sfActions
     }
   }
   
+  public function executeEditItem(sfWebRequest $request)
+  {
+    $this->item = $this->getRoute()->getObject();
+    $this->form = new CommunityListItemForm($this->item);
+    if ($request->isMethod('POST') && $this->form->bindAndSave($request->getParameter('community_list_item'))) 
+    {
+      $this->getUser()->setFlash('notice', 'your changes have been saved');
+
+      $this->redirect('@community_list?slug='.$this->item['List']['slug']);
+    }
+  }
+  
   public function executeRate(sfWebRequest $request)
   {
     $item = Doctrine::getTable('CommunityListItem')->findOneById($request->getParameter('id'));

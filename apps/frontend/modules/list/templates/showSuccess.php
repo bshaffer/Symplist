@@ -21,6 +21,9 @@
         <span class='submitted-by'>Submitted By <?php echo link_to($item['User']['username'], '@author?username='.$item['User']['username']) ?></span>          
         <div class='expandable-content'>
           <?php echo $item['body_html'] ?>
+          <?php if ($item['submitted_by'] == $sf_user->getId()): ?>
+            <span style='float:right'><?php echo link_to('edit', 'community_list_item_edit', array('id' => $item['id'], 'slug' => $list['slug'])) ?></span>
+          <?php endif ?>
         </div>
       </div>
     <?php endif ?>

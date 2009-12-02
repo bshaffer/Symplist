@@ -6,7 +6,7 @@ $browser = new sfTestFunctional(new sfBrowser());
 $username = 'brohan'.rand();
 $browser->
   get('/')->
-  click('register')->
+  click('Register')->
 
   with('request')->begin()->
     isParameter('module', 'author')->
@@ -35,7 +35,7 @@ $browser->
     contains('Step 2:')->
 
     info('ensure the system logs the user in')->
-    contains('sign out')->
+    contains('Sign Out')->
   end()->
   
   setField('plugin_author[first_name]', 'Fake')->
@@ -65,10 +65,10 @@ $browser->
   with('response')->begin()->
     isStatusCode(200)->
     contains($username)->
-    contains('[edit]')->
+    contains('edit')->
   end()->
   
-  click('[edit]')->
+  click('edit')->
   
   with('request')->begin()->
     isParameter('module', 'author')->
@@ -96,7 +96,7 @@ $browser->
     hasErrors(false)->
   end()->
   
-  click('my profile')->
+  click('My Profile')->
   
   with('response')->begin()->
     contains('TestFirstName')->

@@ -1,7 +1,8 @@
 <h2><?php echo $user->getUsername() ?></h2>
 
 <?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->id == $user->id): ?>
-  <span style='font-size:.7em'><?php echo link_to('[edit]', '@author_edit?username='.$user['username']) ?></span>
+  <span style='font-size:.7em'><?php echo link_to('edit', '@author_edit?username='.$user['username']) ?></span>
+  <br style='clear:both' />
 <?php endif ?>
 
 <?php if ($user['Author']): ?>

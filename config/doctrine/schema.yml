@@ -138,6 +138,7 @@ CommunityListItem:
       alias:            List
       foreignAlias:     Items
       local:            list_id
+      onDelete:         CASCADE
     User:
       class:            sfGuardUser
       foreignAlias:     CommunityListItems

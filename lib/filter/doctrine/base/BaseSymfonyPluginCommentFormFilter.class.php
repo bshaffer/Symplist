@@ -6,9 +6,9 @@
  * @package    plugintracker
  * @subpackage filter
  * @author     Your name here
- * @version    SVN: $Id$
+ * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseSymfonyPluginCommentFormFilter extends BaseFormFilterDoctrine
+abstract class BaseSymfonyPluginCommentFormFilter extends BaseFormFilterDoctrine
 {
   public function setup()
   {

@@ -72,7 +72,8 @@ abstract class BaseCommunityListItem extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('CommunityList as List', array(
              'local' => 'list_id',
-             'foreign' => 'id'));
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
 
         $this->hasOne('sfGuardUser as User', array(
              'local' => 'submitted_by',

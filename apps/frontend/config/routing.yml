@@ -85,6 +85,13 @@ community_list_edit:
   param:                              { module: list, action: edit }
   options:                            { type: object, model: CommunityList }
 
+community_list_item_edit:
+  class:                              sfDoctrineRoute
+  url:                                /lists/:slug/item/:id/edit
+  param:                              { module: list, action: editItem }
+  options:                            { type: object, model: CommunityListItem }
+  requirements:                       { sf_method: [GET, POST] }
+
 community_list_add_item:
   url:                                /lists/:slug/item/add
   param:                              { module: list, action: addListItem }

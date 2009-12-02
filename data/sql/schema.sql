@@ -24,7 +24,7 @@ ALTER TABLE comment ADD CONSTRAINT comment_user_id_commenter_id FOREIGN KEY (use
 ALTER TABLE comment ADD CONSTRAINT comment_authenticated_user_id_sf_guard_user_id FOREIGN KEY (authenticated_user_id) REFERENCES sf_guard_user(id);
 ALTER TABLE community_list ADD CONSTRAINT community_list_submitted_by_sf_guard_user_id FOREIGN KEY (submitted_by) REFERENCES sf_guard_user(id);
 ALTER TABLE community_list_item ADD CONSTRAINT community_list_item_submitted_by_sf_guard_user_id FOREIGN KEY (submitted_by) REFERENCES sf_guard_user(id);
-ALTER TABLE community_list_item ADD CONSTRAINT community_list_item_list_id_community_list_id FOREIGN KEY (list_id) REFERENCES community_list(id);
+ALTER TABLE community_list_item ADD CONSTRAINT community_list_item_list_id_community_list_id FOREIGN KEY (list_id) REFERENCES community_list(id) ON DELETE CASCADE;
 ALTER TABLE plugin_author ADD CONSTRAINT plugin_author_sf_guard_user_id_sf_guard_user_id FOREIGN KEY (sf_guard_user_id) REFERENCES sf_guard_user(id);
 ALTER TABLE plugin_rating ADD CONSTRAINT plugin_rating_symfony_plugin_id_symfony_plugin_id FOREIGN KEY (symfony_plugin_id) REFERENCES symfony_plugin(id) ON DELETE CASCADE;
 ALTER TABLE plugin_rating ADD CONSTRAINT plugin_rating_sf_guard_user_id_sf_guard_user_id FOREIGN KEY (sf_guard_user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE;
