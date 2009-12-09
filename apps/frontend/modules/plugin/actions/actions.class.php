@@ -131,7 +131,7 @@ class pluginActions extends sfActions
                     ->select('p.title')->where('title like ?', "%$q%")
                     ->setHydrationMode(Doctrine::HYDRATE_ARRAY)->limit(20)->execute();
     
-    $ret = $results->count() ? '' : 'No Results';
+    $ret = count($results) ? '' : 'No Results';
     foreach ($results as $result) 
       $ret .= $result['title']."\n";
     return $this->renderText($ret);
