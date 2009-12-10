@@ -34,7 +34,7 @@
   <h3>Plugins <span class='plugin-count'>(<?php echo (string)$user['Plugins']->count() ?>)</span></h3>
   <ol>
   <?php foreach ($user['Plugins'] as $plugin): ?>
-    <li><?php include_partial('plugin/list_item', array('plugin' => $plugin)) ?></li>
+    <li><?php include_partial('plugin/plugin', array('plugin' => $plugin)) ?></li>
   <?php endforeach ?>
   </ul>
 <?php else: ?>
