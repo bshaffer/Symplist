@@ -48,10 +48,21 @@
     
     <script type='text/javascript'>
       $(document).ready(function(){
-        $('#search-field').keyup(function(){
-          $('#search-results').load("<?php echo url_for('@plugin_autocomplete_home') ?>", { q: this.value }, function() { $('.rating input[type=radio]').rating()});
+        var timeout = null;
+        $('#search-field').keyup(function(e){
+          switch(e.keyCode) {
+            case 9:  // tab
+            case 13: // return
+              break;
+            default:
+              if(timeout) clearTimeout(timeout);
+              timeout = setTimeout('load_autocomplete("'+this.value+'")', 400);
+          }
         })
       });
+      function load_autocomplete(val){
+        $('#search-results').load("<?php echo url_for('@plugin_autocomplete_home') ?>", { q: val }, function() { $('.rating input[type=radio]').rating()});
+      }
     </script>
   
     <!-- Search Results -->
