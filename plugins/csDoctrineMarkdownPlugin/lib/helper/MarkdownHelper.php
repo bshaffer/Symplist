@@ -1,5 +1,18 @@
 <?php
 
+function markdown_preview_tag($field) {
+  use_helper('Form', 'Javascript');
+  $hidden = input_hidden_tag('markdown_field', $field);
+  $submit = submit_tag('Preview', array('onclick' => 'javascript:markdown_preview(this)'));
+  $js = javascript_tag(sprintf("
+  function markdown_preview (e) {
+      $(e).parents('form').attr('target', '_blank');
+      $(e).parents('form').attr('action', '%s');
+    }
+  ", url_for('csMarkdown/preview')));
+  return $hidden.$submit.$js;
+}
+
 function markdown($text) {
 #
 # Initialize the parser and return the result of its transform method.

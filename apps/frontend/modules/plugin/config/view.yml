@@ -1,2 +1,3 @@
 showSuccess:
-  javascripts: [jquery.cookie.js]
+  javascripts: [jquery.cookie.js, jquery.lightbox-0.5.js]
+  stylesheets:  [jquery.lightbox-0.5.css]

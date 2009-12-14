@@ -99,7 +99,7 @@ abstract class BaseFormDoctrine extends sfFormDoctrine
         array(
           'width' => '700',
           'height' => '600',
-          'config' => TinyMceConfiguration::get(),
+          // 'config' => TinyMceConfiguration::get(),
           ),
         array('class' => 'tinyMCE')
       );

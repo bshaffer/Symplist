@@ -51,8 +51,7 @@ class pluginActions extends sfActions
   
   public function executeRate(sfWebRequest $request)
   {
-    $this->plugin = Doctrine::getTable('SymfonyPlugin')->findOneByTitle($request->getParameter('title'));
-    $this->forward404Unless($this->plugin);
+    $this->plugin = $this->getRoute()->getObject();
     $this->plugin->addRating($request->getParameter('rating'), $this->getUser());
     $this->plugin->refresh();
     return $this->renderPartial('plugin/rating', array('rating' => $this->plugin->getRating()));
@@ -60,8 +59,7 @@ class pluginActions extends sfActions
   
   public function executeClaim(sfWebRequest $request)
   {
-    $this->plugin = Doctrine::getTable('SymfonyPlugin')->findOneByTitle($request->getParameter('title'));
-    $this->forward404Unless($this->plugin);
+    $this->plugin = $this->getRoute()->getObject();
     
     if (!$this->user = $this->getUser()->getGuardUser()) 
     {
@@ -102,8 +100,7 @@ class pluginActions extends sfActions
   
   public function executeEdit(sfWebRequest $request)
   {
-    $this->plugin = Doctrine::getTable("SymfonyPlugin")->findOneByTitle($request->getParameter('title'));
-    $this->forward404Unless($this->plugin);
+    $this->plugin = $this->getRoute()->getObject();
     $this->form = new SymfonyPluginForm($this->plugin);
     if ($request->isMethod('POST')) 
     {
@@ -118,7 +115,7 @@ class pluginActions extends sfActions
   
   public function executeShow(sfWebRequest $request)
   {
-    $this->plugin = Doctrine::getTable("SymfonyPlugin")->findOneByTitle($request->getParameter('title'));
+    $this->plugin = $this->getRoute()->getObject();
     $this->rating = $this->plugin->getRating();
     $this->forward404Unless($this->plugin);
   }
@@ -144,7 +141,7 @@ class pluginActions extends sfActions
     {
       return $this->renderText('');
     }
-    
+
     $query = Doctrine::getTable('SymfonyPlugin')->createQuery('p')
                     ->select('p.title, LEFT(p.description, 200) as summary, AVG(r.rating) as rating')
                     ->leftJoin('p.Ratings r')

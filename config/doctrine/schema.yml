@@ -3,6 +3,7 @@ SymfonyPlugin:
     Sluggable: ~
     Timestampable: ~
     myLuceneDoctrineTemplate: ~
+    Attachable:   { types: [Image] }
     Commentable:  []
   columns:
     title:                            

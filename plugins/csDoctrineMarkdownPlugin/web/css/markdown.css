@@ -1,0 +1,24 @@
+.markdown div, .markdown span,
+.markdown h1, .markdown h2, .markdown h3, 
+.markdown h4, .markdown h5, .markdown h6, 
+.markdown p, .markdown blockquote, .markdown pre,
+.markdown a, .markdown strong, .markdown b, 
+.markdown u, .markdown i, .markdown dl, 
+.markdown dt, .markdown dd, .markdown ol, 
+.markdown ul, .markdown li,
+.markdown table, .markdown tr, .markdown th, .markdown td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+
+.markdown ol {
+  list-style: decimal;
+} 
+.markdown ul {
+	list-style: disc;
+}

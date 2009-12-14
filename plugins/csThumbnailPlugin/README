@@ -1,0 +1,75 @@
+= csThumbnailPlugin - Plugin for on-the-fly Thumbnails Creation (based on csThumbnailPlugin) =
+
+== Overview ==
+
+The plugin provides Creates Thumbnails on the fly using GD for the symfony php framework. It uses the Symfony cache
+system to cache the thumbnails. It creates a thumbnail of a image in the given size and stores it in cache for the
+next calls, until the image changes.
+
+csThumbnailPlugin adds new features, such as the ability to create thumbnails of remote images as well as local ones,
+to scale transparent PNG images, and so on.
+
+
+== License ==
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+
+== Installation ==
+
+To install the plugin use `symfony plugin-install` command
+{{{
+
+symfony plugin-install http://plugins.symfony-project.com/csThumbnailPlugin
+
+}}}
+
+
+== Using the plugin ==
+Enable one or more modules in your settings.yml  * csThumbnail
+{{{
+
+all:
+  .settings:
+    enabled_modules:        [ default, csThumbnail ]
+    
+}}}
+
+In your template call something like this:
+{{{
+
+<?php echo thumbnail_tag('uploads/pictures/image.jpg', 100, 80, 'crop' array('style' => 'border: 1px solid #ff0000')) ?> 
+//'/path/to/image.jpg',maximum width, maximum height, params
+
+}}}
+
+You can also call remote images, like so:
+{{{
+
+<?php echo thumbnail_tag('http://images.google.com/image.jpg', 100, 80, 'crop') ?> 
+//'/path/to/image.jpg',maximum width, maximum height, params
+
+}}}
+
+
+
+The Parameter "mode" can be "normal", "crop" or "stretch"
+you can call the Thumbnail directly:
+http://www.yourhost.com/yourapp.php/csThumbnail/thumbnail?img=uploads/pictures/image.jpg&maxx=100&maxy=80&mode=crop
+
+{{{
+
+<?php use_helper('Thumbnail') ?>
+
+<?php echo thumbnail_tag('uploads/pictures/offer/54fbcc52d9ec1af3decd50aeed9f5517.jpg', 100, 80, 'stretch') ?>
+
+}}}
+
+The Plugin automatically checks if the Original image was modified.
+To delete the cached thumbnails, simply call:
+{{{
+
+symfony cc
+
+}}}

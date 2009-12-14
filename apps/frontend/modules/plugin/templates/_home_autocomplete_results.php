@@ -1,6 +1,6 @@
 <?php if (count($results) == 0): ?>
   No Results
-<?php endif ?>
+<?php else: ?>
 <?php for ($i = 0; $i < count($results); $i++): ?>
   <?php $plugin = $results[$i] ?>
   <?php if ($i % 4 == 0): ?>
@@ -20,3 +20,4 @@
     </div>
 <?php endfor ?>
   </div>
+<?php endif ?>

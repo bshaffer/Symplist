@@ -29,7 +29,7 @@ all:
     escaping_strategy:                false
     escaping_method:                  ESC_SPECIALCHARS
 
-    enabled_modules:                  [ default, csNavigation, csComments, csSEO, sfGuardAuth, sfLucene ]
+    enabled_modules:                  [ default, csNavigation, csComments, csSEO, sfGuardAuth, sfLucene, csMarkdown, csThumbnail, csAttachable ]
 
     login_module:           sfGuardAuth # To be called when a non-authenticated user
     login_action:           signin    # Tries to access a secure page

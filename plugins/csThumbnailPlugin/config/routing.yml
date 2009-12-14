@@ -1,0 +1,3 @@
+csthumbnail:
+  url:                    /csThumbnail
+  param:                  { module: csThumbnail, action: thumbnail }

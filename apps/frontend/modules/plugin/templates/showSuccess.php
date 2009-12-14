@@ -1,12 +1,11 @@
 <?php use_helper('Comment') ?>
+<?php $sf_user->setFlash('full-page', true) ?>
 
 <h2><?php echo $plugin['title'] ?></h2>
 
 <p><?php echo $plugin['description'] ?></p>
 
-<?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->id == $plugin->user_id): ?>
-  <?php echo link_to('[edit]', '@plugin_edit?title='.$plugin['title']) ?>
-<?php endif ?>
+<?php include_partial('csAttachable/attachment_slideshow', array('object' => $plugin)) ?>
 
 <div class='plugin-info <?php echo $plugin['title'] ?>'>
   <dl>
@@ -63,7 +62,9 @@
 
 <?php if ($plugin->isRegistered()): ?>
     <dt>Owner</dt>
-    <dd><?php echo link_to($plugin['User']->getUsername(), $plugin['User']->getRoute(), array('class' => 'author-link')) ?></dd>
+    <dd>
+      <?php echo link_to($plugin['User']->getUsername(), $plugin['User']->getRoute(), array('class' => 'author-link')) ?>
+    </dd>
   </dl>
 <?php else: ?>
   </dl>
@@ -71,6 +72,9 @@
   <?php echo link_to('Claim This Plugin', '@plugin_claim?title='.$plugin['title'], array('class' => 'button')) ?>
 <?php endif ?>
 
+<?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->id == $plugin->user_id): ?>
+  <?php echo link_to('[edit plugin]', '@plugin_edit?title='.$plugin['title']) ?>
+<?php endif ?>
 
 </div>
 

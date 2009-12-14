@@ -32,19 +32,29 @@ plugin_search:
   
 plugin:
   url:                                /plugins/:title
+  class:                              sfDoctrineRoute
   param:                              { module: plugin, action: show }
+  options:                            { type: object, model: SymfonyPlugin }
 
 plugin_claim:
   url:                                /plugins/:title/claim
+  class:                              sfDoctrineRoute
   param:                              { module: plugin, action: claim }
-
+  options:                            { type: object, model: SymfonyPlugin }
+  requirements:                       { sf_method: [GET, POST] }
+  
 plugin_edit:
   url:                                /plugins/:title/edit
+  class:                              sfDoctrineRoute
   param:                              { module: plugin, action: edit }
+  options:                            { type: object, model: SymfonyPlugin }
+  requirements:                       { sf_method: [GET, POST] }
 
 plugin_rate:
   url:                                /plugins/:title/rate/:rating
+  class:                              sfDoctrineRoute
   param:                              { module: plugin, action: rate }  
+  options:                            { type: object, model: SymfonyPlugin }
   requirements:                       { rating: \d+ }
 
 plugin_autocomplete:
@@ -95,6 +105,10 @@ community_list_item_edit:
 community_list_add_item:
   url:                                /lists/:slug/item/add
   param:                              { module: list, action: addListItem }
+
+markdown_preview:
+  url:                                /csMarkdown/preview
+  param:                              { module: csMarkdown, action: preview }
 
 # Profiles
 

@@ -1,5 +1,13 @@
-<form class="rating">
+<?php $attributes = array('background-position-y:-16px',
+                          'display:block',
+                          'float:left',
+                          'width:15px', 
+                          'height:15px', 
+                          'background-image:url('.image_path('star', array('absolute' => true)).')',
+                          'background-position-x:0px') ?>
 <?php for($i = 1; $i <= 5; $i++): ?>
-  <input name="star1" type="radio" class="star" <?php echo ($rating == $i)?'checked':'' ?> disabled /> 
+  <?php if ($rating < $i): ?>
+    <?php $attributes[0] = 'background-position-y:0px' ?>
+  <?php endif ?>
+  <div style='<?php echo implode(';', $attributes) ?>'></div>
 <?php endfor ?>
-</form>

@@ -1,4 +1,4 @@
-<?php use_helper('Form') ?>
+<?php use_helper('Form', 'Markdown') ?>
 
 <h2><?php echo $list['title'] ?></h2>
 
@@ -6,6 +6,8 @@
   <table>
     <?php echo $form ?>
   </table>
+  <?php echo submit_tag('Save') ?>
+  <?php echo markdown_preview_tag('community_list[description]') ?>
 </form>
 
 <?php if ($sf_user->isAuthenticated()): ?>
