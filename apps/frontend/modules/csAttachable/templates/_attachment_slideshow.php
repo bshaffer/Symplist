@@ -1,4 +1,4 @@
-<?php use_helper('Thumbnail', 'sfJQueryLightbox') ?>
+<?php use_helper('Thumbnail') ?>
 <?php if ($attachments = $object->getAttachmentsByType('Image')): ?>
   <?php if ($attachments->count()): ?>
     <strong>Screenshots:</strong>
