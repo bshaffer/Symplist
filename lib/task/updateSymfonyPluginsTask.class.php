@@ -52,6 +52,11 @@ EOF;
       
       try 
       {
+        if (!trim($plugin['id']))
+        {
+          $this->logSection('update', 'Invalid Plugin Id', null, 'ERROR');
+          continue;
+        }
         $this->logSection('import', $plugin['id']);      
         $new = Doctrine::getTable('SymfonyPlugin')->findOneByTitle($plugin['id']);
       
