@@ -1,0 +1,72 @@
+Attachment:
+  columns:
+    title:
+      type:       string(255)
+    description:
+      type:       clob
+    url:
+      type:       string(255)
+    type: 
+      type:       enum
+      values:     [image, video, audio, document, application, link, model, custom, other]
+      default:    other
+    object_id:
+      type:         integer
+    object_class:
+      type:         string(255)
+      
+ImageAttachment:
+  inheritance:
+    extends: Attachment
+    type: column_aggregation
+    keyField: type
+    keyValue: image      
+    
+VideoAttachment:
+  inheritance:
+    extends: Attachment
+    type: column_aggregation
+    keyField: type
+    keyValue: video      
+    
+AudioAttachment:
+  inheritance:
+    extends: Attachment
+    type: column_aggregation
+    keyField: type
+    keyValue: audio      
+    
+DocumentAttachment:
+  inheritance:
+    extends: Attachment
+    type: column_aggregation
+    keyField: type
+    keyValue: document
+      
+ApplicationAttachment:
+  inheritance:
+    extends: Attachment
+    type: column_aggregation
+    keyField: type
+    keyValue: application
+      
+ModelAttachment:
+  inheritance:
+    extends: Attachment
+    type: column_aggregation
+    keyField: type
+    keyValue: model    
+    
+LinkAttachment:
+  inheritance:
+    extends: Attachment
+    type: column_aggregation
+    keyField: type
+    keyValue: link    
+      
+CustomAttachment:
+  inheritance:
+    extends: Attachment
+    type: column_aggregation
+    keyField: type
+    keyValue: custom    

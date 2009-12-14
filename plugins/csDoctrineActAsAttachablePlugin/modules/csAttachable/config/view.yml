@@ -1,0 +1,5 @@
+# default:
+#   javascripts:  [/sfProtoculousPlugin/js/prototype.js]
+
+iframeSuccess:
+  has_layout: off

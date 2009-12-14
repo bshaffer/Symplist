@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.4.6" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+ <name>csDoctrineActAsAttachablePlugin</name>
+ <channel>pear.symfony-project.com</channel>
+ <summary>Attach custom and preset filetypes to your modules</summary>
+ <description>
+	This plugin allows you to associate various uploads with multiple modules. 
+ </description>
+ <lead>
+  <name>Brent Shaffer</name>
+  <user>bshaffer</user>
+  <email>bshaffer@centresource.com</email>
+  <active>yes</active>
+ </lead>
+ <date>2009-05-05</date>
+ <time>15:54:35</time>
+ <version>
+  <release>1.0.1</release>
+  <api>1.0.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.symfony-project.org/license">MIT license</license>
+ <notes>-</notes>
+ <contents>
+  <dir name="/">
+   <file role="data" name="README" />
+   <file role="data" name="LICENSE" />
+	 <dir name="config">	
+		 <dir name="doctrine">
+   		<file role="data" name="attachment.yml" />
+		 </dir>
+   	 <file role="data" name="routing.yml" />
+   </dir>
+	 <dir name="lib">
+		<dir name="filter">	
+			<dir name="doctrine">
+     		<file role="data" name="PluginApplicationAttachmentFormFilter.class.php" />
+     		<file role="data" name="PluginAttachmentFormFilter.class.php" />
+     		<file role="data" name="PluginAudioAttachmentFormFilter.class.php" />
+     		<file role="data" name="PluginCustomAttachmentFormFilter.class.php" />
+     		<file role="data" name="PluginDocumentAttachmentFormFilter.class.php" />
+     		<file role="data" name="PluginImageAttachmentFormFilter.class.php" />
+     		<file role="data" name="PluginLinkAttachmentFormFilter.class.php" />
+     		<file role="data" name="PluginModelAttachmentFormFilter.class.php" />
+     		<file role="data" name="PluginVideoAttachmentFormFilter.class.php" />
+    	</dir>
+    </dir>
+		<dir name="form">	
+			<dir name="doctrine">
+     		<file role="data" name="PluginApplicationAttachmentForm.class.php" />
+     		<file role="data" name="PluginAttachmentForm.class.php" />
+     		<file role="data" name="PluginAudioAttachmentForm.class.php" />
+     		<file role="data" name="PluginCustomAttachmentForm.class.php" />
+     		<file role="data" name="PluginDocumentAttachmentForm.class.php" />
+     		<file role="data" name="PluginImageAttachmentForm.class.php" />
+     		<file role="data" name="PluginLinkAttachmentForm.class.php" />
+     		<file role="data" name="PluginModelAttachmentForm.class.php" />
+     		<file role="data" name="PluginVideoAttachmentForm.class.php" />
+    	</dir>
+    </dir>
+    <dir name="helper">
+     <!-- model classes -->
+     <file role="data" name="AttachmentsHelper.php" />
+    </dir>
+    <dir name="listener">
+     <!-- model classes -->
+     <file role="data" name="Attachable.php" />
+    </dir>
+		<dir name="model">	
+			<dir name="doctrine">
+     		<file role="data" name="PluginApplicationAttachment.class.php" />
+     		<file role="data" name="PluginApplicationAttachmentTable.class.php" />
+     		<file role="data" name="PluginAttachment.class.php" />
+     		<file role="data" name="PluginAttachmentTable.class.php" />
+     		<file role="data" name="PluginAudioAttachment.class.php" />
+     		<file role="data" name="PluginAudioAttachmentTable.class.php" />
+     		<file role="data" name="PluginCustomAttachment.class.php" />
+     		<file role="data" name="PluginCustomAttachmentTable.class.php" />
+     		<file role="data" name="PluginDocumentAttachment.class.php" />
+     		<file role="data" name="PluginDocumentAttachmentTable.class.php" />
+     		<file role="data" name="PluginImageAttachment.class.php" />
+     		<file role="data" name="PluginImageAttachmentTable.class.php" />
+     		<file role="data" name="PluginLinkAttachment.class.php" />
+     		<file role="data" name="PluginLinkAttachmentTable.class.php" />
+     		<file role="data" name="PluginModelAttachment.class.php" />
+     		<file role="data" name="PluginModelAttachmentTable.class.php" />
+     		<file role="data" name="PluginVideoAttachment.class.php" />
+     		<file role="data" name="PluginVideoAttachmentTable.class.php" />
+    	</dir>
+    </dir>
+    <dir name="template">
+     <!-- model classes -->
+     <file role="data" name="Attachable.php" />
+    </dir>
+	 </dir>
+	  <dir name="modules">
+	   <!-- model classes -->
+	  	<dir name="csAttachable">
+	   		<dir name="actions">
+				  <file role="data" name="actions.class.php" />
+				  <file role="data" name="components.class.php" />
+				</dir>
+	   		<dir name="config">
+				  <file role="data" name="view.yml" />
+				</dir>			
+	   		<dir name="templates">
+				  <file role="data" name="_attachment_edit_item.php" />
+				  <file role="data" name="_attachments.php" />
+				  <file role="data" name="_attachments_group.php" />
+				  <file role="data" name="_attachments_list.php" />
+				  <file role="data" name="iframeSuccess.php" />
+				</dir>			
+			</dir>
+	  </dir>
+	  <dir name="web">
+	  	<dir name="css">
+				<file role="data" name="attachments.css" />
+			</dir>
+			<dir name="images">
+				<dir name="attachable">
+				  <dir name="icons">
+				  	<file role="data" name="image.png" />
+				  	<file role="data" name="pdf.png" />
+				  	<file role="data" name="word.png" />					
+				  </dir>
+				</dir>
+			</dir>
+		</dir>
+	</dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.1.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.1</min>
+   </pearinstaller>
+   <package>
+    <name>symfony</name>
+    <channel>pear.symfony-project.com</channel>
+    <min>1.2.0</min>
+    <max>1.2.0</max>
+   </package>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>1.0.0</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2009-04-24</date>
+   <license uri="http://www.symfony-project.org/license">MIT license</license>
+   <notes>
+   * Initial creation of plugin
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.1</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2009-05-05</date>
+   <license uri="http://www.symfony-project.org/license">MIT license</license>
+   <notes>
+   * Left out YAML schema file, fixes bugs
+   </notes>
+  </release>
+ </changelog>
+</package>
