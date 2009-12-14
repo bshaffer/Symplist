@@ -32,7 +32,7 @@
     
 <div id="content-wrapper" class="container_12">   
    
-  <div id="content-main" class="grid_8">
+  <div id="content-main" class="<?php echo $sf_user->getFlash('full-page') ? 'grid_12' : 'grid_8' ?>">
     <div class="inner">
 
     <?php include_partial('global/flashes') ?>
@@ -43,12 +43,16 @@
     </div>
   </div>
 
-  <?php if (has_slot('right_column')): ?>  
-   <!-- Sidebar -->
-  <div id="sidebar" class="stats grid_4 omega">
-    <?php include_slot('right_column') ?>
-  </div>
-  <!-- End Sidebar -->
+  <?php if (!$sf_user->getFlash('full-page')): ?>
+    <!-- Sidebar -->
+    <div id="sidebar" class="stats grid_4 omega">
+      <?php if (has_slot('sidebar')): ?>  
+        <?php include_slot('sidebar') ?>
+      <?php else: ?>
+        <?php include_component('site', 'sidebarDefault') ?>
+      <?php endif ?>    
+    </div>
+    <!-- End Sidebar -->
   <?php endif ?>
 </div>
 
