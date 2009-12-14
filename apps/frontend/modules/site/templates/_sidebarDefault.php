@@ -31,7 +31,7 @@
   <?php foreach ($votes as $plugin): ?>
     <li>
       <h6><?php echo link_to($plugin['title'], $plugin['route'], array('class' => 'plugin-title')) ?></h6>
-      <?php include_partial('plugin/rating', array('rating' => $plugin['rating'])) ?>&nbsp;(<?php echo $plugin['num_votes'] ?> votes)
+      <?php include_partial('plugin/rating', array('rating' => $plugin['rating'])) ?>&nbsp;<span class='num-votes'>(<?php echo $plugin['num_votes'] ?> votes)</span>
       <br />
     </li>
   <?php endforeach ?>

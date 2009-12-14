@@ -30,7 +30,7 @@ ul li{margin-left:0;}
 
 
 /*Messages*/
-.message {padding:12px 12px 12px 30px;-webkit-border-radius:7px;border:1px solid #ccc;font-size:11px;margin:20px 0;}
+.message {padding:12px 12px 12px 30px;-webkit-border-radius:7px;border:1px solid #ccc;font-size:11px;margin:20px 0;display:block;}
   .message p {margin-bottom:0;}
 
 
@@ -116,8 +116,8 @@ body.interior form#search fieldset {float:right;}
 
   #sidebar.stats h6 {float:left;margin-right:5px;}  
   #sidebar .grid_4 li {margin-bottom:0;}
-
-
+  .num-votes { white-space: nowrap;}
+  
 /*
 * ///////////// Interior Content
 */
