@@ -113,7 +113,8 @@ body.interior form#search fieldset {float:right;}
   .stats li {list-style:none;margin:0 0 10px 0;}
   .stats p {padding-right:25px;}
   .stats .grid_4 {margin-bottom:10px;}
-  
+
+  #sidebar.stats h6 {float:left;margin-right:5px;}  
   #sidebar .grid_4 li {margin-bottom:0;}
 
 
