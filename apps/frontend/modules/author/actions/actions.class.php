@@ -29,14 +29,9 @@ class authorActions extends sfActions
   
   public function executeAll(sfWebRequest $request)
   {
-    $q = Doctrine::getTable('sfGuardUser')->createQuery('u')->orderBy('u.username DESC');
-
-    $this->pager = new sfDoctrinePager('sfGuardUser');
-    $this->pager->setQuery($q);
-    $this->pager->setPage($request->getParameter('page', 1));
-    $this->pager->init();
-
+    $this->users = Doctrine::getTable('sfGuardUser')->createQuery('u')->orderBy('u.username ASC')->execute();
   }
+  
   public function executeShow(sfWebRequest $request)
   {
     $this->user = Doctrine::getTable('sfGuardUser')->findOneByUsername($request->getParameter('username'));
