@@ -17,10 +17,25 @@ class authorActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    $this->recentlyActive = Doctrine::getTable('sfGuardUser')->createQuery('u')
+    $q = Doctrine::getTable('sfGuardUser')->createQuery('u')
                       ->orderBy('u.updated_at DESC')
-                      ->limit(10)
-                      ->execute();
+                      ->limit(10);
+                      
+    $this->pager = new sfDoctrinePager('sfGuardUser');
+    $this->pager->setQuery($q);
+    $this->pager->setPage($request->getParameter('page', 1));
+    $this->pager->init();
+  }
+  
+  public function executeAll(sfWebRequest $request)
+  {
+    $q = Doctrine::getTable('sfGuardUser')->createQuery('u')->orderBy('u.username DESC');
+
+    $this->pager = new sfDoctrinePager('sfGuardUser');
+    $this->pager->setQuery($q);
+    $this->pager->setPage($request->getParameter('page', 1));
+    $this->pager->init();
+
   }
   public function executeShow(sfWebRequest $request)
   {

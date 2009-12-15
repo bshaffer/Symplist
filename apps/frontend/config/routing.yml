@@ -116,6 +116,10 @@ authors:
   url:                                /authors
   param:                              { module: author, action: index }
 
+authors_all:
+  url:                                /authors/all
+  param:                              { module: author, action: all }
+
 author:
   url:                                /authors/:username
   param:                              { module: author, action: show }
