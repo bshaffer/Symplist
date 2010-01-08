@@ -1,9 +1,7 @@
 <?php use_helper('Pager') ?>
 <h2>Community Lists</h2>
 
-<?php if ($sf_user->isAuthenticated()): ?>
-  <?php echo link_to('Create a list', '@list_create') ?>  
-<?php endif ?>
+<p><?php echo link_to('Create a list', '@list_create') ?></p>
 
 <ul class='list community-list'>
 <?php foreach ($lists as $list): ?>

@@ -12,10 +12,11 @@ abstract class BaseSymfonyPluginsTask extends sfBaseTask
     return str_replace('/', '', $value);
   }
   
-  public function runLuceneRebuild()
+  public function runLuceneRebuild($verbose = false)
   {
     $this->logSection('import', "running lucene cleanup task");
-    $luceneTask = new sfLuceneRebuildTask($this->dispatcher, $this->formatter);
-    $luceneTask->run(array('application' => 'frontend'), array());
+    $luceneTask = new symplistLuceneRebuildTask($this->dispatcher, $this->formatter );
+    $luceneTask->run(array('application' => 'frontend'), array('verbose' => $verbose));
+    $this->logSection('import', "lucene cleanup task complete");
   } 
 }

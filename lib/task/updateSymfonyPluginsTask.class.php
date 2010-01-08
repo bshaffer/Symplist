@@ -7,7 +7,8 @@ class updateSymfonyPluginsTask extends BaseSymfonyPluginsTask
       new sfCommandOption('app', null, sfCommandOption::PARAMETER_REQUIRED, 'The application', 'frontend'),
       new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'prod'),
       new sfCommandOption('plugin', null, sfCommandOption::PARAMETER_REQUIRED, 'A specific plugin to update'),
-      new sfCommandOption('startAt', null, sfCommandOption::PARAMETER_REQUIRED, 'A specific plugin to start at'),
+      new sfCommandOption('start-at', null, sfCommandOption::PARAMETER_REQUIRED, 'A specific plugin to start at'),
+      new sfCommandOption('verbose', null, sfCommandOption::PARAMETER_NONE, 'verbose messaging'),
     ));
 
     $this->namespace        = 'symfony-plugins';
@@ -35,19 +36,18 @@ EOF;
     $plugins = $options['plugin'] ? array(SymfonyPluginApi::getPlugin($options['plugin'])) : SymfonyPluginApi::getPlugins();
 
     $count = 0;
+    $this->runLuceneRebuild($options['verbose']);
+
     foreach ($plugins as $plugin) 
     {
       $name = $plugin['id'];
 
       // Specifies a plugin name to start at
-      if ($options['startAt']) 
+      if ($options['start-at']) 
       {        
-        if ($name != $options['startAt']) 
-        {
-          continue;
-        }
-        $this->logSection('update', $options['startAt'].' Found');
-        $options['startAt'] = false;
+        if ($name != $options['start-at']) continue;
+        $this->logSection('update', $options['start-at'].' Found');
+        $options['start-at'] = false;
       }
       
       try 
@@ -57,7 +57,11 @@ EOF;
           $this->logSection('update', 'Invalid Plugin Id', null, 'ERROR');
           continue;
         }
-        $this->logSection('import', $plugin['id']);      
+        if ($options['verbose']) 
+        {
+          $this->logSection('import', $plugin['id']);
+        }
+
         $new = Doctrine::getTable('SymfonyPlugin')->findOneByTitle($plugin['id']);
       
         // if plugin exists update info.  Otherwise, create it
@@ -105,14 +109,14 @@ EOF;
     }
 
     $this->logSection('import', "Running Lucene Cleanup");
-    $this->runLuceneRebuild();
+    $this->runLuceneRebuild($options['verbose']);
     $this->logSection('import', "Completed.  Added $count new plugins(s)");
     
     if ($errors) 
     {
       foreach ($errors as $key => $value) 
       {
-        $this->logSection('errors', "$key: $value" );
+        $this->logSection('errors', "$key: $value", null, 'ERROR' );
       }
     }
   }

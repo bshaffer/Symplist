@@ -1,7 +1,7 @@
 <?php
 
 function markdown_preview_tag($field) {
-  use_helper('Form', 'Javascript');
+  use_helper('Form');
   $hidden = input_hidden_tag('markdown_field', $field);
   $submit = submit_tag('Preview', array('onclick' => 'javascript:markdown_preview(this)'));
   $js = javascript_tag(sprintf("

@@ -76,7 +76,6 @@ class listActions extends sfActions
   
   public function executeCreate(sfWebRequest $request)
   {
-    $this->forward404Unless($this->getUser()->isAuthenticated());
     $this->form = new CommunityListForm();
     $this->form->setDefault('submitted_by', $this->getUser()->getGuardUser()->getId());
     $this->item_forms = array();
