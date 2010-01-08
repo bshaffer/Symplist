@@ -9,7 +9,7 @@
   </div>
   <?php echo submit_tag('Save', array('class' => 'button')) ?>
   
-  <?php echo markdown_preview_tag('community_list[description]') ?>    
+  <?php echo markdown_preview_link('community_list[description]') ?>    
 
   <?php echo jq_link_to_remote('Add List Item', array(
                 'update' => 'list-items', 
@@ -18,3 +18,4 @@
     )) ?>
 </form>
 
+<?php echo markdown_preview() ?>

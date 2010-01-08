@@ -27,7 +27,7 @@ abstract class BaseFormDoctrine extends sfFormDoctrine
     foreach ($this->getWidgetSchema()->getFields() as $key => $field) {
       switch($key) {
         case 'description':
-          $this->widgetSchema[$key] = $this->getTinymceWidget();
+          $this->widgetSchema[$key] = new sfWidgetFormTextarea();
           break;
         case 'title':
         case 'name':

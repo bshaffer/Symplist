@@ -8,7 +8,9 @@
     <?php echo $form ?>
   </table>
   <?php echo submit_tag('Save') ?>
-  <?php echo markdown_preview_tag('community_list_item[body]') ?>
+  <?php echo markdown_preview_link('community_list_item[body]') ?>
   <?php echo link_to('Cancel', '@community_list?slug='.$item['List']['slug']) ?>
 </form>
+
+<?php echo markdown_preview() ?>
 

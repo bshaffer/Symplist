@@ -7,8 +7,10 @@
     <?php echo $form ?>
   </table>
   <?php echo submit_tag('Save') ?>
-  <?php echo markdown_preview_tag('community_list[description]') ?>
+  <?php echo markdown_preview_link('community_list[description]') ?>
 </form>
+
+<?php echo markdown_preview() ?>
 
 <?php if ($sf_user->isAuthenticated()): ?>
   <?php echo link_to('Add an item to this list', 'community_list_add_item', array('slug' => $list['slug'])) ?>

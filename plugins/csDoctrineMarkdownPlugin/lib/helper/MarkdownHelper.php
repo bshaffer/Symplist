@@ -1,16 +1,21 @@
 <?php
 
-function markdown_preview_tag($field) {
+function markdown_preview_link($field) {
   use_helper('Form');
-  $hidden = input_hidden_tag('markdown_field', $field);
-  $submit = submit_tag('Preview', array('onclick' => 'javascript:markdown_preview(this)'));
-  $js = javascript_tag(sprintf("
+  use_stylesheet('/csDoctrineMarkdownPlugin/css/markdown.css');
+  $submit = content_tag('a', 'Preview', array('href' => '#', 'onclick' => 'javascript:markdown_preview(this);return false'));
+  $js = javascript_tag(sprintf(<<<EOF
   function markdown_preview (e) {
-      $(e).parents('form').attr('target', '_blank');
-      $(e).parents('form').attr('action', '%s');
-    }
-  ", url_for('csMarkdown/preview')));
-  return $hidden.$submit.$js;
+    var markdown_text = $('form *[name=%s]').val();
+    $('#markdown_preview').load('%s', { 'markdown_value': markdown_text }, function() { $(this).append("<a href='#' onclick='$(\"#markdown_preview\").hide()'>hide</a>") } ).css('display', 'block');
+  }
+EOF
+, $field, url_for('csMarkdown/preview?markdown_field='.$field)));
+  return $submit.$js;
+}
+
+function markdown_preview(){
+  return content_tag('div', image_tag('/csDoctrineMarkdownPlugin/images/loader.gif'), array('id' => 'markdown_preview'));
 }
 
 function markdown($text) {
