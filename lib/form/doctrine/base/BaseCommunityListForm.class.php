@@ -17,7 +17,7 @@ abstract class BaseCommunityListForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'               => new sfWidgetFormInputHidden(),
       'title'            => new sfWidgetFormInputText(),
-      'description'      => new sfWidgetFormInputText(),
+      'description'      => new sfWidgetFormTextarea(),
       'featured'         => new sfWidgetFormInputCheckbox(),
       'submitted_by'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => false)),
       'created_at'       => new sfWidgetFormDateTime(),
@@ -29,7 +29,7 @@ abstract class BaseCommunityListForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'               => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
       'title'            => new sfValidatorString(array('max_length' => 255)),
-      'description'      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'description'      => new sfValidatorString(array('required' => false)),
       'featured'         => new sfValidatorBoolean(array('required' => false)),
       'submitted_by'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('User'))),
       'created_at'       => new sfValidatorDateTime(),

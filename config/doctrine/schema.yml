@@ -103,7 +103,7 @@ CommunityList:
     title: 
       type:         string(255)
       notnull:      true
-    description:    string(255)
+    description:    clob
     featured:       boolean
     submitted_by:   
       type:         integer(4)
