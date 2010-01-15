@@ -1,2 +1,11 @@
 create:
   is_secure:      on
+  
+addListItem:
+  is_secure:      on
+
+edit:
+  is_secure:      on
+  
+editItem:
+  is_secure:      on  

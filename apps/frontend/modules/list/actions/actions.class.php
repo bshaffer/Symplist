@@ -118,7 +118,6 @@ class listActions extends sfActions
   
   public function executeAddListItem(sfWebRequest $request)
   {
-    $this->forward404Unless($this->getUser()->isAuthenticated());
     $this->list = Doctrine::getTable('CommunityList')->findOneBySlug($request->getParameter('slug'));
     $this->forward404Unless($this->list);
             

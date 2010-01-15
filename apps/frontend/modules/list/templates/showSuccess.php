@@ -1,3 +1,5 @@
+<?php $sf_user->setFlash('full-page', true) ?>
+
 <h2><?php echo $list['title'] ?></h2>
 
 <?php if ($list['submitted_by']): ?>

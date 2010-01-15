@@ -907,7 +907,16 @@ class Markdown_Parser {
 		# trim leading newlines and trailing newlines
 		$codeblock = preg_replace('/\A\n+|\n+\z/', '', $codeblock);
 
-		$codeblock = "<pre><code>$codeblock\n</code></pre>";
+// if it start w/ a language tag, use GeSHi to convert the code
+		if (preg_match('/^\[(\w+)\]\s*/', $codeblock, $match)) {
+			$codeblock = str_replace("[${match[1]}]\n", '', $codeblock);
+			$geshi = new GeSHi($codeblock, $match[1]);
+			$codeblock = $geshi->parse_code();
+		} else {
+			$codeblock = htmlspecialchars($codeblock, ENT_NOQUOTES);
+			$codeblock = "<pre><code>$codeblock\n</code></pre>";
+		}
+		
 		return "\n\n".$this->hashBlock($codeblock)."\n\n";
 	}
 
