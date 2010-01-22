@@ -2,15 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <?php include_http_metas() ?>
-    <meta name="description" content="sympLIST is a community-oriented site for finding high quality Symfony plugins and developers for your web apps." />
-    <meta name="keywords" content="symfony, plugins, developers, nashville, brent shaffer" />
-
-    <?php include_title() ?>
-    <link rel="shortcut icon" href="/favicon.ico" />
+    <?php include_metas() ?>
+    <?php if (has_slot('title')): ?>
+      <title><?php echo get_slot('title') ?> | sympLIST</title>
+    <?php else: ?>
+      <?php include_title() ?>
+    <?php endif; ?>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
   
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
-</head>
+  </head>
   <body class="interior" id="module-<?php echo $sf_request->getParameter('module') ?>-action-<?php echo $sf_request->getParameter('action') ?>">
   <?php use_helper('Navigation') ?>
 
@@ -59,7 +62,7 @@
 <div id="footer" class="container_12">
   <?php include_navigation(array('menu' => 'Footer', 'id' => 'nav-secondary', 'class' => 'grid_6 alpha')) ?>
   <div class="copyright grid_6 omega">
-    <p>©2009 Brent Shaffer. Design by <a href="#">The Black Elephant</a></p>
+    <p>&copy;2010 Brent Shaffer. Design by <a href="#">The Black Elephant</a></p>
   </div>
 </div>
 

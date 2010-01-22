@@ -1,3 +1,4 @@
+<?php slot('title', 'About Symplist') ?>
 <h2>About SympLIST</h2>
 
 <div class='message info'>

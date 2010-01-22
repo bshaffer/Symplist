@@ -2,11 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <?php include_http_metas() ?>
-    <meta name="description" content="sympLIST is a community-oriented site for finding high quality Symfony plugins and developers for your web apps." />
-    <meta name="keywords" content="symfony, plugins, developers, nashville, brent shaffer" />
-
-    <title>sympLIST - Symfony Plugin Directory</title>
-
+    <?php include_metas() ?>
+    <?php include_title() ?>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     
@@ -29,7 +26,7 @@
     <h1 class="grid_6"><?php echo link_to('sympLIST', '@homepage') ?></h1>
     
     <p id="intro" class="grid_6">sympLIST is the place for finding high quality Symfony plugins
-    and developers for your web apps. <a href="#">LEARN MORE »</a></p>
+    and developers for your web apps. <a href="<?php echo url_for('@about') ?>">LEARN MORE &raquo;</a></p>
     
   </div>
 </div>

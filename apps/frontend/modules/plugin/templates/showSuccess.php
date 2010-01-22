@@ -1,6 +1,7 @@
 <?php use_helper('Comment') ?>
 <?php $sf_user->setFlash('full-page', true) ?>
 
+<?php slot('title', $plugin['title']) ?>
 <h2><?php echo $plugin['title'] ?></h2>
 
 <p><?php echo $plugin['description'] ?></p>
