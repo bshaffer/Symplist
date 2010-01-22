@@ -9,3 +9,4 @@ showSuccess:
 
   stylesheets:  
     - jquery.lightbox-0.5.css
+    - ui.css

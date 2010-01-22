@@ -34,8 +34,7 @@
 
     <?php if (isset($release) && $release['readme']): ?>
       <dt>Readme</dt>
-      <dd><a rel="#plugin-readme" class='overlay'>
-        Click Here</a>
+      <dd><a rel="#plugin-readme" class='overlay' href="#" onclick="javascript:return false;">Click Here</a>
       </dd>
     <?php endif ?>
 
