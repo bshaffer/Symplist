@@ -26,7 +26,7 @@
     <h1 class="grid_6"><?php echo link_to('sympLIST', '@homepage') ?></h1>
     
     <p id="intro" class="grid_6">sympLIST is the place for finding high quality Symfony plugins
-    and developers for your web apps. <a href="<?php echo url_for('@about') ?>">LEARN MORE »</a></p>
+    and developers for your web apps. <a href="<?php echo url_for('@about') ?>">LEARN MORE &raquo;</a></p>
     
   </div>
 </div>
