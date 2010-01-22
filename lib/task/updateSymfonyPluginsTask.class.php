@@ -8,6 +8,7 @@ class updateSymfonyPluginsTask extends BaseSymfonyPluginsTask
       new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'prod'),
       new sfCommandOption('plugin', null, sfCommandOption::PARAMETER_REQUIRED, 'A specific plugin to update'),
       new sfCommandOption('start-at', null, sfCommandOption::PARAMETER_REQUIRED, 'A specific plugin to start at'),
+      new sfCommandOption('force-update', null, sfCommandOption::PARAMETER_NONE, 'force all plugins and releases to update'),
       new sfCommandOption('verbose', null, sfCommandOption::PARAMETER_NONE, 'verbose messaging'),
     ));
 
@@ -65,7 +66,7 @@ EOF;
         $new = Doctrine::getTable('SymfonyPlugin')->findOneByTitle($plugin['id']);
       
         // if plugin exists update info.  Otherwise, create it
-        if (!$new) 
+        if ($options['force-update'] || !$new) 
         {
           $new = new SymfonyPlugin();
           $new['title'] = (string)$plugin['id'];
@@ -85,8 +86,9 @@ EOF;
         {
           foreach ($info->releases->release as $release) 
           {
-            if (!$new->hasRelease($release['id'])) 
+            if ($options['force-update'] || !$new->hasRelease($release['id'])) 
             {
+              $releaseXml = SymfonyPluginApi::getPluginRelease($plugin['id'], $release['id']);
               $newrel = new PluginRelease();
               $newrel['Plugin'] = $new;
               $newrel['version'] = (string)$release['id'];
@@ -95,6 +97,7 @@ EOF;
               $newrel['symfony_version_max'] = $this->parseVersionNumber($release->symfony->max);
               $newrel['date'] = (string)$release->date;         
               $newrel['summary'] = (string)$release->summary;
+              $newrel['readme'] = $releaseXml->readme;
               $newrel->save();
               $this->logSection('update', "New release ($release[id]) found for $new[title]");
             }

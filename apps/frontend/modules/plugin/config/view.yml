@@ -1,3 +1,11 @@
 showSuccess:
-  javascripts: [jquery.cookie.js, jquery.lightbox-0.5.js]
-  stylesheets:  [jquery.lightbox-0.5.css]
+  javascripts: 
+    # - 'http://jqueryui.com/latest/jquery-1.3.2.js'
+    # - 'http://jqueryui.com/latest/ui/ui.core.js'
+    # - /jquery.fancybox/jquery.fancybox-1.2.1.pack.js
+    - jquery.tools.min.js
+    - jquery.cookie.js
+    - jquery.lightbox-0.5.js
+
+  stylesheets:  
+    - jquery.lightbox-0.5.css

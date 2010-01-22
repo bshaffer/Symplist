@@ -40,9 +40,9 @@ class SymfonyPluginApi
     return $xml;
   }
   
-  static public function loadFile($path)
+  static public function loadFile($path, $silent = false)
   {
-    $cmd = "curl -u ".self::$_api_key.":".self::$_password." ".self::$_root_url."$path --silent";
+    $cmd = "curl -u ".self::$_api_key.":".self::$_password." ".self::$_root_url.$path.($silent?" --silent":'');
     return simplexml_load_string(shell_exec($cmd)); 
   }
 }

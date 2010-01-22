@@ -221,3 +221,52 @@ form th {
   
 /* @end */
 
+/* the overlayed element */ 
+.simple_overlay { 
+     
+    /* must be initially hidden */ 
+    display:none; 
+     
+    /* place overlay on top of other elements */ 
+    z-index:10000; 
+     
+    /* styling */ 
+    background-color:#EEE; 
+     
+    width:950px;     
+    min-height:200px; 
+    border:1px solid #666; 
+    padding:20px;
+     
+    /* CSS3 styling for latest browsers */ 
+    -moz-box-shadow:0 0 90px 5px #000; 
+    -webkit-box-shadow: 0 0 90px #000;
+} 
+ 
+/* close button positioned on upper right corner */ 
+.simple_overlay .close { 
+    background-image:url(../images/close.png); 
+    position:absolute; 
+    right:-15px; 
+    top:-15px; 
+    cursor:pointer; 
+    height:35px; 
+    width:35px; 
+}
+
+.simple_overlay .overlay-content { overflow: hidden; }
+
+.documentation pre.command-line {
+background-color:#000000;
+color:#FFFFFF;
+}
+
+.documentation pre {
+background-color:#222222;
+color:#FFFFFF;
+font-family:"Bitstream Vera Sans Mono",monospace;
+font-size:13px;
+line-height:17px;
+overflow:auto;
+padding:0.5em 0 0.5em 1em;
+}

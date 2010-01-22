@@ -31,6 +31,14 @@
       <?php endif ?>
     </dd>
 
+    <?php if (isset($release) && $release['readme']): ?>
+      <dt>Readme</dt>
+      <dd><a rel="#plugin-readme" class='overlay'>
+        Click Here</a>
+      </dd>
+    <?php endif ?>
+
+
     <dt>Rate this Plugin</dt>
     <dd>
       <form class="rating" method='post' action="<?php echo url_for('@plugin_rate_ajax?title='.$plugin['title']) ?>">
@@ -56,7 +64,8 @@
             $.cookie("<?php echo $plugin['title'] ?>.rating", value);
         }); 
       }
-    });    
+    });
+    $(".overlay[rel]").overlay();
   });
 </script>
 
@@ -76,6 +85,12 @@
   <?php echo link_to('[edit plugin]', '@plugin_edit?title='.$plugin['title']) ?>
 <?php endif ?>
 
+</div>
+
+<div style='display:none;' class="simple_overlay documentation" id='plugin-readme'>
+  <div class='overlay-content'>
+    <?php echo $release['readme'] ?>
+  </div>
 </div>
 
 <?php echo get_comments($plugin) ?>
