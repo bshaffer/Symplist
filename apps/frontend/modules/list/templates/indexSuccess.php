@@ -1,4 +1,5 @@
 <?php use_helper('Pager') ?>
+<?php slot('title', 'Community Lists') ?>
 <h2>Community Lists</h2>
 
 <p><?php echo link_to('Create a list', '@list_create') ?></p>
