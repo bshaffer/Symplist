@@ -2,15 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <?php include_http_metas() ?>
-    <meta name="description" content="sympLIST is a community-oriented site for finding high quality Symfony plugins and developers for your web apps." />
-    <meta name="keywords" content="symfony, plugins, developers, nashville, brent shaffer" />
-
+    <?php include_metas() ?>
     <?php include_title() ?>
-    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
   
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
-</head>
+  </head>
   <body class="interior" id="module-<?php echo $sf_request->getParameter('module') ?>-action-<?php echo $sf_request->getParameter('action') ?>">
   <?php use_helper('Navigation') ?>
 

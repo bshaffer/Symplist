@@ -3,11 +3,11 @@ default:
     content-type:                     text/html
 
   metas:
-    #title:                           symfony project
-    #description:                     symfony project
-    #keywords:                        symfony, project
+    title:                           sympLIST - Symfony Plugin Directory
+    description:                     sympLIST is a community-oriented site for finding high quality Symfony plugins and developers for your web apps.
+    keywords:                        symfony, plugins, developers, nashville, brent shaffer
     #language:                        en
-    #robots:                          index, follow
+    robots:                          index, follow
 
   stylesheets:                        [ reset.css, text.css, 960.css, custom.css, jquery.autocomplete.css ]
 
