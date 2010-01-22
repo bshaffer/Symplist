@@ -50,12 +50,12 @@ class siteActions extends sfActions
       $this->form->bind($request->getParameter('contact'));
       if ($this->form->isValid()) 
       {
-        EmailHelper::sendEmail(array(
-          'to'      => 'bshafs@gmail.com',
-          'from'    => $this->form->getValue('email'),
-          'subject' => 'Symplist Contact Form',
-          'body'    => $this->form->getValue('message')
-          ));
+        $this->getMailer()->composeAndSend(
+          $this->form->getValue('email'),
+          'bshafs@gmail.com',
+          'Symplist Contact Form',
+          $this->form->getValue('message')
+        );
           
         return 'Confirm';
       }

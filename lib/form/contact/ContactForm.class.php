@@ -11,13 +11,15 @@ class ContactForm extends BaseForm
       'name'        => new sfWidgetFormInputText(),
       'email'       => new sfWidgetFormInputText(),
       'message'     => new sfWidgetFormTextarea()
-      ));
+    ));
     
     $this->setValidators(array(
       'name'        => new sfValidatorString(),
-      'email'       => new sfValidatorString(),
+      'email'       => new sfValidatorEmail(),
       'message'     => new sfValidatorString()
-      ));
+    ));
+    
+    $this->validatorSchema['email']->setMessage('invalid', 'Please enter a valid email address');
       
     $this->widgetSchema->setNameFormat('contact[%s]');
   }

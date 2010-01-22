@@ -3,6 +3,10 @@
 // require_once sfConfig::get('sf_lib_dir').'/vendor/swift/swift_init.php'; 
 
 /**
+ * DEPRECATION!!!
+ */
+
+/**
 *  Swift Mailer Helper Class
 */
 class EmailHelper

@@ -1,5 +1,5 @@
-<?php slot('title', 'Contact Symplist') ?>
-<h2>Contact Symplist</h2>
+<?php slot('title', 'Contact sympLIST') ?>
+<h2>Contact sympLIST</h2>
 
 <p>Questions? Hate-Mail? We appreciate any contact with the outside world, regardless of motive.</p>
 
