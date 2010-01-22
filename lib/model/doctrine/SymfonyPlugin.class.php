@@ -127,6 +127,18 @@ class SymfonyPlugin extends BaseSymfonyPlugin
     return false;
   }
   
+  public function getRelease($release)
+  {
+    foreach ($this['Releases'] as $rel) 
+    {
+      if ($rel['version'] == $release) 
+      {
+        return $rel;
+      }
+    }
+    return null;
+  }
+  
   public function isPublished()
   {
     return $this['Releases']->count() > 0;

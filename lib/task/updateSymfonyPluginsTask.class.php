@@ -68,7 +68,7 @@ EOF;
         // if plugin exists update info.  Otherwise, create it
         if ($options['force-update'] || !$new) 
         {
-          $new = new SymfonyPlugin();
+          $new = $new ? $new : new SymfonyPlugin();
           $new['title'] = (string)$plugin['id'];
           $new['description'] = (string)$plugin->description;
           $new['repository'] = (string)$plugin->scm;
@@ -86,10 +86,10 @@ EOF;
         {
           foreach ($info->releases->release as $release) 
           {
-            if ($options['force-update'] || !$new->hasRelease($release['id'])) 
+            if ($options['force-update'] || !$new->hasRelease($release['id']))
             {
               $releaseXml = SymfonyPluginApi::getPluginRelease($plugin['id'], $release['id']);
-              $newrel = new PluginRelease();
+              $newrel = $new->hasRelease($release['id']) ? $new->getRelease($release['id']) : new PluginRelease();
               $newrel['Plugin'] = $new;
               $newrel['version'] = (string)$release['id'];
               $newrel['stability'] = (string)$release->stability;
