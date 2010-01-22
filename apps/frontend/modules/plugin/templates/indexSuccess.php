@@ -1,3 +1,5 @@
+<?php slot('title', 'View All Plugins') ?>
+
 <h2>All Plugins</h2>
 <ol class='plugins-list'>
 <?php foreach ($plugins as $plugin): ?>

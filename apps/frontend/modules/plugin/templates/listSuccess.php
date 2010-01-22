@@ -1,5 +1,8 @@
 <?php use_helper('Pager') ?>
+<?php slot('title', 'All Plugins') ?>
 <h2>Plugins</h2>
+
+
 <span class='view-all-plugins'><?php echo link_to('View All', '@plugins_view_all') ?></span>
 <?php $results = $pager->getResults()?>
 <ol start='<?php echo $pager->getFirstIndice() ?>' class='plugins-list'>

@@ -3,7 +3,11 @@
   <head>
     <?php include_http_metas() ?>
     <?php include_metas() ?>
-    <?php include_title() ?>
+    <?php if (has_slot('title')): ?>
+      <title><?php echo get_slot('title') ?> | sympLIST</title>
+    <?php else: ?>
+      <?php include_title() ?>
+    <?php endif; ?>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
   
