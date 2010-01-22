@@ -12,10 +12,10 @@
   <dl>
     
     <dt>Repository</dt>
-    <dd><?php echo link_to($plugin->getRepository(), $plugin->getRepository(), array('style' => 'white-space:nowrap;')) ?></dd>
+    <dd><a href="<?php echo $plugin->getRepository() ?>" target="_blank"><?php echo $plugin->getRepository() ?></a></dd>
 
     <dt>More Info</dt>
-    <dd><?php echo link_to($plugin->getHomepage(), $plugin->getHomepage(), array('style' => 'white-space:nowrap;')) ?></dd>
+    <dd><a href="<?php echo $plugin->getHomepage() ?>" target="_blank"><?php echo $plugin->getHomepage() ?></a></dd>
 
 
     <dt>Last Updated</dt>
