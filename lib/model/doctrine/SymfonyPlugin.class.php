@@ -154,7 +154,7 @@ class SymfonyPlugin extends BaseSymfonyPlugin
     return 'http://svn.symfony-project.com/plugins/'.$this['title'];
   }
   
-  public function preInsert($event)
+  public function preSave($event)
   {
     if (!$this['repository']) 
     {
