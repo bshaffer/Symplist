@@ -25,7 +25,8 @@ plugin_rate_ajax:
   class:                              sfDoctrineRoute
   param:                              { module: plugin, action: rate }  
   options:                            { type: object, model: SymfonyPlugin }
-
+  requirements:                       { sf_method: [GET, POST] }
+  
 plugin_search:
   url:                                /plugins/search
   params:                             { module: plugin, action: search }
