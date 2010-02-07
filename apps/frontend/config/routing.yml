@@ -21,8 +21,10 @@ plugins_view_all:
   param:                              { module: plugin, action: index }
 
 plugin_rate_ajax:
-  url:                                /plugins/rate
+  url:                                /plugins/:title/rate
+  class:                              sfDoctrineRoute
   param:                              { module: plugin, action: rate }  
+  options:                            { type: object, model: SymfonyPlugin }
 
 plugin_search:
   url:                                /plugins/search
