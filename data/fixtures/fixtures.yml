@@ -4,6 +4,12 @@ sfGuardUser:
     password:                         admin
     is_super_admin:                   true
 
+sfGuardUser:
+  sgu_admin:
+    username:                         centresource
+    password:                         admin
+    is_super_admin:                   false
+
 sfGuardPermission:
   sgp_admin:
     name:                             administrator
