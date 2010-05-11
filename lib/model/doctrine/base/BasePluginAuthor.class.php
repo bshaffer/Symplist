@@ -25,10 +25,10 @@
  * @method PluginAuthor setSfGuardUserId()    Sets the current record's "sf_guard_user_id" value
  * @method PluginAuthor setUser()             Sets the current record's "User" value
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
+ * @package    plugintracker
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BasePluginAuthor extends sfDoctrineRecord
 {
@@ -37,22 +37,22 @@ abstract class BasePluginAuthor extends sfDoctrineRecord
         $this->setTableName('plugin_author');
         $this->hasColumn('first_name', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('last_name', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('email', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('bio', 'clob', null, array(
              'type' => 'clob',
              ));
         $this->hasColumn('sf_guard_user_id', 'integer', 4, array(
              'type' => 'integer',
-             'length' => '4',
+             'length' => 4,
              ));
     }
 
@@ -62,5 +62,9 @@ abstract class BasePluginAuthor extends sfDoctrineRecord
         $this->hasOne('sfGuardUser as User', array(
              'local' => 'sf_guard_user_id',
              'foreign' => 'id'));
+
+        $timestampable0 = new Doctrine_Template_Timestampable(array(
+             ));
+        $this->actAs($timestampable0);
     }
 }

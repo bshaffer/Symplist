@@ -11,36 +11,39 @@
  * @property decimal $symfony_version_min
  * @property decimal $symfony_version_max
  * @property clob $summary
- * @property string $stability
+ * @property enum $stability
  * @property clob $readme
  * @property string $dependencies
  * @property SymfonyPlugin $Plugin
+ * @property Doctrine_Collection $Dependencies
  * 
- * @method integer       getPluginId()            Returns the current record's "plugin_id" value
- * @method string        getVersion()             Returns the current record's "version" value
- * @method timestamp     getDate()                Returns the current record's "date" value
- * @method decimal       getSymfonyVersionMin()   Returns the current record's "symfony_version_min" value
- * @method decimal       getSymfonyVersionMax()   Returns the current record's "symfony_version_max" value
- * @method clob          getSummary()             Returns the current record's "summary" value
- * @method string        getStability()           Returns the current record's "stability" value
- * @method clob          getReadme()              Returns the current record's "readme" value
- * @method string        getDependencies()        Returns the current record's "dependencies" value
- * @method SymfonyPlugin getPlugin()              Returns the current record's "Plugin" value
- * @method PluginRelease setPluginId()            Sets the current record's "plugin_id" value
- * @method PluginRelease setVersion()             Sets the current record's "version" value
- * @method PluginRelease setDate()                Sets the current record's "date" value
- * @method PluginRelease setSymfonyVersionMin()   Sets the current record's "symfony_version_min" value
- * @method PluginRelease setSymfonyVersionMax()   Sets the current record's "symfony_version_max" value
- * @method PluginRelease setSummary()             Sets the current record's "summary" value
- * @method PluginRelease setStability()           Sets the current record's "stability" value
- * @method PluginRelease setReadme()              Sets the current record's "readme" value
- * @method PluginRelease setDependencies()        Sets the current record's "dependencies" value
- * @method PluginRelease setPlugin()              Sets the current record's "Plugin" value
+ * @method integer             getPluginId()            Returns the current record's "plugin_id" value
+ * @method string              getVersion()             Returns the current record's "version" value
+ * @method timestamp           getDate()                Returns the current record's "date" value
+ * @method decimal             getSymfonyVersionMin()   Returns the current record's "symfony_version_min" value
+ * @method decimal             getSymfonyVersionMax()   Returns the current record's "symfony_version_max" value
+ * @method clob                getSummary()             Returns the current record's "summary" value
+ * @method enum                getStability()           Returns the current record's "stability" value
+ * @method clob                getReadme()              Returns the current record's "readme" value
+ * @method string              getDependencies()        Returns the current record's "dependencies" value
+ * @method SymfonyPlugin       getPlugin()              Returns the current record's "Plugin" value
+ * @method Doctrine_Collection getDependencies()        Returns the current record's "Dependencies" collection
+ * @method PluginRelease       setPluginId()            Sets the current record's "plugin_id" value
+ * @method PluginRelease       setVersion()             Sets the current record's "version" value
+ * @method PluginRelease       setDate()                Sets the current record's "date" value
+ * @method PluginRelease       setSymfonyVersionMin()   Sets the current record's "symfony_version_min" value
+ * @method PluginRelease       setSymfonyVersionMax()   Sets the current record's "symfony_version_max" value
+ * @method PluginRelease       setSummary()             Sets the current record's "summary" value
+ * @method PluginRelease       setStability()           Sets the current record's "stability" value
+ * @method PluginRelease       setReadme()              Sets the current record's "readme" value
+ * @method PluginRelease       setDependencies()        Sets the current record's "dependencies" value
+ * @method PluginRelease       setPlugin()              Sets the current record's "Plugin" value
+ * @method PluginRelease       setDependencies()        Sets the current record's "Dependencies" collection
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
+ * @package    plugintracker
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BasePluginRelease extends sfDoctrineRecord
 {
@@ -49,37 +52,43 @@ abstract class BasePluginRelease extends sfDoctrineRecord
         $this->setTableName('plugin_release');
         $this->hasColumn('plugin_id', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('version', 'string', 10, array(
              'type' => 'string',
-             'length' => '10',
+             'length' => 10,
              ));
         $this->hasColumn('date', 'timestamp', null, array(
              'type' => 'timestamp',
              ));
         $this->hasColumn('symfony_version_min', 'decimal', 5, array(
              'type' => 'decimal',
-             'length' => '5',
+             'length' => 5,
              'scale' => '1',
              ));
         $this->hasColumn('symfony_version_max', 'decimal', 5, array(
              'type' => 'decimal',
-             'length' => '5',
+             'length' => 5,
              'scale' => '1',
              ));
         $this->hasColumn('summary', 'clob', null, array(
              'type' => 'clob',
              ));
-        $this->hasColumn('stability', 'string', 30, array(
-             'type' => 'string',
-             'length' => '30',
+        $this->hasColumn('stability', 'enum', null, array(
+             'type' => 'enum',
+             'values' => 
+             array(
+              0 => 'alpha',
+              1 => 'beta',
+              2 => 'stable',
+             ),
              ));
         $this->hasColumn('readme', 'clob', null, array(
              'type' => 'clob',
              ));
         $this->hasColumn('dependencies', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
     }
 
@@ -88,6 +97,21 @@ abstract class BasePluginRelease extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('SymfonyPlugin as Plugin', array(
              'local' => 'plugin_id',
-             'foreign' => 'id'));
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
+        $this->hasMany('PluginReleaseDependency as Dependencies', array(
+             'local' => 'id',
+             'foreign' => 'release_id'));
+
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $sortable0 = new Doctrine_Template_Sortable(array(
+             'uniqueBy' => 
+             array(
+              0 => 'plugin_id',
+             ),
+             ));
+        $this->actAs($timestampable0);
+        $this->actAs($sortable0);
     }
 }

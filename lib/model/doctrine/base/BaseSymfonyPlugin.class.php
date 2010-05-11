@@ -20,7 +20,9 @@
  * @property Doctrine_Collection $Raters
  * @property PluginCategory $Category
  * @property Doctrine_Collection $Ratings
+ * @property Doctrine_Collection $PluginTags
  * @property Doctrine_Collection $Releases
+ * @property Doctrine_Collection $DependentReleases
  * 
  * @method string              getTitle()             Returns the current record's "title" value
  * @method clob                getDescription()       Returns the current record's "description" value
@@ -37,7 +39,9 @@
  * @method Doctrine_Collection getRaters()            Returns the current record's "Raters" collection
  * @method PluginCategory      getCategory()          Returns the current record's "Category" value
  * @method Doctrine_Collection getRatings()           Returns the current record's "Ratings" collection
+ * @method Doctrine_Collection getPluginTags()        Returns the current record's "PluginTags" collection
  * @method Doctrine_Collection getReleases()          Returns the current record's "Releases" collection
+ * @method Doctrine_Collection getDependentReleases() Returns the current record's "DependentReleases" collection
  * @method SymfonyPlugin       setTitle()             Sets the current record's "title" value
  * @method SymfonyPlugin       setDescription()       Sets the current record's "description" value
  * @method SymfonyPlugin       setUserId()            Sets the current record's "user_id" value
@@ -53,12 +57,14 @@
  * @method SymfonyPlugin       setRaters()            Sets the current record's "Raters" collection
  * @method SymfonyPlugin       setCategory()          Sets the current record's "Category" value
  * @method SymfonyPlugin       setRatings()           Sets the current record's "Ratings" collection
+ * @method SymfonyPlugin       setPluginTags()        Sets the current record's "PluginTags" collection
  * @method SymfonyPlugin       setReleases()          Sets the current record's "Releases" collection
+ * @method SymfonyPlugin       setDependentReleases() Sets the current record's "DependentReleases" collection
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
+ * @package    plugintracker
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseSymfonyPlugin extends sfDoctrineRecord
 {
@@ -69,18 +75,18 @@ abstract class BaseSymfonyPlugin extends sfDoctrineRecord
              'type' => 'string',
              'unique' => true,
              'notnull' => true,
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('description', 'clob', null, array(
              'type' => 'clob',
              ));
         $this->hasColumn('user_id', 'integer', 4, array(
              'type' => 'integer',
-             'length' => '4',
+             'length' => 4,
              ));
         $this->hasColumn('symfony_developer', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('category_id', 'integer', null, array(
              'type' => 'integer',
@@ -90,19 +96,19 @@ abstract class BaseSymfonyPlugin extends sfDoctrineRecord
              ));
         $this->hasColumn('repository', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('image', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('homepage', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('ticketing', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('featured', 'boolean', null, array(
              'type' => 'boolean',
@@ -129,9 +135,17 @@ abstract class BaseSymfonyPlugin extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'symfony_plugin_id'));
 
+        $this->hasMany('PluginTag as PluginTags', array(
+             'local' => 'id',
+             'foreign' => 'plugin_id'));
+
         $this->hasMany('PluginRelease as Releases', array(
              'local' => 'id',
              'foreign' => 'plugin_id'));
+
+        $this->hasMany('PluginReleaseDependency as DependentReleases', array(
+             'local' => 'id',
+             'foreign' => 'dependency_id'));
 
         $sluggable0 = new Doctrine_Template_Sluggable();
         $timestampable0 = new Doctrine_Template_Timestampable();

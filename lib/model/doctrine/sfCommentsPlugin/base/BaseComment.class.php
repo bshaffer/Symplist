@@ -10,20 +10,26 @@
  * @property boolean $approved
  * @property timestamp $approved_at
  * @property integer $user_id
+ * @property integer $authenticated_user_id
+ * @property sfGuardUser $AuthenticatedUser
  * @property Commenter $Commenter
  * 
- * @method integer   getId()          Returns the current record's "id" value
- * @method clob      getBody()        Returns the current record's "body" value
- * @method boolean   getApproved()    Returns the current record's "approved" value
- * @method timestamp getApprovedAt()  Returns the current record's "approved_at" value
- * @method integer   getUserId()      Returns the current record's "user_id" value
- * @method Commenter getCommenter()   Returns the current record's "Commenter" value
- * @method Comment   setId()          Sets the current record's "id" value
- * @method Comment   setBody()        Sets the current record's "body" value
- * @method Comment   setApproved()    Sets the current record's "approved" value
- * @method Comment   setApprovedAt()  Sets the current record's "approved_at" value
- * @method Comment   setUserId()      Sets the current record's "user_id" value
- * @method Comment   setCommenter()   Sets the current record's "Commenter" value
+ * @method integer     getId()                    Returns the current record's "id" value
+ * @method clob        getBody()                  Returns the current record's "body" value
+ * @method boolean     getApproved()              Returns the current record's "approved" value
+ * @method timestamp   getApprovedAt()            Returns the current record's "approved_at" value
+ * @method integer     getUserId()                Returns the current record's "user_id" value
+ * @method integer     getAuthenticatedUserId()   Returns the current record's "authenticated_user_id" value
+ * @method sfGuardUser getAuthenticatedUser()     Returns the current record's "AuthenticatedUser" value
+ * @method Commenter   getCommenter()             Returns the current record's "Commenter" value
+ * @method Comment     setId()                    Sets the current record's "id" value
+ * @method Comment     setBody()                  Sets the current record's "body" value
+ * @method Comment     setApproved()              Sets the current record's "approved" value
+ * @method Comment     setApprovedAt()            Sets the current record's "approved_at" value
+ * @method Comment     setUserId()                Sets the current record's "user_id" value
+ * @method Comment     setAuthenticatedUserId()   Sets the current record's "authenticated_user_id" value
+ * @method Comment     setAuthenticatedUser()     Sets the current record's "AuthenticatedUser" value
+ * @method Comment     setCommenter()             Sets the current record's "Commenter" value
  * 
  * @package    plugintracker
  * @subpackage model
@@ -53,11 +59,19 @@ abstract class BaseComment extends sfDoctrineRecord
         $this->hasColumn('user_id', 'integer', null, array(
              'type' => 'integer',
              ));
+        $this->hasColumn('authenticated_user_id', 'integer', 4, array(
+             'type' => 'integer',
+             'length' => 4,
+             ));
     }
 
     public function setUp()
     {
         parent::setUp();
+        $this->hasOne('sfGuardUser as AuthenticatedUser', array(
+             'local' => 'authenticated_user_id',
+             'foreign' => 'id'));
+
         $this->hasOne('Commenter', array(
              'local' => 'user_id',
              'foreign' => 'id'));

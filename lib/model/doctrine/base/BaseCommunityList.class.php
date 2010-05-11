@@ -25,10 +25,10 @@
  * @method CommunityList       setUser()         Sets the current record's "User" value
  * @method CommunityList       setItems()        Sets the current record's "Items" collection
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
+ * @package    plugintracker
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseCommunityList extends sfDoctrineRecord
 {
@@ -38,7 +38,7 @@ abstract class BaseCommunityList extends sfDoctrineRecord
         $this->hasColumn('title', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('description', 'clob', null, array(
              'type' => 'clob',
@@ -49,7 +49,7 @@ abstract class BaseCommunityList extends sfDoctrineRecord
         $this->hasColumn('submitted_by', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => '4',
+             'length' => 4,
              ));
     }
 

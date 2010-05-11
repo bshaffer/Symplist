@@ -12,9 +12,9 @@
  * @property PluginAuthor $User
  * @property PluginCategory $Category
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
+ * @package    plugintracker
+ * @subpackage model
+ * @author     Your name here
  * @version    SVN: $Id: Builder.php 5925 2009-06-22 21:27:17Z jwage $
  */
 abstract class BasePlugin extends sfDoctrineRecord

@@ -15,6 +15,7 @@
  * @property timestamp $last_login
  * @property Doctrine_Collection $groups
  * @property Doctrine_Collection $permissions
+ * @property Doctrine_Collection $Comment
  * @property Doctrine_Collection $sfGuardUserPermission
  * @property Doctrine_Collection $sfGuardUserGroup
  * @property sfGuardRememberKey $RememberKeys
@@ -34,6 +35,7 @@
  * @method timestamp           getLastLogin()             Returns the current record's "last_login" value
  * @method Doctrine_Collection getGroups()                Returns the current record's "groups" collection
  * @method Doctrine_Collection getPermissions()           Returns the current record's "permissions" collection
+ * @method Doctrine_Collection getComment()               Returns the current record's "Comment" collection
  * @method Doctrine_Collection getSfGuardUserPermission() Returns the current record's "sfGuardUserPermission" collection
  * @method Doctrine_Collection getSfGuardUserGroup()      Returns the current record's "sfGuardUserGroup" collection
  * @method sfGuardRememberKey  getRememberKeys()          Returns the current record's "RememberKeys" value
@@ -52,6 +54,7 @@
  * @method sfGuardUser         setLastLogin()             Sets the current record's "last_login" value
  * @method sfGuardUser         setGroups()                Sets the current record's "groups" collection
  * @method sfGuardUser         setPermissions()           Sets the current record's "permissions" collection
+ * @method sfGuardUser         setComment()               Sets the current record's "Comment" collection
  * @method sfGuardUser         setSfGuardUserPermission() Sets the current record's "sfGuardUserPermission" collection
  * @method sfGuardUser         setSfGuardUserGroup()      Sets the current record's "sfGuardUserGroup" collection
  * @method sfGuardUser         setRememberKeys()          Sets the current record's "RememberKeys" value
@@ -130,6 +133,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'refClass' => 'sfGuardUserPermission',
              'local' => 'user_id',
              'foreign' => 'permission_id'));
+
+        $this->hasMany('Comment', array(
+             'local' => 'id',
+             'foreign' => 'authenticated_user_id'));
 
         $this->hasMany('sfGuardUserPermission', array(
              'local' => 'id',
