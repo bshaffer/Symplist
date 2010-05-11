@@ -1,7 +1,7 @@
 <?php
 
 function markdown_preview_link($field) {
-    use_helper('Form', 'JavascriptBase');
+    use_helper('JavascriptBase');
   use_stylesheet('/csDoctrineMarkdownPlugin/css/markdown.css');
   $submit = content_tag('a', 'Preview', array('href' => '#', 'onclick' => 'javascript:markdown_preview(this);return false'));
   $js = javascript_tag(sprintf(<<<EOF

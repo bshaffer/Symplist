@@ -1,5 +1,3 @@
-<?php use_helper('Form') ?>
-
 <?php foreach ($featured as $plugin): ?>
   <div class="featured grid_3 alpha">
     <?php include_partial('plugin/plugin', array('plugin' => $plugin)) ?>

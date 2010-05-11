@@ -1,7 +1,6 @@
-<?php use_helper('Form') ?>
-<?php echo form_tag('sfLucene/search', array('class' => 'search-controls')) ?>
+<?php echo $form->renderFormTag('sfLucene/search', array('class' => 'search-controls')) ?>
 <div class='form_query'>
   <?php echo $form['query'] ?>
 </div>
-<?php echo submit_tag('go') ?>
+<input type="submit" value="go"></input>
 </form>

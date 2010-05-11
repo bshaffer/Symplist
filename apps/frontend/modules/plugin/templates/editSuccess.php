@@ -11,8 +11,9 @@
     <?php echo $form['image']->renderRow() ?>
     <?php echo $form['homepage']->renderRow() ?>
   </table>
-  <?php echo submit_tag('Submit', array('class' => 'button')) ?>
-  <?php echo submit_tag('Back', array('class' => 'button', 'onclick' => 'window.location = "'.url_for('@plugin?title='.$plugin['title']).'";return false;')) ?>  
+
+  <input type="submit" value="Submit" class="button"></input>
+  <input type="submit" value="Back" class="button" onclick="window.location = '<?php echo url_for('@plugin?title='.$plugin['title']) ?>';return false;"></input>
 </form>
 
 <?php echo jq_attachments_admin(new SymfonyPluginForm($plugin)) ?>

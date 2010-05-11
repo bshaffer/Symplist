@@ -1,6 +1,4 @@
-<?php use_helper('Form') ?>
-
-<?php echo form_tag('@author_edit?username='.$user['username'], array('class' => 'edit_user_form')) ?>
+<?php echo $userform->formTagFor(url_for('@author_edit?username='.$user['username']), array('class' => 'edit_user_form')) ?>
 <h3>User Information</h3>
 <table>
 <?php echo $userform ?>
@@ -11,6 +9,7 @@
 <?php echo $profileform ?>
 </table>
 
-<?php echo submit_tag('Save') ?>
+<input type="submit" value="Save"></input>
+
 <?php echo link_to('Cancel', '@author?username='.$user['username']) ?>
 </form>

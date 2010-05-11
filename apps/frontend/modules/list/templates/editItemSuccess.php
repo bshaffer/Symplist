@@ -7,7 +7,10 @@
   <table>
     <?php echo $form ?>
   </table>
-  <?php echo submit_tag('Save') ?>
+
+  <input type="submit" value="Save"></input>
+
+  <?php echo submit_tag('') ?>
   <?php echo markdown_preview_link('community_list_item[body]') ?>
   <?php echo link_to('Cancel', '@community_list?slug='.$item['List']['slug']) ?>
 </form>

@@ -20,8 +20,7 @@
         <?php echo $commentForm['body'] ?>
     <?php endif ?>  
   
-
-    <?php echo submit_tag('Add'); ?>
+    <input type="submit" value="Add"></input>
   
     <span id='indicator' style='display:none'>Loading...</span>
   </form>

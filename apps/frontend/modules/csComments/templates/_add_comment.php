@@ -1,4 +1,3 @@
-<?php use_helper('Form') ?>
 <div id='add-comment-form'>
   <h3>Add New Comment</h3>
   <?php use_helper('jQuery') ?>
@@ -10,10 +9,10 @@
                         'complete'  => "$('#comment-indicator').hide();$('#submit-comment-button').show();"
     )) ?>
 
-    <?php echo input_hidden_tag('return_uri', $sf_request->getParameter('return_uri')); ?>
-    <?php echo input_hidden_tag('comment_id', $sf_request->getParameter('comment_id')); ?>
-    <?php echo input_hidden_tag('model', $sf_request->getParameter('model')); ?>
-    <?php echo input_hidden_tag('record_id', $sf_request->getParameter('record_id')); ?>
+    <input type='hidden' name='return_uri' value="<?php echo $sf_request->getParameter('return_uri') ?>" />
+    <input type='hidden' name='comment_id' value="<?php echo $sf_request->getParameter('comment_id') ?>" />
+    <input type='hidden' name='model' value="<?php echo $sf_request->getParameter('model') ?>" />
+    <input type='hidden' name='record_id' value="<?php echo $sf_request->getParameter('record_id') ?>" />
   
   
     <?php if(isset($commentForm)): ?>
@@ -31,7 +30,7 @@
       <?php echo $commentForm['body'] ?>
     <?php endif ?>    
 
-    <?php echo submit_tag('Add', array('class' => 'button', 'id' => 'submit-comment-button')); ?>
+    <input type="submit" class="Add" value="Submit" id="submit-comment-button"></input>
   
     <span id='comment-indicator' style='display:none'>
       <?php echo image_tag('ajax-loader.gif', array('alt' => 'Loading...')) ?>

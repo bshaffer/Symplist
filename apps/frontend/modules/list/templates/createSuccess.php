@@ -1,13 +1,14 @@
-<?php use_helper('Form', 'jQuery', 'Markdown') ?>
+<?php use_helper('jQuery', 'Markdown') ?>
 
-<?php echo form_tag('@list_create') ?>
+<?php echo $form->renderFormTag(url_for('@list_create')) ?>
   <?php echo $form ?>
   <div id='list-items'>
     <?php foreach ($item_forms as $item_form): ?>
       <?php echo $item_form ?>
     <?php endforeach ?>
   </div>
-  <?php echo submit_tag('Save', array('class' => 'button')) ?>
+
+  <input type="submit" class="button" value="Add"></input>
   
   <?php echo markdown_preview_link('community_list[description]') ?>    
 

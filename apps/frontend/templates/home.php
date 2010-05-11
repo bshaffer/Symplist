@@ -38,7 +38,7 @@
     <?php echo form_tag('@plugin_search', array('id' => 'search')) ?>
       <fieldset>
         <label for="search-field">Type &amp; search for a plugin...</label>
-        <?php echo input_tag('q', '', array('id' => 'search-field', 'autocomplete' => 'off')) ?>
+        <input name="q" type="text" id="search-field" autocomplete="off"></input>
         <span id='indicator' style='display:none'><?php echo image_tag('ajax-loader.gif') ?></span>
       </fieldset>
     </form>

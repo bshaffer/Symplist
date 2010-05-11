@@ -3,10 +3,9 @@
 
 <p>Questions? Hate-Mail? We appreciate any contact with the outside world, regardless of motive.</p>
 
-<?php use_helper('Form') ?>
-<?php echo form_tag('@contact', array('class' => 'contact-form')) ?>
+<?php echo $form->renderFormTag(url_for('@contact'), array('class' => 'contact-form')) ?>
 <table>
   <?php echo $form ?>
 </table>
-<?php echo submit_tag('Send', array('class' => 'button')) ?>
+<input type="submit" class="button" value="Send"></input>
 </form>

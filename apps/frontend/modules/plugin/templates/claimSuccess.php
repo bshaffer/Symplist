@@ -4,4 +4,5 @@
 
 <em>Please only register plugins you are the lead developer of.  Be considerate!</em>
 <?php echo form_tag('@plugin_claim?title='.$plugin['title']) ?>
-<?php echo submit_tag('Register') ?>
+
+<input type="submit" value="Register"></input>
