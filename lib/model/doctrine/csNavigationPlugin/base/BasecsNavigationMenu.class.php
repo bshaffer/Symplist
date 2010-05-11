@@ -19,10 +19,10 @@
  * @method csNavigationMenu setRootId()         Sets the current record's "root_id" value
  * @method csNavigationMenu setNavigationRoot() Sets the current record's "NavigationRoot" value
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
+ * @package    plugintracker
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BasecsNavigationMenu extends sfDoctrineRecord
 {
@@ -31,11 +31,11 @@ abstract class BasecsNavigationMenu extends sfDoctrineRecord
         $this->setTableName('cs_navigation_menu');
         $this->hasColumn('title', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('description', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('root_id', 'integer', null, array(
              'type' => 'integer',

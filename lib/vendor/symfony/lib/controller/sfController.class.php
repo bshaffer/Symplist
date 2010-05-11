@@ -16,7 +16,7 @@
  * @subpackage controller
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Sean Kerr <sean@code-box.org>
- * @version    SVN: $Id: sfController.class.php 24007 2009-11-16 12:37:29Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfController.class.php 29000 2010-04-06 17:53:15Z Kris.Wallsmith $
  */
 abstract class sfController
 {
@@ -24,7 +24,8 @@ abstract class sfController
     $context           = null,
     $dispatcher        = null,
     $controllerClasses = array(),
-    $renderMode        = sfView::RENDER_CLIENT;
+    $renderMode        = sfView::RENDER_CLIENT,
+    $maxForwards       = 5;
 
   /**
    * Class constructor.
@@ -98,6 +99,9 @@ abstract class sfController
         throw new sfConfigurationException(sprintf('The module "%s" is not enabled.', $moduleName));
       }
 
+      // check for a module generator config file
+      $this->context->getConfigCache()->import('modules/'.$moduleName.'/config/generator.yml', false, true);
+
       // one action per file or one file for all actions
       $classFile   = strtolower($extension);
       $classSuffix = ucfirst(strtolower($extension));
@@ -165,7 +169,6 @@ abstract class sfController
    * @throws sfForwardException        If an error occurs while forwarding the request
    * @throws sfError404Exception       If the action not exist
    * @throws sfInitializationException If the action could not be initialized
-   * @throws sfSecurityException       If the action requires security but the user implementation is not of type sfSecurityUser
    */
   public function forward($moduleName, $actionName)
   {
@@ -173,7 +176,7 @@ abstract class sfController
     $moduleName = preg_replace('/[^a-z0-9_]+/i', '', $moduleName);
     $actionName = preg_replace('/[^a-z0-9_]+/i', '', $actionName);
 
-    if ($this->getActionStack()->getSize() >= 5)
+    if ($this->getActionStack()->getSize() >= $this->maxForwards)
     {
       // let's kill this party before it turns into cpu cycle hell
       throw new sfForwardException('Too many forwards have been detected for this request.');
@@ -201,12 +204,6 @@ abstract class sfController
 
     // include module configuration
     require($this->context->getConfigCache()->checkConfig('modules/'.$moduleName.'/config/module.yml'));
-
-    // check if this module is internal
-    if ($this->getActionStack()->getSize() == 1 && sfConfig::get('mod_'.strtolower($moduleName).'_is_internal') && !sfConfig::get('sf_test'))
-    {
-      throw new sfConfigurationException(sprintf('Action "%s" from module "%s" cannot be called directly.', $actionName, $moduleName));
-    }
 
     // module enabled?
     if (sfConfig::get('mod_'.strtolower($moduleName).'_enabled'))
@@ -365,29 +362,6 @@ abstract class sfController
     }
 
     return new $class($this->context, $moduleName, $actionName, $viewName);
-  }
-
-  /**
-   * [DEPRECATED] Sends and email.
-   *
-   * This methods calls a module/action with the sfMailView class.
-   *
-   * @param  string  $module  A module name
-   * @param  string  $action  An action name
-   *
-   * @return string The generated mail content
-   *
-   * @see sfMailView, getPresentationFor(), sfController
-   * @deprecated 1.1
-   */
-  public function sendEmail($module, $action)
-  {
-    if (sfConfig::get('sf_logging_enabled'))
-    {
-      $this->dispatcher->notify(new sfEvent($this, 'application.log', array('sendEmail method is deprecated', 'priority' => sfLogger::ERR)));
-    }
-
-    return $this->getPresentationFor($module, $action, 'sfMail');
   }
 
   /**

@@ -16,15 +16,8 @@
  *
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the LGPL. For more information, see
- * <http://www.phpdoctrine.org>.
+ * <http://www.doctrine-project.org>.
  */
-
-if ( ! class_exists('sfYaml', false)) {
-    require_once dirname(__FILE__) . '/../../vendor/sfYaml/sfYaml.php';
-    require_once dirname(__FILE__) . '/../../vendor/sfYaml/sfYamlDumper.php';
-    require_once dirname(__FILE__) . '/../../vendor/sfYaml/sfYamlInline.php';
-    require_once dirname(__FILE__) . '/../../vendor/sfYaml/sfYamlParser.php';
-}
 
 /**
  * Doctrine_Parser_Yml
@@ -32,7 +25,7 @@ if ( ! class_exists('sfYaml', false)) {
  * @package     Doctrine
  * @subpackage  Parser
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
- * @link        www.phpdoctrine.org
+ * @link        www.doctrine-project.org
  * @since       1.0
  * @version     $Revision: 1080 $
  * @author      Jonathan H. Wage <jwage@mac.com>, Thomas Courbon <harthie@yahoo.fr>
@@ -50,7 +43,7 @@ class Doctrine_Parser_Yml extends Doctrine_Parser
      * @return string $yaml
      * @return void
      */
-    public function dumpData($array, $path = null)
+    public function dumpData($array, $path = null, $charset = null)
     {
 
         try {

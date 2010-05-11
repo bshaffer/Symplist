@@ -28,10 +28,10 @@
  * @method SeoPage setChangeFreq()           Sets the current record's "changeFreq" value
  * @method SeoPage setExcludeFromSitemap()   Sets the current record's "exclude_from_sitemap" value
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
+ * @package    plugintracker
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseSeoPage extends sfDoctrineRecord
 {
@@ -40,18 +40,18 @@ abstract class BaseSeoPage extends sfDoctrineRecord
         $this->setTableName('seo_page');
         $this->hasColumn('url', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('title', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('description', 'clob', null, array(
              'type' => 'clob',
              ));
         $this->hasColumn('keywords', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('priority', 'decimal', null, array(
              'type' => 'decimal',
@@ -81,7 +81,8 @@ abstract class BaseSeoPage extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $timestampable0 = new Doctrine_Template_Timestampable();
+        $timestampable0 = new Doctrine_Template_Timestampable(array(
+             ));
         $this->actAs($timestampable0);
     }
 }

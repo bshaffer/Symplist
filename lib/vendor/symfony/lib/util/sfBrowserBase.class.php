@@ -16,7 +16,7 @@
  * @package    symfony
  * @subpackage util
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfBrowserBase.class.php 23901 2009-11-14 13:33:03Z bschussek $
+ * @version    SVN: $Id: sfBrowserBase.class.php 28702 2010-03-23 12:02:01Z fabien $
  */
 abstract class sfBrowserBase
 {
@@ -186,7 +186,7 @@ abstract class sfBrowserBase
    */
   public function get($uri, $parameters = array(), $changeStack = true)
   {
-    return $this->call($uri, 'get', $parameters);
+    return $this->call($uri, 'get', $parameters, $changeStack);
   }
 
   /**
@@ -200,7 +200,7 @@ abstract class sfBrowserBase
    */
   public function post($uri, $parameters = array(), $changeStack = true)
   {
-    return $this->call($uri, 'post', $parameters);
+    return $this->call($uri, 'post', $parameters, $changeStack);
   }
 
   /**
@@ -805,6 +805,11 @@ abstract class sfBrowserBase
     $xpath = $this->getResponseDomXpath();
     foreach ($xpath->query('descendant::input | descendant::textarea | descendant::select', $item) as $element)
     {
+      if ($element->hasAttribute('disabled'))
+      {
+        continue;
+      }
+
       $elementName = $element->getAttribute('name');
       $nodeName    = $element->nodeName;
       $value       = null;
@@ -922,7 +927,7 @@ abstract class sfBrowserBase
       {
         $var = &$var[$tmp];
       }
-      if ($var)
+      if ($var && '[]' === substr($name, -2))
       {
         if (!is_array($var))
         {

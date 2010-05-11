@@ -16,7 +16,7 @@ require_once(dirname(__FILE__).'/sfDoctrineBaseTask.class.php');
  * @package    symfony
  * @subpackage doctrine
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfDoctrineGenerateModuleTask.class.php 23930 2009-11-14 16:18:20Z FabianLange $
+ * @version    SVN: $Id: sfDoctrineGenerateModuleTask.class.php 24637 2009-12-01 05:06:21Z Kris.Wallsmith $
  */
 class sfDoctrineGenerateModuleTask extends sfDoctrineBaseTask
 {
@@ -44,7 +44,6 @@ class sfDoctrineGenerateModuleTask extends sfDoctrineBaseTask
       new sfCommandOption('actions-base-class', null, sfCommandOption::PARAMETER_REQUIRED, 'The base class for the actions', 'sfActions'),
     ));
 
-    $this->aliases = array('doctrine-generate-crud', 'doctrine:generate-crud');
     $this->namespace = 'doctrine';
     $this->name = 'generate-module';
     $this->briefDescription = 'Generates a Doctrine module';
@@ -96,10 +95,6 @@ EOF;
 
     $method = $options['generate-in-cache'] ? 'executeInit' : 'executeGenerate';
 
-    // for backwarads compatibility symfony uses the model name as singular and plural form if none specified (#5640)
-    $options['singular']  = $options['singular'] ? $options['singular'] : $arguments['model'];
-    $options['plural']  = $options['plural'] ? $options['plural'] : $arguments['model'].'s';
-
     $this->$method($arguments, $options);
   }
 
@@ -114,10 +109,11 @@ EOF;
       'theme'                 => $options['theme'],
       'non_verbose_templates' => $options['non-verbose-templates'],
       'with_show'             => $options['with-show'],
-      'singular'              => $options['singular'],
-      'plural'                => $options['plural'],
+      'singular'              => $options['singular'] ? $options['singular'] : sfInflector::underscore($arguments['model']),
+      'plural'                => $options['plural'] ? $options['plural'] : sfInflector::underscore($arguments['model'].'s'),
       'route_prefix'          => $options['route-prefix'],
       'with_doctrine_route'   => $options['with-doctrine-route'],
+      'actions_base_class'    => $options['actions-base-class'],
     ));
 
     $moduleDir = sfConfig::get('sf_app_module_dir').'/'.$arguments['module'];

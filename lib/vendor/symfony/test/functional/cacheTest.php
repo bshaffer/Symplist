@@ -472,6 +472,35 @@ $b->
   end()
 ;
 
+$b->get('/')
+  ->with('view_cache')->isUriCached('cache/list', false)
+  ->get('/cache/list')
+  ->with('view_cache')->isUriCached('cache/list', true)
+
+  // include GET parameters
+  ->with('view_cache')->isUriCached('cache/list?page=10', false)
+  ->get('/cache/list?page=10')
+  ->with('response')->checkElement('#page', '10')
+  ->with('view_cache')->isUriCached('cache/list?page=10', true)
+
+  // include different GET parameters
+  ->with('view_cache')->isUriCached('cache/list?page=20', false)
+  ->get('/cache/list?page=20')
+  ->with('response')->checkElement('#page', '20')
+  ->with('view_cache')->isUriCached('cache/list?page=20', true)
+;
+
+// check for 304 response
+sfConfig::set('LAST_MODIFIED', strtotime('2010-01-01'));
+$b->get('/cache/lastModifiedResponse')
+  ->with('response')->isStatusCode(200)
+;
+
+$b->setHttpHeader('If-Modified-Since', sfWebResponse::getDate(sfConfig::get('LAST_MODIFIED')))
+  ->get('/cache/lastModifiedResponse')
+  ->with('response')->isStatusCode(304)
+;
+
 // test with sfFileCache class (default)
 $b->launch();
 

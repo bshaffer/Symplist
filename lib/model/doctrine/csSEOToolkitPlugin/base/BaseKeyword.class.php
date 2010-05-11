@@ -10,10 +10,10 @@
  * @method string  getName() Returns the current record's "name" value
  * @method Keyword setName() Sets the current record's "name" value
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
+ * @package    plugintracker
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseKeyword extends sfDoctrineRecord
 {
@@ -24,7 +24,7 @@ abstract class BaseKeyword extends sfDoctrineRecord
              'type' => 'string',
              'unique' => true,
              'notnull' => true,
-             'length' => '255',
+             'length' => 255,
              ));
     }
 

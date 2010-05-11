@@ -8,7 +8,7 @@
  * @package    plugintracker
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24171 2009-11-19 16:37:50Z Kris.Wallsmith $
  */
 abstract class BaseSymfonyPluginForm extends BaseFormDoctrine
 {
@@ -53,7 +53,10 @@ abstract class BaseSymfonyPluginForm extends BaseFormDoctrine
     ));
 
     $this->validatorSchema->setPostValidator(
-      new sfValidatorDoctrineUnique(array('model' => 'SymfonyPlugin', 'column' => array('title')))
+      new sfValidatorAnd(array(
+        new sfValidatorDoctrineUnique(array('model' => 'SymfonyPlugin', 'column' => array('title'))),
+        new sfValidatorDoctrineUnique(array('model' => 'SymfonyPlugin', 'column' => array('slug'))),
+      ))
     );
 
     $this->widgetSchema->setNameFormat('symfony_plugin[%s]');

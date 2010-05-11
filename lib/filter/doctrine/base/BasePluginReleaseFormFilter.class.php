@@ -6,7 +6,7 @@
  * @package    plugintracker
  * @subpackage filter
  * @author     Your name here
- * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 24171 2009-11-19 16:37:50Z Kris.Wallsmith $
  */
 abstract class BasePluginReleaseFormFilter extends BaseFormFilterDoctrine
 {
@@ -19,9 +19,12 @@ abstract class BasePluginReleaseFormFilter extends BaseFormFilterDoctrine
       'symfony_version_min' => new sfWidgetFormFilterInput(),
       'symfony_version_max' => new sfWidgetFormFilterInput(),
       'summary'             => new sfWidgetFormFilterInput(),
-      'stability'           => new sfWidgetFormFilterInput(),
+      'stability'           => new sfWidgetFormChoice(array('choices' => array('' => '', 'alpha' => 'alpha', 'beta' => 'beta', 'stable' => 'stable'))),
       'readme'              => new sfWidgetFormFilterInput(),
       'dependencies'        => new sfWidgetFormFilterInput(),
+      'created_at'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'updated_at'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'position'            => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -31,9 +34,12 @@ abstract class BasePluginReleaseFormFilter extends BaseFormFilterDoctrine
       'symfony_version_min' => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'symfony_version_max' => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'summary'             => new sfValidatorPass(array('required' => false)),
-      'stability'           => new sfValidatorPass(array('required' => false)),
+      'stability'           => new sfValidatorChoice(array('required' => false, 'choices' => array('alpha' => 'alpha', 'beta' => 'beta', 'stable' => 'stable'))),
       'readme'              => new sfValidatorPass(array('required' => false)),
       'dependencies'        => new sfValidatorPass(array('required' => false)),
+      'created_at'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'updated_at'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'position'            => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('plugin_release_filters[%s]');
@@ -60,9 +66,12 @@ abstract class BasePluginReleaseFormFilter extends BaseFormFilterDoctrine
       'symfony_version_min' => 'Number',
       'symfony_version_max' => 'Number',
       'summary'             => 'Text',
-      'stability'           => 'Text',
+      'stability'           => 'Enum',
       'readme'              => 'Text',
       'dependencies'        => 'Text',
+      'created_at'          => 'Date',
+      'updated_at'          => 'Date',
+      'position'            => 'Number',
     );
   }
 }

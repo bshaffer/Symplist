@@ -10,7 +10,7 @@
 
 require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 
-$t = new lime_test(154);
+$t = new lime_test(162);
 
 class FormTest extends sfForm
 {
@@ -82,6 +82,31 @@ class TestForm3 extends FormTest
   }
 }
 
+class TestForm4 extends FormTest
+{
+  public function configure()
+  {
+    $this->enableLocalCSRFProtection($this->getOption('csrf_secret'));
+  }
+}
+
+class NumericFieldsForm extends sfForm
+{
+  public function configure()
+  {
+    $this->setWidgets(array(
+      '5' => new sfWidgetFormInputText(),
+    ));
+
+    $this->setValidators(array(
+      '5' => new sfValidatorString(),
+    ));
+
+    $this->widgetSchema->setLabels(array('5' => 'label'.$this->getOption('salt')));
+    $this->widgetSchema->setHelps(array('5' => 'help'.$this->getOption('salt')));
+  }
+}
+
 sfForm::disableCSRFProtection();
 
 // __construct()
@@ -105,12 +130,13 @@ $t->ok(!$f->isCSRFProtected(), '__construct() can disable the CSRF protection by
 $f = new FormTest();
 $t->ok($f->isCSRFProtected(), '__construct() uses CSRF protection if null is passed as the second argument and it\'s enabled globally');
 
-// ->getOption() ->setOption()
+// ->getOption() ->setOption() ->getOptions()
 $t->diag('->getOption() ->setOption()');
 $f = new FormTest(array(), array('foo' => 'bar'));
 $t->is($f->getOption('foo'), 'bar', '__construct takes an option array as its second argument');
 $f->setOption('bar', 'foo');
 $t->is($f->getOption('bar'), 'foo', '->setOption() changes the value of an option');
+$t->is_deeply($f->getOptions(), array('foo' => 'bar', 'bar' => 'foo'), '->getOptions() returns all options');
 
 sfForm::disableCSRFProtection();
 
@@ -174,9 +200,15 @@ sfForm::enableCSRFProtection();
 $t->ok(!$f->isCSRFProtected(),'->disableLocalCSRFProtection() disabled CSRF protection for the current form, even if the global CSRF protection is enabled');
 $f = new TestForm3(array(), array(), 'foo');
 $t->ok(!$f->isCSRFProtected(),'->disableLocalCSRFProtection() disabled CSRF protection for the current form, even a CSRF secret is provided in the constructor');
+sfForm::disableCSRFProtection();
+$f = new TestForm4();
+$t->ok($f->isCSRFProtected(), '->enableLocalCSRFProtection() enables CSRF protection when passed null and global CSRF is disabled');
+$f = new TestForm4(array(), array('csrf_secret' => '**localsecret**'));
+$t->ok($f->isCSRFProtected(), '->enableLocalCSRFProtection() enables CSRF protection when passed a string global CSRF is disabled');
 
 // ::getCSRFFieldName() ::setCSRFFieldName()
 $t->diag('::getCSRFFieldName() ::setCSRFFieldName()');
+sfForm::enableCSRFProtection();
 sfForm::setCSRFFieldName('_token_');
 $f = new FormTest();
 $v = $f->getValidatorSchema();
@@ -896,6 +928,14 @@ $f2->mergeForm($f1);
 
 $t->is_deeply(array_keys($f2->getWidgetSchema()->getFields()), array('c', 'd', 'b', 'a'), 'mergeForm() merges fields in the correct order');
 
+$f1 = new NumericFieldsForm(array('5' => 'default1'), array('salt' => '1'));
+$f2 = new NumericFieldsForm(array('5' => 'default2'), array('salt' => '2'));
+$f1->mergeForm($f2);
+
+$t->is_deeply($f1->getDefaults(), array('5' => 'default2'), '->mergeForm() merges numeric defaults');
+$t->is_deeply($f1->getWidgetSchema()->getLabels(), array('5' => 'label2'), '->mergeForm() merges numeric labels');
+$t->is_deeply($f1->getWidgetSchema()->getHelps(), array('5' => 'help2'), '->mergeForm() merges numeric helps');
+
 // ->getJavaScripts() ->getStylesheets()
 $t->diag('->getJavaScripts() ->getStylesheets()');
 
@@ -929,3 +969,11 @@ $f->setWidgets(array(
 ));
 $t->is($f->getJavaScripts(), array('/path/to/a/foo.js', '/path/to/a/bar.js'), '->getJavaScripts() returns the stylesheets of all widgets');
 $t->is($f->getStylesheets(), array('/path/to/a/foo.css' => 'all', '/path/to/a/bar.css' => 'all'), '->getStylesheets() returns the JavaScripts of all widgets');
+
+// ->getFormFieldSchema()
+$t->diag('->getFormFieldSchema()');
+
+$f = new NumericFieldsForm(array('5' => 'default'));
+$t->is_deeply($f->getFormFieldSchema()->getValue(), array('5' => 'default'), '->getFormFieldSchema() includes default numeric fields');
+$f->bind(array('5' => 'bound'));
+$t->is_deeply($f->getFormFieldSchema()->getValue(), array('5' => 'bound'), '->getFormFieldSchema() includes bound numeric fields');

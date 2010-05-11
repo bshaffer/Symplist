@@ -16,7 +16,7 @@
  *
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the LGPL. For more information, see
- * <http://www.phpdoctrine.org>.
+ * <http://www.doctrine-project.org>.
  */
 
 /**
@@ -26,7 +26,7 @@
  *
  * @package     Doctrine
  * @subpackage  Export
- * @link        www.phpdoctrine.org
+ * @link        www.doctrine-project.org
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @version     $Revision: 1838 $
  * @author      Nicolas Bérard-Nault <nicobn@gmail.com>
@@ -39,13 +39,15 @@ class Doctrine_Export_Schema
      * 
      * Build schema array that can be dumped to file
      *
-     * @param string $directory 
+     * @param string $directory  The directory of models to build the schema from
+     * @param array $models      The array of model names to build the schema for
+     * @param integer $modelLoading The model loading strategy to use to load the models from the passed directory
      * @return void
      */
-    public function buildSchema($directory = null, $models = array())
+    public function buildSchema($directory = null, $models = array(), $modelLoading = null)
     {
         if ($directory !== null) {
-            $loadedModels = Doctrine_Core::filterInvalidModels(Doctrine_Core::loadModels($directory));
+            $loadedModels = Doctrine_Core::filterInvalidModels(Doctrine_Core::loadModels($directory, $modelLoading));
         } else {
             $loadedModels = Doctrine_Core::getLoadedModels();
         }
@@ -135,12 +137,13 @@ class Doctrine_Export_Schema
      *
      * @param  string $schema 
      * @param  string $directory 
-     * @return string $string of data in the specified format
+     * @param string $string of data in the specified format
+     * @param integer $modelLoading The model loading strategy to use to load the models from the passed directory
      * @return void
      */
-    public function exportSchema($schema, $format = 'yml', $directory = null, $models = array())
+    public function exportSchema($schema, $format = 'yml', $directory = null, $models = array(), $modelLoading = null)
     {
-        $array = $this->buildSchema($directory, $models);
+        $array = $this->buildSchema($directory, $models, $modelLoading);
         
         if (is_dir($schema)) {
           $schema = $schema . DIRECTORY_SEPARATOR . 'schema.' . $format;

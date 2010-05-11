@@ -10,7 +10,7 @@
 
 require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
 
-$t = new lime_test(70);
+$t = new lime_test(73);
 
 // ->click()
 $t->diag('->click()');
@@ -56,6 +56,7 @@ $html = <<<EOF
     <form action="/myform" method="post">
       <input type="text" name="text_default_value" value="default" />
       <input type="text" name="text" value="" />
+      <input type="text" name="i_am_disabled" value="i_am_disabled" disabled="disabled" />
       <textarea name="textarea">content</textarea>
       <select name="select">
         <option value="first">first</option>
@@ -113,6 +114,16 @@ $html = <<<EOF
       <div><span>
         <button id="submit5">Click</button>
         <input type="image" src="myimage.png" alt="image submit" name="submit_image" value="image" />
+      </span></div>
+    </form>
+
+    <form action="/myform6" method="post">
+      <div><span>
+        <input type="text" name="foo[bar]" value="foo" />
+        <input type="text" name="foo[bar]" value="bar" />
+        <input type="text" name="bar" value="foo" />
+        <input type="text" name="bar" value="bar" />
+        <input type="submit" name="submit" value="submit6" />
       </span></div>
     </form>
 
@@ -223,6 +234,7 @@ $t->is($parameters['select_multiple'], array('first', 'selected', 'last'), '->cl
 $t->is($parameters['article']['title'], 'mytitle', '->click() can override array fields');
 $t->is($parameters['article']['category'], array(1, 2, 3), '->click() can override array fields');
 $t->is($parameters['article']['or']['much']['longer'], 'long', '->click() recognizes array names');
+$t->is(isset($parameters['i_am_disabled']), false, '->click() ignores disabled fields');
 
 list($method, $uri, $parameters) = $b->click('#clickable-link');
 $t->is($method, 'get', '->click() accepts a CSS selector');
@@ -327,3 +339,9 @@ $files = $b->getFiles();
 
 $t->is($files['myfile']['error'], UPLOAD_ERR_OK, 'existent file exists (UPLOAD_ERR_OK)');
 $t->is($files['myfile']['name'], basename($existentFilename), 'name key ok');
+
+// bug #7816
+$t->diag('bug #7816');
+list($method, $uri, $parameters) = $b->click('submit6');
+$t->is($parameters['bar'], 'bar', '->click() overrides input elements defined several times');
+$t->is($parameters['foo']['bar'], 'bar', '->click() overrides input elements defined several times');

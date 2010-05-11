@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage task
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfProjectOptimizeTask.class.php 24020 2009-11-16 15:30:38Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfProjectOptimizeTask.class.php 28715 2010-03-23 15:28:37Z fabien $
  */
 class sfProjectOptimizeTask extends sfBaseTask
 {
@@ -49,7 +49,7 @@ EOF;
   {
     $data = array();
     $modules = $this->findModules();
-    $target = sfConfig::get('sf_cache_dir').'/'.$arguments['application'].'/'.$arguments['environment'].'/config/configuration.php';
+    $target = sfConfig::get('sf_cache_dir').'/'.$arguments['application'].'/'.$arguments['env'].'/config/configuration.php';
 
     // remove existing optimization file
     if (file_exists($target))
@@ -171,9 +171,17 @@ EOF;
     $dirs = array(sfConfig::get('sf_app_module_dir'));
 
     // plugins
-    foreach ($this->configuration->getPluginPaths() as $path)
+    foreach ($this->configuration->getPluginSubPaths(DIRECTORY_SEPARATOR.'modules') as $path)
     {
-      $dirs[] = $path.'/modules';
+      // parse out the plugin name
+      if (preg_match("#plugins".DIRECTORY_SEPARATOR."([^".DIRECTORY_SEPARATOR."]+)".DIRECTORY_SEPARATOR."modules#", $path, $matches))
+      {
+        // plugin module enabled?
+        if (in_array($matches[1], sfConfig::get('sf_enabled_modules')))
+        {
+          $dirs[] = $path;
+        }
+      }
     }
 
     // core modules

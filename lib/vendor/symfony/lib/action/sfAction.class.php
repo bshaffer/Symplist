@@ -16,7 +16,7 @@
  * @subpackage action
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Sean Kerr <sean@code-box.org>
- * @version    SVN: $Id: sfAction.class.php 24043 2009-11-16 18:20:00Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfAction.class.php 24279 2009-11-23 15:21:18Z fabien $
  */
 abstract class sfAction extends sfComponent
 {
@@ -355,57 +355,6 @@ abstract class sfAction extends sfComponent
   }
 
   /**
-   * Retrieves the default view to be executed when a given request is not served by this action.
-   *
-   * @return string A string containing the view name associated with this action
-   *
-   * @throws sfConfigurationException If compat_10 is not enabled
-   */
-  public function getDefaultView()
-  {
-    if (!sfConfig::get('sf_compat_10'))
-    {
-      throw new sfConfigurationException('You must set "compat_10" to true if you want to use this method which is deprecated.');
-    }
-
-    return sfView::INPUT;
-  }
-
-  /**
-   * Executes any post-validation error application logic.
-   *
-   * @return string A string containing the view name associated with this action
-   *
-   * @throws sfConfigurationException If compat_10 is not enabled
-   */
-  public function handleError()
-  {
-    if (!sfConfig::get('sf_compat_10'))
-    {
-      throw new sfConfigurationException('You must set "compat_10" to true if you want to use this method which is deprecated.');
-    }
-
-    return sfView::ERROR;
-  }
-
-  /**
-   * Validates manually files and parameters.
-   *
-   * @return bool true, if validation completes successfully, otherwise false.
-   *
-   * @throws sfConfigurationException If compat_10 is not enabled
-   */
-  public function validate()
-  {
-    if (!sfConfig::get('sf_compat_10'))
-    {
-      throw new sfConfigurationException('You must set "compat_10" to true if you want to use this method which is deprecated.');
-    }
-
-    return true;
-  }
-
-  /**
    * Returns the security configuration for this module.
    *
    * @return string Current security configuration as an array
@@ -550,6 +499,11 @@ abstract class sfAction extends sfComponent
     sfConfig::set('mod_'.strtolower($this->getModuleName()).'_view_class', $class);
   }
 
+  /**
+   * Returns the current route for this request
+   *
+   * @return sfRoute The route for the request
+   */
   public function getRoute()
   {
     return $this->getRequest()->getAttribute('sf_route');

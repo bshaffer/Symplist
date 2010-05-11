@@ -18,7 +18,7 @@
  * @subpackage view
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Sean Kerr <sean@code-box.org>
- * @version    SVN: $Id: sfView.class.php 23917 2009-11-14 14:36:38Z bschussek $
+ * @version    SVN: $Id: sfView.class.php 28713 2010-03-23 15:08:22Z fabien $
  */
 abstract class sfView
 {
@@ -149,17 +149,6 @@ abstract class sfView
 
   protected function initializeAttributeHolder($attributes = array())
   {
-    if ('both' === sfConfig::get('sf_escaping_strategy'))
-    {
-      $this->dispatcher->notify(new sfEvent($this, 'application.log', array('Escaping strategy "both" is deprecated, please use "on".', 'priority' => sfLogger::ERR)));
-      sfConfig::set('sf_escaping_strategy', 'on');
-    }
-    else if ('bc' === sfConfig::get('sf_escaping_strategy'))
-    {
-      $this->dispatcher->notify(new sfEvent($this, 'application.log', array('Escaping strategy "bc" is deprecated, please use "off".', 'priority' => sfLogger::ERR)));
-      sfConfig::set('sf_escaping_strategy', 'off');
-    }
-
     $attributeHolder = new sfViewParameterHolder($this->dispatcher, $attributes, array(
       'escaping_method'   => sfConfig::get('sf_escaping_method'),
       'escaping_strategy' => sfConfig::get('sf_escaping_strategy'),
@@ -299,7 +288,7 @@ abstract class sfView
   /**
    * Indicates whether or not a parameter exist for the current view.
    *
-   * @param  string $name  Name of the paramater
+   * @param  string $name  Name of the parameter
    *
    * @return bool true, if the parameter exists otherwise false
    */
@@ -374,12 +363,6 @@ abstract class sfView
       {
         throw new sfRenderException(sprintf('The template "%s" does not exist or is unreadable in "%s".', $this->template, $this->directory));
       }
-    }
-
-    // check to see if this is a decorator template
-    if ($this->decorator && !is_readable($this->decoratorDirectory.'/'.$this->decoratorTemplate))
-    {
-      throw new sfRenderException(sprintf('The decorator template "%s" does not exist or is unreadable in "%s".', $this->decoratorTemplate, $this->decoratorDirectory));
     }
   }
 

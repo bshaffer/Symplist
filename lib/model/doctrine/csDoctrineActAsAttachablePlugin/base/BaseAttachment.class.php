@@ -25,10 +25,10 @@
  * @method Attachment setObjectId()     Sets the current record's "object_id" value
  * @method Attachment setObjectClass()  Sets the current record's "object_class" value
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
+ * @package    plugintracker
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseAttachment extends sfDoctrineRecord
 {
@@ -37,14 +37,14 @@ abstract class BaseAttachment extends sfDoctrineRecord
         $this->setTableName('attachment');
         $this->hasColumn('title', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('description', 'clob', null, array(
              'type' => 'clob',
              ));
         $this->hasColumn('url', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('type', 'enum', null, array(
              'type' => 'enum',
@@ -67,7 +67,7 @@ abstract class BaseAttachment extends sfDoctrineRecord
              ));
         $this->hasColumn('object_class', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
 
         $this->setSubClasses(array(

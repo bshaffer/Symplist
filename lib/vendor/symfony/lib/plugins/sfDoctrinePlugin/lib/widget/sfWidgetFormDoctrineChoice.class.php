@@ -25,6 +25,7 @@ class sfWidgetFormDoctrineChoice extends sfWidgetFormChoice
    */
   public function __construct($options = array(), $attributes = array())
   {
+
     $options['choices'] = array();
 
     parent::__construct($options, $attributes);

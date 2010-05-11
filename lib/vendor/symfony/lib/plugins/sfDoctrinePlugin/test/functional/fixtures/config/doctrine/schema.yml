@@ -16,6 +16,7 @@ Article:
       unique: true
     body: string(255)
     test_column: string(255)
+    views: integer
   relations:
     Author:
       foreignAlias: Articles
@@ -179,6 +180,17 @@ FormGeneratorTest2:
   columns:
     name: string(255)
 
+FormGeneratorTest3:
+  options:
+    symfony:
+      form: false
+      filter: false
+  actAs:
+    I18n:
+      fields: [name]
+  columns:
+    name: string(255)  
+
 DefaultValueTest:
   columns:
     name:
@@ -189,3 +201,33 @@ DefaultValueTest:
 Attachment:
   columns:
     file_path: string(255)
+
+ModelWithNumberInColumn:
+  options:
+    symfony:
+      form: false
+      filter: false
+  columns:
+    column_1: string(255)
+    column2: string(255)
+    column__3: string(255)
+
+ResourceType:
+  columns:
+    id:
+      type: enum
+      values: [type1, type2, type3]
+      primary: true
+    name: string(255)
+
+# tests merge from plugin schema
+Setting:
+  actAs:
+    Timestampable:
+      updated:
+        disabled: true
+  columns:
+    name:
+      notnull: true
+    weight:
+      scale: 4

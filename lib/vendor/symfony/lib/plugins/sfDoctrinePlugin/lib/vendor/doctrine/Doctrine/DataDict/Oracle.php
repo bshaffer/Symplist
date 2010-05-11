@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Oracle.php 6484 2009-10-12 17:40:41Z jwage $
+ *  $Id: Oracle.php 7490 2010-03-29 19:53:27Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -16,7 +16,7 @@
  *
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the LGPL. For more information, see
- * <http://www.phpdoctrine.org>.
+ * <http://www.doctrine-project.org>.
  */
 
 /**
@@ -24,8 +24,8 @@
  * @subpackage  DataDict
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @version     $Revision: 6484 $
- * @link        www.phpdoctrine.org
+ * @version     $Revision: 7490 $
+ * @link        www.doctrine-project.org
  * @since       1.0
  */
 class Doctrine_DataDict_Oracle extends Doctrine_DataDict
@@ -82,23 +82,23 @@ class Doctrine_DataDict_Oracle extends Doctrine_DataDict
                 return 'BLOB';
             case 'integer':
             case 'int':
-                $length = (!empty($field['length'])) ? $field['length'] : false;
-                if ( $length && $length <= $this->conn->number_max_precision)  {
-                    if ($length <= 1) {
-                        return 'NUMBER(3)'; // TINYINT
-                    } elseif ($length == 2) {
-                        return 'NUMBER(5)'; // SMALLINT
-                    } elseif ($length == 3) {
-                        return 'NUMBER(8)'; // MEDIUMINT
-                    } elseif ($length == 4) {
-                        return 'NUMBER(10)'; // INTEGER
-                    } elseif ($length <= 8) {
-                        return 'NUMBER(20)'; // BIGINT
-                    } else {
-                        return 'NUMBER('.$length.')';
-                    }
-                }
-                return 'INT';
+            	$length = (!empty($field['length'])) ? $field['length'] : false;
+            	if ( $length && $length <= $this->conn->number_max_precision)  {
+            		if ($length <= 1) {
+            			return 'NUMBER(3)'; // TINYINT, unsigned max. 256
+            		} elseif ($length == 2) {
+            			return 'NUMBER(5)'; // SMALLINT, unsigend max. 65.536
+            		} elseif ($length == 3) {
+            			return 'NUMBER(8)'; // MEDIUMINT, unsigned max. 16.777.216
+            		} elseif ($length == 4) {
+            			return 'NUMBER(10)'; // INTEGER, unsigend max. 4.294.967.296
+            		} elseif ($length <= 8) {
+            			return 'NUMBER(20)'; // BIGINT, unsigend max. 18.446.744.073.709.551.616
+            		} else {
+            			return 'INTEGER';
+            		}
+            	}
+                return 'INTEGER';
             case 'boolean':
                 return 'NUMBER(1)';
             case 'date':
@@ -194,7 +194,7 @@ class Doctrine_DataDict_Oracle extends Doctrine_DataDict
                     } elseif ( ! is_null($length) && (int)$length <= 5) { // SMALLINT
                         $length = 2;
                     } elseif ( ! is_null($length) && (int)$length <= 8) { // MEDIUMINT
-                        $lenght = 3;
+                        $length = 3;
                     } elseif ( ! is_null($length) && (int)$length <= 10) { // INT
                         $length = 4;
                     } elseif ( ! is_null($length) && (int)$length <= 20) { //BIGINT

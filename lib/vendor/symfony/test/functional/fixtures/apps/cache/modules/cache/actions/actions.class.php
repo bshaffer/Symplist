@@ -6,7 +6,7 @@
  * @package    project
  * @subpackage cache
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: actions.class.php 7725 2008-03-03 14:00:44Z fabien $
+ * @version    SVN: $Id: actions.class.php 28625 2010-03-19 19:00:53Z Kris.Wallsmith $
  */
 class cacheActions extends sfActions
 {
@@ -16,6 +16,11 @@ class cacheActions extends sfActions
 
   public function executePage()
   {
+  }
+
+  public function executeList($request)
+  {
+    $this->page = $request->getParameter('page', 1);
   }
 
   public function executeForward()
@@ -88,5 +93,11 @@ class cacheActions extends sfActions
     $this->getResponse()->setContentType('image/png');
     $this->image = file_get_contents(dirname(__FILE__).'/../data/ok48.png');
     $this->setTemplate('image');
+  }
+
+  public function executeLastModifiedResponse()
+  {
+    $this->getResponse()->setHttpHeader('Last-Modified', $this->getResponse()->getDate(sfConfig::get('LAST_MODIFIED')));
+    $this->setTemplate('action');
   }
 }

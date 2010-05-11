@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage test
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfTesterResponse.class.php 23568 2009-11-03 13:31:13Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfTesterResponse.class.php 27061 2010-01-22 17:08:04Z FabianLange $
  */
 class sfTesterResponse extends sfTester
 {
@@ -183,7 +183,21 @@ class sfTesterResponse extends sfTester
       if (true === $checkDTD)
       {
         $cache = sfConfig::get('sf_cache_dir').'/sf_tester_response/w3';
-        $local = 'file://'.str_replace(DIRECTORY_SEPARATOR, '/', $cache);
+        if ($cache[1] == ':')
+        {
+          // On Windows systems the path will be like c:\symfony\cache\xml.dtd
+          // I did not manage to get DOMDocument loading a file protocol url including the drive letter
+          // file://c:\symfony\cache\xml.dtd or file://c:/symfony/cache/xml.dtd
+          // The first one simply doesnt work, the second one is treated as remote call.
+          // However the following works. Unfortunatly this means we can only access the current disk
+          // file:///symfony/cache/xml.dtd
+          // Note that all work for file_get_contents so the bug is most likely in DOMDocument.
+          $local = 'file://'.substr(str_replace(DIRECTORY_SEPARATOR, '/', $cache), 2);
+        }
+        else
+        {
+          $local = 'file://'.$cache;
+        }
 
         if (!file_exists($cache.'/TR/xhtml11/DTD/xhtml11.dtd'))
         {
@@ -356,20 +370,6 @@ class sfTesterResponse extends sfTester
     }
 
     $this->tester->fail(sprintf('response sets cookie "%s"', $name));
-
-    return $this->getObjectToReturn();
-  }
-
-  /**
-   * Tests whether or not a given string is in the response.
-   *
-   * @param string Text to check
-   *
-   * @return sfTestFunctionalBase|sfTester
-   */
-  public function contains($text)
-  {
-    $this->tester->like($this->response->getContent(), '/'.preg_quote($text, '/').'/', sprintf('response contains "%s"', substr($text, 0, 40)));
 
     return $this->getObjectToReturn();
   }

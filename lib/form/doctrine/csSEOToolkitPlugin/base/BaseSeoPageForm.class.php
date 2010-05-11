@@ -8,7 +8,7 @@
  * @package    plugintracker
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24171 2009-11-19 16:37:50Z Kris.Wallsmith $
  */
 abstract class BaseSeoPageForm extends BaseFormDoctrine
 {
@@ -34,7 +34,7 @@ abstract class BaseSeoPageForm extends BaseFormDoctrine
       'description'          => new sfValidatorString(array('required' => false)),
       'keywords'             => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'priority'             => new sfValidatorNumber(array('required' => false)),
-      'changeFreq'           => new sfValidatorChoice(array('choices' => array('always' => 'always', 'hourly' => 'hourly', 'daily' => 'daily', 'weekly' => 'weekly', 'monthly' => 'monthly', 'yearly' => 'yearly', 'never' => 'never'), 'required' => false)),
+      'changeFreq'           => new sfValidatorChoice(array('choices' => array(0 => 'always', 1 => 'hourly', 2 => 'daily', 3 => 'weekly', 4 => 'monthly', 5 => 'yearly', 6 => 'never'), 'required' => false)),
       'exclude_from_sitemap' => new sfValidatorBoolean(array('required' => false)),
       'created_at'           => new sfValidatorDateTime(),
       'updated_at'           => new sfValidatorDateTime(),

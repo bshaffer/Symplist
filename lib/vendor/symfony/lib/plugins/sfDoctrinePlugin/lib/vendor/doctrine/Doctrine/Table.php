@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Table.php 6721 2009-11-12 20:47:47Z jwage $
+ *  $Id: Table.php 7490 2010-03-29 19:53:27Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -16,7 +16,7 @@
  *
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the LGPL. For more information, see
- * <http://www.phpdoctrine.org>.
+ * <http://www.doctrine-project.org>.
  */
 
 /**
@@ -28,8 +28,8 @@
  * @package     Doctrine
  * @subpackage  Table
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
- * @version     $Revision: 6721 $
- * @link        www.phpdoctrine.org
+ * @version     $Revision: 7490 $
+ * @link        www.doctrine-project.org
  * @since       1.0
  * @method mixed findBy*(mixed $value) magic finders; @see __call()
  * @method mixed findOneBy*(mixed $value) magic finders; @see __call()
@@ -244,7 +244,14 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
         $this->_conn->addTable($this);
         
         $this->_parser = new Doctrine_Relation_Parser($this);
-        
+
+        if ($charset = $this->getAttribute(Doctrine_Core::ATTR_DEFAULT_TABLE_CHARSET)) {
+            $this->_options['charset'] = $charset;
+        }
+        if ($collate = $this->getAttribute(Doctrine_Core::ATTR_DEFAULT_TABLE_COLLATE)) {
+            $this->_options['collate'] = $collate;
+        }
+
         if ($initDefinition) {
             $this->record = $this->initDefinition();
 
@@ -264,13 +271,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
         
         $this->_filters[]  = new Doctrine_Record_Filter_Standard();
         $this->_repository = new Doctrine_Table_Repository($this);
-
-        if ($charset = $this->getAttribute(Doctrine_Core::ATTR_DEFAULT_TABLE_CHARSET)) {
-            $this->_options['charset'] = $charset;
-        }
-        if ($collate = $this->getAttribute(Doctrine_Core::ATTR_DEFAULT_TABLE_COLLATE)) {
-            $this->_options['collate'] = $collate;
-        }
 
         $this->construct();
     }
@@ -1033,7 +1033,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
 
         $class = $this->getAttribute(Doctrine_Core::ATTR_QUERY_CLASS);
 
-        return Doctrine_Query::create($this->_conn, $class)
+        return Doctrine_Query::create(null, $class)
             ->from($this->getComponentName() . $alias);
     }
 
@@ -1234,6 +1234,19 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      */
     public function setColumnOption($columnName, $option, $value)
     {
+        if ($option == 'primary') {
+            if (isset($this->_identifier)) {
+                $this->_identifier = (array) $this->_identifier;
+            }
+
+            if ($value &&  ! in_array($columnName, $this->_identifier)) {
+                $this->_identifier[] = $columnName;
+            } else if (!$value && in_array($columnName, $this->_identifier)) {
+                $key = array_search($columnName, $this->_identifier);
+                unset($this->_identifier[$key]);
+            }
+        }
+
         $columnName = $this->getColumnName($columnName);
         $this->_columns[$columnName][$option] = $value;
     }
@@ -1655,9 +1668,8 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      */
     public function findByDql($dql, $params = array(), $hydrationMode = null)
     {
-        $parser = new Doctrine_Query($this->_conn);
-        $component = $this->getComponentName();
-        $query = 'FROM ' . $component . ' dctrn_find WHERE ' . $dql;
+        $parser = $this->createQuery();
+        $query = 'FROM ' . $this->getComponentName() . ' dctrn_find WHERE ' . $dql;
 
         return $parser->query($query, $params, $hydrationMode);
     }
@@ -1940,7 +1952,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      */
     public function getQueryObject()
     {
-        $graph = new Doctrine_Query($this->getConnection());
+        $graph = $this->createQuery();
         $graph->load($this->getComponentName());
         return $graph;
     }

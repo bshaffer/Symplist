@@ -25,10 +25,10 @@
  * @method Comment   setUserId()      Sets the current record's "user_id" value
  * @method Comment   setCommenter()   Sets the current record's "Commenter" value
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
+ * @package    plugintracker
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseComment extends sfDoctrineRecord
 {

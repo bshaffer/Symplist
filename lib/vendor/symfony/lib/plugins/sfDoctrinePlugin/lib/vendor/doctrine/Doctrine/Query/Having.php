@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Having.php 5901 2009-06-22 15:44:45Z jwage $
+ *  $Id: Having.php 7490 2010-03-29 19:53:27Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -16,7 +16,7 @@
  *
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the LGPL. For more information, see
- * <http://www.phpdoctrine.org>.
+ * <http://www.doctrine-project.org>.
  */
 
 /**
@@ -25,9 +25,9 @@
  * @package     Doctrine
  * @subpackage  Query
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
- * @link        www.phpdoctrine.org
+ * @link        www.doctrine-project.org
  * @since       1.0
- * @version     $Revision: 5901 $
+ * @version     $Revision: 7490 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 class Doctrine_Query_Having extends Doctrine_Query_Condition
@@ -81,11 +81,12 @@ class Doctrine_Query_Having extends Doctrine_Query_Condition
                 $value = $this->query->getConnection()->quoteIdentifier($this->query->getSqlTableAlias($ref) . '.' . $field);
             } else {
                 $field = end($a);
-                $value = $this->query->getSqlAggregateAlias($field);
+                if ($this->query->hasSqlAggregateAlias($field)) {
+                    $value = $this->query->getSqlAggregateAlias($field);
+                }
             }
         }
-        
-        
+
         return $value;
     }
 
@@ -104,9 +105,7 @@ class Doctrine_Query_Having extends Doctrine_Query_Condition
         $value     = implode(' ', $tokens);
 
         // check the RHS for aggregate functions
-        if (strpos($value, '(') !== false) {
-          $value = $this->parseAggregateFunction($value);
-        }
+        $value = $this->parseAggregateFunction($value);
 
         $part .= ' ' . $operator . ' ' . $value;
 

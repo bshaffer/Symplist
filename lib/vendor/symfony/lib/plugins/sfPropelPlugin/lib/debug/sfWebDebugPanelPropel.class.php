@@ -16,7 +16,7 @@
  * @package    symfony
  * @subpackage debug
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfWebDebugPanelPropel.class.php 23704 2009-11-08 22:19:19Z FabianLange $
+ * @version    SVN: $Id: sfWebDebugPanelPropel.class.php 27284 2010-01-28 18:34:57Z Kris.Wallsmith $
  */
 class sfWebDebugPanelPropel extends sfWebDebugPanel
 {
@@ -117,14 +117,14 @@ class sfWebDebugPanelPropel extends sfWebDebugPanel
       $query = join($outerGlue, $parts);
 
       $query = $this->formatSql(htmlspecialchars($query, ENT_QUOTES, sfConfig::get('sf_charset')));
-      $backtrace = isset($log['debug_backtrace']) ? '&nbsp;'.$this->getToggleableDebugStack($log['debug_backtrace']) : '';
+      $backtrace = isset($log['debug_backtrace']) && count($log['debug_backtrace']) ? '&nbsp;'.$this->getToggleableDebugStack($log['debug_backtrace']) : '';
 
       $html[] = sprintf('
-        <li class="%s">
+        <li%s>
           <p class="sfWebDebugDatabaseQuery">%s</p>
           <div class="sfWebDebugDatabaseLogInfo">%s%s</div>
         </li>',
-        $slowQuery ? 'sfWebDebugWarning' : '',
+        $slowQuery ? ' class="sfWebDebugWarning"' : '',
         $query,
         implode(', ', $details),
         $backtrace

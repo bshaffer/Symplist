@@ -12,7 +12,7 @@ $app = 'backend';
 $fixtures = 'fixtures';
 require_once(dirname(__FILE__).'/../bootstrap/functional.php');
 
-$t = new lime_test(32);
+$t = new lime_test(41);
 
 $t->diag("Test that these models don't generate forms or filters classes");
 $noFormsOrFilters = array('UserGroup', 'UserPermission', 'GroupPermission');
@@ -31,12 +31,26 @@ $t->is(file_exists(sfConfig::get('sf_lib_dir').'/form/doctrine/base/BaseFormGene
 $t->is(file_exists(sfConfig::get('sf_lib_dir').'/filter/doctrine/FormGeneratorTestFormFilter.class.php'), false);
 $t->is(file_exists(sfConfig::get('sf_lib_dir').'/filter/doctrine/base/BaseFormGeneratorTestFormFilter.class.php'), false);
 
-$t->diag('FormGeneratorTest2 model should generator filters but not forms');
+$t->diag('FormGeneratorTest2 model should generate filters but not forms');
 $t->is(file_exists(sfConfig::get('sf_lib_dir').'/form/doctrine/FormGeneratorTest2Form.class.php'), false);
 $t->is(file_exists(sfConfig::get('sf_lib_dir').'/form/doctrine/base/BaseFormGeneratorTest2Form.class.php'), false);
 
 $t->is(file_exists(sfConfig::get('sf_lib_dir').'/filter/doctrine/FormGeneratorTest2FormFilter.class.php'), true);
 $t->is(file_exists(sfConfig::get('sf_lib_dir').'/filter/doctrine/base/BaseFormGeneratorTest2FormFilter.class.php'), true);
+
+$t->diag('FormGeneratorTest3 model should not generate forms or filters');
+$t->is(file_exists(sfConfig::get('sf_lib_dir').'/form/doctrine/FormGeneratorTest3Form.class.php'), false);
+$t->is(file_exists(sfConfig::get('sf_lib_dir').'/form/doctrine/base/BaseFormGeneratorTest3Form.class.php'), false);
+
+$t->is(file_exists(sfConfig::get('sf_lib_dir').'/filter/doctrine/FormGeneratorTest3FormFilter.class.php'), false);
+$t->is(file_exists(sfConfig::get('sf_lib_dir').'/filter/doctrine/base/BaseFormGeneratorTest3FormFilter.class.php'), false);
+
+$t->diag('FormGeneratorTest3Translation not generate forms or filters');
+$t->is(file_exists(sfConfig::get('sf_lib_dir').'/form/doctrine/FormGeneratorTest3TranslationForm.class.php'), false);
+$t->is(file_exists(sfConfig::get('sf_lib_dir').'/form/doctrine/base/BaseFormGeneratorTest3TranslationForm.class.php'), false);
+
+$t->is(file_exists(sfConfig::get('sf_lib_dir').'/filter/doctrine/FormGeneratorTest3TranslationFormFilter.class.php'), false);
+$t->is(file_exists(sfConfig::get('sf_lib_dir').'/filter/doctrine/base/BaseFormGeneratorTest3TranslationFormFilter.class.php'), false);
 
 $t->diag('Check form generator generates forms with correct inheritance');
 $test = new AuthorInheritanceForm();
@@ -68,3 +82,15 @@ $t->is($test->getValidator('author_id')->getOption('model'), 'BlogAuthor');
 $test = new BlogArticleFormFilter();
 $t->is($test->getWidget('author_id')->getOption('model'), 'BlogAuthor');
 $t->is($test->getValidator('author_id')->getOption('model'), 'BlogAuthor');
+
+$t->diag('Check enum primary keys');
+try
+{
+  $test = new ResourceTypeForm();
+  $t->pass('enum primary key widgets work');
+}
+catch (InvalidArgumentException $e)
+{
+  $t->fail('enum primary key widgets work');
+  $t->diag('    '.$e->getMessage());
+}

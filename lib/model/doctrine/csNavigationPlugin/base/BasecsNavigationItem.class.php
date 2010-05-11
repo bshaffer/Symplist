@@ -22,10 +22,10 @@
  * @method csNavigationItem    setLocked()         Sets the current record's "locked" value
  * @method csNavigationItem    setNavigationMenu() Sets the current record's "NavigationMenu" collection
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
+ * @package    plugintracker
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BasecsNavigationItem extends sfDoctrineRecord
 {
@@ -34,11 +34,11 @@ abstract class BasecsNavigationItem extends sfDoctrineRecord
         $this->setTableName('cs_navigation_item');
         $this->hasColumn('name', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('route', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('protected', 'boolean', null, array(
              'type' => 'boolean',

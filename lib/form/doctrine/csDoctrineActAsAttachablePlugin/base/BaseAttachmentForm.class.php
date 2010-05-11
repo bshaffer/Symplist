@@ -8,7 +8,7 @@
  * @package    plugintracker
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24171 2009-11-19 16:37:50Z Kris.Wallsmith $
  */
 abstract class BaseAttachmentForm extends BaseFormDoctrine
 {
@@ -29,7 +29,7 @@ abstract class BaseAttachmentForm extends BaseFormDoctrine
       'title'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'description'  => new sfValidatorString(array('required' => false)),
       'url'          => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'type'         => new sfValidatorChoice(array('choices' => array('image' => 'image', 'video' => 'video', 'audio' => 'audio', 'document' => 'document', 'application' => 'application', 'link' => 'link', 'model' => 'model', 'custom' => 'custom', 'other' => 'other'), 'required' => false)),
+      'type'         => new sfValidatorChoice(array('choices' => array(0 => 'image', 1 => 'video', 2 => 'audio', 3 => 'document', 4 => 'application', 5 => 'link', 6 => 'model', 7 => 'custom', 8 => 'other'), 'required' => false)),
       'object_id'    => new sfValidatorInteger(array('required' => false)),
       'object_class' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
     ));

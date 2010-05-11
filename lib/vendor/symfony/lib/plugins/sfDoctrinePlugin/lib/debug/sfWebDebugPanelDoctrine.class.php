@@ -16,7 +16,7 @@
  * @subpackage debug
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Jonathan H. Wage <jonwage@gmail.com>
- * @version    SVN: $Id: sfWebDebugPanelDoctrine.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfWebDebugPanelDoctrine.class.php 28999 2010-04-06 17:42:14Z Kris.Wallsmith $
  */
 class sfWebDebugPanelDoctrine extends sfWebDebugPanel
 {
@@ -76,14 +76,17 @@ class sfWebDebugPanelDoctrine extends sfWebDebugPanel
     $databaseManager = sfContext::getInstance()->getDatabaseManager();
 
     $events = array();
-    foreach ($databaseManager->getNames() as $name)
+    if ($databaseManager)
     {
-      $database = $databaseManager->getDatabase($name);
-      if ($database instanceof sfDoctrineDatabase && $profiler = $database->getProfiler())
+      foreach ($databaseManager->getNames() as $name)
       {
-        foreach ($profiler->getQueryExecutionEvents() as $event)
+        $database = $databaseManager->getDatabase($name);
+        if ($database instanceof sfDoctrineDatabase && $profiler = $database->getProfiler())
         {
-          $events[$event->getSequence()] = $event;
+          foreach ($profiler->getQueryExecutionEvents() as $event)
+          {
+            $events[$event->getSequence()] = $event;
+          }
         }
       }
     }
@@ -113,6 +116,7 @@ class sfWebDebugPanelDoctrine extends sfWebDebugPanel
       // interpolate parameters
       foreach ($params as $param)
       {
+        $param = htmlspecialchars($param, ENT_QUOTES, sfConfig::get('sf_charset'));
         $query = join(var_export(is_scalar($param) ? $param : (string) $param, true), explode('?', $query, 2));
       }
 
@@ -126,7 +130,7 @@ class sfWebDebugPanelDoctrine extends sfWebDebugPanel
       $backtrace = null;
       foreach ($logs as $i => $log)
       {
-        if (!$log['debug_backtrace'])
+        if (!isset($log['debug_backtrace']) || !count($log['debug_backtrace']))
         {
           // backtrace disabled
           break;
@@ -142,11 +146,11 @@ class sfWebDebugPanelDoctrine extends sfWebDebugPanel
       }
 
       $html[] = sprintf('
-        <li class="%s">
+        <li%s>
           <p class="sfWebDebugDatabaseQuery">%s</p>
           <div class="sfWebDebugDatabaseLogInfo">%ss, "%s" connection%s</div>
         </li>',
-        $event->slowQuery ? 'sfWebDebugWarning' : '',
+        $event->slowQuery ? ' class="sfWebDebugWarning"' : '',
         $query,
         number_format($event->getElapsedSecs(), 2),
         $conn->getName(),

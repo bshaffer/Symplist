@@ -19,3 +19,10 @@ Comment:
       type:     timestamp
     user_id:
       type:     integer
+    authenticated_user_id:
+      type:     integer
+      length:   4
+  relations:
+    AuthenticatedUser:
+      class:    sfGuardUser
+      local:    authenticated_user_id

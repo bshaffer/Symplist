@@ -33,6 +33,10 @@ SymfonyPlugin:
       alias:                          Category
       foreignAlias:                   Plugins
       local:                          category_id
+    Tags:
+      foreignAlias:                   Plugins
+      local:                          plugin_id
+      refClass:                       PluginTag
 
 PluginRating:
   actAs:    [Timestampable]
@@ -53,6 +57,7 @@ PluginRating:
       onDelete:     CASCADE        
 
 PluginAuthor:
+  actAs:    [Timestampable]
   columns:
     first_name:                 string(255)
     last_name:                  string(255)
@@ -68,22 +73,61 @@ PluginAuthor:
 
 PluginCategory:
   actAs:
-    Sluggable:  ~
+    Timestampable:  ~
+    Sluggable:      ~
   columns:
     name:                       string(255)
     description:                clob
 
-PluginRelease:
+Tag:
+  actAs:                        [Timestampable]
   columns:
-    plugin_id:              integer
-    version:                string(10)
+    name:                       string(255)
+    description:                clob
+
+PluginTag:
+  actAs:                        [Timestampable]
+  options:
+    symfony:
+      form:                     false
+      filter:                   false
+  columns:
+    tag_id:
+      notnull:                  true
+      type:                     integer
+    plugin_id:
+      notnull:                  true
+      type:                     integer
+  relations:
+    Tag:
+      foreignAlias:             PluginTags
+      onDelete:                 CASCADE
+    Plugin:
+      class:                    SymfonyPlugin
+      local:                    plugin_id
+      foreignAlias:             PluginTags
+      onDelete:                 CASCADE
+
+PluginRelease:
+  actAs:
+    Timestampable:          ~
+    Sortable:
+      uniqueBy:             [plugin_id]
+  columns:
+    plugin_id:
+      type:                 integer
+      notnull:              true
+    version:
+      type:                 string(10)
     date:   timestamp
     symfony_version_min:
       type:                 decimal(5,1)
     symfony_version_max:
       type:                 decimal(5,1)
     summary:                clob
-    stability:              string(30)
+    stability:
+      type:                 enum
+      values:               [alpha, beta, stable]
     readme:                 clob
     dependencies:           string(255)
   relations:
@@ -91,6 +135,32 @@ PluginRelease:
       alias:                Plugin
       foreignAlias:         Releases
       local:                plugin_id
+      onDelete:             CASCADE
+
+PluginReleaseDependency:
+  actAs:                    [Timestampable]
+  columns:
+    release_id:
+      type:                 integer
+      notnull:              true
+    dependency_id:
+      type:                 integer
+      notnull:              true
+    dependency_version_min:
+      type:                 string(255)
+    dependency_version_max:
+      type:                 string(255)
+  relations:
+    Release:
+      class:                PluginRelease
+      foreignAlias:         Dependencies
+      local:                release_id
+      onDelete:             CASCADE
+    Dependency:
+      class:                SymfonyPlugin
+      foreignAlias:         DependentReleases
+      local:                dependency_id
+      onDelete:             CASCADE
       
 CommunityList:
   actAs: 
@@ -98,7 +168,6 @@ CommunityList:
     Sluggable: ~
     Markdown:
       fields: [description]
-      
   columns:
     title: 
       type:         string(255)

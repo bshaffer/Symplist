@@ -19,10 +19,10 @@
  * @method Commenter setWebsite()  Sets the current record's "website" value
  * @method Commenter setComment()  Sets the current record's "Comment" value
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6716 2009-11-12 19:26:28Z jwage $
+ * @package    plugintracker
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseCommenter extends sfDoctrineRecord
 {
@@ -31,15 +31,15 @@ abstract class BaseCommenter extends sfDoctrineRecord
         $this->setTableName('commenter');
         $this->hasColumn('username', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('email', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('website', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
     }
 

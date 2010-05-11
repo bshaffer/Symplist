@@ -8,6 +8,25 @@ class ProjectConfiguration extends sfProjectConfiguration
   public function setup()
   {
     sfYaml::setSpecVersion('1.1');
-    $this->enableAllPluginsExcept(array('sfPropelPlugin', 'sfProtoculousPlugin', 'sfCompat10Plugin'));
+    $this->enablePlugins(array(
+      'sfDoctrinePlugin', 
+      'csAdminGeneratorPlugin', 
+      'csDoctrineActAsAttachablePlugin',
+      'csDoctrineActAsSortablePlugin',
+      'csDoctrineMarkdownPlugin',
+      'csFormTransformPlugin',
+      'csNavigationPlugin',
+      'csSEOToolkitPlugin',
+      'csThumbnailPlugin',
+      'sfCommentsPlugin',
+      'sfDoctrineGuardPlugin',
+      'sfDoctrineSettingsPlugin',
+      'sfFormExtraPlugin',
+      'sfGoogleAnalyticsPlugin',
+      'sfGravatarPlugin',
+      'sfJqueryReloadedPlugin',
+      'sfLucenePlugin',
+      'sfTaskExtraPlugin',
+      ));
   }
 }

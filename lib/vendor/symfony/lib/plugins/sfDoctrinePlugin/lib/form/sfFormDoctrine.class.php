@@ -18,7 +18,7 @@
  * @subpackage form
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Jonathan H. Wage <jonwage@gmail.com>
- * @version    SVN: $Id: sfFormDoctrine.class.php 24068 2009-11-17 06:39:35Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfFormDoctrine.class.php 28903 2010-03-30 21:00:43Z Jonathan.Wage $
  */
 abstract class sfFormDoctrine extends sfFormObject
 {
@@ -96,35 +96,50 @@ abstract class sfFormDoctrine extends sfFormObject
    *
    *     [php]
    *     $userForm = new UserForm($user);
-   *     $userForm->embedRelation('Groups');
+   *     $userForm->embedRelation('Groups AS groups');
    *
-   * @param  string $relationName  The name of the relation
+   * @param  string $relationName  The name of the relation and an optional alias
    * @param  string $formClass     The name of the form class to use
    * @param  array  $formArguments Arguments to pass to the constructor (related object will be shifted onto the front)
+   * @param string  $innerDecorator A HTML decorator for each embedded form
+   * @param string  $decorator      A HTML decorator for the main embedded form
    *
    * @throws InvalidArgumentException If the relationship is not a collection
    */
-  public function embedRelation($relationName, $formClass = null, $formArgs = array())
+  public function embedRelation($relationName, $formClass = null, $formArgs = array(), $innerDecorator = null, $decorator = null)
   {
-    $relation = $this->getObject()->getTable()->getRelation($relationName);
-
-    if ($relation->getType() !== Doctrine_Relation::MANY)
+    if (false !== $pos = stripos($relationName, ' as '))
     {
-      throw new InvalidArgumentException('You can only embed a relationship that is a collection.');
+      $fieldName = substr($relationName, $pos + 4);
+      $relationName = substr($relationName, 0, $pos);
     }
+    else
+    {
+      $fieldName = $relationName;
+    }
+
+    $relation = $this->getObject()->getTable()->getRelation($relationName);
 
     $r = new ReflectionClass(null === $formClass ? $relation->getClass().'Form' : $formClass);
 
-    $subForm = new sfForm();
-    foreach ($this->getObject()->$relationName as $index => $childObject)
+    if (Doctrine_Relation::ONE == $relation->getType())
     {
-      $form = $r->newInstanceArgs(array_merge(array($childObject), $formArgs));
-
-      $subForm->embedForm($index, $form);
-      $subForm->getWidgetSchema()->setLabel($index, (string) $childObject);
+      $this->embedForm($fieldName, $r->newInstanceArgs(array_merge(array($this->getObject()->$relationName), $formArgs)), $decorator);
     }
+    else
+    {
+      $subForm = new sfForm();
 
-    $this->embedForm($relationName, $subForm);
+      foreach ($this->getObject()->$relationName as $index => $childObject)
+      {
+        $form = $r->newInstanceArgs(array_merge(array($childObject), $formArgs));
+
+        $subForm->embedForm($index, $form, $innerDecorator);
+        $subForm->getWidgetSchema()->setLabel($index, (string) $childObject);
+      }
+
+      $this->embedForm($fieldName, $subForm, $decorator);
+    }
   }
 
   /**
@@ -214,17 +229,18 @@ abstract class sfFormDoctrine extends sfFormObject
    */
   protected function updateDefaultsFromObject()
   {
+    $defaults = $this->getDefaults();
+
     // update defaults for the main object
     if ($this->isNew())
     {
-      $this->setDefaults(array_merge($this->getObject()->toArray(false), $this->getDefaults()));
+      $defaults = $defaults + $this->getObject()->toArray(false);
     }
     else
     {
-      $this->setDefaults(array_merge($this->getDefaults(), $this->getObject()->toArray(false)));
+      $defaults = $this->getObject()->toArray(false) + $defaults;
     }
 
-    $defaults = $this->getDefaults();
     foreach ($this->embeddedForms as $name => $form)
     {
       if ($form instanceof sfFormDoctrine)
@@ -233,6 +249,7 @@ abstract class sfFormDoctrine extends sfFormObject
         $defaults[$name] = $form->getDefaults();
       }
     }
+
     $this->setDefaults($defaults);
   }
 
@@ -266,9 +283,11 @@ abstract class sfFormDoctrine extends sfFormObject
 
     if (!$values[$field])
     {
+      // this is needed if the form is embedded, in which case
+      // the parent form has already changed the value of the field
       $oldValues = $this->getObject()->getModified(true, false);
 
-      return isset($oldValues[$field]) ? $oldValues[$field] : '';
+      return isset($oldValues[$field]) ? $oldValues[$field] : $this->object->$field;
     }
 
     // we need the base directory
@@ -294,9 +313,10 @@ abstract class sfFormDoctrine extends sfFormObject
       throw new LogicException(sprintf('You cannot remove the current file for field "%s" as the field is not a file.', $field));
     }
 
-    if (($directory = $this->validatorSchema[$field]->getOption('path')) && is_file($directory.$this->getObject()->$field))
+    $directory = $this->validatorSchema[$field]->getOption('path');
+    if ($directory && is_file($file = $directory.'/'.$this->getObject()->$field))
     {
-      unlink($directory.$this->getObject()->$field);
+      unlink($file);
     }
   }
 

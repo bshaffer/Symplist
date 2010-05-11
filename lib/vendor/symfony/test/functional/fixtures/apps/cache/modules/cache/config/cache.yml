@@ -53,3 +53,10 @@ imageNoLayoutCacheWithLayout:
 
 imageNoLayoutCacheNoLayout:
   with_layout: false
+
+list:
+  enabled: true
+
+lastModifiedResponse:
+  enabled:     true
+  with_layout: true

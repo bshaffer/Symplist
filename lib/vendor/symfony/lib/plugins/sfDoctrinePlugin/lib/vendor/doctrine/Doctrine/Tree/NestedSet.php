@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: NestedSet.php 6692 2009-11-10 17:01:33Z jwage $
+ *  $Id: NestedSet.php 7490 2010-03-29 19:53:27Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -16,7 +16,7 @@
  *
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the LGPL. For more information, see
- * <http://www.phpdoctrine.org>.
+ * <http://www.doctrine-project.org>.
  */
 
 /**
@@ -25,9 +25,9 @@
  * @package     Doctrine
  * @subpackage  Tree
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
- * @link        www.phpdoctrine.org
+ * @link        www.doctrine-project.org
  * @since       1.0
- * @version     $Revision: 6692 $
+ * @version     $Revision: 7490 $
  * @author      Joe Simms <joe.simms@websites4.com>
  * @author      Roman Borschel <roman@code-factory.org>
  */
@@ -87,7 +87,7 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
     public function createRoot(Doctrine_Record $record = null)
     {
         if ($this->getAttribute('hasManyRoots')) {
-            if ( ! $record || ( ! $record->exists() && $record->getNode()->getRootValue() <= 0)
+            if ( ! $record || ( ! $record->exists() && ! $record->getNode()->getRootValue())
                     || $record->getTable()->isIdentifierComposite()) {
                 throw new Doctrine_Tree_Exception("Node must have a root id set or must "
                         . " be persistent and have a single-valued numeric primary key in order to"
@@ -95,7 +95,7 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
                         . " transient/new records is no longer supported.");
             }
             
-            if ($record->exists() && $record->getNode()->getRootValue() <= 0) {
+            if ($record->exists() && ! $record->getNode()->getRootValue()) {
                 // Default: root_id = id
                 $identifier = $record->getTable()->getIdentifier();
                 $record->getNode()->setRootValue($record->get($identifier));
@@ -285,8 +285,9 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
     private function _createBaseQuery()
     {
         $this->_baseAlias = "base";
-        $q = new Doctrine_Query();
-        $q->select($this->_baseAlias . ".*")->from($this->getBaseComponent() . " " . $this->_baseAlias);
+        $q = Doctrine_Core::getTable($this->getBaseComponent())
+            ->createQuery($this->_baseAlias)
+            ->select($this->_baseAlias . '.*');
         return $q;
     }
 

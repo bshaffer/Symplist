@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage widget
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfWidgetFormSelectRadio.class.php 23994 2009-11-15 22:55:24Z bschussek $
+ * @version    SVN: $Id: sfWidgetFormSelectRadio.class.php 27738 2010-02-08 15:07:33Z Kris.Wallsmith $
  */
 class sfWidgetFormSelectRadio extends sfWidgetFormChoiceBase
 {
@@ -23,6 +23,7 @@ class sfWidgetFormSelectRadio extends sfWidgetFormChoiceBase
    *
    * Available options:
    *
+   *  * choices:         An array of possible choices (required)
    *  * label_separator: The separator to use between the input radio and the label
    *  * separator:       The separator to use between each input radio
    *  * class:           The class to use for the main <ul> tag
@@ -101,7 +102,7 @@ class sfWidgetFormSelectRadio extends sfWidgetFormChoiceBase
 
       $inputs[$id] = array(
         'input' => $this->renderTag('input', array_merge($baseAttributes, $attributes)),
-        'label' => $this->renderContentTag('label', $option, array('for' => $id)),
+        'label' => $this->renderContentTag('label', self::escapeOnce($option), array('for' => $id)),
       );
     }
 

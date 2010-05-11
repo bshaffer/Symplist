@@ -16,7 +16,7 @@
  *
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the LGPL. For more information, see
- * <http://www.phpdoctrine.org>.
+ * <http://www.doctrine-project.org>.
  */
 
 /**
@@ -25,7 +25,7 @@
  * @package     Doctrine
  * @subpackage  Query
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
- * @link        www.phpdoctrine.org
+ * @link        www.doctrine-project.org
  * @since       1.0
  * @version     $Revision: 1393 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
@@ -144,6 +144,10 @@ abstract class Doctrine_Query_Abstract
      */
     protected $_conn;
 
+    /**
+     * @var bool Whether or not a connection was passed to this query object to use
+     */
+    protected $_passedConn = false;
 
     /**
      * @var array $_sqlParts  The SQL query string parts. Filled during the DQL parsing process.
@@ -270,6 +274,8 @@ abstract class Doctrine_Query_Abstract
     {
         if ($connection === null) {
             $connection = Doctrine_Manager::getInstance()->getCurrentConnection();
+        } else {
+            $this->_passedConn = true;
         }
         if ($hydrator === null) {
             $hydrator = new Doctrine_Hydrator();
@@ -279,6 +285,18 @@ abstract class Doctrine_Query_Abstract
         $this->_tokenizer = new Doctrine_Query_Tokenizer();
         $this->_resultCacheTTL = $this->_conn->getAttribute(Doctrine_Core::ATTR_RESULT_CACHE_LIFESPAN);
         $this->_queryCacheTTL = $this->_conn->getAttribute(Doctrine_Core::ATTR_QUERY_CACHE_LIFESPAN);
+    }
+
+    /**
+     * Set the connection this query object should use
+     *
+     * @param Doctrine_Connection $connection
+     * @return void
+     */
+    public function setConnection(Doctrine_Connection $connection)
+    {
+        $this->_passedConn = true;
+        $this->_conn = $connection;
     }
 
     /**
@@ -358,7 +376,7 @@ abstract class Doctrine_Query_Abstract
      * @param string $name          the name of the query part to be set
      * @param string $part          query part string
      * @throws Doctrine_Query_Exception   if trying to set unknown query part
-     * @return Doctrine_Hydrate     this object
+     * @return mixed     this object
      */
     public function getSqlQueryPart($part)
     {
@@ -375,7 +393,7 @@ abstract class Doctrine_Query_Abstract
      * @param string $name          the name of the query part to be set
      * @param string $part          query part string
      * @throws Doctrine_Query_Exception   if trying to set unknown query part
-     * @return Doctrine_Hydrate     this object
+     * @return Doctrine_Query     this object
      */
     public function setSqlQueryPart($name, $part)
     {
@@ -403,7 +421,7 @@ abstract class Doctrine_Query_Abstract
      * @param string $name          the name of the query part to be added
      * @param string $part          query part string
      * @throws Doctrine_Query_Exception   if trying to add unknown query part
-     * @return Doctrine_Hydrate     this object
+     * @return Doctrine_Query     this object
      */
     public function addSqlQueryPart($name, $part)
     {
@@ -424,7 +442,7 @@ abstract class Doctrine_Query_Abstract
      *
      * @param string $name          the name of the query part to be removed
      * @throws Doctrine_Query_Exception   if trying to remove unknown query part
-     * @return Doctrine_Hydrate     this object
+     * @return Doctrine_Query     this object
      */
     public function removeSqlQueryPart($name)
     {
@@ -447,7 +465,7 @@ abstract class Doctrine_Query_Abstract
      *
      * @param string $name          the name of the query part to be removed
      * @throws Doctrine_Query_Exception   if trying to remove unknown query part
-     * @return Doctrine_Hydrate     this object
+     * @return Doctrine_Query     this object
      */
     public function removeDqlQueryPart($name)
     {
@@ -737,7 +755,7 @@ abstract class Doctrine_Query_Abstract
      *
      * @param Doctrine_Hydrate $query   the query object from which the
      *                                  aliases are copied from
-     * @return Doctrine_Hydrate         this object
+     * @return Doctrine_Query         this object
      */
     public function copySubqueryInfo(Doctrine_Query_Abstract $query)
     {
@@ -757,7 +775,7 @@ abstract class Doctrine_Query_Abstract
     public function getRootAlias()
     {
         if ( ! $this->_queryComponents) {
-            $this->getSqlQuery();
+            $this->getSqlQuery(array(), false);
         }
         
         return $this->_rootAlias;
@@ -1116,18 +1134,13 @@ abstract class Doctrine_Query_Abstract
         }
 
         $copy = $this->copy();
-        $copy->setParams(array(
-            'exec' => array(), 
-            'join' => array(), 
-            'set' => array(), 
-            'where' => array(), 
-            'having' => array()
-        ));
-        $copy->getSqlQuery($params);
+        $copy->getSqlQuery($params, false);
         $componentsAfter = $copy->getQueryComponents();
 
         $this->_rootAlias = $copy->getRootAlias();
-        
+
+        $copy->free();
+
         if ($componentsBefore !== $componentsAfter) {
             return array_diff($componentsAfter, $componentsBefore);
         } else {
@@ -1164,7 +1177,7 @@ abstract class Doctrine_Query_Abstract
             $e = explode('.', $components['name']);
             if (count($e) === 1) {
                 $manager = Doctrine_Manager::getInstance(); 
-                if ($manager->hasConnectionForComponent($e[0])) { 
+                if ( ! $this->_passedConn && $manager->hasConnectionForComponent($e[0])) { 
                     $this->_conn = $manager->getConnectionForComponent($e[0]); 
                 }
                 $queryComponents[$alias]['table'] = $this->_conn->getTable($e[0]);
@@ -1347,7 +1360,7 @@ abstract class Doctrine_Query_Abstract
     public function andWhereIn($expr, $params = array(), $not = false)
     {
         // if there's no params, return (else we'll get a WHERE IN (), invalid SQL)
-        if ( ! count($params)) {
+        if (isset($params) and (count($params) == 0)) {
             return $this;
         }
 
@@ -1374,7 +1387,7 @@ abstract class Doctrine_Query_Abstract
     public function orWhereIn($expr, $params = array(), $not = false)
     {
         // if there's no params, return (else we'll get a WHERE IN (), invalid SQL)
-        if ( ! count($params)) {
+        if (isset($params) and (count($params) == 0)) {
             return $this;
         }
 
@@ -1393,7 +1406,7 @@ abstract class Doctrine_Query_Abstract
         $params = (array) $params;
 
         // if there's no params, return (else we'll get a WHERE IN (), invalid SQL)
-        if ( ! (count($params) > 0)) {
+        if (count($params) == 0) {
             throw new Doctrine_Query_Exception('You must pass at least one parameter when using an IN() condition.');
         }
 
@@ -1822,7 +1835,7 @@ abstract class Doctrine_Query_Abstract
      * @param Doctrine_Cache_Interface|bool $driver      cache driver
      * @param integer $timeToLive                        how long the cache entry is valid
      * @param string $resultCacheHash                     The key to use for storing the queries result cache entry
-     * @return Doctrine_Hydrate         this object
+     * @return Doctrine_Query         this object
      */
     public function useResultCache($driver = true, $timeToLive = null, $resultCacheHash = null)
     {
@@ -1870,7 +1883,7 @@ abstract class Doctrine_Query_Abstract
      *
      * @param Doctrine_Cache_Interface|bool $driver      cache driver
      * @param integer $timeToLive                        how long the cache entry is valid
-     * @return Doctrine_Hydrate         this object
+     * @return Doctrine_Query         this object
      */
     public function useQueryCache($driver = true, $timeToLive = null)
     {
@@ -1890,7 +1903,7 @@ abstract class Doctrine_Query_Abstract
      * expireCache
      *
      * @param boolean $expire       whether or not to force cache expiration
-     * @return Doctrine_Hydrate     this object
+     * @return Doctrine_Query     this object
      */
     public function expireResultCache($expire = true)
     {
@@ -1902,7 +1915,7 @@ abstract class Doctrine_Query_Abstract
      * expireQueryCache
      *
      * @param boolean $expire       whether or not to force cache expiration
-     * @return Doctrine_Hydrate     this object
+     * @return Doctrine_Query     this object
      */
     public function expireQueryCache($expire = true)
     {
@@ -1914,7 +1927,7 @@ abstract class Doctrine_Query_Abstract
      * setResultCacheLifeSpan
      *
      * @param integer $timeToLive   how long the cache entry is valid (in seconds)
-     * @return Doctrine_Hydrate     this object
+     * @return Doctrine_Query     this object
      */
     public function setResultCacheLifeSpan($timeToLive)
     {
@@ -1940,7 +1953,7 @@ abstract class Doctrine_Query_Abstract
      * setQueryCacheLifeSpan
      *
      * @param integer $timeToLive   how long the cache entry is valid
-     * @return Doctrine_Hydrate     this object
+     * @return Doctrine_Query     this object
      */
     public function setQueryCacheLifeSpan($timeToLive)
     {

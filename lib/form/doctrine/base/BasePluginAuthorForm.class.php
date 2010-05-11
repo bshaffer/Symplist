@@ -8,7 +8,7 @@
  * @package    plugintracker
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24171 2009-11-19 16:37:50Z Kris.Wallsmith $
  */
 abstract class BasePluginAuthorForm extends BaseFormDoctrine
 {
@@ -21,6 +21,8 @@ abstract class BasePluginAuthorForm extends BaseFormDoctrine
       'email'            => new sfWidgetFormInputText(),
       'bio'              => new sfWidgetFormTextarea(),
       'sf_guard_user_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
+      'created_at'       => new sfWidgetFormDateTime(),
+      'updated_at'       => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
@@ -30,6 +32,8 @@ abstract class BasePluginAuthorForm extends BaseFormDoctrine
       'email'            => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'bio'              => new sfValidatorString(array('required' => false)),
       'sf_guard_user_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'required' => false)),
+      'created_at'       => new sfValidatorDateTime(),
+      'updated_at'       => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('plugin_author[%s]');
