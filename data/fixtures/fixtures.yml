@@ -1,0 +1,33 @@
+sfGuardUser:
+  sgu_admin:
+    username:                         admin
+    password:                         admin
+    is_super_admin:                   true
+
+sfGuardPermission:
+  sgp_admin:
+    name:                             administrator
+    description:                      Administrator Permission
+
+sfGuardGroup:
+  sgg_admin:
+    name:                             administrator
+    description:                      Administrator Group
+  plugin_author_group:
+    name:                             Plugin Author
+    description:                      The Author of a Plugin
+
+sfGuardGroupPermission:
+  sggp_admin:
+    sfGuardGroup:                     sgg_admin
+    sfGuardPermission:                sgp_admin
+
+sfGuardUserGroup:
+  sgug_admin:
+    sfGuardGroup:                     sgg_admin
+    sfGuardUser:                      sgu_admin
+
+PluginCategory:
+  Uncategorized:
+    name:          Uncategorized
+    description:   Newly imported or unclaimed plugins.
