@@ -1,0 +1,3 @@
+[submodule "plugins/sfPluginManagerPlugin"]
+	path = plugins/sfPluginManagerPlugin
+	url = git://github.com/weaverryan/sfPluginManagerPlugin.git
