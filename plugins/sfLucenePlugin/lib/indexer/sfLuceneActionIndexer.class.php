@@ -1,7 +1,7 @@
 <?php
 /*
  * This file is part of the sfLucenePlugin package
- * (c) 2007 - 2008 Carl Vondrick <carl@carlsoft.net>
+ * (c) 2007 Carl Vondrick <carlv@carlsoft.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,7 +12,6 @@
  * @package sfLucenePlugin
  * @subpackage Indexer
  * @author Carl Vondrick
- * @version SVN: $Id: sfLuceneActionIndexer.class.php 7108 2008-01-20 07:44:42Z Carl.Vondrick $
  */
 class sfLuceneActionIndexer extends sfLuceneIndexer
 {
@@ -25,16 +24,17 @@ class sfLuceneActionIndexer extends sfLuceneIndexer
     $this->module = $module;
     $this->action = $action;
 
+
     $config = sfConfig::get('sf_app_dir') . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR  . $module . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'search.yml';
 
     include(sfConfigCache::getInstance()->checkConfig($config));
 
-    if (!isset($actions[$this->getSearch()->getParameter('name')][$action]))
+    if (!isset($actions[$this->getSearch()->getName()][$action]))
     {
       throw new sfLuceneIndexerException('Specified action is not registered for indexing');
     }
 
-    $this->properties = $actions[$this->getSearch()->getParameter('name')][$action];
+    $this->properties = $actions[$this->getSearch()->getName()][$action];
   }
 
   protected function shouldIndex()
@@ -49,9 +49,19 @@ class sfLuceneActionIndexer extends sfLuceneIndexer
   {
     extract($this->getActionProperties());
 
-    if ($this->deleteGuid( $this->getGuid($params)))
+    if ( $this->deleteGuid( $this->getGuid($params) ) && $this->shouldLog())
     {
-      $this->getSearch()->getEventDispatcher()->notify(new sfEvent($this, 'indexer.log', array('Deleted action "%s" of module "%s" from index', $action, $module)));
+      if ($this->shouldLog())
+      {
+        $this->echoLog(sprintf('Deleted action "%s" of module "%s"', $action, $module));
+      }
+
+      $categories = $this->getModelCategories();
+
+      foreach ($categories as $category)
+      {
+        $this->removeCategory($category);
+      }
     }
 
     return $this;
@@ -73,7 +83,7 @@ class sfLuceneActionIndexer extends sfLuceneIndexer
 
     $content = $output->getContent();
 
-    $doc = Zend_Search_Lucene_Document_Html::loadHtml($content);
+    $doc = $this->getHtmlDocString($content);
 
     $title_field = $this->getLuceneField('text', 'sfl_title', $output->getLastTitle());
     $title_field->boost = 2;
@@ -95,13 +105,14 @@ class sfLuceneActionIndexer extends sfLuceneIndexer
       $doc->addField( $this->getLuceneField('text', 'sfl_category', implode(', ', $categories)) );
     }
 
-    $doc->addField( $this->getLuceneField('unindexed', 'sfl_categories_cache', serialize($categories)) );
-
     $guid = $this->getGuid($params);
 
     $this->addDocument($doc, $guid, 'action');
 
-    $this->getSearch()->getEventDispatcher()->notify(new sfEvent($this, 'indexer.log', array('Inserted action "%s" of module "%s" to index', $this->getAction(), $this->getModule())));
+    if ($this->shouldLog())
+    {
+      $this->echoLog(sprintf('Inserted action "%s" of module "%s"', $this->getAction(), $this->getModule()));
+    }
 
     return $this;
   }
@@ -192,7 +203,7 @@ class sfLuceneActionIndexer extends sfLuceneIndexer
       $browser->setCredentials($credentials);
       $browser->setLayout($layout);
       $browser->setMethod('GET');
-      $browser->setCulture($this->getSearch()->getParameter('culture'));
+      $browser->setCulture($this->getCulture());
 
       return $browser;
     }

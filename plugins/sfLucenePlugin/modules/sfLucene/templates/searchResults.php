@@ -2,8 +2,7 @@
 /**
  * @package sfLucenePlugin
  * @subpackage Module
- * @author Carl Vondrick <carl@carlsoft.net>
- * @version SVN: $Id: searchResults.php 7108 2008-01-20 07:44:42Z Carl.Vondrick $
+ * @author Carl Vondrick <carlv@carlsoft.net>
  */
 ?>
 
@@ -19,6 +18,6 @@
   <?php endforeach ?>
 </ol>
 
-<?php include_search_pager($pager, $form, sfConfig::get('app_lucene_pager_radius', 5)) ?>
+<?php include_search_pager($pager, sfConfig::get('app_lucene_pager_radius'), $category) ?>
 
-<?php include_search_controls($form) ?>
+<?php include_search_controls($query) ?>

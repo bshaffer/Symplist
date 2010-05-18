@@ -1,7 +1,7 @@
 <?php
 /*
  * This file is part of the sfLucenePlugin package
- * (c) 2007 - 2008 Carl Vondrick <carl@carlsoft.net>
+ * (c) 2007 Carl Vondrick <carlv@carlsoft.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,24 +11,30 @@
   * @package sfLucenePlugin
   * @subpackage Test
   * @author Carl Vondrick
-  * @version SVN: $Id: sfLuceneLazyLoadingTest.php 7108 2008-01-20 07:44:42Z Carl.Vondrick $
   */
 
 require dirname(__FILE__) . '/../bootstrap/unit.php';
 
-$t = new limeade_test(2, limeade_output::get());
-$limeade = new limeade_sf($t);
-$limeade->bootstrap();
+$t = new lime_test(2, new lime_output_color());
 
-$luceneade = new limeade_lucene($limeade);
-$luceneade->configure()->clear_sandbox()->load_models();
+function filter_callback($input)
+{
+  return preg_match('#/plugins/sfLucenePlugin/lib/vendor/Zend/Search/Lucene/#', $input);
+}
+function zend_loaded()
+{
+  $files = get_included_files();
+  $files = array_filter($files, 'filter_callback');
 
-$forum = new FakeForum;
-$t->not_like_included('#/Zend/Search/Lucene/#', 'Zend libraries were not loaded when just reading from a model');
+  return count($files) == 0;
+}
+
+$forum = new Forum;
+$t->ok(zend_loaded(), 'Zend libraries were not loaded when just reading from a model');
 
 $forum->setTitle('test');
 $forum->saveIndex();
 
-$t->like_included('#/Zend/Search/Lucene/#', 'Zend libraries were loaded when writing to the index');
+$t->ok(!zend_loaded(), 'Zend libraries were loaded when writing to the index');
 
 $forum->deleteIndex();

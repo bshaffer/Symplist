@@ -2,8 +2,7 @@
 /**
  * @package sfLucenePlugin
  * @subpackage Module
- * @author Carl Vondrick <carl@carlsoft.net>
- * @version SVN: $Id: _actionResult.php 7108 2008-01-20 07:44:42Z Carl.Vondrick $
+ * @author Carl Vondrick <carlv@carlsoft.net>
  */
 ?>
 

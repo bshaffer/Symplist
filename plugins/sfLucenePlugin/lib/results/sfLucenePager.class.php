@@ -1,7 +1,7 @@
 <?php
 /*
  * This file is part of the sfLucenePlugin package
- * (c) 2007 - 2008 Carl Vondrick <carl@carlsoft.net>
+ * (c) 2007 Carl Vondrick <carlv@carlsoft.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -16,8 +16,7 @@
  *
  * @package    sfLucenePlugin
  * @subpackage Results
- * @author     Carl Vondrick <carl@carlsoft.net>
- * @version SVN: $Id: sfLucenePager.class.php 7108 2008-01-20 07:44:42Z Carl.Vondrick $
+ * @author     Carl Vondrick <carlv@carlsoft.net>
  */
 class sfLucenePager
 {
@@ -50,16 +49,9 @@ class sfLucenePager
   /**
    * Hook for sfMixer
    */
-  public function __call($method, $arguments)
+  public function __call($a, $b)
   {
-    $event = $this->getSearch()->getEventDispatcher()->notifyUntil(new sfEvent($this, 'pager.method_not_found', array('method' => $method, 'arguments' => $arguments)));
-
-    if (!$event->isProcessed())
-    {
-      throw new sfException(sprintf('Call to undefined method %s::%s.', __CLASS__, $method));
-    }
-
-    return $event->getReturnValue();
+    return sfMixer::callMixins();
   }
 
   public function getSearch()
@@ -101,15 +93,6 @@ class sfLucenePager
 
   public function setPage($page)
   {
-    if ($page <= 0)
-    {
-      $page = 1;
-    }
-    elseif ($page > $this->getLastPage())
-    {
-      $page = $this->getLastPage();
-    }
-
     $this->page = $page;
   }
 
@@ -162,18 +145,32 @@ class sfLucenePager
 
   public function getFirstIndice()
   {
-    return ($this->getPage() - 1) * $this->getMaxPerPage() + 1;
+    if ($this->getPage() == 0)
+    {
+      return 1;
+    }
+    else
+    {
+      return ($this->getPage() - 1) * $this->getMaxPerPage() + 1;
+    }
   }
 
   public function getLastIndice()
   {
-    if (($this->getPage() * $this->getMaxPerPage()) >= $this->getNbResults())
+    if ($this->getPage() == 0)
     {
       return $this->getNbResults();
     }
     else
     {
-      return $this->getPage() * $this->getMaxPerPage();
+      if (($this->getPage() * $this->getMaxPerPage()) >= $this->getNbResults())
+      {
+        return $this->getNbResults();
+      }
+      else
+      {
+        return ($this->getPage() * $this->getMaxPerPage());
+      }
     }
   }
 }

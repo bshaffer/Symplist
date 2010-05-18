@@ -15,9 +15,8 @@
  * @category   Zend
  * @package    Zend_Search_Lucene
  * @subpackage Search
- * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Phrase.php 16541 2009-07-07 06:59:03Z bkarwin $
  */
 
 
@@ -27,7 +26,7 @@
 require_once 'Zend/Search/Lucene/Search/Query.php';
 
 /**
- * Zend_Search_Lucene_Search_Weight_Phrase
+ * Zend_Search_Lucene_Search_Weight_MultiTerm
  */
 require_once 'Zend/Search/Lucene/Search/Weight/Phrase.php';
 
@@ -38,7 +37,7 @@ require_once 'Zend/Search/Lucene/Search/Weight/Phrase.php';
  * @category   Zend
  * @package    Zend_Search_Lucene
  * @subpackage Search
- * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Search_Lucene_Search_Query_Phrase extends Zend_Search_Lucene_Search_Query
@@ -408,9 +407,8 @@ class Zend_Search_Lucene_Search_Query_Phrase extends Zend_Search_Lucene_Search_Q
      * It also initializes necessary internal structures
      *
      * @param Zend_Search_Lucene_Interface $reader
-     * @param Zend_Search_Lucene_Index_DocsFilter|null $docsFilter
      */
-    public function execute(Zend_Search_Lucene_Interface $reader, $docsFilter = null)
+    public function execute(Zend_Search_Lucene_Interface $reader)
     {
         $this->_resVector = null;
 
@@ -425,20 +423,20 @@ class Zend_Search_Lucene_Search_Query_Phrase extends Zend_Search_Lucene_Search_Q
             $resVectors[]      = array_flip($reader->termDocs($term));
             $resVectorsSizes[] = count(end($resVectors));
             $resVectorsIds[]   = $termId;
-
+            
             $this->_termsPositions[$termId] = $reader->termPositions($term);
         }
         // sort resvectors in order of subquery cardinality increasing
         array_multisort($resVectorsSizes, SORT_ASC, SORT_NUMERIC,
                         $resVectorsIds,   SORT_ASC, SORT_NUMERIC,
                         $resVectors);
-
+        
         foreach ($resVectors as $nextResVector) {
             if($this->_resVector === null) {
                 $this->_resVector = $nextResVector;
             } else {
                 //$this->_resVector = array_intersect_key($this->_resVector, $nextResVector);
-
+                
                 /**
                  * This code is used as workaround for array_intersect_key() slowness problem.
                  */
@@ -459,7 +457,7 @@ class Zend_Search_Lucene_Search_Query_Phrase extends Zend_Search_Lucene_Search_Q
 
         // ksort($this->_resVector, SORT_NUMERIC);
         // Docs are returned ordered. Used algorithm doesn't change elements order.
-
+                        
         // Initialize weight if it's not done yet
         $this->_initWeight($reader);
     }
@@ -518,18 +516,19 @@ class Zend_Search_Lucene_Search_Query_Phrase extends Zend_Search_Lucene_Search_Q
     }
 
     /**
-     * Query specific matches highlighting
+     * Highlight query terms
      *
-     * @param Zend_Search_Lucene_Search_Highlighter_Interface $highlighter  Highlighter object (also contains doc for highlighting)
+     * @param integer &$colorIndex
+     * @param Zend_Search_Lucene_Document_Html $doc
      */
-    protected function _highlightMatches(Zend_Search_Lucene_Search_Highlighter_Interface $highlighter)
+    public function highlightMatchesDOM(Zend_Search_Lucene_Document_Html $doc, &$colorIndex)
     {
         $words = array();
         foreach ($this->_terms as $term) {
             $words[] = $term->text;
         }
 
-        $highlighter->highlight($words);
+        $doc->highlight($words, $this->_getHighlightColor($colorIndex));
     }
 
     /**
@@ -540,10 +539,11 @@ class Zend_Search_Lucene_Search_Query_Phrase extends Zend_Search_Lucene_Search_Q
     public function __toString()
     {
         // It's used only for query visualisation, so we don't care about characters escaping
+
+        $query = '';
+
         if (isset($this->_terms[0]) && $this->_terms[0]->field !== null) {
-            $query = $this->_terms[0]->field . ':';
-        } else {
-        	$query = '';
+            $query .= $this->_terms[0]->field . ':';
         }
 
         $query .= '"';
@@ -559,10 +559,6 @@ class Zend_Search_Lucene_Search_Query_Phrase extends Zend_Search_Lucene_Search_Q
 
         if ($this->_slop != 0) {
             $query .= '~' . $this->_slop;
-        }
-
-        if ($this->getBoost() != 1) {
-            $query .= '^' . round($this->getBoost(), 4);
         }
 
         return $query;

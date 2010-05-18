@@ -1,7 +1,7 @@
 <?php
 /*
  * This file is part of the sfLucenePlugin package
- * (c) 2007 - 2008 Carl Vondrick <carl@carlsoft.net>
+ * (c) 2007 Carl Vondrick <carlv@carlsoft.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,7 +12,6 @@
  * @package sfLucenePlugin
  * @subpackage Indexer
  * @author Carl Vondrick
- * @version SVN: $Id: sfLuceneIndexerFactory.class.php 7108 2008-01-20 07:44:42Z Carl.Vondrick $
  */
 
 class sfLuceneIndexerFactory
@@ -24,25 +23,30 @@ class sfLuceneIndexerFactory
     $this->search = $search;
   }
 
+  static public function newInstance($search)
+  {
+    return new self($search);
+  }
+
   public function getHandlers()
   {
-    $factories = $this->search->getParameter('factories')->get('indexers');
+    $factories = $this->search->getFactories();
     $retval = array();
     $model = 'sfLucene' . ucfirst(sfConfig::get('sf_orm', 'Propel')) . 'IndexerHandler';
 
-    $indexers = array_merge(array('model' => array($model), 'action' => array('sfLuceneActionIndexerHandler')), $factories);
+    $factories['indexers'] = array_merge(array('model' => array($model), 'action' => array('sfLuceneActionIndexerHandler')), $factories['indexers']);
 
-    foreach ($indexers as $label => $indexer)
+    foreach ($factories['indexers'] as $label => $indexer)
     {
-      if (!is_null($indexer) && isset($indexer[0]))
+      if (is_null($indexer))
+      {
+        unset($retval[$label]);
+      }
+      elseif (isset($indexer[0]))
       {
         $indexer = $indexer[0];
 
         $retval[$label] = new $indexer($this->search);
-      }
-      else
-      {
-        unset($retval[$label]);
       }
     }
 
@@ -51,19 +55,19 @@ class sfLuceneIndexerFactory
 
   public function getModel($instance)
   {
-    $options = $this->search->getParameter('models')->get(get_class($instance));
+    $model = $this->search->dumpModel(get_class($instance));
 
-    if ($options && $options->get('indexer'))
+    if (isset($model['indexer']) && $model['indexer'])
     {
-      $indexer = $options->get('indexer');
+      $indexer = $model['indexer'];
     }
     else
     {
-      $factories = $this->search->getParameter('factories')->get('indexers');
+      $factories = $this->search->getFactories();
 
-      if (isset($factories['model'][1]))
+      if (isset($factories['indexers']['model'][1]))
       {
-        $indexer = $factories['model'][1];
+        $indexer = $factories['indexers']['model'][1];
       }
       else
       {
@@ -72,16 +76,21 @@ class sfLuceneIndexerFactory
       }
     }
 
+    if (!class_exists($indexer, true))
+    {
+      throw new sfLuceneIndexerException('Cannot locate "' . $indexer . '"');
+    }
+
     return new $indexer($this->search, $instance);
   }
 
   public function getAction($module, $action)
   {
-    $factories = $this->search->getParameter('factories')->get('indexers');
+    $factories = $this->search->getFactories();
 
-    if (isset($factories['action'][1]))
+    if (isset($factories['indexers']['action'][1]))
     {
-      $indexer = $factories['action'][1];
+      $indexer = $factories['indexers']['action'][1];
     }
     else
     {

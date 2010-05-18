@@ -1,7 +1,7 @@
 <?php
 /*
  * This file is part of the sfLucenePlugin package
- * (c) 2007 - 2008 Carl Vondrick <carl@carlsoft.net>
+ * (c) 2007 Carl Vondrick <carlv@carlsoft.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -20,8 +20,7 @@
  *
  * @package    sfLucenePlugin
  * @subpackage Utilities
- * @author     Carl Vondrick <carl@carlsoft.net>
- * @version SVN: $Id: sfLuceneCriteria.class.php 15602 2009-02-18 15:12:02Z rande $
+ * @author     Carl Vondrick <carlv@carlsoft.net>
  */
 
 class sfLuceneCriteria
@@ -30,13 +29,9 @@ class sfLuceneCriteria
 
   protected $sorts = array();
 
-  protected $scoring = null;
-
-  protected $search = null;
-
   public function __construct(sfLucene $search)
   {
-    sfLuceneToolkit::loadZend();
+    sfLucene::setupLucene();
 
     $this->query = new Zend_Search_Lucene_Search_Query_Boolean();
     $this->search = $search;
@@ -44,8 +39,6 @@ class sfLuceneCriteria
 
   /**
    * Simply provides a way to do one line method chaining
-   * 
-   * @return sfLuceneCriteria
    */
   static public function newInstance(sfLucene $search)
   {
@@ -55,60 +48,39 @@ class sfLuceneCriteria
   /**
    * Adds a subquery to the query itself.  It accepts either a string which will
    * be parsed or a Zend query.
-   * 
-   * @return sfLuceneCriteria
    */
   public function add($query, $type = true)
   {
+    $this->search->configure();
+
     if (is_string($query))
     {
-      $this->addString($query, null, $type);
+      $query = Zend_Search_Lucene_Search_QueryParser::parse($query);
     }
-    else
+    else if ($query instanceof self)
     {
-      if ($query instanceof self)
+      if ($query === $this)
       {
-        if ($query === $this)
-        {
-          throw new sfLuceneException('You cannot add an instance to itself');
-        }
-
-        $query = $query->getQuery();
+        throw new sfLuceneException('You cannot add an instance to itself');
       }
 
-      if (!($query instanceof Zend_Search_Lucene_Search_Query))
-      {
-        throw new sfLuceneException('Invalid query given (must be instance of Zend_Search_Lucene_Search_Query)');
-      }
-
-      $this->query->addSubquery($query, $type);
+      $query = $query->getQuery();
     }
 
-    return $this;
-  }
+    if (!($query instanceof Zend_Search_Lucene_Search_Query))
+    {
+      throw new sfLuceneException('Invalid query given');
+    }
 
-  /**
-   * Adds a string that is parsed into Zend API queries
-   * @param string $query The query to parse
-   * @param string $encoding The encoding to parse query as
-   * 
-   * @return sfLuceneCriteria
-   */
-  public function addString($query, $encoding = null, $type = true)
-  {
-    $this->search->configure(); // setup query parser
-
-    $this->add(Zend_Search_Lucene_Search_QueryParser::parse($query, $encoding), $type);
+    $this->query->addSubquery($query, $type);
 
     return $this;
   }
 
   /**
-  * This does a sane add on the current query.  The query parser tends to throw a lot
+  * This does a sane find on the current index.  The query parser tends to throw a lot
   * of exceptions even in normal conditions, so we need to intercept them and then fall back
   * into a reduced state mode should the user have entered invalid syntax.
-  * 
-  * @return sfLuceneCriteria
   */
   public function addSane($query, $type = true, $fatal = false)
   {
@@ -160,8 +132,6 @@ class sfLuceneCriteria
    * @param string $field The field to search under (null for all)
    * @param bool $matchAll If true, it will match all.  False will match none.  Null is neutral.
    * @param bool $type The type of subquery to add.
-   * 
-   * @return sfLuceneCriteria
    */
   public function addField($values, $field = null, $matchAll = null, $type = true)
   {
@@ -171,8 +141,6 @@ class sfLuceneCriteria
 
       foreach($values as $value)
       {
-        $value = (string) $value;
-
         $term = new Zend_Search_Lucene_Index_Term($value, $field);
         $qterm = new Zend_Search_Lucene_Search_Query_Term($term);
 
@@ -196,8 +164,6 @@ class sfLuceneCriteria
 
   /**
   * Adds a multiterm query.
-  * 
-  * @return sfLuceneCriteria
   */
   public function addMultiTerm($values, $field = null, $matchType = null, $type = true)
   {
@@ -221,8 +187,6 @@ class sfLuceneCriteria
   * Adds a wildcard field.
   *   ? is used as single character wildcard
   *   * is used as a multi character wildcard.
-  * 
-  * @return sfLuceneCriteria
   */
   public function addWildcard($value, $field = null, $type = true)
   {
@@ -234,8 +198,6 @@ class sfLuceneCriteria
 
   /**
   * Adds a phrase query
-  * 
-  * @return sfLuceneCriteria
   */
   public function addPhrase($keywords, $field = null, $slop = 0, $type = true)
   {
@@ -247,8 +209,6 @@ class sfLuceneCriteria
 
   /**
    * Adds a range subquery
-   * 
-   * @return sfLuceneCriteria
    */
   public function addRange($start = null, $stop = null, $field = null, $inclusive = true, $type = true)
   {
@@ -280,114 +240,19 @@ class sfLuceneCriteria
     return $this->add($query, $type);
   }
 
-  /**
-   * Adds a proximity query to restrict by distance from longitude and latitude.
-   *
-   * This method will do a pretty good calculation to restrict the results to
-   * fall under a certain distance from an origin point.
-   *
-   * This method is not restricted to one particular unit, except you must be
-   * consistent!  This means you can use miles or kilometers (or centimeters)
-   * and you can use degrees North or degrees South.
-   *
-   * The average radius of Earth is 3962 mi or 6378.1 km.
-   *
-   * @param float $latitude The origin latitude in degrees
-   * @param float $longitude The origin longitude in degrees
-   * @param int $proximity The maximun proximity in any unit.
-   * @param int $radius The average radius of Earth in the same unit as $proximity
-   * @param string $latitudeField The field to search under for latitudes.
-   * @param string $longitudeField The field to search under for longitude.
-   * @param mixed $type The type of restraint
-   * 
-   * @return sfLuceneCriteria
-   */
-  public function addProximity($latitude, $longitude, $proximity, $radius = 6378.1, $latitudeField = 'latitude', $longitudeField = 'longitude', $type = true)
-  {
-    if ($radius <= 0)
-    {
-      throw new sfLuceneException('Radius must be greater than 0');
-    }
-    elseif ($proximity <= 0)
-    {
-      throw new sfLuceneException('Proximity must be greater than 0');
-    }
-
-    $perLatitude = M_PI * $radius / 180;
-
-    $latitudeChange = $proximity / $perLatitude;
-    $north = $latitude + $latitudeChange;
-    $south = $latitude - $latitudeChange;
-
-    $longitudeChange = $proximity / (cos(deg2rad($latitude)) * $perLatitude);
-    $east = $longitude + $longitudeChange;
-    $west = $longitude - $longitudeChange;
-
-    $latitudeLower = min($north, $south);
-    $latitudeUpper = max($north, $south);
-
-    $longitudeLower = min($east, $west);
-    $longitudeUpper = max($east, $west);
-
-    $subquery = $this->getNewCriteria();
-    $subquery->addRange($latitudeLower, $latitudeUpper, $latitudeField, true, true);
-    $subquery->addRange($longitudeLower, $longitudeUpper, $longitudeField, true, true);
-
-    return $this->add($subquery, $type);
-  }
-
-  /**
-   * 
-   * @param string $field
-   * @param interger $type
-   * 
-   * @return sfLuceneCriteria
-   */
   public function addAscendingSortBy($field, $type = SORT_REGULAR)
   {
     return $this->addSortBy($field, SORT_ASC, $type);
   }
 
-  /**
-   * 
-   * @param string $field
-   * @param interger $type
-   * 
-   * @return sfLuceneCriteria
-   */
   public function addDescendingSortBy($field, $type = SORT_REGULAR)
   {
     return $this->addSortBy($field, SORT_DESC, $type);
   }
 
-  /**
-   * 
-   * @param string $field
-   * @param interger $type
-   * 
-   * @return sfLuceneCriteria
-   */  
   public function addSortBy($field, $order = SORT_ASC, $type = SORT_REGULAR)
   {
     $this->sorts[] = array('field' => $field, 'order' => $order, 'type' => $type);
-
-    return $this;
-  }
-
-  /**
-   * Sets the scoring algorithm for this query.
-   * @param null|Zend_Search_Lucene_Search_Similarity $algorithm An instance of the algorithm to use (null for default)
-   * 
-   * @return sfLuceneCriteria
-   */
-  public function setScoringAlgorithm($algorithm)
-  {
-    if ($algorithm != null && !($algorithm instanceof Zend_Search_Lucene_Search_Similarity))
-    {
-      throw new sfLuceneException('Scoring algorithm must either be null (for default) or an instance of Zend_Search_Lucene_Search_Similarity');
-    }
-
-    $this->scoring = $algorithm;
 
     return $this;
   }
@@ -405,16 +270,6 @@ class sfLuceneCriteria
     return $this->sorts;
   }
 
-  public function getScoringAlgorithm()
-  {
-    return $this->scoring;
-  }
-
-  /**
-   * .
-   *
-   * @return sfLuceneCriteria
-   */
   public function getNewCriteria()
   {
     return new self($this->search);

@@ -1,7 +1,7 @@
 <?php
 /*
  * This file is part of the sfLucenePlugin package
- * (c) 2007 - 2008 Carl Vondrick <carl@carlsoft.net>
+ * (c) 2007 Carl Vondrick <carlv@carlsoft.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,56 +11,133 @@
  * @package sfLucenePlugin
  * @subpackage Filter
  * @author Carl Vondrick
- * @version SVN: $Id: sfLuceneExecutionFilter.class.php 7108 2008-01-20 07:44:42Z Carl.Vondrick $
  */
 class sfLuceneExecutionFilter extends sfExecutionFilter
 {
-  /**
-   * Executes and renders the view.
+    /**
+   * Executes this filter.
    *
-   * The behavior of this method depends on the controller render mode:
+   * @param sfFilterChain The filter chain
    *
-   *   - sfView::NONE: Nothing happens.
-   *   - sfView::RENDER_CLIENT: View data populates the response content.
-   *   - sfView::RENDER_DATA: View data populates the data presentation variable.
-   *
-   * @param  string The module name
-   * @param  string The action name
-   * @param  string The view name
-   * @param  array  An array of view attributes
-   *
-   * @return string The view data
+   * @throws <b>sfInitializeException</b> If an error occurs during view initialization.
+   * @throws <b>sfViewException</b>       If an error occurs while executing the view.
    */
-  protected function executeView($moduleName, $actionName, $viewName, $viewAttributes)
+  public function execute($filterChain)
   {
-    $controller = $this->context->getController();
+    // get the context and controller
+    $context    = $this->getContext();
+    $controller = $context->getController();
 
-    // get the view instance
-    $view = $controller->getView($moduleName, $actionName, $viewName);
+    // get the current action instance
+    $actionEntry    = $controller->getActionStack()->getLastEntry();
+    $actionInstance = $actionEntry->getActionInstance();
 
-    $view->setDecorator(false);
+    // get the current action information
+    $moduleName = $context->getModuleName();
+    $actionName = $context->getActionName();
 
-    // execute the view
-    $view->execute();
+    // get the request method
+    $method = $context->getRequest()->getMethod();
 
-    // pass attributes to the view
-    $view->getAttributeHolder()->add($viewAttributes);
+    $viewName = null;
 
-    // render the view
-    switch ($controller->getRenderMode())
+    if (($actionInstance->getRequestMethods() & $method) != $method)
     {
-      case sfView::RENDER_NONE:
-        break;
+      // this action will skip validation/execution for this method
+      // get the default view
+      $viewName = $actionInstance->getDefaultView();
+    }
+    else
+    {
+      // set default validated status
+      $validated = true;
 
-      case sfView::RENDER_CLIENT:
-        $viewData = $view->render();
-        $this->context->getResponse()->setContent($viewData);
-        break;
+      // get the current action validation configuration
+      $validationConfig = $moduleName.'/'.sfConfig::get('sf_app_module_validate_dir_name').'/'.$actionName.'.yml';
 
-      case sfView::RENDER_VAR:
-        $viewData = $view->render();
-        $controller->getActionStack()->getLastEntry()->setPresentation($viewData);
-        break;
+      // load validation configuration
+      // do NOT use require_once
+      if (null !== $validateFile = sfConfigCache::getInstance()->checkConfig(sfConfig::get('sf_app_module_dir_name').'/'.$validationConfig, true))
+      {
+        // create validator manager
+        $validatorManager = new sfValidatorManager();
+        $validatorManager->initialize($context);
+
+        require($validateFile);
+
+        // process validators
+        $validated = $validatorManager->execute();
+      }
+
+      // process manual validation
+      $validateToRun = 'validate'.ucfirst($actionName);
+      $manualValidated = method_exists($actionInstance, $validateToRun) ? $actionInstance->$validateToRun() : $actionInstance->validate();
+
+      // action is validated if:
+      // - all validation methods (manual and automatic) return true
+      // - or automatic validation returns false but errors have been 'removed' by manual validation
+      $validated = ($manualValidated && $validated) || ($manualValidated && !$validated && !$context->getRequest()->hasErrors());
+
+      // register fill-in filter
+      if (null !== ($parameters = $context->getRequest()->getAttribute('fillin', null, 'symfony/filter')))
+      {
+        $this->registerFillInFilter($filterChain, $parameters);
+      }
+
+      if ($validated)
+      {
+        // execute the action
+        $actionInstance->preExecute();
+        $viewName = $actionInstance->execute();
+        if ($viewName == '')
+        {
+          $viewName = sfView::SUCCESS;
+        }
+        $actionInstance->postExecute();
+      }
+      else
+      {
+        // validation failed
+        $handleErrorToRun = 'handleError'.ucfirst($actionName);
+        $viewName = method_exists($actionInstance, $handleErrorToRun) ? $actionInstance->$handleErrorToRun() : $actionInstance->handleError();
+        if ($viewName == '')
+        {
+          $viewName = sfView::ERROR;
+        }
+      }
+    }
+
+    if ($viewName == sfView::HEADER_ONLY)
+    {
+      $context->getResponse()->setHeaderOnly(true);
+
+      // execute next filter
+      $filterChain->execute();
+    }
+    else if ($viewName != sfView::NONE)
+    {
+      $this->getContext()->getResponse()->setParameter(sprintf('%s_%s_layout', $moduleName, $actionName), $this->getParameter('layout', false), 'symfony/action/view');
+
+      // get the view instance
+      $viewInstance = $controller->getView($moduleName, $actionName, $viewName);
+
+      $viewInstance->initialize($context, $moduleName, $actionName, $viewName);
+
+      $viewInstance->execute();
+
+      // render the view and if data is returned, stick it in the
+      // action entry which was retrieved from the execution chain
+      $viewData = $viewInstance->render();
+
+      if ($controller->getRenderMode() == sfView::RENDER_VAR)
+      {
+        $actionEntry->setPresentation($viewData);
+      }
+      else
+      {
+        // execute next filter
+        $filterChain->execute();
+      }
     }
   }
 }

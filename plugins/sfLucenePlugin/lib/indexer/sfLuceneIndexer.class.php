@@ -1,7 +1,7 @@
 <?php
 /*
  * This file is part of the sfLucenePlugin package
- * (c) 2007 - 2008 Carl Vondrick <carl@carlsoft.net>
+ * (c) 2007 Carl Vondrick <carlv@carlsoft.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,12 +12,12 @@
  * @package sfLucenePlugin
  * @subpackage Indexer
  * @author Carl Vondrick
- * @version SVN: $Id: sfLuceneIndexer.class.php 7108 2008-01-20 07:44:42Z Carl.Vondrick $
  */
 abstract class sfLuceneIndexer
 {
   private $search = null;
 
+  protected $encoding = 'UTF-8';
 
   public function __construct($search)
   {
@@ -27,29 +27,15 @@ abstract class sfLuceneIndexer
     }
 
     $this->search = $search;
+    $this->encoding = $this->getSearch()->getEncoding();
 
-    $search->configure();
+    $this->getSearch()->configure();
   }
 
-  /**
-   * Inserts the record into the index.
-   */
   abstract public function insert();
-
-  /**
-   * Deletes the record from the index
-   */
   abstract public function delete();
-
-  /**
-   * Verifies if this record should be indexed.
-   * If returns true, indexing proceeds.  If false, indexing is skipped.
-   */
   abstract protected function shouldIndex();
 
-  /**
-   * Saves the record.
-   */
   public function save()
   {
     $this->delete();
@@ -59,72 +45,100 @@ abstract class sfLuceneIndexer
   }
 
   /**
-  * Gets the search instance.
+  * Gets an instance of the lucene engine.
+  */
+  protected function getLucene()
+  {
+    return $this->getSearch()->getLucene();
+  }
+
+  /**
+  * Gets the search engine.
   */
   protected function getSearch()
   {
     return $this->search;
   }
 
-  /**
-   * Return the context that the search is bound to
-   */
-  protected function getContext()
+  protected function getCulture()
   {
-    return $this->search->getContext();
+    return $this->getSearch()->getCulture();
   }
 
   /**
-  * Searches the index for anything with that guid and will delete it, while
-  * taking care to update categories cache.
-  *
+  * Action to retrieve the GUID for the input
+  */
+  protected function getGuid($input)
+  {
+    return $this->getCulture() . '-' . md5($input) . sha1($input);
+  }
+
+  /**
+  * Factory to obtain the search fields.
+  * @param string $field The type of field
+  * @param string $name To name to use
+  * @param string $contents The contents for the field to have.
+  * @return mixed The requested type.
+  */
+  protected function getLuceneField($field, $name, $contents)
+  {
+    switch (strtolower($field))
+    {
+      case 'keyword':
+        return Zend_Search_Lucene_Field::Keyword($name, $contents, $this->encoding);
+      case 'unindexed':
+        return Zend_Search_Lucene_Field::UnIndexed($name, $contents, $this->encoding);
+      case 'binary':
+        return Zend_Search_Lucene_Field::Binary($name, $contents);
+      case 'text':
+        return Zend_Search_Lucene_Field::Text($name, $contents, $this->encoding);
+      case 'unstored':
+        return Zend_Search_Lucene_Field::UnStored($name, $contents, $this->encoding);
+      case 'index term':
+        return new Zend_Search_Lucene_Index_Term($contents, $name);
+      default:
+        throw new sfLuceneIndexerException(sprintf('Unknown field "%s" in factory', $field));
+    }
+  }
+
+  /**
+  * Searches the index for anything with that guid and will delete it.
   * @param string $guid The guid to search for
-  * @return int The number of documents deleted
   */
   protected function deleteGuid($guid)
   {
-    if ($this->search->getParameter('delete_lock'))
+    if ($this->getSearch()->isNew())
     {
-      // index has told us not to delete, so abort
       return 0;
     }
 
-    $term = $this->getLuceneField('index term', 'sfl_guid', $guid);
+    $term = $this->getLuceneField('index term', 'sfl_guid', $guid );
+
     $query = new Zend_Search_Lucene_Search_Query_Term($term);
 
-    $hits = $this->getSearch()->find($query);
+    $hits = $this->find($query);
 
-    // loop through each document that has this guid
     foreach ($hits as $hit)
     {
-      // build categories that this document has
-      $categories = unserialize($hit->sfl_categories_cache);
-
-      // delete each category that this document references
-      foreach ($categories as $category)
-      {
-        $this->removeCategory($category);
-      }
-
-      // delete item from index
-      $this->getSearch()->getLucene()->delete($hit->id);
+      $timer = sfTimerManager::getTimer('Zend Search Lucene');
+      $this->getLucene()->delete($hit->id);
+      $timer->addTime();
     }
 
-    // commit changes
-    $this->getSearch()->commit();
+    $this->commit();
 
     return count($hits);
   }
 
   /**
-  * Adds a document to the index while attaching a GUID
+  * Adds a document
   */
-  protected function addDocument(Zend_Search_Lucene_Document $document, $guid)
+  protected function addDocument($document, $guid)
   {
     $document->addField($this->getLuceneField('keyword', 'sfl_guid', $guid));
 
     $timer = sfTimerManager::getTimer('Zend Search Lucene');
-    $this->getSearch()->getLucene()->addDocument($document);
+    $this->getLucene()->addDocument($document);
     $timer->addTime();
   }
 
@@ -135,7 +149,7 @@ abstract class sfLuceneIndexer
    */
   protected function addCategory($category, $c = 1)
   {
-    $this->getSearch()->getCategoriesHarness()->getCategory($category)->add($c);
+    sfLuceneCategory::newInstance($category, $this->getSearch())->addReference($c)->save();
   }
 
   /**
@@ -145,42 +159,69 @@ abstract class sfLuceneIndexer
    */
   protected function removeCategory($category, $c = 1)
   {
-    $this->getSearch()->getCategoriesHarness()->getCategory($category)->subtract($c);
+    sfLuceneCategory::newInstance($category, $this->getSearch())->removeReference($c)->save();
   }
 
   /**
-   * Action to retrieve the GUID for the input
-   */
-  protected function getGuid($input)
+  * Returns a document based off an HTML string.
+  */
+  protected function getHtmlDocString($string)
   {
-    return md5($input) . sha1($input);
+    return Zend_Search_Lucene_Document_Html::loadHtml($string);
   }
 
   /**
-   * Factory to obtain the search fields.
-   * @param string $field The type of field
-   * @param string $name To name to use
-   * @param string $contents The contents for the field to have.
-   * @return mixed The requested type.
-   */
-  protected function getLuceneField($field, $name, $contents)
+  * Returns a document based off an HTML file.
+  */
+  protected function getHtmlDocFile($file)
   {
-    switch (strtolower($field))
+    return Zend_Search_Lucene_Document_Html::loadHtmlFile($file);
+  }
+
+  protected function getNewDocument()
+  {
+    return new Zend_Search_Lucene_Document();
+  }
+
+  /**
+  * Searches the lucene index for $query
+  */
+  protected function find($query)
+  {
+    return $this->getSearch()->find($query);
+  }
+
+  /**
+  * Commits the changes.
+  */
+  protected function commit()
+  {
+    return $this->getSearch()->commit();
+  }
+
+  /**
+  * Determines if the indexer should spit something out.
+  */
+  protected function shouldLog()
+  {
+    static $answer;
+
+    if (!$answer)
     {
-      case 'keyword':
-        return Zend_Search_Lucene_Field::Keyword($name, $contents, $this->getSearch()->getParameter('encoding'));
-      case 'unindexed':
-        return Zend_Search_Lucene_Field::UnIndexed($name, $contents, $this->getSearch()->getParameter('encoding'));
-      case 'binary':
-        return Zend_Search_Lucene_Field::Binary($name, $contents);
-      case 'text':
-        return Zend_Search_Lucene_Field::Text($name, $contents, $this->getSearch()->getParameter('encoding'));
-      case 'unstored':
-        return Zend_Search_Lucene_Field::UnStored($name, $contents, $this->getSearch()->getParameter('encoding'));
-      case 'index term':
-        return new Zend_Search_Lucene_Index_Term($contents, $name);
-      default:
-        throw new sfLuceneIndexerException(sprintf('Unknown field "%s" in factory', $field));
+      $answer = function_exists('pake_echo_action');
+    }
+
+    return $answer;
+  }
+
+  /**
+  * Echos a log using pake
+  */
+  protected function echoLog($message, $namespace = 'indexer')
+  {
+    if ($this->shouldLog())
+    {
+      pake_echo_action($namespace, $message);
     }
   }
 }

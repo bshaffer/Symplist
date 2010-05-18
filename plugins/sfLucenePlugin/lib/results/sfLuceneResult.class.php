@@ -1,7 +1,7 @@
 <?php
 /*
  * This file is part of the sfLucenePlugin package
- * (c) 2007 - 2008 Carl Vondrick <carl@carlsoft.net>
+ * (c) 2007 Carl Vondrick <carlv@carlsoft.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,8 +11,7 @@
  * Standard Lucene result.  This does all the mapping to follow the symfony coding standard.
  * @package    sfLucenePlugin
  * @subpackage Results
- * @author     Carl Vondrick <carl@carlsoft.net>
- * @version SVN: $Id: sfLuceneResult.class.php 7108 2008-01-20 07:44:42Z Carl.Vondrick $
+ * @author     Carl Vondrick <carlv@carlsoft.net>
  */
 class sfLuceneResult
 {
@@ -21,62 +20,25 @@ class sfLuceneResult
   protected $search;
 
   /**
-  * Consturctor, but consider using factor method ::getInstance()
+  * Singleton consturctor.
   */
-  public function __construct(Zend_Search_Lucene_Search_QueryHit $result, sfLucene $search)
+  protected function __construct($result, $search)
   {
     $this->result = $result;
     $this->search = $search;
   }
 
-  public function getSearch()
+  protected function getSearch()
   {
     return $this->search;
   }
 
-  public function getResult()
-  {
-    return $this->result;
-  }
-
   /**
-  * Gets the score of this hit.
+  * To be implemented later
   */
-  public function getScore()
+  public function valid()
   {
-    return ((int) ($this->result->score * 100 + .5)); // round to nearest integer
-  }
-
-  /**
-  * Gets the partial
-  */
-  public function getInternalPartial($module = 'sfLucene')
-  {
-    return $module . '/' . $this->getInternalType() . 'Result';
-  }
-
-  public function getInternalDescription()
-  {
-    try
-    {
-      return strip_tags($this->result->getDocument()->getFieldValue('sfl_description'));
-    }
-    catch (Exception $e)
-    {
-      return 'No description available.';
-    }
-  }
-
-  public function getInternalTitle()
-  {
-    try
-    {
-      return $this->result->getDocument()->getFieldValue('sfl_title');
-    }
-    catch (Exception $e)
-    {
-      return 'No title available.';
-    }
+    return true;
   }
 
   /**
@@ -84,7 +46,7 @@ class sfLuceneResult
   */
   static public function getInstance($result, $search)
   {
-    switch ($result->getDocument()->getFieldValue('sfl_type'))
+    switch ($result->sfl_type)
     {
       case 'action':
         $c = 'sfLuceneActionResult';
@@ -122,14 +84,14 @@ class sfLuceneResult
       }
     }
 
-    $event = $this->getSearch()->getEventDispatcher()->notifyUntil(new sfEvent($this, 'result.method_not_found', array('method' => $method, 'arguments' => $args)));
+    $call = array($this->results, $method);
 
-    if (!$event->isProcessed())
+    if (is_callable($call))
     {
-      throw new sfException(sprintf('Call to undefined method %s::%s.', __CLASS__, $method));
+      return call_user_func_array($call, $args);
     }
 
-    return $event->getReturnValue();
+    return sfMixer::callMixins();
   }
 
   /**
@@ -138,17 +100,51 @@ class sfLuceneResult
   protected function getProperty($method, $prefix)
   {
     $property = substr($method, strlen($prefix));
-    $property = $property;
+    $property = strtolower($property);
 
-    if (strtolower(substr($property, 0, 8)) == 'internal')
+    if (substr($property, 0, 8) == 'internal')
     {
-      $property = 'sfl_' . sfInflector::underscore(substr($property, 8));
-    }
-    else
-    {
-      $property = sfInflector::underscore($property);
+      $property = 'sfl_' . substr($property, 8);
     }
 
     return $property;
+  }
+
+  /**
+  * Gets the score of this hit.
+  */
+  public function getScore()
+  {
+    return ((int) ($this->result->score * 100 + .5)); // round to nearest integer
+  }
+
+  /**
+  * Gets the partial
+  */
+  public function getInternalPartial()
+  {
+    return 'sfLucene/' . $this->getInternalType() . 'Result';
+  }
+
+  public function getInternalDescription()
+  {
+    try
+    {
+      return strip_tags($this->sfl_description);
+    }
+    catch (Exception $e)
+    {
+      $responses = array('Click for more information', 'No description available', 'Open this item for more information');
+
+      return $responses[array_rand($responses)];
+    }
+  }
+
+  /**
+  * Wrapper for lucene's __get()
+  */
+  public function __get($property)
+  {
+    return $this->result->$property;
   }
 }

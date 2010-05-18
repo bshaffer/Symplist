@@ -1,7 +1,7 @@
 <?php
 /*
  * This file is part of the sfLucenePlugin package
- * (c) 2007 - 2008 Carl Vondrick <carl@carlsoft.net>
+ * (c) 2007 Carl Vondrick <carlv@carlsoft.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,9 +11,7 @@
  * Result from the model indexing engine.
  * @package    sfLucenePlugin
  * @subpackage Results
- * @author     Carl Vondrick <carl@carlsoft.net>
- * @author     Thomas Rabaix <thomas.rabaix@soleoweb.com>
- * @version SVN: $Id: sfLuceneModelResult.class.php 12678 2008-11-06 09:23:10Z rande $
+ * @author     Carl Vondrick <carlv@carlsoft.net>
  */
 class sfLuceneModelResult extends sfLuceneResult
 {
@@ -24,22 +22,25 @@ class sfLuceneModelResult extends sfLuceneResult
   {
     $model = $this->retrieveModel();
 
-    if ($model->has('title') && !is_null($model->get('title')))
+    if (isset($model['title']) && is_string($model['title']))
     {
-      return $this->result->getDocument()->getFieldValue($model->get('title'));
+      $getter = 'get' . $model['title'];
+      return $this->$getter();
     }
     else
     {
       foreach (array('title', 'subject') as $check)
       {
-        if ($model->get('fields')->has($check) && !is_null($model->get($check)))
+        if (isset($model['fields'][$check]) && is_string($model['fields'][$check]) )
         {
-          return strip_tags($this->result->getDocument()->getFieldValue($check));
+          $getter = 'get' . $check;
+
+          return $this->$getter();
         }
       }
     }
 
-    return 'No title available.';
+    return $this->getInternalModel();
   }
 
   /**
@@ -49,47 +50,59 @@ class sfLuceneModelResult extends sfLuceneResult
   {
     $model = $this->retrieveModel();
 
-    if (!$model->has('route'))
+    if (!isset($model['route']))
     {
-      throw new sfLuceneIndexerException(sprintf('A route for model "%s" was not defined.', $this->getInternalModel()));
+      throw new sfLuceneIndexerException(sprintf('A route for model "%s" was not defined in the search.yml file.  Did you define one for this application?', $this->getInternalModel()));
     }
 
-    return preg_replace('/%(\w+?)%/e', '$this->result->getDocument()->getFieldValue("$1")', $model->get('route'));
+    return preg_replace_callback('/%(\w+)%/', array($this, 'internalUriCallback'), $model['route']);
+  }
+
+  /**
+  * Callback for self::getInternalUri()
+  */
+  protected function internalUriCallback($matches)
+  {
+    $getter = 'get' . $matches[1];
+
+    return $this->$getter();
   }
 
   /**
   * Gets the partial specified for this result.
   */
-  public function getInternalPartial($module = 'sfLucene')
+  public function getInternalPartial()
   {
     $model = $this->retrieveModel();
 
-    if ($model->get('partial'))
+    if (isset($model['partial']))
     {
-      return $model->get('partial');
+      return $model['partial'];
     }
 
-    return parent::getInternalPartial($module);
+    return parent::getInternalPartial();
   }
 
   public function getInternalDescription()
   {
     $model = $this->retrieveModel();
 
-    if ($model->has('description') && !is_null($model->get('description')))
+    if (isset($model['description']) && is_string($model['description']))
     {
-      return strip_tags($this->result->getDocument()->getFieldValue($model->get('description')));
+      $getter = 'get' . $model['description'];
+      return strip_tags($this->$getter());
     }
 
     foreach (array('description','summary','about') as $check)
     {
-      if ($model->get('fields')->has($check) && !is_null($model->get($check)))
+      if (isset($model['fields'][$check]) && is_string($model['fields'][$check]))
       {
-        return strip_tags($this->result->getDocument()->getFieldValue($check));
+        $getter = 'get' . $check;
+        return strip_tags($this->$getter());
       }
     }
 
-    return 'No description available.';
+    return parent::getInternalDescription();
   }
 
   /**
@@ -97,6 +110,6 @@ class sfLuceneModelResult extends sfLuceneResult
   */
   protected function retrieveModel()
   {
-    return $this->search->getParameter('models')->get($this->getInternalModel());
+    return $this->search->dumpModel($this->getInternalModel());
   }
 }

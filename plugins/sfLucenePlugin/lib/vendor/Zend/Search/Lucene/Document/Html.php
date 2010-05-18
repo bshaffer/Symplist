@@ -15,9 +15,8 @@
  * @category   Zend
  * @package    Zend_Search_Lucene
  * @subpackage Document
- * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Html.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
 
@@ -31,7 +30,7 @@ require_once 'Zend/Search/Lucene/Document.php';
  * @category   Zend
  * @package    Zend_Search_Lucene
  * @subpackage Document
- * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
@@ -58,65 +57,22 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
     private $_doc;
 
     /**
-     * Exclud nofollow links flag
-     *
-     * If true then links with rel='nofollow' attribute are not included into
-     * document links.
-     *
-     * @var boolean
-     */
-    private static $_excludeNoFollowLinks = false;
-
-    /**
      * Object constructor
      *
-     * @param string  $data         HTML string (may be HTML fragment, )
+     * @param string  $data
      * @param boolean $isFile
      * @param boolean $storeContent
-     * @param string  $defaultEncoding   HTML encoding, is used if it's not specified using Content-type HTTP-EQUIV meta tag.
      */
-    private function __construct($data, $isFile, $storeContent, $defaultEncoding = '')
+    private function __construct($data, $isFile, $storeContent)
     {
         $this->_doc = new DOMDocument();
         $this->_doc->substituteEntities = true;
 
         if ($isFile) {
-            $htmlData = file_get_contents($data);
-        } else {
-            $htmlData = $data;
+            @$this->_doc->loadHTMLFile($data);
+        } else{
+            @$this->_doc->loadHTML($data);
         }
-        @$this->_doc->loadHTML($htmlData);
-
-        if ($this->_doc->encoding === null) {
-        	// Document encoding is not recognized
-
-        	/** @todo improve HTML vs HTML fragment recognition */
-        	if (preg_match('/<html>/i', $htmlData, $matches, PREG_OFFSET_CAPTURE)) {
-        		// It's an HTML document
-        		// Add additional HEAD section and recognize document
-        		$htmlTagOffset = $matches[0][1] + strlen($matches[0][1]);
-
-        		@$this->_doc->loadHTML(iconv($defaultEncoding, 'UTF-8//IGNORE', substr($htmlData, 0, $htmlTagOffset))
-                                     . '<head><META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8"/></head>'
-                                     . iconv($defaultEncoding, 'UTF-8//IGNORE', substr($htmlData, $htmlTagOffset)));
-
-                // Remove additional HEAD section
-                $xpath = new DOMXPath($this->_doc);
-                $head  = $xpath->query('/html/head')->item(0);
-        		$head->parentNode->removeChild($head);
-        	} else {
-        		// It's an HTML fragment
-        		@$this->_doc->loadHTML('<html><head><META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8"/></head><body>'
-        		                     . iconv($defaultEncoding, 'UTF-8//IGNORE', $htmlData)
-        		                     . '</body></html>');
-        	}
-
-        }
-        /** @todo Add correction of wrong HTML encoding recognition processing
-         * The case is:
-         * Content-type HTTP-EQUIV meta tag is presented, but ISO-8859-5 encoding is actually used,
-         * even $this->_doc->encoding demonstrates another recognized encoding
-         */
 
         $xpath = new DOMXPath($this->_doc);
 
@@ -126,13 +82,13 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
             // title should always have only one entry, but we process all nodeset entries
             $docTitle .= $titleNode->nodeValue . ' ';
         }
-        $this->addField(Zend_Search_Lucene_Field::Text('title', $docTitle, 'UTF-8'));
+        $this->addField(Zend_Search_Lucene_Field::Text('title', $docTitle, $this->_doc->actualEncoding));
 
         $metaNodes = $xpath->query('/html/head/meta[@name]');
         foreach ($metaNodes as $metaNode) {
             $this->addField(Zend_Search_Lucene_Field::Text($metaNode->getAttribute('name'),
                                                            $metaNode->getAttribute('content'),
-                                                           'UTF-8'));
+                                                           $this->_doc->actualEncoding));
         }
 
         $docBody = '';
@@ -142,16 +98,14 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
             $this->_retrieveNodeText($bodyNode, $docBody);
         }
         if ($storeContent) {
-            $this->addField(Zend_Search_Lucene_Field::Text('body', $docBody, 'UTF-8'));
+            $this->addField(Zend_Search_Lucene_Field::Text('body', $docBody, $this->_doc->actualEncoding));
         } else {
-            $this->addField(Zend_Search_Lucene_Field::UnStored('body', $docBody, 'UTF-8'));
+            $this->addField(Zend_Search_Lucene_Field::UnStored('body', $docBody, $this->_doc->actualEncoding));
         }
 
         $linkNodes = $this->_doc->getElementsByTagName('a');
         foreach ($linkNodes as $linkNode) {
-            if (($href = $linkNode->getAttribute('href')) != '' &&
-                (!self::$_excludeNoFollowLinks  ||  strtolower($linkNode->getAttribute('rel')) != 'nofollow' )
-               ) {
+            if (($href = $linkNode->getAttribute('href')) != '') {
                 $this->_links[] = $href;
             }
         }
@@ -164,26 +118,6 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
             }
         }
         $this->_headerLinks = array_unique($this->_headerLinks);
-    }
-
-    /**
-     * Set exclude nofollow links flag
-     *
-     * @param boolean $newValue
-     */
-    public static function setExcludeNoFollowLinks($newValue)
-    {
-        self::$_excludeNoFollowLinks = $newValue;
-    }
-
-    /**
-     * Get exclude nofollow links flag
-     *
-     * @return boolean
-     */
-    public static function getExcludeNoFollowLinks()
-    {
-        return self::$_excludeNoFollowLinks;
     }
 
     /**
@@ -229,27 +163,25 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
     /**
      * Load HTML document from a string
      *
-     * @param string  $data
+     * @param string $data
      * @param boolean $storeContent
-     * @param string  $defaultEncoding   HTML encoding, is used if it's not specified using Content-type HTTP-EQUIV meta tag.
      * @return Zend_Search_Lucene_Document_Html
      */
-    public static function loadHTML($data, $storeContent = false, $defaultEncoding = '')
+    public static function loadHTML($data, $storeContent = false)
     {
-        return new Zend_Search_Lucene_Document_Html($data, false, $storeContent, $defaultEncoding);
+        return new Zend_Search_Lucene_Document_Html($data, false, $storeContent);
     }
 
     /**
      * Load HTML document from a file
      *
-     * @param string  $file
+     * @param string $file
      * @param boolean $storeContent
-     * @param string  $defaultEncoding   HTML encoding, is used if it's not specified using Content-type HTTP-EQUIV meta tag.
      * @return Zend_Search_Lucene_Document_Html
      */
-    public static function loadHTMLFile($file, $storeContent = false, $defaultEncoding = '')
+    public static function loadHTMLFile($file, $storeContent = false)
     {
-        return new Zend_Search_Lucene_Document_Html($file, true, $storeContent, $defaultEncoding);
+        return new Zend_Search_Lucene_Document_Html($file, true, $storeContent);
     }
 
 
@@ -258,14 +190,12 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
      *
      * @param DOMText $node
      * @param array   $wordsToHighlight
-     * @param callback $callback   Callback method, used to transform (highlighting) text.
-     * @param array    $params     Array of additionall callback parameters (first non-optional parameter is a text to transform)
-     * @throws Zend_Search_Lucene_Exception
+     * @param string  $color
      */
-    protected function _highlightTextNode(DOMText $node, $wordsToHighlight, $callback, $params)
+    public function _highlightTextNode(DOMText $node, $wordsToHighlight, $color)
     {
         $analyzer = Zend_Search_Lucene_Analysis_Analyzer::getDefault();
-        $analyzer->setInput($node->nodeValue, 'UTF-8');
+        $analyzer->setInput($node->nodeValue, $this->_doc->encoding);
 
         $matchedTokens = array();
 
@@ -288,32 +218,10 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
             // Cut matched node
             $matchedWordNode = $node->splitText($token->getStartOffset());
 
-            // Retrieve HTML string representation for highlihted word
-            $fullCallbackparamsList = $params;
-            array_unshift($fullCallbackparamsList, $matchedWordNode->nodeValue);
-            $highlightedWordNodeSetHtml = call_user_func_array($callback, $fullCallbackparamsList);
+            $highlightedNode = $this->_doc->createElement('b', $matchedWordNode->nodeValue);
+            $highlightedNode->setAttribute('style', 'color:black;background-color:' . $color);
 
-            // Transform HTML string to a DOM representation and automatically transform retrieved string
-            // into valid XHTML (It's automatically done by loadHTML() method)
-            $highlightedWordNodeSetDomDocument = new DOMDocument('1.0', 'UTF-8');
-            $success = @$highlightedWordNodeSetDomDocument->
-                                loadHTML('<html><head><meta http-equiv="Content-type" content="text/html; charset=UTF-8"/></head><body>'
-                                       . $highlightedWordNodeSetHtml
-                                       . '</body></html>');
-            if (!$success) {
-            	require_once 'Zend/Search/Lucene/Exception.php';
-            	throw new Zend_Search_Lucene_Exception("Error occured while loading highlighted text fragment: '$highlightedNodeHtml'.");
-            }
-            $highlightedWordNodeSetXpath = new DOMXPath($highlightedWordNodeSetDomDocument);
-            $highlightedWordNodeSet      = $highlightedWordNodeSetXpath->query('/html/body')->item(0)->childNodes;
-
-            for ($count = 0; $count < $highlightedWordNodeSet->length; $count++) {
-            	$nodeToImport = $highlightedWordNodeSet->item($count);
-            	$node->parentNode->insertBefore($this->_doc->importNode($nodeToImport, true /* deep copy */),
-            	                                $matchedWordNode);
-            }
-
-            $node->parentNode->removeChild($matchedWordNode);
+            $node->parentNode->replaceChild($highlightedNode, $matchedWordNode);
         }
     }
 
@@ -323,10 +231,9 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
      *
      * @param DOMNode $contextNode
      * @param array $wordsToHighlight
-     * @param callback $callback   Callback method, used to transform (highlighting) text.
-     * @param array    $params     Array of additionall callback parameters (first non-optional parameter is a text to transform)
+     * @param string $color
      */
-    protected function _highlightNodeRecursive(DOMNode $contextNode, $wordsToHighlight, $callback, $params)
+    public function _highlightNode(DOMNode $contextNode, $wordsToHighlight, $color)
     {
         $textNodes = array();
 
@@ -339,66 +246,38 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
                 // process node later to leave childNodes structure untouched
                 $textNodes[] = $childNode;
             } else {
-                // Process node if it's not a script node
+                // Skip script nodes
                 if ($childNode->nodeName != 'script') {
-                    $this->_highlightNodeRecursive($childNode, $wordsToHighlight, $callback, $params);
+                    $this->_highlightNode($childNode, $wordsToHighlight, $color);
                 }
             }
         }
 
         foreach ($textNodes as $textNode) {
-            $this->_highlightTextNode($textNode, $wordsToHighlight, $callback, $params);
+            $this->_highlightTextNode($textNode, $wordsToHighlight, $color);
         }
     }
 
-    /**
-     * Standard callback method used to highlight words.
-     *
-     * @param  string  $stringToHighlight
-     * @return string
-     * @internal
-     */
-    public function applyColour($stringToHighlight, $colour)
-    {
-        return '<b style="color:black;background-color:' . $colour . '">' . $stringToHighlight . '</b>';
-    }
+
 
     /**
      * Highlight text with specified color
      *
      * @param string|array $words
-     * @param string $colour
+     * @param string $color
      * @return string
      */
-    public function highlight($words, $colour = '#66ffff')
-    {
-    	return $this->highlightExtended($words, array($this, 'applyColour'), array($colour));
-    }
-
-
-
-    /**
-     * Highlight text using specified View helper or callback function.
-     *
-     * @param string|array $words  Words to highlight. Words could be organized using the array or string.
-     * @param callback $callback   Callback method, used to transform (highlighting) text.
-     * @param array    $params     Array of additionall callback parameters passed through into it
-     *                             (first non-optional parameter is an HTML fragment for highlighting)
-     * @return string
-     * @throws Zend_Search_Lucene_Exception
-     */
-    public function highlightExtended($words, $callback, $params = array())
+    public function highlight($words, $color = '#66ffff')
     {
         if (!is_array($words)) {
             $words = array($words);
         }
+        $wordsToHighlight = array();
 
-        $wordsToHighlightList = array();
         $analyzer = Zend_Search_Lucene_Analysis_Analyzer::getDefault();
         foreach ($words as $wordString) {
-            $wordsToHighlightList[] = $analyzer->tokenize($wordString);
+            $wordsToHighlight = array_merge($wordsToHighlight, $analyzer->tokenize($wordString));
         }
-        $wordsToHighlight = call_user_func_array('array_merge', $wordsToHighlightList);
 
         if (count($wordsToHighlight) == 0) {
             return $this->_doc->saveHTML();
@@ -409,19 +288,14 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
             $wordsToHighlightFlipped[$token->getTermText()] = $id;
         }
 
-        if (!is_callable($callback)) {
-        	require_once 'Zend/Search/Lucene/Exception.php';
-        	throw new Zend_Search_Lucene_Exception('$viewHelper parameter mast be a View Helper name, View Helper object or callback.');
-        }
-
         $xpath = new DOMXPath($this->_doc);
 
         $matchedNodes = $xpath->query("/html/body");
         foreach ($matchedNodes as $matchedNode) {
-            $this->_highlightNodeRecursive($matchedNode, $wordsToHighlightFlipped, $callback, $params);
+            $this->_highlightNode($matchedNode, $wordsToHighlightFlipped, $color);
         }
-    }
 
+    }
 
     /**
      * Get HTML
@@ -431,24 +305,6 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
     public function getHTML()
     {
         return $this->_doc->saveHTML();
-    }
-
-    /**
-     * Get HTML body
-     *
-     * @return string
-     */
-    public function getHtmlBody()
-    {
-        $xpath = new DOMXPath($this->_doc);
-        $bodyNodes = $xpath->query('/html/body')->item(0)->childNodes;
-
-        $outputFragments = array();
-        for ($count = 0; $count < $bodyNodes->length; $count++) {
-        	$outputFragments[] = $this->_doc->saveXML($bodyNodes->item($count));
-        }
-
-        return implode($outputFragments);
     }
 }
 
