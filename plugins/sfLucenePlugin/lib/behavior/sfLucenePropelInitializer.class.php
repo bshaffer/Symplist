@@ -1,7 +1,7 @@
 <?php
 /*
  * This file is part of the sfLucenePlugin package
- * (c) 2007 Carl Vondrick <carlv@carlsoft.net>
+ * (c) 2007 - 2008 Carl Vondrick <carl@carlsoft.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,12 +11,11 @@
  * Initializes the Propel behaviors.
  * @package    sfLucenePlugin
  * @subpackage Behavior
- * @author     Carl Vondrick <carlv@carlsoft.net>
+ * @author     Carl Vondrick <carl@carlsoft.net>
+ * @version SVN: $Id: sfLucenePropelInitializer.class.php 7108 2008-01-20 07:44:42Z Carl.Vondrick $
  */
 class sfLucenePropelInitializer
 {
-  protected $model_setup = false;
-
   /**
   * Singleton.  Gets the instance
   */
@@ -34,33 +33,22 @@ class sfLucenePropelInitializer
 
   /**
   * Singleton constructor.
+  * Initializes the model and Propel behaviors by adding all the appropriate hooks only once.
   */
   protected function __construct()
   {
-  }
+    sfPropelBehavior::registerHooks('search', array(
+      ':save:pre' => array('sfLucenePropelBehavior', 'preSave'),
+      ':save:post' => array('sfLucenePropelBehavior', 'postSave'),
+      ':delete:pre' => array('sfLucenePropelBehavior', 'preDelete'),
+      ':delete:post' => array('sfLucenePropelBehavior', 'postDelete'),
+    ));
 
-  /**
-  * Initializes the model and Propel behaviors by adding all the appropriate hooks only once.
-  */
-  protected function setupModelOneTime()
-  {
-    if (!$this->model_setup)
-    {
-      sfPropelBehavior::registerHooks('search', array(
-        ':save:pre' => array('sfLucenePropelBehavior', 'preSave'),
-        ':save:post' => array('sfLucenePropelBehavior', 'postSave'),
-        ':delete:pre' => array('sfLucenePropelBehavior', 'preDelete'),
-        ':delete:post' => array('sfLucenePropelBehavior', 'postDelete'),
-      ));
-
-      sfPropelBehavior::registerMethods('search', array(
-        array('sfLucenePropelBehavior', 'saveIndex'),
-        array('sfLucenePropelBehavior', 'deleteIndex'),
-        array('sfLucenePropelBehavior', 'insertIndex')
-      ));
-
-      $this->model_setup = true;
-    }
+    sfPropelBehavior::registerMethods('search', array(
+      array('sfLucenePropelBehavior', 'saveIndex'),
+      array('sfLucenePropelBehavior', 'deleteIndex'),
+      array('sfLucenePropelBehavior', 'insertIndex')
+    ));
   }
 
   /**
@@ -68,10 +56,8 @@ class sfLucenePropelInitializer
   * in the search.yml file.
   * @param string $model The model name to setup.
   */
-  public function setupModel($model)
+  public function setup($model)
   {
-    $this->setupModelOneTime();
-
     sfPropelBehavior::add($model, array(
       'search' => array()
     ));

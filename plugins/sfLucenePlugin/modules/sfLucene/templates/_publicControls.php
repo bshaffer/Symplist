@@ -2,7 +2,8 @@
 /**
  * @package sfLucenePlugin
  * @subpackage Module
- * @author Carl Vondrick <carlv@carlsoft.net>
+ * @author Carl Vondrick <carl@carlsoft.net>
+ * @version SVN: $Id: _publicControls.php 7108 2008-01-20 07:44:42Z Carl.Vondrick $
  */
 ?>
 

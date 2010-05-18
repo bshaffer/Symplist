@@ -15,8 +15,9 @@
  * @category   Zend
  * @package    Zend_Search_Lucene
  * @subpackage Search
- * @copyright  Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @version    $Id: Boolean.php 16541 2009-07-07 06:59:03Z bkarwin $
  */
 
 
@@ -31,7 +32,7 @@ require_once 'Zend/Search/Lucene/Search/Weight/Boolean.php';
  * @category   Zend
  * @package    Zend_Search_Lucene
  * @subpackage Search
- * @copyright  Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Search_Lucene_Search_Query_Boolean extends Zend_Search_Lucene_Search_Query
@@ -492,13 +493,13 @@ class Zend_Search_Lucene_Search_Query_Boolean extends Zend_Search_Lucene_Search_
         array_multisort($resVectorsSizes, SORT_ASC, SORT_NUMERIC,
                         $resVectorsIds,   SORT_ASC, SORT_NUMERIC,
                         $resVectors);
-        
+
         foreach ($resVectors as $nextResVector) {
             if($this->_resVector === null) {
                 $this->_resVector = $nextResVector;
             } else {
                 //$this->_resVector = array_intersect_key($this->_resVector, $nextResVector);
-                
+
                 /**
                  * This code is used as workaround for array_intersect_key() slowness problem.
                  */
@@ -544,7 +545,7 @@ class Zend_Search_Lucene_Search_Query_Boolean extends Zend_Search_Lucene_Search_
                 // prohibited
                 // Do nothing. matchedDocs() may include non-matching id's
                 // Calculating prohibited vector may take significant time, but do not affect the result
-                // Skipped.  
+                // Skipped.
             } else {
                 // neither required, nor prohibited
                 // array union
@@ -556,14 +557,14 @@ class Zend_Search_Lucene_Search_Query_Boolean extends Zend_Search_Lucene_Search_
         array_multisort($requiredVectorsSizes, SORT_ASC, SORT_NUMERIC,
                         $requiredVectorsIds,   SORT_ASC, SORT_NUMERIC,
                         $requiredVectors);
-        
+
         $required = null;
         foreach ($requiredVectors as $nextResVector) {
             if($required === null) {
                 $required = $nextResVector;
             } else {
                 //$required = array_intersect_key($required, $nextResVector);
-                
+
                 /**
                  * This code is used as workaround for array_intersect_key() slowness problem.
                  */
@@ -581,8 +582,8 @@ class Zend_Search_Lucene_Search_Query_Boolean extends Zend_Search_Lucene_Search_
                 break;
             }
         }
-                
-        
+
+
         if ($required !== null) {
             $this->_resVector = &$required;
         } else {
@@ -676,14 +677,25 @@ class Zend_Search_Lucene_Search_Query_Boolean extends Zend_Search_Lucene_Search_
      * It also initializes necessary internal structures
      *
      * @param Zend_Search_Lucene_Interface $reader
+     * @param Zend_Search_Lucene_Index_DocsFilter|null $docsFilter
      */
-    public function execute(Zend_Search_Lucene_Interface $reader)
+    public function execute(Zend_Search_Lucene_Interface $reader, $docsFilter = null)
     {
         // Initialize weight if it's not done yet
         $this->_initWeight($reader);
 
-        foreach ($this->_subqueries as $subquery) {
-            $subquery->execute($reader);
+        if ($docsFilter === null) {
+            // Create local documents filter if it's not provided by upper query
+            $docsFilter = new Zend_Search_Lucene_Index_DocsFilter();
+        }
+
+        foreach ($this->_subqueries as $subqueryId => $subquery) {
+            if ($this->_signs == null  ||  $this->_signs[$subqueryId] === true) {
+                // Subquery is required
+                $subquery->execute($reader, $docsFilter);
+            } else {
+                $subquery->execute($reader);
+            }
         }
 
         if ($this->_signs === null) {
@@ -746,16 +758,15 @@ class Zend_Search_Lucene_Search_Query_Boolean extends Zend_Search_Lucene_Search_
     }
 
     /**
-     * Highlight query terms
+     * Query specific matches highlighting
      *
-     * @param integer &$colorIndex
-     * @param Zend_Search_Lucene_Document_Html $doc
+     * @param Zend_Search_Lucene_Search_Highlighter_Interface $highlighter  Highlighter object (also contains doc for highlighting)
      */
-    public function highlightMatchesDOM(Zend_Search_Lucene_Document_Html $doc, &$colorIndex)
+    protected function _highlightMatches(Zend_Search_Lucene_Search_Highlighter_Interface $highlighter)
     {
         foreach ($this->_subqueries as $id => $subquery) {
             if ($this->_signs === null  ||  $this->_signs[$id] !== false) {
-                $subquery->highlightMatchesDOM($doc, $colorIndex);
+                $subquery->_highlightMatches($highlighter);
             }
         }
     }
@@ -783,10 +794,10 @@ class Zend_Search_Lucene_Search_Query_Boolean extends Zend_Search_Lucene_Search_
             }
 
             $query .= '(' . $subquery->__toString() . ')';
+        }
 
-            if ($subquery->getBoost() != 1) {
-                $query .= '^' . round($subquery->getBoost(), 4);
-            }
+        if ($this->getBoost() != 1) {
+            $query = '(' . $query . ')^' . round($this->getBoost(), 4);
         }
 
         return $query;

@@ -1,7 +1,7 @@
 <?php
 /*
  * This file is part of the sfLucenePlugin package
- * (c) 2007 Carl Vondrick <carlv@carlsoft.net>
+ * (c) 2007 - 2008 Carl Vondrick <carl@carlsoft.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,6 +11,7 @@
  * @package sfLucenePlugin
  * @subpackage Indexer
  * @author Carl Vondrick
+ * @version SVN: $Id: sfLuceneActionIndexerHandler.class.php 7108 2008-01-20 07:44:42Z Carl.Vondrick $
  */
 
 class sfLuceneActionIndexerHandler extends sfLuceneIndexerHandler
@@ -52,9 +53,11 @@ class sfLuceneActionIndexerHandler extends sfLuceneIndexerHandler
       return;
     }
 
-    if (isset($actions[$this->getSearch()->getName()]))
+    if (isset($actions[$this->getSearch()->getParameter('name')]))
     {
-      foreach ($actions[$this->getSearch()->getName()] as $action => $properties)
+      $this->getSearch()->getEventDispatcher()->notify(new sfEvent($this, 'indexer.log', array('Discovered %d actions in module "%s"', count($actions[$this->getSearch()->getParameter('name')]), $module)));
+
+      foreach ($actions[$this->getSearch()->getParameter('name')] as $action => $properties)
       {
         $this->getFactory()->getAction($module, $action)->save();
       }

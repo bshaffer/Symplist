@@ -1,7 +1,7 @@
 <?php
 /*
  * This file is part of the sfLucenePlugin package
- * (c) 2007 Carl Vondrick <carlv@carlsoft.net>
+ * (c) 2007 - 2008 Carl Vondrick <carl@carlsoft.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,7 +11,8 @@
  * Responsible for handling Propel's behaviors.
  * @package    sfLucenePlugin
  * @subpackage Behavior
- * @author     Carl Vondrick <carlv@carlsoft.net>
+ * @author     Carl Vondrick <carl@carlsoft.net>
+ * @version SVN: $Id: sfLucenePropelBehavior.class.php 7108 2008-01-20 07:44:42Z Carl.Vondrick $
  */
 class sfLucenePropelBehavior
 {
@@ -26,25 +27,20 @@ class sfLucenePropelBehavior
   protected $deleteQueue = array();
 
   /**
-   * Lock status of the indexation behavior
+   * If true, then nothing can be added to the queues.
    */
-  protected static $lock = false;
-
-  /**
-   * Set the lock status of the behavior
-   * @param  boolean  $to
-   */
-  public static function setLock($to)
-  {
-    self::$lock = (boolean) $to;
-  }
+  static protected $locked = false;
 
   /**
    * Adds the node to the queue if is modified or is new.
+   *
+   * The presave logic prevents infinite loops when dealing with circular references
+   * in models (such as i18n).  ->preSave() will make sure that the save queue
+   * has a reference to this node only if it is new or modified.
    */
   public function preSave($node)
   {
-    if (self::$lock)
+    if (self::$locked)
     {
       return;
     }
@@ -66,6 +62,9 @@ class sfLucenePropelBehavior
 
   /**
    * Executes save routine if it can find it in the queue.
+   *
+   * The counterpart to ->preSave(), which goes through the queue and only saves
+   * if it can find it in the queue.
    */
   public function postSave($node)
   {
@@ -87,7 +86,7 @@ class sfLucenePropelBehavior
    */
   public function preDelete($node)
   {
-    if (self::$lock)
+    if (self::$locked)
     {
       return;
     }
@@ -139,14 +138,9 @@ class sfLucenePropelBehavior
   */
   public function deleteIndex($node)
   {
-    if (sfConfig::get('sf_logging_enabled'))
-    {
-      sfLogger::getInstance()->info(sprintf('{sfLucene} deleting model "%s" with PK = "%s"', get_class($node), $node->getPrimaryKey()));
-    }
-
     foreach ($this->getSearchInstances($node) as $instance)
     {
-      $instance->getIndexer()->getModel($node)->delete();
+      $instance->getIndexerFactory()->getModel($node)->delete();
     }
   }
 
@@ -155,17 +149,16 @@ class sfLucenePropelBehavior
   */
   public function insertIndex($node)
   {
-    if (sfConfig::get('sf_logging_enabled'))
-    {
-      sfLogger::getInstance()->info(sprintf('{sfLucene} saving model "%s" with PK = "%s"', get_class($node), $node->getPrimaryKey()));
-    }
-
     foreach ($this->getSearchInstances($node) as $instance)
     {
-      $instance->getIndexer()->getModel($node)->insert();
+      $instance->getIndexerFactory()->getModel($node)->insert();
     }
   }
 
+  /**
+   * Finds all instances of sfLucene that this model appears in.  This does
+   * not return the instance if the model does not exist in it.
+   */
   protected function getSearchInstances($node)
   {
     static $instances;
@@ -177,20 +170,30 @@ class sfLucenePropelBehavior
       $instances = array();
     }
 
+    // continue only if we have not already cached the instances for this class
     if (!isset($instances[$class]))
     {
+      $instances[$class] = array();
+
       $config = sfLucene::getConfig();
 
+      // go through each instance
       foreach ($config as $name => $item)
       {
         if (isset($item['models'][$class]))
         {
           foreach ($item['index']['cultures'] as $culture)
           {
+            // store instance
             $instances[$class][] = sfLucene::getInstance($name, $culture);
           }
         }
       }
+    }
+
+    if (count($instances[$class]) == 0)
+    {
+      throw new sfLuceneException('No sfLucene instances could be found for "' . $class . '"');
     }
 
     return $instances[$class];
@@ -202,5 +205,14 @@ class sfLucenePropelBehavior
   static public function getInitializer()
   {
     return sfLucenePropelInitializer::getInstance();
+  }
+
+  /**
+   * Locks the Propel behavior, so nothing can be queued.
+   * @param bool $to If true, the behavior is locked.  If false, the behavior is unlocked.
+   */
+  static public function setLock($to)
+  {
+    self::$locked = (bool) $to;
   }
 }

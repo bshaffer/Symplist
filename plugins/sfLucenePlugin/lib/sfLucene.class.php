@@ -1,7 +1,7 @@
 <?php
 /*
  * This file is part of the sfLucenePlugin package
- * (c) 2007 Carl Vondrick <carlv@carlsoft.net>
+ * (c) 2007 - 2008 Carl Vondrick <carl@carlsoft.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -15,90 +15,38 @@
 * configurations for the index.  This is the primary means of communicating with
 * the Zend Search Lucene library.
 *
-* @author Carl Vondrick <carlv@carlsoft.net>
+* @author Carl Vondrick <carl@carlsoft.net>
 * @package sfLucenePlugin
+* @version SVN: $Id: sfLucene.class.php 15602 2009-02-18 15:12:02Z rande $
 */
 class sfLucene
 {
-  /**
-  * If true, Lucene will erase the old database for rebuilding.
-  */
-  protected $rebuild;
+  const VERSION = '0.2-DEV';
 
   /**
-  * If true, the index is new.
-  */
-  protected $isNew = false;
-
-  /**
-  * The culture of this instance
-  */
-  protected $culture;
-
-  /**
-  * Holds all the cultures enabled.
-  */
-  protected $cultures = array();
-
-  /**
-  * Holds all the stop words
-  */
-  protected $stopWords = array();
-
-  /**
-  * Holds the short word length
-  */
-  protected $shortWords = 2;
-
-  /**
-   * Holds the text analyzer type
+   * Holds the internal dispatcher for this Lucene instance.
    */
-  protected $analyzer = 'TextNum';
+  protected $dispatcher = null;
 
   /**
-   * Holds the case sensitivity
+   * Holds the Lucene instance
    */
-  protected $caseSensitive = false;
-
-  /**
-   * Holds whether to use mb_string functions (warning: 100 times slower than normal fxns!)
-   */
-  protected $mbString = false;
-
-  /**
-  * The name of the index
-  */
-  protected $name;
-
-  /**
-  * The encoding of the index
-  */
-  protected $encoding = 'UTF-8';
-
-  /**
-  * Holder for lucene instance
-  */
   protected $lucene = null;
 
   /**
-  * Holds the model declarations
-  */
-  protected $models = array();
-
-  /**
-   * Holds the indexer factories
+   * Holds the indexer factory singleton
    */
-  protected $factories = array();
+  protected $indexerFactory = null;
 
   /**
-   * Holds various misc. parameters
+   * Holds the categories singleton
    */
-  protected $parameters = array();
+  protected $categoriesHarness = null;
 
   /**
-  * Whether the index has been setup yet
-  */
-  static protected $setup = false;
+   * Holds parameters for this lucene instance
+   */
+  protected $parameters = null;
 
   /**
   * Holder for the instances
@@ -106,36 +54,29 @@ class sfLucene
   static protected $instances = array();
 
   /**
-  * Protected constructor
+  * Constructor, but seriously use getInstance as the constructor
+  * because that maintains singletons
   * @param string $name The name of the index
   * @param string $culture The culture of the index
   * @param bool $rebuild If true, the index is erased before opening it.
   */
   protected function __construct($name, $culture, $rebuild = false)
   {
-    $this->name = $name;
-    $this->rebuild = $rebuild;
-    $this->culture = $culture;
+    $this->parameters = new sfParameterHolder();
 
-    $this->parameters = new sfParameterHolder('lucene/default');
+    $this->setParameter('name', $name);
+    $this->setParameter('rebuild', $rebuild);
+    $this->setParameter('culture', $culture);
+    $this->setParameter('is_new', false);
 
-    if (!$this->loadConfig())
-    {
-      throw new sfLuceneException(sprintf('The name of this index is invalid.'));
-    }
+    $this->setParameter('index_location', sfConfig::get('sf_data_dir') . DIRECTORY_SEPARATOR.'index'.DIRECTORY_SEPARATOR . $name . DIRECTORY_SEPARATOR . $culture);
 
-    if (!in_array($culture, $this->getCultures()))
-    {
-      throw new sfLuceneException(sprintf('Culture "%s" is not enabled.', $culture));
-    }
+    $this->dispatcher = new sfEventDispatcher;
+
+    $this->initialize();
 
     $this->setAutomaticMode();
     $this->configure();
-
-    if (sfConfig::get('sf_logging_enabled'))
-    {
-      sfLogger::getInstance()->info(sprintf('{sfLucene} constructed new instance of index "%s" and culture "%s"', $this->name, $culture));
-    }
   }
 
   /**
@@ -145,9 +86,12 @@ class sfLucene
   * @param string $name The name of the index
   * @param string $culture The culture of the index
   * @param bool $rebuild If true, the index is erased before opening it.
+  * 
+  * @return sfLucene
   */
   static public function getInstance($name, $culture = null, $rebuild = false)
   {
+    // attempt to guess the culture
     if (is_null($culture))
     {
       $culture = sfContext::getInstance()->getUser()->getCulture();
@@ -168,22 +112,6 @@ class sfLucene
     }
 
     return self::$instances[$name][$culture];
-  }
-
-  /**
-  * Returns all of the config.
-  */
-  static public function getConfig()
-  {
-    // for unit tests *only*
-    if (defined('SF_LUCENE_UNIT_TEST'))
-    {
-      return FakeLucene::getTestConfig();
-    }
-
-    require(sfConfigCache::getInstance()->checkConfig(sfConfig::get('sf_config_dir_name').DIRECTORY_SEPARATOR.'search.yml'));
-
-    return $config;
   }
 
   /**
@@ -221,95 +149,206 @@ class sfLucene
   }
 
   /**
-  * Loads the config for the search engine.
-  * @return bool If true, the config was loaded.  If false, there was a problem.
+  * Returns all of the config.
   */
-  protected function loadConfig()
+  static public function getConfig()
+  {
+    $context = sfContext::getInstance();
+    
+    require($context->getConfiguration()->getConfigCache()->checkConfig('config/search.yml'));
+
+    if (!isset($config))
+    {
+      throw new sfLuceneException('Error loading configuration');
+    }
+
+    return $config;
+  }
+
+  /**
+  * Loads the config for the search engine.
+  */
+  protected function initialize()
   {
     $config = self::getConfig();
 
-    if (!isset($config[$this->name]))
-    {
-      return false;
-    }
-
-    $config = $config[$this->name];
-
-    $this->encoding = $config['index']['encoding'];
-    $this->cultures = $config['index']['cultures'];
-    $this->stopWords = $config['index']['stop_words'];
-    $this->shortWords = $config['index']['short_words'];
-    $this->analyzer = $config['index']['analyzer'];
-    $this->caseSensitive = $config['index']['case_sensitive'];
-    $this->mbString = $config['index']['mb_string'];
-    $this->models = $config['models'];
-    $this->factories = $config['factories'];
-
     $holder = $this->getParameterHolder();
 
-    foreach ($config['index']['param'] as $key => $value)
+    if (!isset($config[$holder->get('name')]))
     {
-      $holder->set($key, $value);
+      throw new sfLuceneException('The name of this index is invalid.');
     }
 
-    return true;
+    $config = $config[$holder->get('name')];
+
+    foreach (array('encoding', 'cultures' => 'enabled_cultures', 'stop_words', 'short_words', 'analyzer', 'case_sensitive', 'mb_string') as $key => $param)
+    {
+      if (is_int($key))
+      {
+        $holder->set($param, $config['index'][$param]);
+      }
+      else
+      {
+        $holder->set($param, $config['index'][$key]);
+      }
+    }
+
+    $models = new sfParameterHolder();
+
+    foreach ($config['models'] as $name => $model)
+    {
+      $fields = new sfParameterHolder();
+
+      foreach ($model['fields'] as $field => $fieldProperties)
+      {
+        $fieldsData = new sfParameterHolder();
+        $fieldsData->add($fieldProperties);
+
+        $fields->set($field, $fieldsData);
+      }
+
+      $data = new sfParameterHolder();
+      $data->set('fields', $fields);
+      $data->set('partial', $model['partial']);
+      $data->set('indexer', $model['indexer']);
+      $data->set('title', $model['title']);
+      $data->set('description', $model['description']);
+      $data->set('peer', $model['peer']);
+      $data->set('rebuild_limit', $model['rebuild_limit']);
+      $data->set('validator', $model['validator']);
+      $data->set('categories', $model['categories']);
+      $data->set('route', $model['route']);
+
+      $models->set($name, $data);
+    }
+
+    $holder->set('models', $models);
+
+    $factories = new sfParameterHolder();
+    $factories->add($config['factories']);
+    $holder->set('factories', $factories);
+
+    if (!in_array($holder->get('culture'), $holder->get('enabled_cultures')))
+    {
+      throw new sfLuceneException(sprintf('Culture "%s" is not enabled.', $holder->get('culture')));
+    }
   }
 
-  /**
-  * Get all the cultures that are enabled.
-  */
-  public function getCultures()
+  public function setParameter($key, $value)
   {
-    return $this->cultures;
+    $this->parameters->set($key, $value);
   }
 
-  /**
-   * Returns the name of this index
-   */
-  public function getName()
+  public function getParameter($key, $default = null)
   {
-    return $this->name;
+    return $this->parameters->get($key, $default);
   }
 
-  /**
-  * Retrieves the encoding of this index.
-  */
-  public function getEncoding()
+  public function getParameterHolder()
   {
-    return $this->encoding;
-  }
-
-  /**
-  * Returns every registered factory.
-  */
-  public function getFactories()
-  {
-    return $this->factories;
-  }
-
-  /**
-  * Returns whether this is a new index.
-  */
-  public function isNew()
-  {
-    return $this->isNew;
-  }
-
-  /**
-  * Returns the culture of this index.
-  */
-  public function getCulture()
-  {
-    return $this->culture;
+    return $this->parameters;
   }
 
   /**
   * Returns the categories for this index.
   */
-  public function getCategories()
+  public function getCategoriesHarness()
   {
-    return sfLuceneCategory::getAllCategories($this);
+    if ($this->categoriesHarness == null)
+    {
+      $this->categoriesHarness = new sfLuceneCategories($this);
+    }
+
+    return $this->categoriesHarness;
   }
+
+  /**
+   * Create index structure is needed
+   */
+  static function initIndex($name, $culture)
+  {
+    sfLuceneToolkit::loadZend();
+    $location = sfConfig::get('sf_data_dir') . DIRECTORY_SEPARATOR.'index'.DIRECTORY_SEPARATOR . $name . DIRECTORY_SEPARATOR . $culture;
+     
+    if(!file_exists($location))
+    {
+      
+      Zend_Search_Lucene::create( new sfLuceneDirectoryStorage($location) );
+    }
+  }
+  
+  /**
+  * Returns the lucene object
+  * @return Zend_Search_Lucene
+  */
+  public function getLucene()
+  {
+    $location = $this->getParameter('index_location');
+
+    if ($this->lucene == null)
+    {
+      sfLuceneToolkit::loadZend();
+
+      if (file_exists($location) && !$this->getParameter('rebuild'))
+      {
+        $lucene = Zend_Search_Lucene::open( new sfLuceneDirectoryStorage($location) );
+        $this->setParameter('is_new', false);
+      }
+      else
+      {
+        if (sfConfig::get('sf_logging_enabled'))
+        {
+          if ($this->getParameter('rebuild') && file_exists($location))
+          {
+            $this->getContext()->getLogger()->info(sprintf('erased index "%s"', $location));
+          }
+
+          $this->getContext()->getLogger()->info(sprintf('created index "%s"', $location));
+        }
+
+        $this->setParameter('rebuild', false);
+        $this->setParameter('is_new', true);
+
+        $lucene = Zend_Search_Lucene::create( new sfLuceneDirectoryStorage($location) );
+      }
+
+      $this->lucene = $lucene;
+   }
+
+    return $this->lucene;
+  }
+
+  /**
+  * Gets the specified indexer from the factory.
+  * @return mixed An instance of the indexer factory.
+  */
+  public function getIndexerFactory()
+  {
+    if ($this->indexerFactory == null)
+    {
+      $this->indexerFactory = new sfLuceneIndexerFactory($this);
+    }
+
+    return $this->indexerFactory;
+  }
+
+  /**
+   * Gets the sfLucene specific event dispatcher
+   */
+  public function getEventDispatcher()
+  {
+    return $this->dispatcher;
+  }
+
+  /**
+  * Gets the context.  Right now, this exists for forward-compatability.
+  * TODO: Remove singleton (depends on sfConfiguration)
+  */
+  public function getContext()
+  {
+    return sfContext::getInstance();
+  }
+
 
   /**
    * Zend Search Lucene makes it awfully hard to have multiple Lucene indexes
@@ -318,16 +357,16 @@ class sfLucene
    */
   public function configure()
   {
-    self::setupLucene();
+    sfLuceneToolkit::loadZend();
 
-    sfMixer::callMixins('configure:pre');
+    $this->getEventDispatcher()->notify(new sfEvent($this, 'lucene.configure.pre'));
 
-    Zend_Search_Lucene_Search_QueryParser::setDefaultEncoding($this->encoding);
+    Zend_Search_Lucene_Search_QueryParser::setDefaultEncoding($this->getParameter('encoding'));
 
-    switch (strtolower($this->analyzer))
+    switch (strtolower($this->getParameter('analyzer')))
     {
       default:
-        throw new sfLuceneException('Unknown analyzer: ' . $this->analyzer);
+        throw new sfLuceneException('Unknown analyzer: ' . $this->getParameter('analzyer'));
       case 'text':
         $analyzer = new Zend_Search_Lucene_Analysis_Analyzer_Common_Text();
         break;
@@ -344,129 +383,85 @@ class sfLucene
         break;
     }
 
-    if (!$this->caseSensitive)
+    if (!$this->getParameter('case_sensitive', false))
     {
-      $analyzer->addFilter(new sfLuceneLowerCaseFilter($this->mbString, $this->encoding));
+      $analyzer->addFilter(new sfLuceneLowerCaseFilter($this->getParameter('mb_string', false)));
     }
 
-    if (count($this->stopWords))
+    if (count($this->getParameter('stop_words')))
     {
-      $analyzer->addFilter(new Zend_Search_Lucene_Analysis_TokenFilter_StopWords($this->stopWords));
+      $analyzer->addFilter(new Zend_Search_Lucene_Analysis_TokenFilter_StopWords($this->getParameter('stop_words')));
     }
 
-    if ($this->shortWords > 0)
+    if ($this->getParameter('short_words') > 0)
     {
-      $analyzer->addFilter(new Zend_Search_Lucene_Analysis_TokenFilter_ShortWords($this->shortWords));
+      $analyzer->addFilter(new Zend_Search_Lucene_Analysis_TokenFilter_ShortWords($this->getParameter('short_words')));
     }
 
     Zend_Search_Lucene_Analysis_Analyzer::setDefault($analyzer);
 
-    sfMixer::callMixins('configure:post');
+    $this->getEventDispatcher()->notify(new sfEvent($this, 'lucene.configure.post'));
   }
 
-  /**
-  * Configures and loads the Zend libraries. This method *must* be called before
-  * you use a Zend library, otherwise the autoloader will not be able to find it!
-  */
-  static public function setupLucene()
-  {
-    if (!self::$setup)
-    {
-      require_once dirname(__FILE__)  . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'config.php';
-
-      self::$setup = true;
-    }
-  }
-
-  /**
-  * Returns all the models
-  */
-  public function dumpModels($model = null)
-  {
-    if ($model)
-    {
-      sfContext::getInstance()->getLogger()->info(sprintf('{sfLucene} calling ->dumpModels() with a model argument is deprecated; please use ->dumpModel() instead'));
-
-      return $this->dumpModel($model);
-    }
-    else
-    {
-      return $this->models;
-    }
-  }
-
-  /**
-    * Returns just one model
-    * @param string $model The model to look up
-    * @return mixed Null if not found, array of config options if found.
-    */
-  public function dumpModel($model)
-  {
-    if (isset($this->models[$model]))
-    {
-      return $this->models[$model];
-    }
-    else
-    {
-      return null;
-    }
-  }
-
-  /**
-  * Returns the lucene object
-  * @return Zend_Search_Lucene
-  */
-  public function getLucene()
-  {
-    if ($this->lucene == null)
-    {
-      self::setupLucene();
-
-      if (file_exists($this->getIndexLoc()) && !$this->rebuild)
-      {
-        $lucene = Zend_Search_Lucene::open( new sfLuceneDirectoryStorage($this->getIndexLoc()) );
-        $this->isNew = false;
-      }
-      else
-      {
-        if (sfConfig::get('sf_logging_enabled'))
-        {
-          if ($this->rebuild && file_exists($this->getIndexLoc()))
-          {
-            sfContext::getInstance()->getLogger()->info(sprintf('{sfLucene} erased index "%s"', $this->getIndexLoc()));
-          }
-
-          sfContext::getInstance()->getLogger()->info(sprintf('{sfLucene} created index "%s"', $this->getIndexLoc()));
-        }
-
-        $this->rebuild = false;
-        $this->isNew = true;
-        $lucene = Zend_Search_Lucene::create( new sfLuceneDirectoryStorage($this->getIndexLoc()) );
-      }
-
-      $this->lucene = $lucene;
-   }
-
-    return $this->lucene;
-  }
-
-  /**
+/**
   * Rebuilds the entire index.  This will be quite slow, so only run from the command line.
   */
   public function rebuildIndex()
   {
     $this->setBatchMode();
 
-    sfLuceneCategory::clearAll($this);
+    $timer = sfTimerManager::getTimer('Zend Search Lucene Rebuild');
 
-    sfMixer::callMixins('rebuild:pre');
+    $this->getEventDispatcher()->notify(new sfEvent($this, 'lucene.log', array('Rebuilding index...')));
 
-    foreach ($this->getIndexer()->getHandlers() as $handler)
+    $this->getCategoriesHarness()->clear();
+
+    $original = $this->getParameter('delete_lock', false);
+    $this->setParameter('delete_lock', true); // tells the indexers not to bother deleting
+
+    foreach ($this->getIndexerFactory()->getHandlers() as $handler)
     {
       $handler->rebuild();
     }
 
-    sfMixer::callMixins('rebuild:post');
+    $this->setParameter('delete_lock', $original);
+
+    $this->getEventDispatcher()->notify(new sfEvent($this, 'lucene.log', array('Index rebuilt.')));
+
+    $timer->addTime();
+
+    return $this;
+  }
+  
+  /**
+  * Update only the index for one model
+  *
+  * if $offset and $limit are numeric then only the portion between
+  * the offset and the limit are updated
+  */
+  public function rebuildIndexModel($model, $offset = null, $limit = null)
+  {
+    $this->setBatchMode();
+
+    $timer = sfTimerManager::getTimer('Zend Search Lucene Rebuild');
+
+    $this->getEventDispatcher()->notify(new sfEvent($this, 'lucene.log', array('Rebuilding index...')));
+
+    foreach ($this->getIndexerFactory()->getHandlers() as $handler)
+    {
+      
+      if(!$handler instanceof sfLuceneModelIndexerHandler)
+      {
+        
+        continue;
+      }
+      
+      $handler->rebuildModel($model, $offset, $limit);
+    }
+
+    $this->getEventDispatcher()->notify(new sfEvent($this, 'lucene.log', array('Index rebuilt.')));
+
+    $timer->addTime();
 
     return $this;
   }
@@ -476,18 +471,11 @@ class sfLucene
   */
   public function setAutomaticMode()
   {
-    static $mode;
-
-    if (!$mode)
-    {
-      $mode = function_exists('pake_echo_action') ? 'batch' : 'interactive';
-    }
-
-    if ($mode == 'batch')
+    if ($this->getContext()->getController()->inCLI())
     {
       $this->setBatchMode();
     }
-    elseif ($mode = 'interactive')
+    else
     {
       $this->setInteractiveMode();
     }
@@ -522,37 +510,19 @@ class sfLucene
   }
 
   /**
-  * Shortcut to retrieve the index location
-  */
-  protected function getIndexLoc()
-  {
-    return sfConfig::get('sf_data_dir') . DIRECTORY_SEPARATOR.'index'.DIRECTORY_SEPARATOR . $this->name . DIRECTORY_SEPARATOR . $this->getCulture();
-  }
-
-  /**
-  * Gets the specified indexer from the factory.
-  * @return mixed An instance of the indexer factory.
-  */
-  public function getIndexer()
-  {
-    return new sfLuceneIndexerFactory($this);
-  }
-
-  public function getParameterHolder()
-  {
-    return $this->parameters;
-  }
-
-  /**
   * Wrapper to optimize the index.
   */
   public function optimize()
   {
+    $this->configure();
+
     $timer = sfTimerManager::getTimer('Zend Search Lucene Optimize');
 
-    sfMixer::callMixins('optimize:pre');
+    $this->getEventDispatcher()->notify(new sfEvent($this, 'lucene.log', array('Optimizing index...')));
+
     $this->getLucene()->optimize();
-    sfMixer::callMixins('optimize:post');
+
+    $this->getEventDispatcher()->notify(new sfEvent($this, 'lucene.log', array('Index optimized.')));
 
     $timer->addTime();
   }
@@ -582,9 +552,11 @@ class sfLucene
 
     $timer = sfTimerManager::getTimer('Zend Search Lucene Commit');
 
-    sfMixer::callMixins('commit:pre');
+    $this->getEventDispatcher()->notify(new sfEvent($this, 'lucene.log', array('Committing changes...')));
+
     $this->getLucene()->commit();
-    sfMixer::callMixins('commit:post');
+
+    $this->getEventDispatcher()->notify(new sfEvent($this, 'lucene.log', array('Changes committed.')));
 
     $timer->addTime();
   }
@@ -596,9 +568,12 @@ class sfLucene
   {
     $size = 0;
 
-    foreach ( new DirectoryIterator($this->getIndexLoc()) as $node)
+    foreach ( new DirectoryIterator($this->getParameter('index_location')) as $node)
     {
-      $size += $node->getSize();
+      if (!in_array($node->getFilename(), array('CVS', '.svn')))
+      {
+        $size += $node->getSize();
+      }
     }
 
     return $size;
@@ -609,7 +584,7 @@ class sfLucene
   */
   public function segmentCount()
   {
-    return count(glob($this->getIndexLoc() . DIRECTORY_SEPARATOR.'_*.cfs'));
+    return count(glob($this->getParameter('index_location') . DIRECTORY_SEPARATOR.'_*.cfs'));
   }
 
   /**
@@ -624,6 +599,7 @@ class sfLucene
     $timer = sfTimerManager::getTimer('Zend Search Lucene Find');
 
     $sort = array();
+    $scoring = null;
 
     if ($query instanceof sfLuceneCriteria)
     {
@@ -634,11 +610,20 @@ class sfLucene
         $sort[] = $sortable['order'];
       }
 
+      $scoring = $query->getScoringAlgorithm();
       $query = $query->getQuery();
     }
     elseif (is_string($query))
     {
-      $query = sfLuceneCriteria::newInstance()->add($query)->getQuery();
+      $query = sfLuceneCriteria::newInstance($this)->addString($query)->getQuery();
+    }
+
+
+    $defaultScoring = Zend_Search_Lucene_Search_Similarity::getDefault();
+
+    if ($scoring)
+    {
+      Zend_Search_Lucene_Search_Similarity::setDefault($scoring);
     }
 
     try
@@ -657,10 +642,13 @@ class sfLucene
     }
     catch (Exception $e)
     {
+      Zend_Search_Lucene_Search_Similarity::setDefault($defaultScoring);
       $timer->addTime();
+
       throw $e;
     }
 
+    Zend_Search_Lucene_Search_Similarity::setDefault($defaultScoring);
     $timer->addTime();
 
     return $results;
@@ -673,14 +661,48 @@ class sfLucene
   */
   public function friendlyFind($query)
   {
-    return new sfLuceneResults( $this->find($query) , $this);
+    return new sfLuceneResults($this->find($query), $this);
   }
 
   /**
    * Hook for sfMixer
    */
-  public function __call($a, $b)
+  public function __call($method, $arguments)
   {
-    return sfMixer::callMixins();
+    $event = $this->getEventDispatcher()->notifyUntil(new sfEvent($this, 'lucene.method_not_found', array('method' => $method, 'arguments' => $arguments)));
+
+    if (!$event->isProcessed())
+    {
+      throw new sfException(sprintf('Call to undefined method %s::%s.', __CLASS__, $method));
+    }
+
+    return $event->getReturnValue();
+  }
+
+  /**
+   * Removes this instance from the singleton.  Do not ever use except for
+   * unit testing.
+   */
+  public function unlatch()
+  {
+    unset(self::$instances[$this->getParameter('name')][$this->getParameter('culture')]);
+  }
+
+  /**
+   * Force the index to use a Lucene instance.  Do not ever use except for unit
+   * testing.
+   */
+  public function forceLucene($lucene)
+  {
+    $this->lucene = $lucene;
+  }
+
+  /**
+   * Force the index to use a indexer factory.  Do not ever use except for unit
+   * testing.
+   */
+  public function forceIndexerFactory($factory)
+  {
+    $this->indexerFactory = $factory;
   }
 }

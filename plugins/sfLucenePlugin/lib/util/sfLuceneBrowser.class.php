@@ -1,7 +1,7 @@
 <?php
 /*
  * This file is part of the sfLucenePlugin package
- * (c) 2007 Carl Vondrick <carlv@carlsoft.net>
+ * (c) 2007 - 2008 Carl Vondrick <carl@carlsoft.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,7 +11,8 @@
  * A heavily modified sfBrowser that will launch requests into the symfony application.
  * @package    sfLucenePlugin
  * @subpackage Utilities
- * @author     Carl Vondrick <carlv@carlsoft.net>
+ * @author     Carl Vondrick <carl@carlsoft.net>
+ * @version SVN: $Id: sfLuceneBrowser.class.php 7108 2008-01-20 07:44:42Z Carl.Vondrick $
  */
 class sfLuceneBrowser
 {
@@ -109,7 +110,7 @@ class sfLuceneBrowser
   */
   protected function initialize()
   {
-    $this->getContext()->getRequest()->initialize($this->getContext());
+    $this->getContext()->getRequest()->initialize($this->getContext()->getEventDispatcher());
 
     for ($x = 0, $stop = $this->getContext()->getActionStack()->getSize(); $x < $stop; $x++)
     {

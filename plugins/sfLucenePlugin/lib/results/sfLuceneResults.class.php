@@ -1,7 +1,7 @@
 <?php
 /*
  * This file is part of the sfLucenePlugin package
- * (c) 2007 Carl Vondrick <carlv@carlsoft.net>
+ * (c) 2007 - 2008 Carl Vondrick <carl@carlsoft.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -15,7 +15,8 @@
  *
  * @package    sfLucenePlugin
  * @subpackage Results
- * @author     Carl Vondrick <carlv@carlsoft.net>
+ * @author     Carl Vondrick <carl@carlsoft.net>
+ * @version SVN: $Id: sfLuceneResults.class.php 7108 2008-01-20 07:44:42Z Carl.Vondrick $
  */
 class sfLuceneResults implements Iterator, Countable, ArrayAccess
 {
@@ -45,9 +46,16 @@ class sfLuceneResults implements Iterator, Countable, ArrayAccess
   /**
    * Hook for sfMixer
    */
-  public function __call($a, $b)
+  public function __call($method, $arguments)
   {
-    return sfMixer::callMixins();
+    $event = $this->search->getEventDispatcher()->notifyUntil(new sfEvent($this, 'results.method_not_found', array('method' => $method, 'arguments' => $arguments)));
+
+    if (!$event->isProcessed())
+    {
+      throw new sfException(sprintf('Call to undefined method %s::%s.', __CLASS__, $method));
+    }
+
+    return $event->getReturnValue();
   }
 
   public function getSearch()
@@ -92,7 +100,7 @@ class sfLuceneResults implements Iterator, Countable, ArrayAccess
 
   public function offsetGet($offset)
   {
-    return $this->results[$offset];
+    return $this->getInstance($this->results[$offset]);
   }
 
   public function offsetSet($offset, $set)

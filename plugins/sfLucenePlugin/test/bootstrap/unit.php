@@ -1,7 +1,7 @@
 <?php
 /*
  * This file is part of the sfLucenePlugin package
- * (c) 2007 Carl Vondrick <carlv@carlsoft.net>
+ * (c) 2007 - 2008 Carl Vondrick <carl@carlsoft.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,20 +11,19 @@
   * @package sfLucenePlugin
   * @subpackage Test
   * @author Carl Vondrick
+  * @version SVN: $Id: unit.php 7108 2008-01-20 07:44:42Z Carl.Vondrick $
   */
-
-$app = isset($app) ? $app : 'frontend';
-
-define('SF_ROOT_DIR', dirname(__FILE__) . '/../../../..');
-define('SF_APP', $app);
-define('SF_ENVIRONMENT', 'dev');
-define('SF_DEBUG', true);
-
-require_once SF_ROOT_DIR.DIRECTORY_SEPARATOR.'apps'.DIRECTORY_SEPARATOR.SF_APP.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'config.php';
-
-sfContext::getInstance();
 
 error_reporting(E_ALL);
 
-include(SF_ROOT_DIR.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'config.php');
-require_once($sf_symfony_lib_dir.'/vendor/lime/lime.php');
+define('SF_ROOT_DIR', realpath(dirname(__FILE__) . '/../../../..'));
+
+require_once SF_ROOT_DIR . '/config/config.php';
+require_once $sf_symfony_lib_dir . '/vendor/lime/lime.php';
+
+require_once dirname(__FILE__) . '/../limeade/limeade_loader.php';
+require_once dirname(__FILE__) . '/../bin/limeade_lucene.php';
+
+limeade_loader::all();
+
+

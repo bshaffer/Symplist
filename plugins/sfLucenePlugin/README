@@ -1,38 +1,34 @@
+Warning : This is a work in progress and it has been tested only with Doctrine
+
 = Introduction =
-sfLucenePlugin integrates symfony and Zend Search Lucene to instantly add a search engine to your application.  The plugin will auto-detect your ORM layer, but currently only supports Propel.
+sfLucenePlugin integrates symfony and Zend Search Lucene to instantly add a search engine to your application.  The plugin will auto-detect your ORM layer : Doctrine and Propel.
 
 = Requirements =
-  * symfony 1.0.x
-  * Propel
+  * symfony 1.1 
+  * Propel 1.2 / 1.3 or Doctrine 1.0
+  * PHP 5.2.x+
 
-For symfony 1.1, please see [wiki:sfLucenePlugin11].
+sfLucene ships with all external dependencies satisfied and will work on both private and shared hosting environments.
 
 = Main Features =
   * Configured all by YAML files
-  * Complete integration with symfony
+  * Complete integration with symfony 1.1
   * i18n ready
   * Keyword highlighting
-  * Stop words, short words
-  * Index optimization
-  * Custom indexers
-  * Multiple indexes
-
-[[Image(sfLucenePlugin-search-results.jpg, 120)]]
-[[Image(sfLucenePlugin-highlighting.jpg, 120)]]
-[[Image(sfLucenePlugin-advanced-search.jpg, 120)]]
-[[Image(sfLucenePlugin-cli.jpg, 120)]]
+  * Management of Lucene indexes
+  * 500+ unit tests and 98% API code coverage
 
 = Development Status =
-The 1.0 sfLucene branch is in maintenance mode and is generally pretty stable.
+The 1.1 branch for sfLucene will work, however it is not rock-solid stable.  Please use it, but be ready to report a few bugs to Trac.
 
 = Installation =
-  * Install the plugin:
+  * Install the plugin (from project directory):
 {{{
-symfony plugin-install http://plugins.symfony-project.com/sfLucenePlugin
+svn co http://svn.symfony-project.com/plugins/sfLucenePlugin/branches/1.1 plugins/sfLucenePlugin
 }}}
   * Initialize configuration files (ignore this if you are upgrading):
 {{{
-symfony lucene-init myapp
+symfony lucene:initialize myapp
 }}}
   * Clear the cache
 {{{
@@ -82,7 +78,7 @@ index:
 
 "analyzer" can either by text, textnum, utf8, or utf8num.  If you choose text, all numbers will be ignored.  If you require the index to be case sensitive, set "case_sensitive" to "on".    mb_string determines whether to use the mb_* string functions instead of the standard PHP string filters.  This adds a huge performance bottleneck to indexing when turned on, so use with care.  You only need to turn mb_string on if you are working with a case-insensitive utf8 index.
 
-By default, in the command line sfLucene operates in the "search" environment.  This has the advantage to that if you require a different configuration setting for the search environment, you can easily set it up.  But, if your database is only selectively configured per environment (ie, not for "all"), then you will quickly run into trouble.  To get around this, define a database for either "all" or the "search" environment.  
+By default, in the command line sfLucene operates in the "search" environment.  This has the advantage to that if you require a different configuration setting for the search environment, you can easily set it up.  But, if your database is only selectively configured per environment (ie, not for "all"), then you will quickly run into trouble.  To get around this, define a database for either "all" or the "search" environment.
 
 = Indexing =
 sfLucene currently supports two ways to add information to the index:
@@ -118,7 +114,7 @@ In the above example, two models are set to index: BlogPost and BlogComment.  In
 
 When search results are displayed, the system intelligently guesses which field should be displayed as the result "title" and which field is the result "description." However, to be explicit, you can specify a description and title field, as in BlogComment.
 
-Note that the fields do not have to exist as fields in your database.  As long as it has a getter on the model, you can use it in your index.
+Note that the fields do not have to exist as fields in your database.  As long as it has a getter on the model, you can use it in your index.  The fields are automatically camelized, so if you wish to call "->getSuperDuperMan()" as one of your fieds, you must write it in the YAML file as "super_duper_man".
 
 See [http://framework.zend.com/manual/en/zend.search.lucene.html the Zend_Search_Lucene documentation] for more about the field types.
 
@@ -155,9 +151,17 @@ Finally, you must register the model with the system.  If you are using Propel, 
 === Propel ===
 You can do this by opening up the model's file and putting
 {{{
-sfLucenePropelBehavior::getInitializer()->setupModel('MyModel');
+sfLucenePropelBehavior::getInitializer()->setup('MyModel');
 }}}
 after the class declaration.  So, for a blog, you would open project/lib/model/BlogPost.php and append the above, replacing "!MyModel" with "!BlogPost".
+
+If you wish to disable the Propel behavior so that no indexing can occur, you can simply do:
+{{{
+sfLucenePropelBehavior::setLock(true); // disables Propel behavior, no indexing
+sfLucenePropelBehavior::setLock(false); // enables Propel behavior, does index
+}}}
+
+By default, the behavior is not locked so indexing does occur.
 
 == Advanced Model Settings ==
 You can configure the model even more.  If the peer does not follow symfony's naming conventions, you can specify a new one with in the project level search.yml:
@@ -182,7 +186,7 @@ If only some of your objects should be stored in the index, you can define an va
 MyIndex:
   models:
     BlogPost:
-      validator: shouldIndex
+      validator: should_index
 }}}
 
 == symfony actions method ==
@@ -209,7 +213,7 @@ As you can see, it is possible to define request parameters, manipulate authenti
 After you have defined the indexing parameters, you must build the initial index.  You do this on the command line:
 
 {{{
-$ symfony lucene-rebuild myapp
+$ symfony lucene:rebuild myapp
 }}}
 
 replacing myapp with the name of your application you want to rebuild.  This will build the index for all cultures.
@@ -224,8 +228,6 @@ all:
   .settings:
     enabled_modules: [default, sfLucene]
 }}}
-
-You are free to define your own routes in the routing.yml file.
 
 If you have specified multiple indexes in your search.yml files, you need to configure which index that you want to search.  You do this by opening the app.yml file and adding the configuration setting:
 
@@ -244,13 +246,25 @@ sfConfig::set('app_lucene_index', 'MyIndex');
 == Customizing the Interface ==
 As every application is different, it is easy to customize the search interface to fit the look and feel of your site. Doing this is easy as all you must do is overload the templates and actions.
 
+=== Creating a Skeleton Module ===
+
 To get started, simply run the following on the command line:
 
 {{{
-$ symfony lucene-init-module myapp
+$ symfony lucene:init-module myApp
 }}}
 
-If you look in myapp's module folder. you will see a new sfLucene module.  Use this to customize your interface.
+If you look in myapp's module folder, you will see a new sfLucene module.  Use this to customize your interface.
+
+The lucene:init-module task is capable of custom module names and linking each module to a certain index.  This makes it possible to have multiple search interfaces in the same application.  To do this, simply run the above command with two extra parameters:
+
+{{{
+$ symfony lucene:init-module myApp myLucene myIndex
+}}}
+
+The above will create a skelelton module called "myLucene" in the application "myApp" and configure this module to search off the index "myIndex".
+
+=== Customizing Results ===
 
 Often, when writing a search engine, you need to display a different result template for each model.  For instance, a blog post should show differently than a forum post.  You can easily customize your results by changing the "partial" value in your application's search.yml file.   For example:
 {{{
@@ -272,6 +286,8 @@ For ForumPost, the partial apps/myapp/modules/forum/templates/_searchResult.php 
 
 In addition to the $result object, it is also given a $query string, which was what the user searched for.  This is useful for highlighting the results.
 
+=== Advanced Search ===
+
 If you wish to disable the advanced search interface, open the application's app.yml file and add the following:
 
 {{{
@@ -283,6 +299,8 @@ all:
 This will prevent sfLucene from giving the user the option to use the advanced mode.
 
 == Routing ==
+Note: This is currently broken because symfony 1.1 does not currently support this.  The symfony god, Fabien, is planning to fix this.  Until then, you have to register your own routes.  See ticket #2408 and symfony-devs mailing list.
+
 sfLucene will automatically register friendly routes with symfony.  For example, surfing to {{{ http://example.org/search }}} will route to sfLucene.  If you would like to customize these routes, you can disable them in the app.yml file with:
 
 {{{
@@ -366,7 +384,7 @@ highlight:
   class: sfLuceneHighlightFilter
   param:
     check_referer: on # if true, results from Google, Yahoo, etc will be highlighted.
-    highlight_qs: sf_highlight # the querystring to check for highlighted results, NOTE: Deprecated
+    highlight_qs: sf_highlight # the querystring to check for highlighted results
     highlight_strings: [<strong class="highlight hcolor1">%s</strong>] # how to highlight terms.  %s is replaced with the term
     notice_tag: "<!--[HIGHLIGHTER_NOTICE]-->" # this is replaced with the notice (removed if highlighting does not occur)
     notice_string: > # the notice string for regular highlighting.  %keywords% is replaced with the keywords.  i18n ready.
@@ -375,19 +393,12 @@ highlight:
       <div>Welcome from <strong>%from%</strong>!  The following keywords were automatically highlighted: %keywords%</div>
 }}}
 
-As of version 0.1.4 the preferred method for adding the 'highlight_qs' field is through your project's app.yml file. Defining it in the filters.yml file may cause your application to build routes inconsistently. Here's an example app.yml:
-{{{
-all:
-	lucene:
-	  highlight_qs:  highlight 
-}}}
-
-Values defined for 'highlight_qs' in the filter will still be honored, but only if there is nothing defined in the app.yml.
-
 If you need to configure it more, it is possible to extend the highlighting class.  Refer to the API documentation for this.
 
+Note: If you experience extremely slow page response times when using the highlighting filter (300ms to 2000ms), then you are recommended to reconfigure your XML catalog.  For instructions on how to do this, open the tarball XMLCatalog.tar.gz and follow the instructions there.
+
 = Categories =
-Starting with 0.0.5 Alpha, each document in the index can be tied to one or more categories.  It is then possible to limit your search results to that category in the provided interface.  To enable this, you must define a "categories" key to your models or actions.  For instance, an example model:
+Each document in the index can be tied to one or more categories.  It is then possible to limit your search results to that category in the provided interface.  To enable this, you must define a "categories" key to your models or actions.  For instance, an example model:
 
 {{{
 models:
@@ -400,6 +411,8 @@ models:
 }}}
 
 The "Blog" model above will be placed both into the blog category and the string returned by ->getCategory() on the model. After you rebuild your model, a category drop down will automatically appear on the search interface.
+
+The same rules applies as model indexing: Note that the fields do not have to exist as fields in your database.  As long as it has a getter on the model, you can use it in your index.  The fields are automatically camelized, so if you wish to call "->getSuperDuperMan()" as one of your fieds, you must write it in the YAML file as "super_duper_man".
 
 To disable category support all-together, open the application level app.yml file and add:
 
@@ -424,7 +437,7 @@ It is possible to integrate sfLucene with other plugins.  To add support to your
 {{{
 if (class_exists('sfLucene', true))
 {
-  sfLucenePropelBehavior::getInitializer()->setupModel('MyModel');
+  sfLucenePropelBehavior::getInitializer()->setup('MyModel');
 }
 }}}
 
@@ -453,11 +466,21 @@ class Bicycle extends BaseBicycle
 = Custom Indexers =
 
 == For Individual Models ==
-sfLucene supports custom indexers.  Custom indexers are great for complicated data models where the standard indexer would not work.  To make a custom Propel indexer, create a class that extends sfLucenePropelIndexer.  In this class, you optionally define insert(), shouldIndex(), delete(), and validate() methods. A sample indexer for sfSimpleCMS is below:
+sfLucene supports custom indexers.  Custom indexers are great for complicated data models where the standard indexer would not work.  To make a custom Propel indexer, create a class that extends sfLucenePropelIndexer.  In this class, you optionally define insert(), shouldIndex(), and delete() methods. A sample indexer for sfSimpleCMS is below:
 
 {{{
 class sfSimpleCMSIndexer extends sfLucenePropelIndexer
 {
+  public function __construct($search, $instance)
+  {
+    if (!($this->getModel() instanceof sfSimpleCMSPage))
+    {
+      throw new sfLuceneIndexerException(__CLASS__ . ' can only process sfSimpleCMSPage instances');
+    }
+
+    parent::__construct($search, $instance);
+  }
+
   /**
    * Inserts the model into the index.
    */
@@ -465,12 +488,14 @@ class sfSimpleCMSIndexer extends sfLucenePropelIndexer
   {
     if (!$this->shouldIndex())
     {
+      $this->getSearch()->getEventDispatcher()->notify(new sfEvent($this, 'indexer.log', array('Ignoring sfSimpleCMS page from index with primary key = %s', $this->getModel()->getPrimaryKey())));
+
       return $this;
     }
 
-    $doc = $this->getNewDocument();
+    $doc = $this->getBaseDocument();
 
-    $slots = $this->getModel()->getSlots( $this->getCulture() );
+    $slots = $this->getModel()->getSlots($this->getSearch()->getParameter('culture'));
 
     $slotText = '';
 
@@ -479,31 +504,16 @@ class sfSimpleCMSIndexer extends sfLucenePropelIndexer
       $slotText .= strip_tags($slot->getValue()) . "\n\n";
     }
 
-    $doc->addField( $this->getLuceneField('text', 'description', $slotText) );
-    $doc->addField( $this->getLuceneField('text', 'title', $this->getModel()->getSlotValue('title', $this->getCulture()) ));
-    $doc->addField( $this->getLuceneField('unindexed', 'slug', $this->getModel()->getSlug() ));
+    $doc->addField($this->getLuceneField('text', 'description', $slotText));
+    $doc->addField($this->getLuceneField('text', 'title', $this->getModel()->getSlotValue('title', $this->getSearch()->getParameter('culture'))));
+    $doc->addField($this->getLuceneField('unindexed', 'slug', $this->getModel()->getSlug()));
 
-    $categories = $this->getModelCategories();
-
-    if (count($categories))
-    {
-      foreach ($categories as $category)
-      {
-        $this->addCategory($category);
-      }
-
-      $doc->addField( $this->getLuceneField('text', 'sfl_category', implode(', ', $categories)) );
-    }
-
-    if ($this->shouldLog())
-    {
-      $this->echoLog(sprintf('Inserted model "%s" with PK = %s', $this->getModelName(), $this->getModel()->getPrimaryKey()));
-    }
-
-    $doc->addField($this->getLuceneField('unindexed', 'sfl_model', $this->getModelName()));
-    $doc->addField($this->getLuceneField('unindexed', 'sfl_type', 'model'));
+    $doc = $this->configureDocumentCategories($doc);
+    $doc = $this->configureDocumentMetas($doc);
 
     $this->addDocument($doc, $this->getModelGuid());
+
+    $this->getSearch()->getEventDispatcher()->notify(new sfEvent($this, 'indexer.log', array('Inserted sfSimpleCMSPage to index with primary key = %s', $this->getModel()->getPrimaryKey())));
   }
 
   /**
@@ -512,26 +522,6 @@ class sfSimpleCMSIndexer extends sfLucenePropelIndexer
   protected function shouldIndex()
   {
     return $this->getModel()->getIsPublished() ? true : false;
-  }
-
-  /**
-   * Validates the model to make sure we really can process it.
-   */
-  protected function validate()
-  {
-    $response = parent::validate();
-
-    if ($response)
-    {
-      return $response;
-    }
-
-    if (!($this->getModel() instanceof sfSimpleCMSPage))
-    {
-      return __CLASS__ . ' can only process sfSimpleCMSPage instances';
-    }
-
-    return null;
   }
 }
 }}}
@@ -547,7 +537,7 @@ models:
     indexer: sfSimpleCMSIndexer
 }}}
 
-The system will automatically use that indexer for that point forward.
+The system will automatically use that indexer for that point forward.  Make sure to rebuild the index after you change the indexer.
 
 == Indexing Other Mediums ==
 sfLucene is extensible and supports indexing other types of mediums, such as PDFs or images. You can hook your custom indexers into sfLucene by defining them in the factories declaration in the search.yml file.
@@ -582,16 +572,23 @@ MyIndex:
 
 The best way to write your own handlers and indexers is to examine the sfLucene source.
 
+= Using Your Own Zend Framework =
+For whatever reason, if you require sfLucene to load a different version of the Zend framework that it shipped with, you can change the directory where the plugin will search for Zend_Search_Lucene.  Open the application's app.yml and configure it like so:
+{{{
+all:
+  lucene:
+    zend_location: %SF_ROOT_DIR%/lib/vendor
+}}}
+
+In the above example, sfLucene will now expect that %SF_ROOT_DIR%/lib/vendor/Zend/Search/Lucene/* exists.
+
 = Command Line Reference =
 The plugin ships with a handful of command line utilities for managing your index.  They are listed below:
 
-  * {{{ $ symfony lucene-about [application] }}} provides information about the plugin and the index.  [application] is optitonal.
-  * {{{ $ symfony lucene-init application }}} initializes the search configuration files.
-  * {{{ $ symfony lucene-init-module application }}} initializes a base module for you to customize.
-  * {{{ $ symfony lucene-optimize application [environment] }}} optimizes the index for all cultures.
-  * {{{ $ symfony lucene-rebuild application [environment] }}} rebuilds the index for all cultures. 
+  * {{{ $ symfony lucene:about [application] }}} provides information about the plugin and the index.  [application] is optitonal.
+  * {{{ $ symfony lucene:clean application }}} removes stray files from the index.
+  * {{{ $ symfony lucene:initialize application }}} initializes the search configuration files.
+  * {{{ $ symfony lucene:init-module application }}} initializes a base module for you to customize.
+  * {{{ $ symfony lucene:optimize application }}} optimizes the index for all cultures.
+  * {{{ $ symfony lucene:rebuild application }}} rebuilds the index for all cultures.
 
-Note: "environment" option added in 0.1.4.
-
-= Contribute =
-All contributions and suggestions are welcome.  The project lives in symfony's SVN repository in plugins/sfLucenePlugin.  Feel free to commit your suggestions anytime.

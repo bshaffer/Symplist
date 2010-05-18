@@ -15,8 +15,9 @@
  * @category   Zend
  * @package    Zend_Search_Lucene
  * @subpackage Search
- * @copyright  Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @version    $Id: Wildcard.php 16971 2009-07-22 18:05:45Z mikaelkael $
  */
 
 
@@ -31,7 +32,7 @@ require_once 'Zend/Search/Lucene/Search/Query/MultiTerm.php';
  * @category   Zend
  * @package    Zend_Search_Lucene
  * @subpackage Search
- * @copyright  Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search_Query
@@ -60,6 +61,13 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
     private $_matches = null;
 
     /**
+     * Minimum term prefix length (number of minimum non-wildcard characters)
+     *
+     * @var integer
+     */
+    private static $_minPrefixLength = 3;
+
+    /**
      * Zend_Search_Lucene_Search_Query_Wildcard constructor.
      *
      * @param Zend_Search_Lucene_Index_Term $pattern
@@ -67,6 +75,26 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
     public function __construct(Zend_Search_Lucene_Index_Term $pattern)
     {
         $this->_pattern = $pattern;
+    }
+
+    /**
+     * Get minimum prefix length
+     *
+     * @return integer
+     */
+    public static function getMinPrefixLength()
+    {
+    	return self::$_minPrefixLength;
+    }
+
+    /**
+     * Set minimum prefix length
+     *
+     * @param integer $minPrefixLength
+     */
+    public static function setMinPrefixLength($minPrefixLength)
+    {
+    	self::$_minPrefixLength = $minPrefixLength;
     }
 
     /**
@@ -98,6 +126,7 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
      *
      * @param Zend_Search_Lucene_Interface $index
      * @return Zend_Search_Lucene_Search_Query
+     * @throws Zend_Search_Lucene_Exception
      */
     public function rewrite(Zend_Search_Lucene_Interface $index)
     {
@@ -114,6 +143,10 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
         $prefixLength    = strlen($prefix);
         $matchExpression = '/^' . str_replace(array('\\?', '\\*'), array('.', '.*') , preg_quote($this->_pattern->text, '/')) . '$/';
 
+        if ($prefixLength < self::$_minPrefixLength) {
+        	throw new Zend_Search_Lucene_Exception('At least ' . self::$_minPrefixLength . ' non-wildcard characters are required at the beginning of pattern.');
+        }
+
         /** @todo check for PCRE unicode support may be performed through Zend_Environment in some future */
         if (@preg_match('/\pL/u', 'a') == 1) {
             // PCRE unicode support is turned on
@@ -121,7 +154,7 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
             $matchExpression .= 'u';
         }
 
-
+        $maxTerms = Zend_Search_Lucene::getTermsPerQueryLimit();
         foreach ($fields as $field) {
             $index->resetTermsStream();
 
@@ -133,6 +166,10 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
                        substr($index->currentTerm()->text, 0, $prefixLength) == $prefix) {
                     if (preg_match($matchExpression, $index->currentTerm()->text) === 1) {
                         $this->_matches[] = $index->currentTerm();
+
+                        if ($maxTerms != 0  &&  count($this->_matches) > $maxTerms) {
+                        	throw new Zend_Search_Lucene_Exception('Terms per query limit is reached.');
+                        }
                     }
 
                     $index->nextTerm();
@@ -143,6 +180,10 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
                 while ($index->currentTerm() !== null  &&  $index->currentTerm()->field == $field) {
                     if (preg_match($matchExpression, $index->currentTerm()->text) === 1) {
                         $this->_matches[] = $index->currentTerm();
+
+                        if ($maxTerms != 0  &&  count($this->_matches) > $maxTerms) {
+                            throw new Zend_Search_Lucene_Exception('Terms per query limit is reached.');
+                        }
                     }
 
                     $index->nextTerm();
@@ -223,9 +264,10 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
      * It also initializes necessary internal structures
      *
      * @param Zend_Search_Lucene_Interface $reader
+     * @param Zend_Search_Lucene_Index_DocsFilter|null $docsFilter
      * @throws Zend_Search_Lucene_Exception
      */
-    public function execute(Zend_Search_Lucene_Interface $reader)
+    public function execute(Zend_Search_Lucene_Interface $reader, $docsFilter = null)
     {
         throw new Zend_Search_Lucene_Exception('Wildcard query should not be directly used for search. Use $query->rewrite($index)');
     }
@@ -257,12 +299,11 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
     }
 
     /**
-     * Highlight query terms
+     * Query specific matches highlighting
      *
-     * @param integer &$colorIndex
-     * @param Zend_Search_Lucene_Document_Html $doc
+     * @param Zend_Search_Lucene_Search_Highlighter_Interface $highlighter  Highlighter object (also contains doc for highlighting)
      */
-    public function highlightMatchesDOM(Zend_Search_Lucene_Document_Html $doc, &$colorIndex)
+    protected function _highlightMatches(Zend_Search_Lucene_Search_Highlighter_Interface $highlighter)
     {
         $words = array();
 
@@ -273,14 +314,15 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
             $matchExpression .= 'u';
         }
 
-        $tokens = Zend_Search_Lucene_Analysis_Analyzer::getDefault()->tokenize($doc->getFieldUtf8Value('body'), 'UTF-8');
+        $docBody = $highlighter->getDocument()->getFieldUtf8Value('body');
+        $tokens = Zend_Search_Lucene_Analysis_Analyzer::getDefault()->tokenize($docBody, 'UTF-8');
         foreach ($tokens as $token) {
             if (preg_match($matchExpression, $token->getTermText()) === 1) {
                 $words[] = $token->getTermText();
             }
         }
 
-        $doc->highlight($words, $this->_getHighlightColor($colorIndex));
+        $highlighter->highlight($words);
     }
 
     /**
@@ -291,7 +333,19 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
     public function __toString()
     {
         // It's used only for query visualisation, so we don't care about characters escaping
-        return (($this->_pattern->field === null)? '' : $this->_pattern->field . ':') . $this->_pattern->text;
+        if ($this->_pattern->field !== null) {
+            $query = $this->_pattern->field . ':';
+        } else {
+            $query = '';
+        }
+
+        $query .= $this->_pattern->text;
+
+        if ($this->getBoost() != 1) {
+            $query = $query . '^' . round($this->getBoost(), 4);
+        }
+
+        return $query;
     }
 }
 

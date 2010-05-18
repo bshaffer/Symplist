@@ -1,7 +1,7 @@
 <?php
 /*
  * This file is part of the sfLucenePlugin package
- * (c) 2007 Carl Vondrick <carlv@carlsoft.net>
+ * (c) 2007 - 2008 Carl Vondrick <carl@carlsoft.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,25 +11,33 @@
   * @package sfLucenePlugin
   * @subpackage Test
   * @author Carl Vondrick
+  * @version SVN: $Id: sfLuceneCriteriaTest.php 7108 2008-01-20 07:44:42Z Carl.Vondrick $
   */
 
 require dirname(__FILE__) . '/../../bootstrap/unit.php';
 
-$t = new lime_test(36, new lime_output_color());
+$t = new limeade_test(53, limeade_output::get());
+$limeade = new limeade_sf($t);
+$limeade->bootstrap();
+
+$luceneade = new limeade_lucene($limeade);
+$luceneade->configure();
+
+class Foo { }
 
 function inst()
 {
-  return sfLuceneCriteria::newInstance(sfLucene::getInstance('lucene'));
+  return sfLuceneCriteria::newInstance(sfLucene::getInstance('testLucene'));
 }
 
 $t->diag('testing constructors');
 try {
-  $criteria = new sfLuceneCriteria(sfLucene::getInstance('lucene'));
-  $t->pass('__construct() is public');
+  $criteria = new sfLuceneCriteria(sfLucene::getInstance('testLucene'));
+  $t->pass('__construct() takes a sfLucene instance');
 } catch (Exception $e) {
-  $t->fail('__construct() is public');
+  $t->fail('__construct() takes a sfLuce instance');
 }
-$t->isa_ok(sfLuceneCriteria::newInstance(sfLucene::getInstance('lucene')), 'sfLuceneCriteria', '::newInstance() returns an sfLuceneCriteria object');
+$t->isa_ok(sfLuceneCriteria::newInstance(sfLucene::getInstance('testLucene')), 'sfLuceneCriteria', '::newInstance() returns an sfLuceneCriteria object');
 
 $t->diag('testing ->getQuery()');
 $t->isa_ok($criteria->getQuery(), 'Zend_Search_Lucene_Search_Query_Boolean', '->getQuery() returns an instance of ZSL_Search_Query_Boolean');
@@ -42,6 +50,7 @@ try {
   $t->ok($queries[0] == Zend_Search_Lucene_Search_QueryParser::parse('foo'), '->add() correctly parses and adds text queries');
   $t->ok($queries[1] == Zend_Search_Lucene_Search_QueryParser::parse('bar'), '->add() correctly parses and adds text queries and keeps them in order');
 } catch (Exception $e) {
+  $e->printStackTrace();
   $t->fail('->add() accepts a string');
   $t->skip('->add() correctly parses and adds text queries');
   $t->skip('->add() correctly parses and adds text queries and keeps them in order');
@@ -98,39 +107,56 @@ try {
   $t->pass('->add() rejects bad syntax');
 }
 
+try {
+  $criteria->add(new Foo());
+  $t->fail('->add() rejects invalid queries');
+} catch (Exception $e) {
+  $t->pass('->add() rejects invalid queries');
+}
+
+$t->diag('testing ->addString()');
+
+$criteria->add('test', true);
+
+$queries = inst()->addString('foobar')->getQuery()->getSubqueries();
+$t->ok($queries[0] == Zend_Search_Lucene_Search_QueryParser::parse('foobar'), '->addString() correctly parses and adds string queries');
+
+$queries = inst()->addString('António', 'utf8')->getQuery()->getSubqueries();
+$t->ok($queries[0] == Zend_Search_Lucene_Search_QueryParser::parse('António', 'utf8'), '->addString() correctly parses and adds UTF8 string queries');
+
 $t->diag('testing ->addSane()');
 
 $criteria = inst();
 
 try {
   $criteria->addSane('test');
-  $t->pass('->saneFind() accepts a valid query');
+  $t->pass('->addSane() accepts a valid query');
 
   $s = $criteria->getQuery()->getSubqueries();
 
-  $t->ok($s[0] == Zend_Search_Lucene_Search_QueryParser::parse('test'), '->saneFind() correctly adds a valid query');
+  $t->ok($s[0] == Zend_Search_Lucene_Search_QueryParser::parse('test'), '->addSane() correctly adds a valid query');
 } catch (Exception $e) {
-  $t->fail('->saneFind() accepts a valid query');
-  $t->skip('->saneFind() correctly adds a valid query');
+  $t->fail('->addSane() accepts a valid query');
+  $t->skip('->addSane() correctly adds a valid query');
 }
 
 try {
-  try {
-    $criteria->add('carl~');
-    $t->fail('->add() rejects an illegal query');
-  } catch (Exception $e) {
-    $t->pass('->add() rejects an illegal query');
-  }
+  $criteria->add('carl!');
+  $t->fail('->add() rejects an illegal query');
+} catch (Exception $e) {
+  $t->pass('->add() rejects an illegal query');
+}
 
-  $criteria->addSane('carl~');
-  $t->pass('->saneFind() accepts an illegal query');
+try {
+  $criteria->addSane('carl!');
+  $t->pass('->addSane() accepts an illegal query');
 
   $s = $criteria->getQuery()->getSubqueries();
 
-  $t->ok($s[1] == Zend_Search_Lucene_Search_QueryParser::parse('carl'), '->saneFind() correctly adds an illegal query');
+  $t->ok($s[1] == Zend_Search_Lucene_Search_QueryParser::parse('carl'), '->addSane() correctly adds an illegal query');
 } catch (Exception $e) {
-  $t->fail('->saneFind() accepts an illegal query');
-  $t->skip('->saneFind() correctly adds an illegal query');
+  $t->fail('->addSane() accepts an illegal query');
+  $t->skip('->addSane() correctly adds an illegal query');
 }
 
 
@@ -165,18 +191,12 @@ try {
   $t->skip('->addField() registers the array field');
 }
 
-$t->diag('testing sorting');
-
-$sorts = inst()->addSortBy('foo', SORT_ASC, SORT_REGULAR)->addSortBy('bar', SORT_DESC, SORT_NUMERIC)->getSorts();
-
-$t->is_deeply($sorts, array( array('field' => 'foo', 'order' => SORT_ASC, 'type' => SORT_REGULAR), array('field' => 'bar', 'order' => SORT_DESC, 'type' => SORT_NUMERIC)), '->addSortBy() correctly adds the sort fields');
-
-$sorts = inst()->addAscendingSortBy('foo', SORT_STRING)->getSorts();
-$t->is_deeply($sorts, array(array('field' => 'foo', 'order' => SORT_ASC, 'type' => SORT_STRING)), '->addAscendingSortBy() correctly adds a sort field');
-
-$sorts = inst()->addDescendingSortBy('foo', SORT_STRING)->getSorts();
-$t->is_deeply($sorts, array(array('field' => 'foo', 'order' => SORT_DESC, 'type' => SORT_STRING)), '->addDescendingSortBy() correctly adds a sort field');
-
+try {
+  $criteria->addField(new Foo());
+  $t->fail('->addField() rejects invalid values');
+} catch (Exception $e) {
+  $t->pass('->addField() rejects invalid values');
+}
 
 $t->diag('testing addMultiTerm()');
 $s = inst()->addMultiTerm(range(1, 10), 'foo')->getQuery()->getSubqueries();
@@ -248,3 +268,66 @@ try {
 $s = inst()->addRange('a', 'b', 'c', false)->getQuery()->getSubqueries();
 $q = new Zend_Search_Lucene_Search_Query_Range(new Zend_Search_Lucene_Index_Term('a', 'c'), new Zend_Search_Lucene_Index_Term('b', 'c'), false);
 $t->ok($s[0] == $s[0], '->addRange() registers a complex exclusive query');
+
+$t->diag('testing addProximity()');
+
+try {
+  inst()->addProximity(37.7752, -122.4192, 0);
+  $t->fail('->addProximity() rejects a zero proximity');
+} catch (Exception $e) {
+  $t->pass('->addProximity() rejects a zero proximity');
+}
+
+try {
+  inst()->addProximity(37.7752, -122.4192, 90, 0);
+  $t->fail('->addProximity() rejects a zero radius');
+} catch (Exception $e) {
+  $t->pass('->addProximity() rejects a zero radius');
+}
+
+$s = inst()->addProximity(37.7752, -122.4192, 200)->getQuery()->getSubqueries();
+$s = $s[0]->getSubqueries();
+
+$t->ok($s[0]->isInclusive(), '->addProximity() uses inclusive range queries');
+$t->ok($s[1]->isInclusive(), '->addProximity() uses inclusive range queries');
+
+$t->is_deeply(explode(chr(0), $s[0]->getLowerTerm()->key()), array('latitude', '35.9785590093'), '->addProximity() calculates correct lower bound latitude');
+$t->is_deeply(explode(chr(0), $s[0]->getUpperTerm()->key()), array('latitude', '39.5718409907'), '->addProximity() calculates correct upper bound latitude');
+$t->is_deeply(explode(chr(0), $s[1]->getLowerTerm()->key()), array('longitude', '-124.692219999'), '->addProximity() calculates correct lower bound longitude');
+$t->is_deeply(explode(chr(0), $s[1]->getUpperTerm()->key()), array('longitude', '-120.146180001'), '->addProximity() calculates correct upper bound longitude');
+
+
+$t->diag('testing sorting');
+
+$sorts = inst()->addSortBy('foo', SORT_ASC, SORT_REGULAR)->addSortBy('bar', SORT_DESC, SORT_NUMERIC)->getSorts();
+
+$t->is_deeply($sorts, array( array('field' => 'foo', 'order' => SORT_ASC, 'type' => SORT_REGULAR), array('field' => 'bar', 'order' => SORT_DESC, 'type' => SORT_NUMERIC)), '->addSortBy() correctly adds the sort fields');
+
+$sorts = inst()->addAscendingSortBy('foo', SORT_STRING)->getSorts();
+$t->is_deeply($sorts, array(array('field' => 'foo', 'order' => SORT_ASC, 'type' => SORT_STRING)), '->addAscendingSortBy() correctly adds a sort field');
+
+$sorts = inst()->addDescendingSortBy('foo', SORT_STRING)->getSorts();
+$t->is_deeply($sorts, array(array('field' => 'foo', 'order' => SORT_DESC, 'type' => SORT_STRING)), '->addDescendingSortBy() correctly adds a sort field');
+
+$t->diag('testing scoring');
+
+class FooScoring extends Zend_Search_Lucene_Search_Similarity_Default
+{
+}
+
+$fooScoring = new FooScoring;
+
+$t->is(inst()->getScoringAlgorithm(), null, '->getScoringAlgorithm() is null by default');
+$t->ok(inst()->setScoringAlgorithm($fooScoring)->getScoringAlgorithm() === $fooScoring, '->setScoringAlgorithm() changes the algorithm');
+$t->is(inst()->setScoringAlgorithm(null)->getScoringAlgorithm(), null, '->setScoringAlgorithm() with null algorithm reverts to default');
+
+try {
+  inst()->setScoringAlgorithm('foo');
+  $t->fail('->setScoringAlgorithm() rejects invalid algorithms');
+} catch (Exception $e) {
+  $t->pass('->setScoringAlgorithm() rejects invalid algorithms');
+}
+
+$t->diag('testing getNewCriteria()');
+
+$t->isa_ok(inst()->getNewCriteria(), 'sfLuceneCriteria', '->getNewCriteria() returns a new instance of sfLuceneCriteria');

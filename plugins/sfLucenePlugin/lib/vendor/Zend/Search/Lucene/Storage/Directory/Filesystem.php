@@ -15,8 +15,9 @@
  * @category   Zend
  * @package    Zend_Search_Lucene
  * @subpackage Storage
- * @copyright  Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @version    $Id: Filesystem.php 16541 2009-07-07 06:59:03Z bkarwin $
  */
 
 
@@ -33,7 +34,7 @@ require_once 'Zend/Search/Lucene/Storage/File/Filesystem.php';
  * @category   Zend
  * @package    Zend_Search_Lucene
  * @subpackage Storage
- * @copyright  Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Search_Lucene_Storage_Directory_Filesystem extends Zend_Search_Lucene_Storage_Directory
@@ -94,7 +95,7 @@ class Zend_Search_Lucene_Storage_Directory_Filesystem extends Zend_Search_Lucene
 
     public static function mkdirs($dir, $mode = 0777, $recursive = true)
     {
-        if (is_null($dir) || $dir === '') {
+        if (($dir === null) || $dir === '') {
             return false;
         }
         if (is_dir($dir) || $dir === '/') {
@@ -184,14 +185,9 @@ class Zend_Search_Lucene_Storage_Directory_Filesystem extends Zend_Search_Lucene
         unset($this->_fileHandlers[$filename]);
         $this->_fileHandlers[$filename] = new Zend_Search_Lucene_Storage_File_Filesystem($this->_dirPath . '/' . $filename, 'w+b');
 
-        global $php_errormsg;
-        $trackErrors = ini_get('track_errors'); ini_set('track_errors', '1');
-        if (!@chmod($this->_dirPath . '/' . $filename, self::$_defaultFilePermissions)) {
-            ini_set('track_errors', $trackErrors);
-            require_once 'Zend/Search/Lucene/Exception.php';
-            throw new Zend_Search_Lucene_Exception($php_errormsg);
-        }
-        ini_set('track_errors', $trackErrors);
+        // Set file permissions, but don't care about any possible failures, since file may be already
+        // created by anther user which has to care about right permissions
+        @chmod($this->_dirPath . '/' . $filename, self::$_defaultFilePermissions);
 
         return $this->_fileHandlers[$filename];
     }
@@ -223,7 +219,7 @@ class Zend_Search_Lucene_Storage_Directory_Filesystem extends Zend_Search_Lucene
 
     /**
      * Purge file if it's cached by directory object
-     * 
+     *
      * Method is used to prevent 'too many open files' error
      *
      * @param string $filename
@@ -236,7 +232,7 @@ class Zend_Search_Lucene_Storage_Directory_Filesystem extends Zend_Search_Lucene
         }
         unset($this->_fileHandlers[$filename]);
     }
-    
+
 
     /**
      * Returns true if a file with the given $filename exists.

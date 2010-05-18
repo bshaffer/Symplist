@@ -1,7 +1,7 @@
 <?php
 /*
  * This file is part of the sfLucenePlugin package
- * (c) 2007 Carl Vondrick <carlv@carlsoft.net>
+ * (c) 2007 - 2008 Carl Vondrick <carl@carlsoft.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,7 +12,8 @@
  *
  * @package    sfLucenePlugin
  * @subpackage Utilities
- * @author     Carl Vondrick <carlv@carlsoft.net>
+ * @author     Carl Vondrick <carl@carlsoft.net>
+ * @version SVN: $Id: sfLuceneToolkit.class.php 7108 2008-01-20 07:44:42Z Carl.Vondrick $
  */
 
 class sfLuceneToolkit
@@ -37,5 +38,73 @@ class sfLuceneToolkit
     }
 
     return sfLucene::getInstance($name, $culture);
+  }
+
+  /**
+   * Returns an array of the index paths to be removed by the garbage cleanup routine.
+   */
+  static public function getDirtyIndexRemains()
+  {
+    $location = sfConfig::get('sf_data_dir') . DIRECTORY_SEPARATOR . 'index';
+    $length = strlen($location) + 1;
+
+    $config = sfLucene::getConfig();
+
+    $remove = array();
+    $namesRemoved = array();
+
+    foreach (sfFinder::type('dir')->mindepth(0)->maxdepth(0)->in($location) as $directory)
+    {
+      $name = substr($directory, $length);
+
+      if (!isset($config[$name]))
+      {
+        $namesRemoved[] = $name;
+        $remove[] = $directory;
+      }
+    }
+
+    foreach (sfFinder::type('dir')->mindepth(1)->maxdepth(1)->in($location) as $directory)
+    {
+      $interested = substr($directory, $length);
+
+      list($name, $culture) = explode('/', $interested);
+
+      if (!in_array($name, $namesRemoved) && !in_array($culture, $config[$name]['index']['cultures']))
+      {
+        $remove[] = $directory;
+      }
+    }
+
+    return $remove;
+  }
+
+  /**
+    * Loads the Zend libraries. This method *must* be called before
+    * you use a Zend library, otherwise the autoloader will not be able to find it!
+  */
+  static public function loadZend()
+  {
+    static $setup;
+
+    if ($setup !== true)
+    {
+      $vendor = dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'vendor';
+      $vendor = sfConfig::get('app_lucene_zend_location', $vendor);
+
+      $lucene = $vendor . DIRECTORY_SEPARATOR . 'Zend' . DIRECTORY_SEPARATOR . 'Search' . DIRECTORY_SEPARATOR . 'Lucene.php';
+
+      if (!is_readable($lucene))
+      {
+        throw new sfLuceneException('Could not open Zend_Search_Lucene for inclusion at: ' . $vendor);
+      }
+
+      // let PHP find the Zend libraries.
+      set_include_path(get_include_path() . PATH_SEPARATOR . $vendor);
+
+      require_once $lucene;
+
+      $setup = true;
+    }
   }
 }

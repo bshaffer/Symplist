@@ -1,7 +1,7 @@
 <?php
 /*
  * This file is part of the sfLucenePlugin package
- * (c) 2007 Carl Vondrick <carlv@carlsoft.net>
+ * (c) 2007 - 2008 Carl Vondrick <carl@carlsoft.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -10,7 +10,8 @@
 /**
  * @package    sfLucenePlugin
  * @subpackage Config
- * @author     Carl Vondrick <carlv@carlsoft.net>
+ * @author     Carl Vondrick <carl@carlsoft.net>
+ * @version SVN: $Id: sfLuceneProjectConfigHandler.class.php 7193 2008-01-27 05:21:33Z Carl.Vondrick $
  */
 class sfLuceneProjectConfigHandler extends sfYamlConfigHandler
 {
@@ -80,6 +81,8 @@ class sfLuceneProjectConfigHandler extends sfYamlConfigHandler
             $transform = null;
             $boost = null;
 
+            $type = null;
+
             if (is_array($field))
             {
               $type = isset($field['type']) ? $field['type'] : null;
@@ -93,10 +96,6 @@ class sfLuceneProjectConfigHandler extends sfYamlConfigHandler
             elseif (is_string($field))
             {
               $type = $field;
-            }
-            else
-            {
-              throw new sfConfigurationException('Unknown field data type.');
             }
 
             $type = $type ? $type : 'text';
@@ -118,6 +117,11 @@ class sfLuceneProjectConfigHandler extends sfYamlConfigHandler
         if (!isset($model_config['partial']))
         {
           $model_config['partial'] = null;
+        }
+
+        if (!isset($model_config['route']))
+        {
+          $model_config['route'] = null;
         }
 
         if (!isset($model_config['indexer']))
@@ -147,7 +151,12 @@ class sfLuceneProjectConfigHandler extends sfYamlConfigHandler
 
         if (!isset($model_config['validator']))
         {
-          $model_config['validator'] = 'isIndexable';
+          $model_config['validator'] = null;
+        }
+
+        if (!isset($model_config['categories']))
+        {
+          $model_config['categories'] = array();
         }
       }
     }
@@ -156,8 +165,8 @@ class sfLuceneProjectConfigHandler extends sfYamlConfigHandler
       $config['models'] = array();
     }
 
-    $encoding = strtolower(isset($config['index']['name']) ? $config['index']['encoding'] : 'utf-8');
-    $cultures = isset($config['index']['cultures']) ? $config['index']['cultures'] : array(sfConfig::get('sf_i18n_default_culture'));
+    $encoding = isset($config['index']['encoding']) ? $config['index']['encoding'] : 'utf-8';
+    $cultures = isset($config['index']['cultures']) ? $config['index']['cultures'] : array(sfConfig::get('sf_default_culture'));
     $stop_words = isset($config['index']['stop_words']) ? $config['index']['stop_words'] : array('a', 'an', 'at',' the', 'and', 'or', 'is', 'am', 'are', 'of');
     $short_words = isset($config['index']['short_words']) ? $config['index']['short_words'] : 2;
     $analyzer = isset($config['index']['analyzer']) ? $config['index']['analyzer'] : 'textnum';

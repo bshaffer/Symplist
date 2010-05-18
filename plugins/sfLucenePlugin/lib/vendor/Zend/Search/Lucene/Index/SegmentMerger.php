@@ -15,13 +15,10 @@
  * @category   Zend
  * @package    Zend_Search_Lucene
  * @subpackage Index
- * @copyright  Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @version    $Id: SegmentMerger.php 16541 2009-07-07 06:59:03Z bkarwin $
  */
-
-
-/** Zend_Search_Lucene_Exception */
-require_once 'Zend/Search/Lucene/Exception.php';
 
 /** Zend_Search_Lucene_Index_SegmentInfo */
 require_once 'Zend/Search/Lucene/Index/SegmentInfo.php';
@@ -29,15 +26,14 @@ require_once 'Zend/Search/Lucene/Index/SegmentInfo.php';
 /** Zend_Search_Lucene_Index_SegmentWriter_StreamWriter */
 require_once 'Zend/Search/Lucene/Index/SegmentWriter/StreamWriter.php';
 
-/** Zend_Search_Lucene_Index_SegmentInfoPriorityQueue */
-require_once 'Zend/Search/Lucene/Index/SegmentInfoPriorityQueue.php';
-
+/** Zend_Search_Lucene_Index_TermsPriorityQueue */
+require_once 'Zend/Search/Lucene/Index/TermsPriorityQueue.php';
 
 /**
  * @category   Zend
  * @package    Zend_Search_Lucene
  * @subpackage Index
- * @copyright  Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Search_Lucene_Index_SegmentMerger
@@ -117,10 +113,12 @@ class Zend_Search_Lucene_Index_SegmentMerger
     public function merge()
     {
         if ($this->_mergeDone) {
+            require_once 'Zend/Search/Lucene/Exception.php';
             throw new Zend_Search_Lucene_Exception('Merge is already done.');
         }
 
         if (count($this->_segmentInfos) < 1) {
+            require_once 'Zend/Search/Lucene/Exception.php';
             throw new Zend_Search_Lucene_Exception('Wrong number of segments to be merged ('
                                                  . count($this->_segmentInfos)
                                                  . ').');
@@ -228,11 +226,11 @@ class Zend_Search_Lucene_Index_SegmentMerger
      */
     private function _mergeTerms()
     {
-        $segmentInfoQueue = new Zend_Search_Lucene_Index_SegmentInfoPriorityQueue();
+        $segmentInfoQueue = new Zend_Search_Lucene_Index_TermsPriorityQueue();
 
         $segmentStartId = 0;
         foreach ($this->_segmentInfos as $segName => $segmentInfo) {
-            $segmentStartId = $segmentInfo->reset($segmentStartId, Zend_Search_Lucene_Index_SegmentInfo::SM_MERGE_INFO);
+            $segmentStartId = $segmentInfo->resetTermsStream($segmentStartId, Zend_Search_Lucene_Index_SegmentInfo::SM_MERGE_INFO);
 
             // Skip "empty" segments
             if ($segmentInfo->currentTerm() !== null) {
