@@ -67,6 +67,11 @@ namespace :symlink do
   task :db do
     run "ln -nfs #{shared_path}/system/databases.yml #{release_path}/config/databases.yml"
   end
+
+  desc "Symlink Lucene indexes"
+  task :lucene do
+    run "ln -nfs #{shared_path}/system/index #{release_path}/data/index"
+  end
   
   desc 'Symlink the symfony library.'
   task :symfony do
@@ -81,4 +86,4 @@ namespace :symfony do
   end
 end
 
-after 'deploy:finalize_update', 'symlink:symfony', 'deploy:create_dirs', 'symfony:clear_cache', 'symlink:db'
+after 'deploy:finalize_update', 'symlink:symfony', 'deploy:create_dirs', 'symfony:clear_cache', 'symlink:db', 'symlink:lucene'
