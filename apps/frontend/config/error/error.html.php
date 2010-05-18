@@ -39,8 +39,8 @@
  
 </ul>
     <ul id='nav-utility'>
-      <li><a href="/authors/bshaffer">My Profile</a></li>
-    <li><a href="/signout/redirect">Sign Out</a></li>
+      <li><a href="/signin">Sign In</a></li>
+    <li><a href="/author/new">Register</a></li>
 
   </ul>
     <!-- End Navigation -->
