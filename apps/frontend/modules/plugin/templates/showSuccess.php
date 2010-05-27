@@ -68,20 +68,22 @@
     $(".overlay[rel]").overlay();
   });
 </script>
-
-<?php if ($plugin->isRegistered()): ?>
-    <dt>Owner</dt>
-    <dd>
-      <?php echo link_to($plugin['User']->getUsername(), $plugin['User']->getRoute(), array('class' => 'author-link')) ?>
-    </dd>
+    <dt>Authors</dt>
+      <dd>
+    <?php if ($plugin->isRegistered()): ?>
+      <?php foreach ($plugin['Authors'] as $author): ?>
+        <?php echo link_to($author->getUsername(), $author->getRoute(), array('class' => 'author-link')) ?>&nbsp;
+      <?php endforeach ?>
+    <?php else: ?>
+        <em>No Authors</em>
+    <?php endif ?>
+      </dd>
+    </dt>
   </dl>
-<?php else: ?>
-  </dl>
 
-  <?php echo link_to('Claim This Plugin', '@plugin_claim?title='.$plugin['title'], array('class' => 'button')) ?>
-<?php endif ?>
+<?php echo link_to('Claim This Plugin', '@plugin_claim?title='.$plugin['title'], array('class' => 'button')) ?>
 
-<?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->id == $plugin->user_id): ?>
+<?php if ($sf_user->existsInUsers($plugin['Authors'])): ?>
   <?php echo link_to('[edit plugin]', '@plugin_edit?title='.$plugin['title']) ?>
 <?php endif ?>
 

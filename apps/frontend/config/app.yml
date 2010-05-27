@@ -4,3 +4,5 @@ all:
     enabled:      on
     profile_id:   UA-11590669-1
     tracker:      google
+  xml:
+    results_per_page: 0

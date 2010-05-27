@@ -34,8 +34,9 @@ class authorActions extends sfActions
   
   public function executeShow(sfWebRequest $request)
   {
-    $this->user = Doctrine::getTable('sfGuardUser')->findOneByUsername($request->getParameter('username'));
-    $this->forward404Unless($this->user);
+    $this->user = $this->getRoute()->getObject();
+
+    $this->isUser = $this->getUser()->isUser($this->user);
   }
   
   public function executeEdit(sfWebRequest $request)
@@ -57,6 +58,26 @@ class authorActions extends sfActions
         $this->getUser()->setFlash('notice', 'Your profile has been saved');
       }
     }
+  }
+  
+  public function executePluginRemove(sfWebRequest $request)
+  {
+    $pluginAuthor = $this->getRoute()->getObject();
+    
+    if ($this->getUser()->isUser($pluginAuthor['Author'])) 
+    {
+      $plugin = $pluginAuthor['Plugin'];
+      $pluginAuthor->delete();
+      
+      $this->getUser()->setFlash('notice', sprintf('You have removed "%s" from your plugins', $plugin));
+    }
+    else
+    {
+      $this->getUser()->setFlash('error', 'You do not have the permission to perform this function');
+    }
+    
+    $referer = $request->getReferer();
+    $this->redirect($referer ? $referer : '@homepage');
   }
   
   public function executeJoin(sfWebRequest $request)

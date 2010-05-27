@@ -1,4 +1,4 @@
-<?php echo $userform->formTagFor(url_for('@author_edit?username='.$user['username']), array('class' => 'edit_user_form')) ?>
+<?php echo $userform->renderFormTag(url_for('@author_edit?username='.$user['username']), array('class' => 'edit_user_form')) ?>
 <h3>User Information</h3>
 <table>
 <?php echo $userform ?>

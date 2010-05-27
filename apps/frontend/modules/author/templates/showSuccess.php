@@ -34,7 +34,20 @@
   <h3>Plugins <span class='plugin-count'>(<?php echo (string)$user['Plugins']->count() ?>)</span></h3>
   <ol>
   <?php foreach ($user['Plugins'] as $plugin): ?>
-    <li><?php include_partial('plugin/plugin', array('plugin' => $plugin)) ?></li>
+    <li class="plugin">
+    <h6><?php echo link_to($plugin['title'], $plugin['route'], array('class' => 'plugin-title')) ?>
+    <?php if ($isUser): ?>
+      <?php echo link_to('[remove]', '@plugin_author_delete?plugin_id='.$plugin['id'].'&author_id='.$user['id'], array('method' => 'delete', 'class' => 'delete')) ?>
+    <?php endif ?>
+    </h6>
+
+    <form class="rating">
+      <?php for($i = 1; $i <= 5; $i++): ?>
+      <input name="star1" type="radio" class="star" <?php echo ($plugin['rating'] == $i)?'checked':'' ?> disabled /> 
+      <?php endfor ?>
+    </form>
+    <p><?php echo $plugin['summary'] ?></p>
+    </li>
   <?php endforeach ?>
   </ul>
 <?php else: ?>

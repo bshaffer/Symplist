@@ -1,8 +1,8 @@
 # Plugins
 
 plugins:
-  url:                                /plugins
-  param:                              { module: plugin, action: list }
+  url:                                /plugins.:sf_format
+  param:                              { module: plugin, action: list, sf_format: html }
 
 plugin_categories:
   url:                                /plugins/categories
@@ -68,6 +68,14 @@ plugin_autocomplete_home:
   url:                                /plugins/search/auto/full
   params:                             { module: plugin, action: homeAutocomplete }
 
+plugin_author_delete:
+  url:                                /plugins/:plugin_id/remove/:author_id
+  params:                             { module: author, action: pluginRemove }
+  class:                              sfDoctrineRoute
+  options:                            { model: SymfonyPluginAuthor, type: object }
+  requirements:
+    sf_method:                        [DELETE]
+
 # Lists
 
 community_lists:
@@ -125,7 +133,9 @@ authors_all:
 
 author:
   url:                                /authors/:username
+  class:                              sfDoctrineRoute
   param:                              { module: author, action: show }
+  options:                            { model: sfGuardUser, type: object }
 
 author_new:
   url:                                /author/new

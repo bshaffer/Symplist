@@ -11,7 +11,6 @@ SymfonyPlugin:
       unique:                         true
       notnull:                        true
     description:                      clob
-    user_id:                          integer(4)
     symfony_developer:                string(255)
     category_id:                      integer
     active:                           boolean
@@ -21,10 +20,12 @@ SymfonyPlugin:
     ticketing:                        string(255)
     featured:                         boolean
   relations:
-    sfGuardUser:
-      alias:                          User
+    Authors:
+      class:                          sfGuardUser
+      local:                          plugin_id
+      foreign:                        author_id
+      refClass:                       SymfonyPluginAuthor
       foreignAlias:                   Plugins
-      local:                          user_id
     Raters:
       class:                          sfGuardUser
       refClass:                       PluginRating
@@ -37,6 +38,25 @@ SymfonyPlugin:
       foreignAlias:                   Plugins
       local:                          plugin_id
       refClass:                       PluginTag
+
+SymfonyPluginAuthor:
+  actAs:    [Timestampable]
+  columns:
+    plugin_id:
+      type:                           integer
+      notnull:                        true
+    author_id:
+      type:                           integer
+      notnull:                        true
+  relations:
+    Plugin:
+      class:                          SymfonyPlugin
+      local:                          plugin_id
+      onDelete:                       CASCADE
+    Author:
+      class:                          sfGuardUser
+      local:                          author_id
+      onDelete:                       CASCADE
 
 PluginRating:
   actAs:    [Timestampable]

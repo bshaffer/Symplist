@@ -1,2 +1,2 @@
 showSuccess:    
-  stylesheets:                        [ reset.css, text.css, 960.css, main.css, frontend.css, rateable.css ]  
+  stylesheets:                        [ rateable.css, author.css ]  

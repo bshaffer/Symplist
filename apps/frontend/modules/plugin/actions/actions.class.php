@@ -20,7 +20,7 @@ class pluginActions extends sfActions
   
   public function executeList(sfWebRequest $request)
   {
-    $this->pager = new sfDoctrinePager('SymfonyPlugin', 10);
+    $this->pager = new sfDoctrinePager('SymfonyPlugin', sfConfig::get(sprintf('app_%s_results_page', $request->getParameter('sf_format')), 10));
 
     $q = Doctrine::getTable("SymfonyPlugin")->createQuery()->orderBy('title ASC');
                 
@@ -70,7 +70,7 @@ class pluginActions extends sfActions
     // Register the Plugin
     if ($request->isMethod('POST')) 
     {
-      $this->plugin['User'] = $this->user;
+      $this->plugin['Authors'][] = $this->user;
       $this->plugin->save();
       return 'Confirm';
     }
@@ -161,7 +161,7 @@ class pluginActions extends sfActions
   {
     $q = $request->hasParameter('form[query]') ? $request->getParameter('form[query]') : $request->getParameter('q');
     $plugin = $q ? Doctrine::getTable('SymfonyPlugin')->findOneByTitle($q) : null;
-    if ($plugin) 
+    if ($plugin)
     {
       $this->redirect('@plugin?title='.$plugin['title']);
     }

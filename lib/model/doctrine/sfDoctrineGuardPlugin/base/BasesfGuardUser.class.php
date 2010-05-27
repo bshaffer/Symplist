@@ -21,6 +21,7 @@
  * @property sfGuardRememberKey $RememberKeys
  * @property Doctrine_Collection $Plugins
  * @property Doctrine_Collection $RatedPlugins
+ * @property Doctrine_Collection $SymfonyPluginAuthor
  * @property Doctrine_Collection $Ratings
  * @property PluginAuthor $Author
  * @property Doctrine_Collection $CommunityListItems
@@ -41,6 +42,7 @@
  * @method sfGuardRememberKey  getRememberKeys()          Returns the current record's "RememberKeys" value
  * @method Doctrine_Collection getPlugins()               Returns the current record's "Plugins" collection
  * @method Doctrine_Collection getRatedPlugins()          Returns the current record's "RatedPlugins" collection
+ * @method Doctrine_Collection getSymfonyPluginAuthor()   Returns the current record's "SymfonyPluginAuthor" collection
  * @method Doctrine_Collection getRatings()               Returns the current record's "Ratings" collection
  * @method PluginAuthor        getAuthor()                Returns the current record's "Author" value
  * @method Doctrine_Collection getCommunityListItems()    Returns the current record's "CommunityListItems" collection
@@ -60,6 +62,7 @@
  * @method sfGuardUser         setRememberKeys()          Sets the current record's "RememberKeys" value
  * @method sfGuardUser         setPlugins()               Sets the current record's "Plugins" collection
  * @method sfGuardUser         setRatedPlugins()          Sets the current record's "RatedPlugins" collection
+ * @method sfGuardUser         setSymfonyPluginAuthor()   Sets the current record's "SymfonyPluginAuthor" collection
  * @method sfGuardUser         setRatings()               Sets the current record's "Ratings" collection
  * @method sfGuardUser         setAuthor()                Sets the current record's "Author" value
  * @method sfGuardUser         setCommunityListItems()    Sets the current record's "CommunityListItems" collection
@@ -151,13 +154,18 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'foreign' => 'user_id'));
 
         $this->hasMany('SymfonyPlugin as Plugins', array(
-             'local' => 'id',
-             'foreign' => 'user_id'));
+             'refClass' => 'SymfonyPluginAuthor',
+             'local' => 'author_id',
+             'foreign' => 'plugin_id'));
 
         $this->hasMany('SymfonyPlugin as RatedPlugins', array(
              'refClass' => 'PluginRating',
              'local' => 'sf_guard_user_id',
              'foreign' => 'symfony_plugin_id'));
+
+        $this->hasMany('SymfonyPluginAuthor', array(
+             'local' => 'id',
+             'foreign' => 'author_id'));
 
         $this->hasMany('PluginRating as Ratings', array(
              'local' => 'id',

@@ -16,7 +16,7 @@ class SymfonyPlugin extends BaseSymfonyPlugin
   
   public function isRegistered()
   {
-    return ($this->user_id != null);
+    return $this['Authors']->count();
   }
   
   public function getRoute()
@@ -127,8 +127,13 @@ class SymfonyPlugin extends BaseSymfonyPlugin
     return false;
   }
   
-  public function getRelease($release)
+  public function getRelease($release = null)
   {
+    if ($release === null && $i = $this['Releases']->count()) 
+    {
+      return $this['Releases'][$i-1];  // Return most recent release
+    }
+    
     foreach ($this['Releases'] as $rel) 
     {
       if ($rel['version'] == $release) 
@@ -136,9 +141,18 @@ class SymfonyPlugin extends BaseSymfonyPlugin
         return $rel;
       }
     }
+    
     return null;
   }
   
+  public function getStability($release = null)
+  {
+    if ($release = $this->getRelease($release)) 
+    {
+      return $release['stability'];
+    }
+  }
+    
   public function isPublished()
   {
     return $this['Releases']->count() > 0;

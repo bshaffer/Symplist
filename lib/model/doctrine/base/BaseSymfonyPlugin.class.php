@@ -7,7 +7,6 @@
  * 
  * @property string $title
  * @property clob $description
- * @property integer $user_id
  * @property string $symfony_developer
  * @property integer $category_id
  * @property boolean $active
@@ -16,50 +15,51 @@
  * @property string $homepage
  * @property string $ticketing
  * @property boolean $featured
- * @property sfGuardUser $User
+ * @property Doctrine_Collection $Authors
  * @property Doctrine_Collection $Raters
  * @property PluginCategory $Category
+ * @property Doctrine_Collection $SymfonyPluginAuthor
  * @property Doctrine_Collection $Ratings
  * @property Doctrine_Collection $PluginTags
  * @property Doctrine_Collection $Releases
  * @property Doctrine_Collection $DependentReleases
  * 
- * @method string              getTitle()             Returns the current record's "title" value
- * @method clob                getDescription()       Returns the current record's "description" value
- * @method integer             getUserId()            Returns the current record's "user_id" value
- * @method string              getSymfonyDeveloper()  Returns the current record's "symfony_developer" value
- * @method integer             getCategoryId()        Returns the current record's "category_id" value
- * @method boolean             getActive()            Returns the current record's "active" value
- * @method string              getRepository()        Returns the current record's "repository" value
- * @method string              getImage()             Returns the current record's "image" value
- * @method string              getHomepage()          Returns the current record's "homepage" value
- * @method string              getTicketing()         Returns the current record's "ticketing" value
- * @method boolean             getFeatured()          Returns the current record's "featured" value
- * @method sfGuardUser         getUser()              Returns the current record's "User" value
- * @method Doctrine_Collection getRaters()            Returns the current record's "Raters" collection
- * @method PluginCategory      getCategory()          Returns the current record's "Category" value
- * @method Doctrine_Collection getRatings()           Returns the current record's "Ratings" collection
- * @method Doctrine_Collection getPluginTags()        Returns the current record's "PluginTags" collection
- * @method Doctrine_Collection getReleases()          Returns the current record's "Releases" collection
- * @method Doctrine_Collection getDependentReleases() Returns the current record's "DependentReleases" collection
- * @method SymfonyPlugin       setTitle()             Sets the current record's "title" value
- * @method SymfonyPlugin       setDescription()       Sets the current record's "description" value
- * @method SymfonyPlugin       setUserId()            Sets the current record's "user_id" value
- * @method SymfonyPlugin       setSymfonyDeveloper()  Sets the current record's "symfony_developer" value
- * @method SymfonyPlugin       setCategoryId()        Sets the current record's "category_id" value
- * @method SymfonyPlugin       setActive()            Sets the current record's "active" value
- * @method SymfonyPlugin       setRepository()        Sets the current record's "repository" value
- * @method SymfonyPlugin       setImage()             Sets the current record's "image" value
- * @method SymfonyPlugin       setHomepage()          Sets the current record's "homepage" value
- * @method SymfonyPlugin       setTicketing()         Sets the current record's "ticketing" value
- * @method SymfonyPlugin       setFeatured()          Sets the current record's "featured" value
- * @method SymfonyPlugin       setUser()              Sets the current record's "User" value
- * @method SymfonyPlugin       setRaters()            Sets the current record's "Raters" collection
- * @method SymfonyPlugin       setCategory()          Sets the current record's "Category" value
- * @method SymfonyPlugin       setRatings()           Sets the current record's "Ratings" collection
- * @method SymfonyPlugin       setPluginTags()        Sets the current record's "PluginTags" collection
- * @method SymfonyPlugin       setReleases()          Sets the current record's "Releases" collection
- * @method SymfonyPlugin       setDependentReleases() Sets the current record's "DependentReleases" collection
+ * @method string              getTitle()               Returns the current record's "title" value
+ * @method clob                getDescription()         Returns the current record's "description" value
+ * @method string              getSymfonyDeveloper()    Returns the current record's "symfony_developer" value
+ * @method integer             getCategoryId()          Returns the current record's "category_id" value
+ * @method boolean             getActive()              Returns the current record's "active" value
+ * @method string              getRepository()          Returns the current record's "repository" value
+ * @method string              getImage()               Returns the current record's "image" value
+ * @method string              getHomepage()            Returns the current record's "homepage" value
+ * @method string              getTicketing()           Returns the current record's "ticketing" value
+ * @method boolean             getFeatured()            Returns the current record's "featured" value
+ * @method Doctrine_Collection getAuthors()             Returns the current record's "Authors" collection
+ * @method Doctrine_Collection getRaters()              Returns the current record's "Raters" collection
+ * @method PluginCategory      getCategory()            Returns the current record's "Category" value
+ * @method Doctrine_Collection getSymfonyPluginAuthor() Returns the current record's "SymfonyPluginAuthor" collection
+ * @method Doctrine_Collection getRatings()             Returns the current record's "Ratings" collection
+ * @method Doctrine_Collection getPluginTags()          Returns the current record's "PluginTags" collection
+ * @method Doctrine_Collection getReleases()            Returns the current record's "Releases" collection
+ * @method Doctrine_Collection getDependentReleases()   Returns the current record's "DependentReleases" collection
+ * @method SymfonyPlugin       setTitle()               Sets the current record's "title" value
+ * @method SymfonyPlugin       setDescription()         Sets the current record's "description" value
+ * @method SymfonyPlugin       setSymfonyDeveloper()    Sets the current record's "symfony_developer" value
+ * @method SymfonyPlugin       setCategoryId()          Sets the current record's "category_id" value
+ * @method SymfonyPlugin       setActive()              Sets the current record's "active" value
+ * @method SymfonyPlugin       setRepository()          Sets the current record's "repository" value
+ * @method SymfonyPlugin       setImage()               Sets the current record's "image" value
+ * @method SymfonyPlugin       setHomepage()            Sets the current record's "homepage" value
+ * @method SymfonyPlugin       setTicketing()           Sets the current record's "ticketing" value
+ * @method SymfonyPlugin       setFeatured()            Sets the current record's "featured" value
+ * @method SymfonyPlugin       setAuthors()             Sets the current record's "Authors" collection
+ * @method SymfonyPlugin       setRaters()              Sets the current record's "Raters" collection
+ * @method SymfonyPlugin       setCategory()            Sets the current record's "Category" value
+ * @method SymfonyPlugin       setSymfonyPluginAuthor() Sets the current record's "SymfonyPluginAuthor" collection
+ * @method SymfonyPlugin       setRatings()             Sets the current record's "Ratings" collection
+ * @method SymfonyPlugin       setPluginTags()          Sets the current record's "PluginTags" collection
+ * @method SymfonyPlugin       setReleases()            Sets the current record's "Releases" collection
+ * @method SymfonyPlugin       setDependentReleases()   Sets the current record's "DependentReleases" collection
  * 
  * @package    plugintracker
  * @subpackage model
@@ -79,10 +79,6 @@ abstract class BaseSymfonyPlugin extends sfDoctrineRecord
              ));
         $this->hasColumn('description', 'clob', null, array(
              'type' => 'clob',
-             ));
-        $this->hasColumn('user_id', 'integer', 4, array(
-             'type' => 'integer',
-             'length' => 4,
              ));
         $this->hasColumn('symfony_developer', 'string', 255, array(
              'type' => 'string',
@@ -118,9 +114,10 @@ abstract class BaseSymfonyPlugin extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('sfGuardUser as User', array(
-             'local' => 'user_id',
-             'foreign' => 'id'));
+        $this->hasMany('sfGuardUser as Authors', array(
+             'refClass' => 'SymfonyPluginAuthor',
+             'local' => 'plugin_id',
+             'foreign' => 'author_id'));
 
         $this->hasMany('sfGuardUser as Raters', array(
              'refClass' => 'PluginRating',
@@ -130,6 +127,10 @@ abstract class BaseSymfonyPlugin extends sfDoctrineRecord
         $this->hasOne('PluginCategory as Category', array(
              'local' => 'category_id',
              'foreign' => 'id'));
+
+        $this->hasMany('SymfonyPluginAuthor', array(
+             'local' => 'id',
+             'foreign' => 'plugin_id'));
 
         $this->hasMany('PluginRating as Ratings', array(
              'local' => 'id',

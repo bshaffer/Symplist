@@ -28,5 +28,29 @@ class ProjectConfiguration extends sfProjectConfiguration
       'sfLucenePlugin',
       'sfTaskExtraPlugin',
       ));
+
+    $this->dispatcher->connect('request.filter_parameters', array($this, 'filterRequestParameters'));
+    $this->dispatcher->connect('view.configure_format', array($this, 'configureIPhoneFormat'));
+  }
+ 
+  public function filterRequestParameters(sfEvent $event, $parameters)
+  {
+    $request = $event->getSubject();
+ 
+    if (!$request->getHttpHeader('User-Agent'))
+    {
+      // This is being accessed via command line
+      $request->setRequestFormat('api');
+    }
+ 
+    return $parameters;
+  }
+
+  public function configureIPhoneFormat(sfEvent $event)
+  {
+    if ('api' == $event['format'])
+    {
+      exit(get_class($event->getSubject()));
+    }
   }
 }
