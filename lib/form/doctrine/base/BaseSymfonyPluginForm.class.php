@@ -8,7 +8,7 @@
  * @package    plugintracker
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24171 2009-11-19 16:37:50Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
 abstract class BaseSymfonyPluginForm extends BaseFormDoctrine
 {
@@ -18,7 +18,6 @@ abstract class BaseSymfonyPluginForm extends BaseFormDoctrine
       'id'                => new sfWidgetFormInputHidden(),
       'title'             => new sfWidgetFormInputText(),
       'description'       => new sfWidgetFormTextarea(),
-      'user_id'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
       'symfony_developer' => new sfWidgetFormInputText(),
       'category_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Category'), 'add_empty' => true)),
       'active'            => new sfWidgetFormInputCheckbox(),
@@ -30,6 +29,7 @@ abstract class BaseSymfonyPluginForm extends BaseFormDoctrine
       'slug'              => new sfWidgetFormInputText(),
       'created_at'        => new sfWidgetFormDateTime(),
       'updated_at'        => new sfWidgetFormDateTime(),
+      'authors_list'      => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
       'raters_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
     ));
 
@@ -37,7 +37,6 @@ abstract class BaseSymfonyPluginForm extends BaseFormDoctrine
       'id'                => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
       'title'             => new sfValidatorString(array('max_length' => 255)),
       'description'       => new sfValidatorString(array('required' => false)),
-      'user_id'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'required' => false)),
       'symfony_developer' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'category_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Category'), 'required' => false)),
       'active'            => new sfValidatorBoolean(array('required' => false)),
@@ -49,6 +48,7 @@ abstract class BaseSymfonyPluginForm extends BaseFormDoctrine
       'slug'              => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'        => new sfValidatorDateTime(),
       'updated_at'        => new sfValidatorDateTime(),
+      'authors_list'      => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
       'raters_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
     ));
 
@@ -77,6 +77,11 @@ abstract class BaseSymfonyPluginForm extends BaseFormDoctrine
   {
     parent::updateDefaultsFromObject();
 
+    if (isset($this->widgetSchema['authors_list']))
+    {
+      $this->setDefault('authors_list', $this->object->Authors->getPrimaryKeys());
+    }
+
     if (isset($this->widgetSchema['raters_list']))
     {
       $this->setDefault('raters_list', $this->object->Raters->getPrimaryKeys());
@@ -86,9 +91,48 @@ abstract class BaseSymfonyPluginForm extends BaseFormDoctrine
 
   protected function doSave($con = null)
   {
+    $this->saveAuthorsList($con);
     $this->saveRatersList($con);
 
     parent::doSave($con);
+  }
+
+  public function saveAuthorsList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['authors_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $existing = $this->object->Authors->getPrimaryKeys();
+    $values = $this->getValue('authors_list');
+    if (!is_array($values))
+    {
+      $values = array();
+    }
+
+    $unlink = array_diff($existing, $values);
+    if (count($unlink))
+    {
+      $this->object->unlink('Authors', array_values($unlink));
+    }
+
+    $link = array_diff($values, $existing);
+    if (count($link))
+    {
+      $this->object->link('Authors', array_values($link));
+    }
   }
 
   public function saveRatersList($con = null)

@@ -8,7 +8,7 @@
  * @package    plugintracker
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24171 2009-11-19 16:37:50Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
 abstract class BasesfGuardUserForm extends BaseFormDoctrine
 {
@@ -27,6 +27,7 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
       'updated_at'         => new sfWidgetFormDateTime(),
       'groups_list'        => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup')),
       'permissions_list'   => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission')),
+      'plugins_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'SymfonyPlugin')),
       'rated_plugins_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'SymfonyPlugin')),
     ));
 
@@ -43,6 +44,7 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
       'updated_at'         => new sfValidatorDateTime(),
       'groups_list'        => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup', 'required' => false)),
       'permissions_list'   => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission', 'required' => false)),
+      'plugins_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'SymfonyPlugin', 'required' => false)),
       'rated_plugins_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'SymfonyPlugin', 'required' => false)),
     ));
 
@@ -78,6 +80,11 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
       $this->setDefault('permissions_list', $this->object->permissions->getPrimaryKeys());
     }
 
+    if (isset($this->widgetSchema['plugins_list']))
+    {
+      $this->setDefault('plugins_list', $this->object->Plugins->getPrimaryKeys());
+    }
+
     if (isset($this->widgetSchema['rated_plugins_list']))
     {
       $this->setDefault('rated_plugins_list', $this->object->RatedPlugins->getPrimaryKeys());
@@ -89,6 +96,7 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
   {
     $this->savegroupsList($con);
     $this->savepermissionsList($con);
+    $this->savePluginsList($con);
     $this->saveRatedPluginsList($con);
 
     parent::doSave($con);
@@ -167,6 +175,44 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
     if (count($link))
     {
       $this->object->link('permissions', array_values($link));
+    }
+  }
+
+  public function savePluginsList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['plugins_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $existing = $this->object->Plugins->getPrimaryKeys();
+    $values = $this->getValue('plugins_list');
+    if (!is_array($values))
+    {
+      $values = array();
+    }
+
+    $unlink = array_diff($existing, $values);
+    if (count($unlink))
+    {
+      $this->object->unlink('Plugins', array_values($unlink));
+    }
+
+    $link = array_diff($values, $existing);
+    if (count($link))
+    {
+      $this->object->link('Plugins', array_values($link));
     }
   }
 

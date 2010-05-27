@@ -6,7 +6,7 @@
  * @package    plugintracker
  * @subpackage filter
  * @author     Your name here
- * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 24171 2009-11-19 16:37:50Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
 abstract class BasesfGuardUserFormFilter extends BaseFormFilterDoctrine
 {
@@ -24,6 +24,7 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterDoctrine
       'updated_at'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'groups_list'        => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup')),
       'permissions_list'   => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission')),
+      'plugins_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'SymfonyPlugin')),
       'rated_plugins_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'SymfonyPlugin')),
     ));
 
@@ -39,6 +40,7 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterDoctrine
       'updated_at'         => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'groups_list'        => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup', 'required' => false)),
       'permissions_list'   => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission', 'required' => false)),
+      'plugins_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'SymfonyPlugin', 'required' => false)),
       'rated_plugins_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'SymfonyPlugin', 'required' => false)),
     ));
 
@@ -83,6 +85,22 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterDoctrine
           ->andWhereIn('sfGuardUserPermission.permission_id', $values);
   }
 
+  public function addPluginsListColumnQuery(Doctrine_Query $query, $field, $values)
+  {
+    if (!is_array($values))
+    {
+      $values = array($values);
+    }
+
+    if (!count($values))
+    {
+      return;
+    }
+
+    $query->leftJoin('r.SymfonyPluginAuthor SymfonyPluginAuthor')
+          ->andWhereIn('SymfonyPluginAuthor.plugin_id', $values);
+  }
+
   public function addRatedPluginsListColumnQuery(Doctrine_Query $query, $field, $values)
   {
     if (!is_array($values))
@@ -119,6 +137,7 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterDoctrine
       'updated_at'         => 'Date',
       'groups_list'        => 'ManyKey',
       'permissions_list'   => 'ManyKey',
+      'plugins_list'       => 'ManyKey',
       'rated_plugins_list' => 'ManyKey',
     );
   }

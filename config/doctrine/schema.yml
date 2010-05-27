@@ -41,6 +41,10 @@ SymfonyPlugin:
 
 SymfonyPluginAuthor:
   actAs:    [Timestampable]
+  options:
+    symfony:
+      form: false
+      filter: false
   columns:
     plugin_id:
       type:                           integer
