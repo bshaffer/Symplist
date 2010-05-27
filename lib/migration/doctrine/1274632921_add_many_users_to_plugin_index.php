@@ -8,7 +8,7 @@ class addManyUsersToPluginIndexMigration extends Doctrine_Migration_Base
     {
         $this->dropForeignKey('symfony_plugin', 'symfony_plugin_user_id_sf_guard_user_id');
         $this->createForeignKey('symfony_plugin_author', 'symfony_plugin_author_plugin_id_symfony_plugin_id', array(
-             'name' => 'symfony_plugin_author_plugin_id_symfony_plugin_id',
+             'name' => 'symfony_plugin_author_plugin_id_plugin_id',
              'local' => 'plugin_id',
              'foreign' => 'id',
              'foreignTable' => 'symfony_plugin',
@@ -23,12 +23,6 @@ class addManyUsersToPluginIndexMigration extends Doctrine_Migration_Base
              'onUpdate' => '',
              'onDelete' => 'CASCADE',
              ));
-        $this->createForeignKey('symfony_plugin_author', 'symfony_plugin_author_symfony_plugin_id_symfony_plugin_id', array(
-             'name' => 'symfony_plugin_author_symfony_plugin_id_symfony_plugin_id',
-             'local' => 'symfony_plugin_id',
-             'foreign' => 'id',
-             'foreignTable' => 'symfony_plugin',
-             ));
         $this->addIndex('symfony_plugin_author', 'symfony_plugin_author_plugin_id', array(
              'fields' => 
              array(
@@ -39,12 +33,6 @@ class addManyUsersToPluginIndexMigration extends Doctrine_Migration_Base
              'fields' => 
              array(
               0 => 'author_id',
-             ),
-             ));
-        $this->addIndex('symfony_plugin_author', 'symfony_plugin_author_symfony_plugin_id', array(
-             'fields' => 
-             array(
-              0 => 'symfony_plugin_id',
              ),
              ));
     }
@@ -59,7 +47,6 @@ class addManyUsersToPluginIndexMigration extends Doctrine_Migration_Base
              ));
         $this->dropForeignKey('symfony_plugin_author', 'symfony_plugin_author_plugin_id_symfony_plugin_id');
         $this->dropForeignKey('symfony_plugin_author', 'symfony_plugin_author_author_id_sf_guard_user_id');
-        $this->dropForeignKey('symfony_plugin_author', 'symfony_plugin_author_symfony_plugin_id_symfony_plugin_id');
         $this->removeIndex('symfony_plugin_author', 'symfony_plugin_author_plugin_id', array(
              'fields' => 
              array(
@@ -70,12 +57,6 @@ class addManyUsersToPluginIndexMigration extends Doctrine_Migration_Base
              'fields' => 
              array(
               0 => 'author_id',
-             ),
-             ));
-        $this->removeIndex('symfony_plugin_author', 'symfony_plugin_author_symfony_plugin_id', array(
-             'fields' => 
-             array(
-              0 => 'symfony_plugin_id',
              ),
              ));
     }

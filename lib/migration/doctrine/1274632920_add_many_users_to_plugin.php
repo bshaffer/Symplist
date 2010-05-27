@@ -24,7 +24,7 @@ class addManyUsersToPluginMigration extends Doctrine_Migration_Base
              array(
               'type' => 'integer',
               'notnull' => '1',
-              'length' => '8',
+              'length' => '4',
              ),
              'created_at' => 
              array(

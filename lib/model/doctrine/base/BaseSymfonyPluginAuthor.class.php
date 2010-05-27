@@ -33,9 +33,10 @@ abstract class BaseSymfonyPluginAuthor extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              ));
-        $this->hasColumn('author_id', 'integer', null, array(
+        $this->hasColumn('author_id', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
+             'length' => 4,
              ));
     }
 

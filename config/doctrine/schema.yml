@@ -46,7 +46,7 @@ SymfonyPluginAuthor:
       type:                           integer
       notnull:                        true
     author_id:
-      type:                           integer
+      type:                           integer(4)
       notnull:                        true
   relations:
     Plugin:
