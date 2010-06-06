@@ -42,12 +42,12 @@ class authorActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->user = $this->getUser()->getGuardUser();
-    $this->forward404Unless($this->user['username'] == $request->getParameter('username'));
+    $this->forward403Unless($this->user['username'] == $request->getParameter('username'));
     
     $this->userform = new sfGuardUserAdminForm($this->user);
     $this->profileform = new PluginAuthorForm($this->user['Author']);
     
-    if ($request->isMethod('POST'))
+    if ($request->isMethod('PUT'))
     {
       $this->userform->bind($request->getParameter('sf_guard_user'));
       $this->profileform->bind($profile = $request->getParameter('plugin_author'));

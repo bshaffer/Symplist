@@ -64,8 +64,13 @@ abstract class PlugincsNavigationItem extends BasecsNavigationItem
   * true if this route matches the current one
   *
   */
-  public function isActive()
+  public function isActive($active_item = null)
   {
+    if ($active_item && $active_item == $this->getName()) 
+    {
+      return true;
+    }
+    
     $route = new csNavigationRoute($this->route);
     return $route->isCurrentUrl();
   }

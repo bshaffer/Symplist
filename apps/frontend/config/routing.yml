@@ -36,6 +36,13 @@ plugin_search:
   params:                             { module: plugin, action: search }
   requirements:
     sf_method:                        POST
+
+plugin_release_new:
+  url:                                /plugins/:title/release/new
+  class:                              sfDoctrineRoute
+  param:                              { module: release, action: new }  
+  options:                            { type: object, model: SymfonyPlugin }
+  requirements:                       { sf_method: [GET, POST] }
   
 plugin:
   url:                                /plugins/:title

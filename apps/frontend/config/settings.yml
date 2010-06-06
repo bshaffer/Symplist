@@ -4,7 +4,7 @@ prod:
     logging_enabled:                  false
 
   .actions:
-    error_404_module:                 errors
+    error_404_module:                 default
     error_404_action:                 error404
 
 dev:
@@ -33,7 +33,8 @@ all:
 
     login_module:           sfGuardAuth # To be called when a non-authenticated user
     login_action:           signin    # Tries to access a secure page
+
+    secure_module:                    default
+    secure_action:                    secure
     
-    secure_module:          sfGuardAuth # To be called when a user doesn't have
-    secure_action:          secure    # The credentials required for an action
     i18n:                   on       # Enable interface translation. Set to off if your application should not be translated.

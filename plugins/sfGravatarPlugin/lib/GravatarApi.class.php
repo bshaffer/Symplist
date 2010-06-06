@@ -164,10 +164,13 @@ class GravatarApi
         $path = realpath(dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.$this->default_image);
       }
 
-      $new_file = fopen($file, 'w+b');
-      $gravatar_img = file_get_contents($path, 'rb');
-      // image on gravatar.com --> save it in cache
-      fwrite($new_file, $gravatar_img);
+      if ($path) 
+      {
+        $new_file = fopen($file, 'w+b');
+        $gravatar_img = file_get_contents($path, 'rb');
+        // image on gravatar.com --> save it in cache
+        fwrite($new_file, $gravatar_img);
+      }
     }
 
     return str_replace(DIRECTORY_SEPARATOR, '/', $this->cache_dir_name).$to_return;

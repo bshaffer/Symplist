@@ -152,7 +152,6 @@ PluginRelease:
       type:                 enum
       values:               [alpha, beta, stable]
     readme:                 clob
-    dependencies:           string(255)
   relations:
     SymfonyPlugin:
       alias:                Plugin

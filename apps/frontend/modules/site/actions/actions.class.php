@@ -52,7 +52,7 @@ class siteActions extends sfActions
       {
         $this->getMailer()->composeAndSend(
           $this->form->getValue('email'),
-          'bshafs@gmail.com',
+          'symplist@gmail.com',
           'Symplist Contact Form',
           $this->form->getValue('message')
         );

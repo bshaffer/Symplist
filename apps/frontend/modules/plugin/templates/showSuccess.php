@@ -1,4 +1,5 @@
 <?php use_helper('Comment') ?>
+<?php slot('active-navigation', 'Plugins') ?>
 <?php $sf_user->setFlash('full-page', true) ?>
 
 <?php slot('title', $plugin['title']) ?>
@@ -29,6 +30,10 @@
         <?php endforeach ?>
       <?php else: ?>
         None
+      <?php endif ?>
+      
+      <?php if ($sf_user->existsInUsers($plugin['Authors'])): ?>
+        &nbsp;[<?php echo link_to('Add a Release', '@plugin_release_new?title='.$plugin['title']) ?>]
       <?php endif ?>
     </dd>
 

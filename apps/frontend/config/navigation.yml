@@ -1,9 +1,8 @@
 navigation:
   Main:
-    Home:             @homepage
-    Browse Plugins:      @plugins
-    Categories:         @plugin_categories
-    Browse Developers:   @authors
+    Home:               @homepage
+    Plugins:      @plugins
+    Developers:   @authors
     Lists:        @community_lists
 
   Footer:

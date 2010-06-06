@@ -10,4 +10,19 @@
  */
 class BaseForm extends sfFormSymfony
 {
+  public function mergeWidgets($widgets)
+  {
+    foreach ($widgets as $name => $widget) 
+    {
+      $this->widgetSchema[$name] = $widget;
+    }
+  }
+  
+  public function mergeValidators($validator)
+  {
+    foreach ($validator as $name => $validator) 
+    {
+      $this->validatorSchema[$name] = $validator;
+    }
+  }
 }

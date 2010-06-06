@@ -1,4 +1,5 @@
 <?php $sf_user->setFlash('full-page', true) ?>
+<?php slot('active-navigation', 'Lists') ?>
 
 <h2><?php echo $list['title'] ?></h2>
 

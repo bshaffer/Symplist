@@ -54,11 +54,13 @@ class pluginActions extends sfActions
   
   public function executeRegister(sfWebRequest $request)
   {
-    $this->form = new SymfonyPluginForm();
+    $this->form = new SymfonyPluginRegisterForm();
+    
     if ($user = $this->getUser()->getGuardUser()) 
     {
-      $this->form->setDefault('user_id', $user['id']);
+      $this->form->setDefault('authors_list', $user['id']);
     }
+    
     if ($request->isMethod('POST')) 
     {
       $this->form->bind($request->getParameter('symfony_plugin'), $request->getFiles('symfony_plugin'));

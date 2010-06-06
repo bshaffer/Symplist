@@ -11,7 +11,6 @@
  * @property clob $summary
  * @property enum $stability
  * @property clob $readme
- * @property string $dependencies
  * @property SymfonyPlugin $Plugin
  * @property Doctrine_Collection $ApiVersions
  * @property Doctrine_Collection $Dependencies
@@ -23,7 +22,6 @@
  * @method clob                getSummary()                        Returns the current record's "summary" value
  * @method enum                getStability()                      Returns the current record's "stability" value
  * @method clob                getReadme()                         Returns the current record's "readme" value
- * @method string              getDependencies()                   Returns the current record's "dependencies" value
  * @method SymfonyPlugin       getPlugin()                         Returns the current record's "Plugin" value
  * @method Doctrine_Collection getApiVersions()                    Returns the current record's "ApiVersions" collection
  * @method Doctrine_Collection getDependencies()                   Returns the current record's "Dependencies" collection
@@ -34,7 +32,6 @@
  * @method PluginRelease       setSummary()                        Sets the current record's "summary" value
  * @method PluginRelease       setStability()                      Sets the current record's "stability" value
  * @method PluginRelease       setReadme()                         Sets the current record's "readme" value
- * @method PluginRelease       setDependencies()                   Sets the current record's "dependencies" value
  * @method PluginRelease       setPlugin()                         Sets the current record's "Plugin" value
  * @method PluginRelease       setApiVersions()                    Sets the current record's "ApiVersions" collection
  * @method PluginRelease       setDependencies()                   Sets the current record's "Dependencies" collection
@@ -75,10 +72,6 @@ abstract class BasePluginRelease extends sfDoctrineRecord
              ));
         $this->hasColumn('readme', 'clob', null, array(
              'type' => 'clob',
-             ));
-        $this->hasColumn('dependencies', 'string', 255, array(
-             'type' => 'string',
-             'length' => 255,
              ));
     }
 

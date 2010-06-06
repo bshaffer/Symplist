@@ -12,5 +12,8 @@ class PluginReleaseDependencyForm extends BasePluginReleaseDependencyForm
 {
   public function configure()
   {
+    sfApplicationConfiguration::getActive()->loadHelpers('Url');
+    $this->widgetSchema['release_id'] = new sfWidgetFormInputHidden();
+    $this->widgetSchema['dependency_id'] = new sfWidgetFormJQueryAutocompleter(array('url' => url_for('@plugin_autocomplete')));
   }
 }

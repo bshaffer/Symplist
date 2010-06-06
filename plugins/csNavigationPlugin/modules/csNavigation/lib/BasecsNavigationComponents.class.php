@@ -44,5 +44,6 @@ abstract class BasecsNavigationComponents extends sfComponents
       
       $this->items = $root->getChildren();
     }
+
   }
 }

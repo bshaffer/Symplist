@@ -11,7 +11,7 @@
   });
 </script>
 
-<form action="<?php echo url_for(@plugin_search) ?>" class="grid_6 search-controls" id="search">
+<form action="<?php echo url_for('@plugin_search') ?>" class="grid_6 search-controls" id="search">
   <fieldset>
     <label for="search-field">Search for a plugin...</label>
     <input type="text" id="search-field" name="form[query]" autocomplete="off" onblur="if(this.value=='') this.value='Search Plugins...';" onfocus="if(this.value=='Search Plugins...') this.value='';"></input>

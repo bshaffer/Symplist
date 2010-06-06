@@ -5,7 +5,7 @@
 <ul <?php echo isset($class) ? "class='$class'" : '' ?> <?php echo isset($id) ? "id='$id'" : '' ?>>
 <?php foreach ($items as $item): ?>
 <?php if ($item->isAuthenticated()): ?>
-   <?php if ($item->isActive()): ?>
+   <?php if ($item->isActive(get_slot('active-navigation'))): ?>
      <li class="active"><a href="#"><?php echo $item->getName() ?></a>
    <?php elseif ($item->isActiveBranch()): ?>
      <li class="active-parent"><?php echo link_to($item->getName(), $item->getRoute()) ?></a>

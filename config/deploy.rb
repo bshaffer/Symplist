@@ -1,7 +1,7 @@
 set :stages, %w(production)
 require 'capistrano/ext/multistage'
 
-set :symfony_version, 'RELEASE_1_3_4'
+set :symfony_version, 'RELEASE_1_3_5'
 set :app_symlinks, %w{uploads}
 
 # =============================================================================
