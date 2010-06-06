@@ -38,8 +38,6 @@ abstract class BaseFormDoctrine extends sfFormDoctrine
           $this->setImageField(strtolower(get_class($this->getObject())), $key);
           break;
         case 'created_at':
-          $this->widgetSchema[$key] = new sfWidgetFormJQueryDate();
-          break;
         case 'updated_at':
           unset($this[$key]);
           break;

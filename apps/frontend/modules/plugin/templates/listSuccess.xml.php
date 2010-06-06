@@ -14,30 +14,24 @@
     <last_updated_at><?php echo $plugin['updated_at'] ?></last_updated_at>
     <authors>
       <?php foreach ($plugin['Authors'] as $author): ?>
-        <author id="<?php echo $author['id'] ?>">
-          <name><?php echo $author ?></name>
-        </author>
+        <author id="<?php echo $author['id'] ?>"><?php echo $author ?></author>
       <?php endforeach ?>
     </authors>
     <tags>
       <?php foreach ($plugin['Tags'] as $tag): ?>
-        <tag id="<?php echo $tag['id'] ?>">
-          <name><?php echo $tag ?></name>
-        </tag>
+        <tag id="<?php echo $tag['id'] ?>"><?php echo $tag ?></tag>
       <?php endforeach ?>
     </tags>
-    <symplist_index><?php //echo $plugin['symplist_index'] ?></symplist_index>
+    <symplist_index><?php echo $plugin['symplist_index'] ?></symplist_index>
     <rating><?php echo $plugin['rating'] ?></rating>
     <releases>
       <?php foreach ($plugin['Releases'] as $release): ?>
-        <release id="<?php echo $release['id'] ?>">
-          <name><?php echo $release ?></name>
-        </release>
+        <release><?php echo $release['version'] ?></release>
       <?php endforeach ?>
     </releases>
     <api_versions>
-      <?php foreach ($plugin->getApiVersions() as $key => $value): ?>
-        
+      <?php foreach ($plugin->getApiVersions() as $version): ?>
+        <api_version><?php echo $version ?></api_version>
       <?php endforeach ?>
     </api_versions>
   </plugin>

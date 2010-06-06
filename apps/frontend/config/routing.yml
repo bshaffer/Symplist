@@ -1,5 +1,9 @@
 # Plugins
 
+plugins_xml:
+  url:                                /plugins.xml
+  param:                              { module: plugin, action: listXml, sf_format: xml }
+
 plugins:
   url:                                /plugins.:sf_format
   param:                              { module: plugin, action: list, sf_format: html }

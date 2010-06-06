@@ -12,5 +12,6 @@ class TagForm extends BaseTagForm
 {
   public function configure()
   {
+    $this->useFields(array('name', 'description'));
   }
 }

@@ -12,9 +12,8 @@ class SymfonyPluginForm extends BaseSymfonyPluginForm
 {
   public function configure()
   {
-    unset($this['created_at'], $this['updated_at'], $this['slug'], $this['raters_list'], $this['symfony_developer']);    
-    $this->widgetSchema['user_id']        = new sfWidgetFormInputHidden();
-    $this->widgetSchema['active']        = new sfWidgetFormInputHidden();
+    unset($this['created_at'], $this['updated_at'], $this['slug'], $this['raters_list'], $this['symfony_developer'], $this['authors_list'], $this['active']);
+
     $this->widgetSchema['category_id']    = new sfWidgetFormDoctrineChoice(array(
                         'model' => 'PluginCategory', 
                         'add_empty' => false, 
@@ -22,6 +21,9 @@ class SymfonyPluginForm extends BaseSymfonyPluginForm
                       ));
                       
     $this->setImageField('symfony_plugin', 'image');
+    
+    $tags = Doctrine::getTable('Tag')->createQuery()->orderBy('name ASC')->execute();
+    $this->widgetSchema['tags_list'] = new sfWidgetFormSelectDoubleList($this->getDoubleListArray($tags->toKeyValueArray('id', 'name')));
     
     $this->widgetSchema->setLabel('category_id', 'Category');
     $this->widgetSchema->setHelp('repository', 'If left blank, the repository url will automatically point to the symfony repository with your plugin title <span class="example-text">(http://svn.symfony-project.com/plugins/sfMyFakePlugin)</span>');

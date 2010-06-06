@@ -20,9 +20,11 @@ class pluginActions extends sfActions
   
   public function executeList(sfWebRequest $request)
   {
-    $this->pager = new sfDoctrinePager('SymfonyPlugin', sfConfig::get(sprintf('app_%s_results_page', $request->getParameter('sf_format')), 10));
+    $this->pager = new sfDoctrinePager('SymfonyPlugin', 10);
 
-    $q = Doctrine::getTable("SymfonyPlugin")->createQuery()->orderBy('title ASC');
+    $q = Doctrine::getTable("SymfonyPlugin")
+          ->createQuery()
+          ->orderBy('title ASC');
                 
     $this->pager->setQuery($q);
 
@@ -30,6 +32,25 @@ class pluginActions extends sfActions
     
     $this->pager->init();    
   }
+  
+  public function executeListXml(sfWebRequest $request)
+  {
+    $this->pager = new sfDoctrinePager('SymfonyPlugin', 0);
+
+    $q = Doctrine::getTable("SymfonyPlugin")
+          ->createQuery()
+          ->where('symplist_index IS NOT NULL')
+          ->orderBy('title ASC');
+                
+    $this->pager->setQuery($q);
+
+    $this->pager->setPage($request->getParameter('page', 1));
+    
+    $this->pager->init();   
+    
+    $this->setTemplate('list');
+  }
+
   
   public function executeRegister(sfWebRequest $request)
   {
