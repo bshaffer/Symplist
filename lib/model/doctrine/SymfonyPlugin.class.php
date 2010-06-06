@@ -40,6 +40,19 @@ class SymfonyPlugin extends BaseSymfonyPlugin
     $plugin_rating->save();
     $this->clearRatingInfo();
   }
+  
+  public function getApiVersions()
+  {
+    $versions = Doctrine_Collection::create('SymfonyApiVersion');
+    $versions->setKeyColumn('id');
+    
+    foreach ($this['Releases'] as $release)
+    {
+      $versions->merge($release->getApiVersions());
+    }
+    
+    return $versions;
+  }
     
   public function getRating()
   {

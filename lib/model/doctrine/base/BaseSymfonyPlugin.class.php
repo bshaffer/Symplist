@@ -15,6 +15,8 @@
  * @property string $homepage
  * @property string $ticketing
  * @property boolean $featured
+ * @property decimal $symplist_index
+ * @property Doctrine_Collection $Tags
  * @property Doctrine_Collection $Authors
  * @property Doctrine_Collection $Raters
  * @property PluginCategory $Category
@@ -34,6 +36,8 @@
  * @method string              getHomepage()            Returns the current record's "homepage" value
  * @method string              getTicketing()           Returns the current record's "ticketing" value
  * @method boolean             getFeatured()            Returns the current record's "featured" value
+ * @method decimal             getSymplistIndex()       Returns the current record's "symplist_index" value
+ * @method Doctrine_Collection getTags()                Returns the current record's "Tags" collection
  * @method Doctrine_Collection getAuthors()             Returns the current record's "Authors" collection
  * @method Doctrine_Collection getRaters()              Returns the current record's "Raters" collection
  * @method PluginCategory      getCategory()            Returns the current record's "Category" value
@@ -52,6 +56,8 @@
  * @method SymfonyPlugin       setHomepage()            Sets the current record's "homepage" value
  * @method SymfonyPlugin       setTicketing()           Sets the current record's "ticketing" value
  * @method SymfonyPlugin       setFeatured()            Sets the current record's "featured" value
+ * @method SymfonyPlugin       setSymplistIndex()       Sets the current record's "symplist_index" value
+ * @method SymfonyPlugin       setTags()                Sets the current record's "Tags" collection
  * @method SymfonyPlugin       setAuthors()             Sets the current record's "Authors" collection
  * @method SymfonyPlugin       setRaters()              Sets the current record's "Raters" collection
  * @method SymfonyPlugin       setCategory()            Sets the current record's "Category" value
@@ -109,11 +115,21 @@ abstract class BaseSymfonyPlugin extends sfDoctrineRecord
         $this->hasColumn('featured', 'boolean', null, array(
              'type' => 'boolean',
              ));
+        $this->hasColumn('symplist_index', 'decimal', 3, array(
+             'type' => 'decimal',
+             'length' => 3,
+             'scale' => '1',
+             ));
     }
 
     public function setUp()
     {
         parent::setUp();
+        $this->hasMany('Tag as Tags', array(
+             'refClass' => 'PluginTag',
+             'local' => 'plugin_id',
+             'foreign' => 'tag_id'));
+
         $this->hasMany('sfGuardUser as Authors', array(
              'refClass' => 'SymfonyPluginAuthor',
              'local' => 'plugin_id',

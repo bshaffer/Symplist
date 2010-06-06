@@ -7,13 +7,16 @@
  * 
  * @property string $name
  * @property clob $description
+ * @property Doctrine_Collection $Plugins
  * @property Doctrine_Collection $PluginTags
  * 
  * @method string              getName()        Returns the current record's "name" value
  * @method clob                getDescription() Returns the current record's "description" value
+ * @method Doctrine_Collection getPlugins()     Returns the current record's "Plugins" collection
  * @method Doctrine_Collection getPluginTags()  Returns the current record's "PluginTags" collection
  * @method Tag                 setName()        Sets the current record's "name" value
  * @method Tag                 setDescription() Sets the current record's "description" value
+ * @method Tag                 setPlugins()     Sets the current record's "Plugins" collection
  * @method Tag                 setPluginTags()  Sets the current record's "PluginTags" collection
  * 
  * @package    plugintracker
@@ -38,6 +41,11 @@ abstract class BaseTag extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasMany('SymfonyPlugin as Plugins', array(
+             'refClass' => 'PluginTag',
+             'local' => 'tag_id',
+             'foreign' => 'plugin_id'));
+
         $this->hasMany('PluginTag as PluginTags', array(
              'local' => 'id',
              'foreign' => 'tag_id'));

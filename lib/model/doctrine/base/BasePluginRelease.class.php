@@ -8,37 +8,37 @@
  * @property integer $plugin_id
  * @property string $version
  * @property timestamp $date
- * @property decimal $symfony_version_min
- * @property decimal $symfony_version_max
  * @property clob $summary
  * @property enum $stability
  * @property clob $readme
  * @property string $dependencies
  * @property SymfonyPlugin $Plugin
+ * @property Doctrine_Collection $ApiVersions
  * @property Doctrine_Collection $Dependencies
+ * @property Doctrine_Collection $PluginReleaseSymfonyApiVersion
  * 
- * @method integer             getPluginId()            Returns the current record's "plugin_id" value
- * @method string              getVersion()             Returns the current record's "version" value
- * @method timestamp           getDate()                Returns the current record's "date" value
- * @method decimal             getSymfonyVersionMin()   Returns the current record's "symfony_version_min" value
- * @method decimal             getSymfonyVersionMax()   Returns the current record's "symfony_version_max" value
- * @method clob                getSummary()             Returns the current record's "summary" value
- * @method enum                getStability()           Returns the current record's "stability" value
- * @method clob                getReadme()              Returns the current record's "readme" value
- * @method string              getDependencies()        Returns the current record's "dependencies" value
- * @method SymfonyPlugin       getPlugin()              Returns the current record's "Plugin" value
- * @method Doctrine_Collection getDependencies()        Returns the current record's "Dependencies" collection
- * @method PluginRelease       setPluginId()            Sets the current record's "plugin_id" value
- * @method PluginRelease       setVersion()             Sets the current record's "version" value
- * @method PluginRelease       setDate()                Sets the current record's "date" value
- * @method PluginRelease       setSymfonyVersionMin()   Sets the current record's "symfony_version_min" value
- * @method PluginRelease       setSymfonyVersionMax()   Sets the current record's "symfony_version_max" value
- * @method PluginRelease       setSummary()             Sets the current record's "summary" value
- * @method PluginRelease       setStability()           Sets the current record's "stability" value
- * @method PluginRelease       setReadme()              Sets the current record's "readme" value
- * @method PluginRelease       setDependencies()        Sets the current record's "dependencies" value
- * @method PluginRelease       setPlugin()              Sets the current record's "Plugin" value
- * @method PluginRelease       setDependencies()        Sets the current record's "Dependencies" collection
+ * @method integer             getPluginId()                       Returns the current record's "plugin_id" value
+ * @method string              getVersion()                        Returns the current record's "version" value
+ * @method timestamp           getDate()                           Returns the current record's "date" value
+ * @method clob                getSummary()                        Returns the current record's "summary" value
+ * @method enum                getStability()                      Returns the current record's "stability" value
+ * @method clob                getReadme()                         Returns the current record's "readme" value
+ * @method string              getDependencies()                   Returns the current record's "dependencies" value
+ * @method SymfonyPlugin       getPlugin()                         Returns the current record's "Plugin" value
+ * @method Doctrine_Collection getApiVersions()                    Returns the current record's "ApiVersions" collection
+ * @method Doctrine_Collection getDependencies()                   Returns the current record's "Dependencies" collection
+ * @method Doctrine_Collection getPluginReleaseSymfonyApiVersion() Returns the current record's "PluginReleaseSymfonyApiVersion" collection
+ * @method PluginRelease       setPluginId()                       Sets the current record's "plugin_id" value
+ * @method PluginRelease       setVersion()                        Sets the current record's "version" value
+ * @method PluginRelease       setDate()                           Sets the current record's "date" value
+ * @method PluginRelease       setSummary()                        Sets the current record's "summary" value
+ * @method PluginRelease       setStability()                      Sets the current record's "stability" value
+ * @method PluginRelease       setReadme()                         Sets the current record's "readme" value
+ * @method PluginRelease       setDependencies()                   Sets the current record's "dependencies" value
+ * @method PluginRelease       setPlugin()                         Sets the current record's "Plugin" value
+ * @method PluginRelease       setApiVersions()                    Sets the current record's "ApiVersions" collection
+ * @method PluginRelease       setDependencies()                   Sets the current record's "Dependencies" collection
+ * @method PluginRelease       setPluginReleaseSymfonyApiVersion() Sets the current record's "PluginReleaseSymfonyApiVersion" collection
  * 
  * @package    plugintracker
  * @subpackage model
@@ -60,16 +60,6 @@ abstract class BasePluginRelease extends sfDoctrineRecord
              ));
         $this->hasColumn('date', 'timestamp', null, array(
              'type' => 'timestamp',
-             ));
-        $this->hasColumn('symfony_version_min', 'decimal', 5, array(
-             'type' => 'decimal',
-             'length' => 5,
-             'scale' => '1',
-             ));
-        $this->hasColumn('symfony_version_max', 'decimal', 5, array(
-             'type' => 'decimal',
-             'length' => 5,
-             'scale' => '1',
              ));
         $this->hasColumn('summary', 'clob', null, array(
              'type' => 'clob',
@@ -100,7 +90,16 @@ abstract class BasePluginRelease extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
+        $this->hasMany('SymfonyApiVersion as ApiVersions', array(
+             'refClass' => 'PluginReleaseSymfonyApiVersion',
+             'local' => 'release_id',
+             'foreign' => 'api_version_id'));
+
         $this->hasMany('PluginReleaseDependency as Dependencies', array(
+             'local' => 'id',
+             'foreign' => 'release_id'));
+
+        $this->hasMany('PluginReleaseSymfonyApiVersion', array(
              'local' => 'id',
              'foreign' => 'release_id'));
 

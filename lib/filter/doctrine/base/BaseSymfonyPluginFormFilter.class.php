@@ -23,9 +23,11 @@ abstract class BaseSymfonyPluginFormFilter extends BaseFormFilterDoctrine
       'homepage'          => new sfWidgetFormFilterInput(),
       'ticketing'         => new sfWidgetFormFilterInput(),
       'featured'          => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'symplist_index'    => new sfWidgetFormFilterInput(),
       'slug'              => new sfWidgetFormFilterInput(),
       'created_at'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'tags_list'         => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Tag')),
       'authors_list'      => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
       'raters_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
     ));
@@ -41,9 +43,11 @@ abstract class BaseSymfonyPluginFormFilter extends BaseFormFilterDoctrine
       'homepage'          => new sfValidatorPass(array('required' => false)),
       'ticketing'         => new sfValidatorPass(array('required' => false)),
       'featured'          => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'symplist_index'    => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'slug'              => new sfValidatorPass(array('required' => false)),
       'created_at'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'tags_list'         => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Tag', 'required' => false)),
       'authors_list'      => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
       'raters_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
     ));
@@ -55,6 +59,22 @@ abstract class BaseSymfonyPluginFormFilter extends BaseFormFilterDoctrine
     $this->setupInheritance();
 
     parent::setup();
+  }
+
+  public function addTagsListColumnQuery(Doctrine_Query $query, $field, $values)
+  {
+    if (!is_array($values))
+    {
+      $values = array($values);
+    }
+
+    if (!count($values))
+    {
+      return;
+    }
+
+    $query->leftJoin('r.PluginTag PluginTag')
+          ->andWhereIn('PluginTag.tag_id', $values);
   }
 
   public function addAuthorsListColumnQuery(Doctrine_Query $query, $field, $values)
@@ -108,9 +128,11 @@ abstract class BaseSymfonyPluginFormFilter extends BaseFormFilterDoctrine
       'homepage'          => 'Text',
       'ticketing'         => 'Text',
       'featured'          => 'Boolean',
+      'symplist_index'    => 'Number',
       'slug'              => 'Text',
       'created_at'        => 'Date',
       'updated_at'        => 'Date',
+      'tags_list'         => 'ManyKey',
       'authors_list'      => 'ManyKey',
       'raters_list'       => 'ManyKey',
     );

@@ -10,7 +10,10 @@ class migrateSymfonyPluginUserDataMigration extends Doctrine_Migration_Base
     include_once(dirname(__FILE__).'/../model/1274632920_SymfonyPlugin.php');
 
     // Fix Data
-    $plugins =  Doctrine::getTable('Migration_1274632920_SymfonyPlugin')->findAll();
+    $plugins =  Doctrine::getTable('Migration_1274632920_SymfonyPlugin')
+                  ->createQuery()
+                  ->select('user_id')
+                  ->execute();
 
     foreach ($plugins as $plugin) 
     {

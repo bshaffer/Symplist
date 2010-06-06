@@ -19,7 +19,14 @@ SymfonyPlugin:
     homepage:                         string(255)
     ticketing:                        string(255)
     featured:                         boolean
+    symplist_index:
+      type:                           decimal(3,1)
   relations:
+    Tags:
+      class:                          Tag
+      foreignAlias:                   Plugins
+      local:                          plugin_id
+      refClass:                       PluginTag
     Authors:
       class:                          sfGuardUser
       local:                          plugin_id
@@ -34,10 +41,6 @@ SymfonyPlugin:
       alias:                          Category
       foreignAlias:                   Plugins
       local:                          category_id
-    Tags:
-      foreignAlias:                   Plugins
-      local:                          plugin_id
-      refClass:                       PluginTag
 
 SymfonyPluginAuthor:
   actAs:    [Timestampable]
@@ -66,8 +69,8 @@ PluginRating:
   actAs:    [Timestampable]
   columns:
     symfony_plugin_id:  integer
-    sf_guard_user_id:    integer(4)
-    rating:     integer
+    sf_guard_user_id:   integer(4)
+    rating:             integer
   relations:  
     SymfonyPlugin:
       alias:        Plugin
@@ -144,10 +147,6 @@ PluginRelease:
     version:
       type:                 string(10)
     date:   timestamp
-    symfony_version_min:
-      type:                 decimal(5,1)
-    symfony_version_max:
-      type:                 decimal(5,1)
     summary:                clob
     stability:
       type:                 enum
@@ -160,6 +159,11 @@ PluginRelease:
       foreignAlias:         Releases
       local:                plugin_id
       onDelete:             CASCADE
+    ApiVersions:
+      class:                SymfonyApiVersion
+      refClass:             PluginReleaseSymfonyApiVersion
+      local:                release_id
+      foreign:              api_version_id
 
 PluginReleaseDependency:
   actAs:                    [Timestampable]
@@ -238,3 +242,30 @@ CommunityListItem:
       foreignAlias:     CommunityListItems
       local:            submitted_by
       
+
+PluginReleaseSymfonyApiVersion:
+  actAs:            [Timestampable]
+  columns:
+    release_id:
+      type:         integer
+      notnull:      true
+    api_version_id:
+      type:         integer
+      notnull:      true
+  relations:
+    Release:
+      class:        PluginRelease
+      local:        release_id
+      onDelete:     CASCADE
+    ApiVersion:
+      class:        SymfonyApiVersion
+      local:        api_version_id
+      onDelete:     CASCADE
+      
+SymfonyApiVersion:
+  actAs:            [Timestampable]
+  columns:
+    name:
+      type:             string(5)
+      notnull:          true
+    

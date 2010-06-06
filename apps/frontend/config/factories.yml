@@ -31,6 +31,12 @@ all:
       generate_shortest_url:            true
       extra_parameters_as_query_string: true
 
+  request:
+    class: sfWebRequest
+    param:
+      formats:
+        iphone:  text/html
+
 #all:
 #  controller:
 #    class: sfFrontWebController

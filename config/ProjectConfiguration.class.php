@@ -30,27 +30,37 @@ class ProjectConfiguration extends sfProjectConfiguration
       ));
 
     $this->dispatcher->connect('request.filter_parameters', array($this, 'filterRequestParameters'));
-    $this->dispatcher->connect('view.configure_format', array($this, 'configureIPhoneFormat'));
+    $this->dispatcher->connect('view.configure_format', array($this, 'configureMobileFormat'));
   }
  
   public function filterRequestParameters(sfEvent $event, $parameters)
   {
     $request = $event->getSubject();
- 
-    if (!$request->getHttpHeader('User-Agent'))
-    {
-      // This is being accessed via command line
-      $request->setRequestFormat('api');
+
+    if (preg_match('#Mobile/.+Safari#i', $request->getHttpHeader('User-Agent'))) {
+      $request->setRequestFormat('iphone');
     }
- 
+  
+    // if (preg_match('#Mobile/.+Safari#i', $request->getHttpHeader('User-Agent'))) {
+    //   $request->setRequestFormat('m');
+    // }
+   
     return $parameters;
   }
-
-  public function configureIPhoneFormat(sfEvent $event)
+  
+  public function configureMobileFormat(sfEvent $event)
   {
-    if ('api' == $event['format'])
-    {
-      exit(get_class($event->getSubject()));
-    }
+    
+    // $event['request']->setRequestFormat('html');
+    // if ('m' == $event['format']) {
+    //   $view = $event->getSubject();
+    //   $dir = sfConfig::get('sf_app_module_dir').'/'.$view->getModuleName().'/templates/'.$view->getActionName().$view->getViewName().$view->getExtension();
+    // 
+    //   if (!file_exists($dir)) {
+    //     $view->setExtension('.php');
+    //   }
+    //   $event['request']->setRequestFormat('html');
+    //   // $view->setDecoratorTemplate(false);
+    // }
   }
 }
